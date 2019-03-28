@@ -20,13 +20,14 @@ let io = require('socket.io').listen(server)
 
 io.sockets.on('connection', function (socket) {
 
-    socket.emit("getRoom", {data: computers })
+    socket.emit("getRoom", {computers})
 
     socket.on('computerConnexion', function (id) {
+        console.log(id)
         socket.serverId = id.id
         computers.push( socket.serverId.toString() )
         socket.join(socket.serverId.toString())
-        socket.broadcast.emit('getRoom', {data: computers })
+        socket.broadcast.emit('getRoom', {computers})
     })
 
     socket.on('askMobileConnexion', (code) => {
