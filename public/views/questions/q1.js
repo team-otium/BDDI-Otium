@@ -35,7 +35,7 @@
  desktop_html = 
  `
  <div class="text_center">
-    <h1>Ceci est la question 1</h1>
+    <h1>Ceci est la question 1 </h1>
 </div>
  `
  
