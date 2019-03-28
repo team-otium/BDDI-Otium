@@ -60,4 +60,4 @@ io.sockets.on('connection', function (socket) {
 });
 
 
-server.listen(config.port)
+server.listen(1337)
