@@ -28,9 +28,11 @@ button {
   background: none;
   border: none;
   background-image: url(/both/assets/img/button.svg);
-  background-size: contain;
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 55px;
   background-repeat: no-repeat;
-  padding: 20px 50px 40px 50px;
   cursor: pointer;
 }
 
@@ -54,6 +56,22 @@ button {
   width: 310px;
 }
 
+.text_center {
+  max-width: 750px;
+  height: 30%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+  line-height: 25px;
+}
+
+.text_center p {
+  margin: 35px 0;
+}
 
 
 /**************************  
@@ -69,23 +87,6 @@ button {
   opacity: 0;
 
   transition: all 2s ease;
-}
-
-#intro .intro {
-  max-width: 750px;
-  height: 30%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  margin: auto;
-  line-height: 25px;
-}
-
-#intro .intro p {
-  margin: 35px 0;
 }
 
 

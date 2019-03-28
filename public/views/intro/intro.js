@@ -18,7 +18,7 @@ desktop_html =
 <!----------- 
 ------------- SECTION 2 intro  
 ----------->
-<div class="intro">
+<div class="text_center">
     <h1>Bienvenue sur Otium</h1>
     <p>Exsistit autem hoc loco quaedam quaestio subdifficilis, num quando amici novi,
         digni amicitia, veteribus sint anteponendi, ut equis vetulis teneros anteponere
@@ -26,12 +26,16 @@ desktop_html =
         rerum satietates, veterrima quaeque, ut ea vina, quae vetustatem ferunt, esse debet
         suavissima, verumque illud est.
     </p>
-    <button>Commencer l'expérience</button>
+    <button class="commencer">Commencer l'expérience</button>
 </div>
 <!----------- 
 ------------- FIN SECTION 2 intro  
 ----------->
 `
+
+desktop_listener1 = [".commencer", "click", () => {
+ intro.intro.transitionTo("desktop", intro.connexion)
+}]
 
 desktop_script = () => {
 
@@ -53,7 +57,7 @@ let intro_mobile = {
 
 let intro_desktop = {
     html: desktop_html,
-    listeners: [],
+    listeners: [desktop_listener1],
     socketOn: [],
     script: () => desktop_script,
     transitions: desktop_transition,
