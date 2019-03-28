@@ -43,6 +43,11 @@ class Page{
                 el.addEventListener(listeners[1] , listeners[2])
             })
         })
+
+        this[device].socketOn.forEach(so => {
+            socket.on(so[0], so[1])
+        })
+
         this[device].script.call()
     }
 
@@ -52,10 +57,24 @@ class Page{
                 el.removeEventListener(listeners[1] , listeners[2])
             })
         })
+
+        this[device].socketOn.forEach(so => {
+            socket.removeListener(so[0], so[1])
+        })
     }
 
     displayPage(device){
-        document.body.appendChild(this[device].element)
+        document.getElementById("navigation").appendChild(this[device].element)
+        setTimeout(()=>{
+            this[device].element.classList.remove(this[device].transitionOut)
+            this[device].element.classList.add(this[device].transitionIn)
+            this.addListeners(device)
+        }, 300)
+    }
+
+    comeBackTo(device){
+        document.getElementById("navigation").innerHTML = ""
+        document.getElementById("navigation").appendChild(this[device].element)
         setTimeout(()=>{
             this[device].element.classList.remove(this[device].transitionOut)
             this[device].element.classList.add(this[device].transitionIn)
@@ -68,10 +87,10 @@ class Page{
         this[device].element.classList.remove(this[device].transitionIn)
         this[device].element.classList.add(this[device].transitionOut)
         this.removeListener(device)
-        document.body.appendChild(to[device].element)
+        document.getElementById("navigation").appendChild(to[device].element)
         setTimeout(() => {
             // Start page to in animation
-            document.body.removeChild(this[device].element)
+            document.getElementById("navigation").removeChild(this[device].element)
             to[device].element.classList.remove(to[device].transitionOut)
             to[device].element.classList.add(to[device].transitionIn)
             to.addListeners(device)

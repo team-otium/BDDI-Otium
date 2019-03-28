@@ -5,20 +5,24 @@
  // The html (without section)
  mobile_html = 
  `
- 
+    <input id="code" type="number">
  `
  
   // All listeners, one variable per listener
- mobile_listener1 = ["selector", "type", () => {
- 
- }]
- 
- mobile_listener2 = ["selector", "type", () => {
- 
+ mobile_listener1 = ["#code", "change", () => {
+    let code = document.getElementById("code").value
+    let i = rooms.indexOf( code )
+    if (i > -1) {
+        console.log(code)
+        socket.emit("askMobileConnexion", code)
+    }
  }]
  /** And more... */
  
  // Socket on
+ let mobile_socketOn1 = ["mobileConnected", () => {
+    intro.connexion.transitionTo('mobile', questions.q1)
+}]
  
  // Script to be executed when the page is displayed
  mobile_script = () => {
@@ -45,7 +49,7 @@
         rerum satietates, veterrima quaeque, ut ea vina, quae vetustatem ferunt, esse debet
         suavissima, verumque illud est.
         <br><br>
-        Code à insérer dans votre smartphone : <span>####</span>
+        Code à insérer dans votre smartphone : <span id="id">####</span>
         <br><br>
         <button class="start_q1">test connexion</button>
     </p>
@@ -59,12 +63,12 @@
     intro.connexion.transitionTo("desktop", questions.q1)
  }]
  
- desktop_listener2 = ["selector", "type", () => {
- 
- }]
+let desktop_socketOn1 = ["mobileConnected", () => {
+    intro.connexion.transitionTo('desktop', questions.q1)
+}]
  
  desktop_script = () => {
- 
+    createConnexionId()
  }
  
  desktop_transition = ["out", "in"]
@@ -75,8 +79,8 @@
  
  let connexion_mobile = {
      html: mobile_html,
-     listeners: [],
-     socketOn: [],
+     listeners: [mobile_listener1],
+     socketOn: [mobile_socketOn1],
      script: mobile_script,
      transitions: mobile_transition,
  }
@@ -84,7 +88,7 @@
  let connexion_desktop = {
      html: desktop_html,
      listeners: [desktop_listener1],
-     socketOn: [],
+     socketOn: [desktop_socketOn1],
      script: desktop_script,
      transitions: desktop_transition,
  }
