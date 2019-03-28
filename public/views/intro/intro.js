@@ -4,7 +4,7 @@
 
 mobile_html = 
 `
-
+    
 `
 
 mobile_transition = ["out", "in"]
@@ -59,6 +59,6 @@ let intro_desktop = {
     html: desktop_html,
     listeners: [desktop_listener1],
     socketOn: [],
-    script: () => desktop_script,
+    script: desktop_script,
     transitions: desktop_transition,
 } 
