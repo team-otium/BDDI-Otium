@@ -107,36 +107,3 @@ button {
 
   transition: all 2s ease;
 }
-
-
-
-/**************************  
-**************************  SECTION 3
-**************************/
-
-section{
-  transition: 0.8s all ease;
-}
-
-.out{
-  opacity: 0;
-}
-
-.in{
-  opacity: 1;
-}
-
-  /**************************  
-  **************************  BUTTON_VALIDER
-  **************************/
-
-  .fondu_valider {
-    height: 25%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    margin: auto;
-  }

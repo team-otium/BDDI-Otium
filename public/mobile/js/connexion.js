@@ -12,5 +12,5 @@ socket.on("computerDisconnected", () => {
 })
 
 socket.on("mobileConnected", () => {
-    intro.connexion.transitionTo("mobile", questions.q1)
+    intro.connexion.transitionTo("mobile", intro.button_valider)
 })

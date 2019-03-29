@@ -16,6 +16,7 @@
         <p>Entrez votre code afin de connecter votre smartphone.
         </p>
         <input id="code" type="number">
+        <button class="start_q1">test connexion</button>
     </div>
     <!----------- 
     ------------- FIN SECTION 2 intro  
@@ -31,11 +32,15 @@
         socket.emit("askMobileConnexion", code)
     }
  }]
+
+mobile_listener2 = [".start_q1", "click", () => {
+    intro.connexion.transitionTo("mobile", intro.button_valider)
+ }]
  /** And more... */
  
  // Socket on
  let mobile_socketOn1 = ["mobileConnected", () => {
-    intro.connexion.transitionTo("mobile", intro.button_valider)
+    
 }]
  
  // Script to be executed when the page is displayed
@@ -74,7 +79,7 @@
  `
  
  desktop_listener1 = [".start_q1", "click", () => {
-    intro.connexion.transitionTo("desktop", questions.q1)
+    intro.connexion.transitionTo("desktop", intro.button_valider)
  }]
  
 let desktop_socketOn1 = ["mobileConnected", () => {
@@ -93,7 +98,7 @@ let desktop_socketOn1 = ["mobileConnected", () => {
  
  let connexion_mobile = {
      html: mobile_html,
-     listeners: [mobile_listener1],
+     listeners: [mobile_listener1, mobile_listener2],
      socketOn: [mobile_socketOn1],
      script: mobile_script,
      transitions: mobile_transition,
