@@ -39,6 +39,25 @@ button {
 
 
 /**************************  
+**************************  TIMELINE
+**************************/
+.Timeline {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+  max-width: 1600px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+
+
+
+
+/**************************  
 **************************  SECTION 1
 **************************/
 
@@ -106,3 +125,18 @@ section{
 .in{
   opacity: 1;
 }
+
+  /**************************  
+  **************************  BUTTON_VALIDER
+  **************************/
+
+  .fondu_valider {
+    height: 25%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+  }

@@ -35,7 +35,7 @@
  
  // Socket on
  let mobile_socketOn1 = ["mobileConnected", () => {
-    intro.connexion.transitionTo('mobile', questions.q1)
+    intro.connexion.transitionTo("mobile", intro.button_valider)
 }]
  
  // Script to be executed when the page is displayed
@@ -52,7 +52,7 @@
  
  desktop_html = 
  `
- <!----------- 
+<!----------- 
 ------------- SECTION 3 connexion
 ----------->
 <div class="text_center">
@@ -78,7 +78,7 @@
  }]
  
 let desktop_socketOn1 = ["mobileConnected", () => {
-    intro.connexion.transitionTo('desktop', questions.q1)
+    intro.connexion.transitionTo("desktop", intro.button_valider)
 }]
  
  desktop_script = () => {

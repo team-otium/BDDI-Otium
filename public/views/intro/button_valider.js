@@ -5,7 +5,9 @@
  // The html (without section)
  mobile_html = 
  `
-    <div class="interaction1">Question 1</div>
+    <div class="fondu_valider">
+        <img src="/both/assets/img/valider.png" alt="">
+    </div>
  `
  
   // All listeners, one variable per listener
@@ -22,8 +24,10 @@
  
  // Script to be executed when the page is displayed
  mobile_script = () => {
-     
- }
+    setTimeout(() => {
+        intro.button_valider.transitionTo("mobile", questions.q1)
+    }, 2000)
+}
  
  // Name of the transitions classes [when he leave, when he arrive]
  mobile_transition = ["out", "in"]
@@ -34,8 +38,8 @@
  
  desktop_html = 
  `
-    <div class="text_center">
-        <h1>Ceci est la question 1</h1>
+    <div class="fondu_valider">
+        <img src="/both/assets/img/valider.png" alt="">
     </div>
  `
  
@@ -47,9 +51,12 @@
  
  }]
  
- desktop_script = () => {
- 
- }
+desktop_script = () => {
+    setTimeout(() => {
+        intro.button_valider.transitionTo("desktop", questions.q1)
+        intro.timeline.displayPage("desktop")
+    }, 2000)
+}
  
  desktop_transition = ["out", "in"]
  
@@ -57,7 +64,7 @@
   * Export
   */
  
- q1_mobile = {
+button_valider_mobile = {
      html: mobile_html,
      listeners: [],
      socketOn: [],
@@ -65,7 +72,7 @@
      transitions: mobile_transition,
  }
  
-q1_desktop = {
+ button_valider_desktop = {
      html: desktop_html,
      listeners: [],
      socketOn: [],
