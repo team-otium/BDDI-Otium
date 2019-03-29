@@ -20,6 +20,8 @@ Modify in public/dev/utils.js the value of config.ip with your private ip addres
 Run with the following command :
 
     node server.js
+    
+The web site run on http://localhost:1337
 
 ## 👩‍🎨  Contributors
 
