@@ -3,9 +3,21 @@
 ## 🏃  Run the project
 Be sure to have installed node.js before.
 
-Clone the repository :
+### Clone the repository :
 
     git clone https://github.com/RemiRuc/bddi_otium.git
+
+### Know your private ip address :
+
+To know your private ip address, run the following command on a termial :
+
+#### Windows :
+
+    ipconfig
+    
+#### Mac, Linux :
+
+    ifconfig
 
 Modify in public/dev/utils.js the value of config.ip with your private ip address :
 
@@ -16,6 +28,8 @@ Modify in public/dev/utils.js the value of config.ip with your private ip addres
 		port: 1337
 
 	}
+
+### Launch the project
 
 Run with the following command :
 
