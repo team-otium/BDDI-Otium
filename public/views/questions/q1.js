@@ -5,7 +5,15 @@
  // The html (without section)
  mobile_html = 
  `
-    <div>Question 1</div>
+    <!-- FONDU CODE BON -->
+    <div class="fondu_valider">
+    <img src="/both/assets/img/valider.png" alt="">
+    </div>
+    <!-- FIN FONDU CODE BON -->
+
+    <!-- APPARITION INTERACTION 1 -->
+    <div class="interaction1">Question 1</div>
+    <!-- FIN APPARITION INTERACTION 1 -->
  `
  
   // All listeners, one variable per listener

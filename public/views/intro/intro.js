@@ -4,7 +4,6 @@
 
 mobile_html = 
 `
-    
 `
 
 mobile_transition = ["out", "in"]

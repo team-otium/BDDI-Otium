@@ -5,7 +5,21 @@
  // The html (without section)
  mobile_html = 
  `
-    <input id="code" type="number">
+    <!----------- 
+    ------------- SECTION 2 intro  
+    ----------->
+    <div class="text_center_mobile">
+        <div class="logo_center_mobile">
+            <img src="/both/assets/img/otium_logo.svg" alt="">
+        </div>
+        <h1>Bienvenue sur Otium</h1>
+        <p>Entrez votre code afin de connecter votre smartphone.
+        </p>
+        <input id="code" type="number">
+    </div>
+    <!----------- 
+    ------------- FIN SECTION 2 intro  
+    ----------->   
  `
  
   // All listeners, one variable per listener
