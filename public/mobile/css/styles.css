@@ -1,0 +1,120 @@
+/** 
+CSS DESKTOP 
+**/
+
+
+/*** GENERAL ***/
+@font-face {
+    font-family: "GothamRounded-Book";
+    src: url("../../both/assets/font/GothamRounded-Book.otf");
+   }
+   @font-face {
+    font-family: "GothamRounded-Light";
+    src: url("../../both/assets/font/GothamRounded-Light.otf");
+   }
+  
+  * {
+    font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
+  }
+  
+  h1 {
+    font-family: "GothamRounded-Book", Helvetica, Arial, sans-serif;
+    font-size: 32px;
+  }
+  
+  input {
+    font-family: "GothamRounded-Book", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    background: none;
+    border: none;
+    background-image: url(/both/assets/img/input.svg);
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 240px;
+    height: 40px;
+    padding: 0 25px;
+  }
+  
+  /**************************  
+  **************************  SECTION CONNEXION
+  **************************/
+  
+  .logo_center_mobile {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .logo_center_mobile img {
+    width: 310px;
+  }
+  
+  .text_center_mobile {
+    max-width: 750px;
+    height: 75%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+    line-height: 25px;
+  }
+  
+  .text_center_mobile p {
+    margin: 35px 0;
+  }
+
+
+  /**************************  
+  **************************  SECTION QUESTION 1
+  **************************/
+
+  .fondu_valider {
+    height: 25%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+    opacity: 0;
+    animation: fondu_valider 2s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes fondu_valider {
+    0% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .interaction1 {
+    opacity: 0;
+    animation: apparition_interaction 2s;
+    animation-delay: 3.5s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes apparition_interaction {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
