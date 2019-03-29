@@ -8,7 +8,7 @@ socket.on("getRoom", (data) => {
 })
 
 socket.on("computerDisconnected", () => {
-    intro.connexion.comeBackTo("desktop")
+    intro.connexion.comeBackTo("mobile")
 })
 
 socket.on("mobileConnected", () => {
