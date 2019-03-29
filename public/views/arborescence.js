@@ -2,6 +2,8 @@ let intro = {
     animationLogo : new Page(animation_logo_desktop , animation_logo_mobile, "animation-logo"),
     intro : new Page(intro_desktop, intro_mobile, "intro"),
     connexion : new Page(connexion_desktop, connexion_mobile, "connexion"),
+    timeline : new Page(timeline_desktop, timeline_mobile, "timeline"),
+    button_valider : new Page(button_valider_desktop, button_valider_mobile, "button_valider"),
 }
 
 let questions = {
