@@ -37,6 +37,8 @@ Run with the following command :
     
 The web site run on http://localhost:1337
 
+But to use it proprely, launch http://localhost:1337 on a desktop device and http://<your private ip address>:1337/mobile on a mobile device.
+
 ## 👩‍🎨  Contributors
 
 | <img src="https://avatars3.githubusercontent.com/u/36816385?s=400&v=4" width=100><br>[Nadia Essoubai](https://nadia-essoubai.fr/)<br><sub>💻 Developer</sub> | <img src="https://avatars1.githubusercontent.com/u/38033594?s=460&v=4" width=100><br>[Rémi Rucojevic](http://remi-rucojevic.com)<br><sub>💻 Developer</sub> | <img src="https://media.licdn.com/dms/image/C5603AQGkD-oozpO4GA/profile-displayphoto-shrink_800_800/0?e=1559174400&v=beta&t=2vSFd-4Mm326oZgxR1MVpRv6QqCeMNZlr7bJTR3Pkvk" width=100><br>[Julie Matring](https://www.linkedin.com/in/julie-marting-1b231b101/)<br><sub>🎨 Graphist</sub> | <img src="https://media.licdn.com/dms/image/C4E03AQFLPInTQZDE9w/profile-displayphoto-shrink_800_800/0?e=1559174400&v=beta&t=VQUFsYM738fimqJuV17V3XGFpnIapOGY_XQ_LV6Rx_U" width=100><br>[Julien Warin](https://www.linkedin.com/in/jlnwrn/)<br><sub>🎨 Graphist</sub> |
