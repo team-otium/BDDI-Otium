@@ -35,8 +35,10 @@
  desktop_html = 
  `
     <div class="text_center">
-        <h1>Ceci est la question 1</h1>
+        <h1>Êtes-vous de nature rêveur/imaginatif ?</h1>
     </div>
+    <div class="divBleu"></div>
+    <div class="divRouge"></div>
  `
  
  desktop_listener1 = ["selector", "type", () => {
