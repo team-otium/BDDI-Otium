@@ -34,12 +34,12 @@
  
  desktop_html = 
  `
+    <div id="forme"></div>
     <div class="text_center">
         <h1>Êtes-vous de nature rêveur/imaginatif ?</h1>
     </div>
     <div class="divBleu"></div>
     <div class="divRouge"></div>
-    <canvas id="canvas"></canvas>
  `
  
  desktop_listener1 = ["selector", "type", () => {
@@ -80,15 +80,14 @@ q1_desktop = {
  /***********************************  ************************************/
 
  
-var renderer = new THREE.WebGLRenderer({ canvas : document.getElementById('canvas'), antialias:true});
-// default bg canvas color //
+// var renderer = new THREE.WebGLRenderer({ canvas : document.getElementById('forme'), antialias:true});
+
+var forme = document.getElementById("forme");
+var renderer = new THREE.WebGLRenderer();
 renderer.setClearColor(0x7b7b7b);
-//  use device aspect ratio //
 renderer.setPixelRatio(window.devicePixelRatio);
-// set size of canvas within window //
-renderer.setSize(window.innerWidth, window.innerHeight);
-
-
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.forme.appendChild( renderer.domElement );
 
 
 var scene = new THREE.Scene();
