@@ -2,9 +2,9 @@
  * MOBILE
  */
 
- // The html (without section)
- mobile_html = 
- `
+// The html (without section)
+mobile_html =
+    `
     <table class="table table-striped table-bordered">
         <tr>
             <td>Tilt Left/Right [gamma]</td>
@@ -23,47 +23,47 @@
         <h1>Question 1</h1>
     </div>
  `
- 
-  // All listeners, one variable per listener
- mobile_listener1 = ["selector", "type", () => {
- 
- }]
- 
- mobile_listener2 = ["selector", "type", () => {
- 
- }]
- /** And more... */
- 
- // Socket on
- 
- // Script to be executed when the page is displayed
- mobile_script = () => {
+
+// All listeners, one variable per listener
+mobile_listener1 = ["selector", "type", () => {
+
+}]
+
+mobile_listener2 = ["selector", "type", () => {
+
+}]
+/** And more... */
+
+// Socket on
+
+// Script to be executed when the page is displayed
+mobile_script = () => {
     if ('DeviceOrientationEvent' in window) {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
-      } else {
+    } else {
         document.getElementById('logoContainer').innerText = 'Device Orientation API not supported.';
-      }
-      
-      function deviceOrientationHandler (eventData) {
+    }
+
+    function deviceOrientationHandler(eventData) {
         var tiltLR = eventData.gamma;
         var tiltFB = eventData.beta;
         var dir = eventData.alpha;
-        
+
         document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
         document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
         document.getElementById("doDirection").innerHTML = Math.round(dir);
-      }
- }
- 
- // Name of the transitions classes [when he leave, when he arrive]
- mobile_transition = ["out", "in"]
- 
- /**
-  * DESKTOP
-  */
- 
- desktop_html = 
- `
+    }
+}
+
+// Name of the transitions classes [when he leave, when he arrive]
+mobile_transition = ["out", "in"]
+
+/**
+ * DESKTOP
+ */
+
+desktop_html =
+    `
     <div id="forme-net"></div>
 
     <div id="forme-abstraite"></div>
@@ -71,112 +71,122 @@
     <div class="text_center">
         <h1>Êtes-vous de nature rêveur/imaginatif ?</h1>
     </div>
-    <div id="ball"></div>
  `
- 
- desktop_listener1 = ["selector", "type", () => {
- 
- }]
- 
- desktop_listener2 = ["selector", "type", () => {
- 
- }]
- 
- desktop_script = () => {
+
+desktop_listener1 = ["selector", "type", () => {
+
+}]
+
+desktop_listener2 = ["selector", "type", () => {
+
+}]
+
+desktop_script = () => {
 
     /**************** FORME NET ****************/
 
-    var sceneN = new THREE.Scene();
-    var cameraN = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
-    
-    var formeN = document.getElementById('forme-net');
+    var sceneFormeNet = new THREE.Scene();
+    var cameraFormeNet = new THREE.PerspectiveCamera(54, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-    var rendererN = new THREE.WebGLRenderer({alpha: true});
-    rendererN.setSize(window.innerWidth, window.innerHeight);
-    formeN.appendChild(rendererN.domElement);
-    
-    var radiusN = 40;
-    var segmentsN = 50;
-    var ringsN = 30;
-    
-    var geometryN = new THREE.SphereGeometry(radiusN, segmentsN, ringsN);
+    var formeNet = document.getElementById('forme-net');
 
-    var materialN = new THREE.MeshBasicMaterial({
-      color: 'blue',
-      wireframe: true
+    var rendererFormeNet = new THREE.WebGLRenderer({
+        alpha: true
     });
-    
-    var cubeN = new THREE.Mesh(geometryN, materialN);
-    sceneN.add(cubeN);
-    
-    cameraN.position.z = 150;
-    
+    rendererFormeNet.setSize(window.innerWidth, window.innerHeight);
+    formeNet.appendChild(rendererFormeNet.domElement);
+
+    var radiusFormeNet = 40;
+    var segmentsFormeNet = 50;
+    var ringsFormeNet = 30;
+
+    var geometryFormeNet = new THREE.SphereGeometry(radiusFormeNet, segmentsFormeNet, ringsFormeNet);
+
+    var materialFormeNet = new THREE.MeshBasicMaterial({
+        color: 'blue',
+        wireframe: true
+    });
+
+    var cube_formeNet = new THREE.Mesh(geometryFormeNet, materialFormeNet);
+    sceneFormeNet.add(cube_formeNet);
+
+    cameraFormeNet.position.z = 150;
+
     var renderN = function() {
-      requestAnimationFrame(renderN);
-      cubeN.rotation.x += 0.01;
-      cubeN.rotation.y += 0.01;
-      rendererN.render(sceneN, cameraN);
+        requestAnimationFrame(renderN);
+        cube_formeNet.rotation.x += 0.01;
+        cube_formeNet.rotation.y += 0.01;
+        rendererFormeNet.render(sceneFormeNet, cameraFormeNet);
     };
     renderN();
+
     /**************** FIN FORME NET ****************/
 
     /**************** FORME ABSTRAITE ****************/
 
-    var sceneA = new THREE.Scene();
-    var cameraA = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
-    
-    var formeA = document.getElementById('forme-abstraite');
+    var sceneFormeAbstraite = new THREE.Scene();
+    var cameraFormeAbstraite = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-    var rendererA = new THREE.WebGLRenderer({alpha: true});
-    rendererA.setSize(window.innerWidth, window.innerHeight);
-    formeA.appendChild(rendererA.domElement);
-    
-    var radiusA = 40;
-    var segmentsA = 50;
-    var ringsA = 30;
-    
-    var geometryA = new THREE.SphereGeometry(radiusA, segmentsA, ringsA);
+    var formeAbstraite = document.getElementById('forme-abstraite');
 
-    var materialA = new THREE.MeshBasicMaterial({
-        color: 0xF3A2B0,
-        wireframe: true
+    var rendererFormeAbstraite = new THREE.WebGLRenderer({
+        alpha: true
     });
-    
-    var cubeA = new THREE.Mesh(geometryA, materialA);
-    sceneA.add(cubeA);
-    
-    cameraA.position.z = 150;
-    
-    var renderA = function() {
-      requestAnimationFrame(renderA);
-      cubeA.rotation.x += 0.01;
-      cubeA.rotation.y += 0.01;
-      rendererA.render(sceneA, cameraA);
-    };
-    renderA();
+
+    rendererFormeAbstraite.setSize(window.innerWidth, window.innerHeight);
+    formeAbstraite.appendChild(rendererFormeAbstraite.domElement);
+    cameraFormeAbstraite.position.z = 5;
+
+    var sphere_geometry = new THREE.SphereGeometry(1, 150, 150);
+    var materialA = new THREE.MeshNormalMaterial();
+
+    var sphere = new THREE.Mesh(sphere_geometry, materialA);
+    sceneFormeAbstraite.add(sphere);
+
+    var update = function() {
+        var time = performance.now() * 0.001;
+        var k = 3;
+        for (var i = 0; i < sphere.geometry.vertices.length; i++) {
+            var p = sphere.geometry.vertices[i];
+            p.normalize().multiplyScalar(1 + 0.3 * noise.perlin3(p.x * k + time, p.y * k, p.z * k));
+        }
+        sphere.geometry.computeVertexNormals();
+        sphere.geometry.normalsNeedUpdate = true;
+        sphere.geometry.verticesNeedUpdate = true;
+    }
+
+    function animate() {
+        //sphere.rotation.x += 0.01;
+        //sphere.rotation.y += 0.01;
+        update();
+        /* render scene and camera */
+        rendererFormeAbstraite.render(sceneFormeAbstraite, cameraFormeAbstraite);
+        requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
 
     /**************** FIN FORME ABSTRAITE ****************/
- }
- 
- desktop_transition = ["out", "in"]
- 
- /**
-  * Export
-  */
- 
- q1_mobile = {
-     html: mobile_html,
-     listeners: [],
-     socketOn: [],
-     script: mobile_script,
-     transitions: mobile_transition,
- }
- 
-q1_desktop = {
-     html: desktop_html,
-     listeners: [],
-     socketOn: [],
-     script: desktop_script,
-     transitions: desktop_transition,
- }
+}
 
+desktop_transition = ["out", "in"]
+
+/**
+ * Export
+ */
+
+q1_mobile = {
+    html: mobile_html,
+    listeners: [],
+    socketOn: [],
+    script: mobile_script,
+    transitions: mobile_transition,
+}
+
+q1_desktop = {
+    html: desktop_html,
+    listeners: [],
+    socketOn: [],
+    script: desktop_script,
+    transitions: desktop_transition,
+}
