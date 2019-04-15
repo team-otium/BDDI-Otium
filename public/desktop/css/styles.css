@@ -77,7 +77,7 @@ button {
 
 .text_center {
   max-width: 750px;
-  height: 30%;
+  height: 20%;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -117,7 +117,6 @@ button {
 
 #forme-net {
   width: 50%; 
-  height: 100%;
   overflow: hidden;
   position: absolute;
 }
