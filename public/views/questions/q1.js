@@ -123,9 +123,6 @@
     };
     renderA();
 
-
-    /**************** SEPARATION CANVAS ****************/
-
  }
  
  desktop_transition = ["out", "in"]
