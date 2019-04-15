@@ -34,12 +34,13 @@
  
  desktop_html = 
  `
-    <div id="forme"></div>
+    <div id="forme-net"></div>
+
+    <div id="forme-abstraite"></div>
+
     <div class="text_center">
         <h1>Êtes-vous de nature rêveur/imaginatif ?</h1>
     </div>
-    <div class="divBleu"></div>
-    <div class="divRouge"></div>
  `
  
  desktop_listener1 = ["selector", "type", () => {
@@ -51,7 +52,80 @@
  }]
  
  desktop_script = () => {
- 
+
+    /**************** FORME NET ****************/
+
+    var sceneN = new THREE.Scene();
+    var cameraN = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
+    
+    var formeN = document.getElementById('forme-net');
+
+    var rendererN = new THREE.WebGLRenderer({alpha: true});
+    rendererN.setSize(window.innerWidth, window.innerHeight);
+    formeN.appendChild(rendererN.domElement);
+    
+    var radiusN = 40;
+    var segmentsN = 50;
+    var ringsN = 30;
+    
+    var geometryN = new THREE.SphereGeometry(radiusN, segmentsN, ringsN);
+
+    var materialN = new THREE.MeshBasicMaterial({
+      color: 'blue',
+      wireframe: true
+    });
+    
+    var cubeN = new THREE.Mesh(geometryN, materialN);
+    sceneN.add(cubeN);
+    
+    cameraN.position.z = 150;
+    
+    var renderN = function() {
+      requestAnimationFrame(renderN);
+      cubeN.rotation.x += 0.01;
+      cubeN.rotation.y += 0.01;
+      rendererN.render(sceneN, cameraN);
+    };
+    renderN();
+
+    /**************** FORME ABSTRAITE ****************/
+
+    var sceneA = new THREE.Scene();
+    var cameraA = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
+    
+    var formeA = document.getElementById('forme-abstraite');
+
+    var rendererA = new THREE.WebGLRenderer({alpha: true});
+    rendererA.setSize(window.innerWidth, window.innerHeight);
+    formeA.appendChild(rendererA.domElement);
+    
+    var radiusA = 40;
+    var segmentsA = 50;
+    var ringsA = 30;
+    
+    var geometryA = new THREE.SphereGeometry(radiusA, segmentsA, ringsA);
+
+    var materialA = new THREE.MeshBasicMaterial({
+        color: 0xF3A2B0,
+        wireframe: true
+    });
+    
+    var cubeA = new THREE.Mesh(geometryA, materialA);
+    sceneA.add(cubeA);
+    
+    cameraA.position.z = 150;
+    
+    var renderA = function() {
+      requestAnimationFrame(renderA);
+      cubeA.rotation.x += 0.01;
+      cubeA.rotation.y += 0.01;
+      rendererA.render(sceneA, cameraA);
+    };
+    renderA();
+
+
+    /**************** SEPARATION CANVAS ****************/
+
  }
  
  desktop_transition = ["out", "in"]
@@ -75,63 +149,4 @@ q1_desktop = {
      script: desktop_script,
      transitions: desktop_transition,
  }
- 
 
- /***********************************  ************************************/
-
- 
-// var renderer = new THREE.WebGLRenderer({ canvas : document.getElementById('forme'), antialias:true});
-
-var forme = document.getElementById("forme");
-var renderer = new THREE.WebGLRenderer();
-renderer.setClearColor(0x7b7b7b);
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.forme.appendChild( renderer.domElement );
-
-
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 45, window.innerWidth/window.innerHeight, 0.1, 1000 );
-camera.position.z = 5;
-
-
-var sphere_geometry = new THREE.SphereGeometry(1, 128, 128);
-var material = new THREE.MeshNormalMaterial();
-
-var sphere = new THREE.Mesh(sphere_geometry, material);
-scene.add(sphere);
-
-
-var update = function() {
-
-  // change '0.003' for more aggressive animation
-  var time = performance.now() * 0.003;
-  //console.log(time)
-
-  //go through vertices here and reposition them
-  
-  // change 'k' value for more spikes
-  var k = 3;
-  for (var i = 0; i < sphere.geometry.vertices.length; i++) {
-      var p = sphere.geometry.vertices[i];
-      p.normalize().multiplyScalar(1 + 0.3 * noise.perlin3(p.x * k + time, p.y * k, p.z * k));
-  }
-  sphere.geometry.computeVertexNormals();
-  sphere.geometry.normalsNeedUpdate = true;
-sphere.geometry.verticesNeedUpdate = true;
-
-
-}
-
-function animate() {
-  //sphere.rotation.x += 0.01;
-  //sphere.rotation.y += 0.01;
-
-  update();
-  /* render scene and camera */
-  renderer.render(scene,camera);
-  requestAnimationFrame(animate);
-}
-
-
-requestAnimationFrame(animate);
