@@ -6,6 +6,7 @@
  mobile_html = 
  `
     <div class="interaction1">Question 1</div>
+    <div id="ball"></div>
  `
  
   // All listeners, one variable per listener
@@ -41,6 +42,7 @@
     <div class="text_center">
         <h1>Êtes-vous de nature rêveur/imaginatif ?</h1>
     </div>
+    <div id="ball"></div>
  `
  
  desktop_listener1 = ["selector", "type", () => {
@@ -124,7 +126,63 @@
     renderA();
 
 
-    /**************** SEPARATION CANVAS ****************/
+    /**************** GESTION SMARTPHONE ****************/
+
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = (function () {
+          return window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            function ( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
+              window.setTimeout(callback, 1000 / 60);
+            };
+        })();
+      }
+      var ball;
+      var w;
+      var h;
+      var reponse;
+      
+      function init() {
+        ball = document.getElementById("ball");
+        w = window.innerWidth;
+        h = window.innerHeight;
+        ball.style.left = (w / 2) + "px";
+        ball.style.top = (h / 2) + "px";
+        ball.velocity = { x: 0, y: 0 }
+        ball.position = { x: 0, y: 0 }
+        if (window.DeviceOrientationEvent) {
+          window.addEventListener("deviceorientation", function (event) {
+            socket.emit("animation", {beta:event.beta, gamma:event.gamma, alpha:event.alpha});
+          })
+        }
+        else {
+          alert("Sorry, your browser doesn't support Device Orientation");
+        };
+          update();
+      }
+      
+      
+      function update() {
+        ball.position.x += ball.velocity.x;
+        ball.position.y += ball.velocity.y;
+        if (ball.position.x > (w - 100) && ball.velocity.x > 0) {
+          ball.position.x = w - 100;
+        }
+        if (ball.position.x < 0 && ball.velocity.x < 0) {
+          ball.position.x = 0;
+        }
+        if (ball.position.y > (h - 100) && ball.velocity.y > 0) {
+          ball.position.y = h - 100;
+        }
+        if (ball.position.y < 0 && ball.velocity.y < 0) {
+          ball.position.y = 0;
+        }
+        ball.style.top = ball.position.y + "px"
+        ball.style.left = ball.position.x + "px"
+        requestAnimationFrame(update);//KEEP ANIMATING
+      };
 
  }
  
