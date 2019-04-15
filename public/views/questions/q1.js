@@ -5,7 +5,23 @@
  // The html (without section)
  mobile_html = 
  `
-    <div class="interaction1">Question 1</div>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td>Tilt Left/Right [gamma]</td>
+            <td id="doTiltLR"></td>
+        </tr>
+        <tr>
+            <td>Tilt Front/Back [beta]</td>
+            <td id="doTiltFB"></td>
+        </tr>
+        <tr>
+            <td>Direction [alpha]</td>
+            <td id="doDirection"></td>
+        </tr>
+    </table>
+    <div class="text_center">
+        <h1>Question 1</h1>
+    </div>
  `
  
   // All listeners, one variable per listener
@@ -22,7 +38,21 @@
  
  // Script to be executed when the page is displayed
  mobile_script = () => {
-     
+    if ('DeviceOrientationEvent' in window) {
+        window.addEventListener('deviceorientation', deviceOrientationHandler, false);
+      } else {
+        document.getElementById('logoContainer').innerText = 'Device Orientation API not supported.';
+      }
+      
+      function deviceOrientationHandler (eventData) {
+        var tiltLR = eventData.gamma;
+        var tiltFB = eventData.beta;
+        var dir = eventData.alpha;
+        
+        document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
+        document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
+        document.getElementById("doDirection").innerHTML = Math.round(dir);
+      }
  }
  
  // Name of the transitions classes [when he leave, when he arrive]
@@ -87,6 +117,7 @@
       rendererN.render(sceneN, cameraN);
     };
     renderN();
+    /**************** FIN FORME NET ****************/
 
     /**************** FORME ABSTRAITE ****************/
 
@@ -123,6 +154,7 @@
     };
     renderA();
 
+    /**************** FIN FORME ABSTRAITE ****************/
  }
  
  desktop_transition = ["out", "in"]
