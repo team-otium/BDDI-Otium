@@ -1,3 +1,7 @@
+body{
+  overflow: hidden;
+}
+
 section{
     transition: 0.8s all ease;
   }
@@ -25,10 +29,27 @@ section{
     margin: auto;
   }
 
+  #bulles{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
   .bulle{
+    position: relative;
     width: 100px;
     height: 100px;
+    flex: 0 0 100px;
     background-image: url("../../both/assets/img/q2/bulle.png");
     background-position: center center;
     background-size: 100% auto;
+    margin: 20px 40px;
+    opacity: 0.5;
+
+    transition: opacity 0.3s;
+  }
+
+  .bulle.none{
+    opacity: 0 !important;
   }
