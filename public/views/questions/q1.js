@@ -52,6 +52,8 @@ mobile_script = () => {
         document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
         document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
         document.getElementById("doDirection").innerHTML = Math.round(dir);
+
+        socket.emit("q1", {tiltFB:eventData.beta, tiltLR:eventData.gamma, dir:eventData.alpha});
     }
 }
 
@@ -64,6 +66,20 @@ mobile_transition = ["out", "in"]
 
 desktop_html =
     `
+        <table class="table table-striped table-bordered">
+        <tr>
+            <td>Tilt Left/Right [gamma]</td>
+            <td id="doTiltLR"></td>
+        </tr>
+        <tr>
+            <td>Tilt Front/Back [beta]</td>
+            <td id="doTiltFB"></td>
+        </tr>
+        <tr>
+            <td>Direction [alpha]</td>
+            <td id="doDirection"></td>
+        </tr>
+    </table>
     <div id="forme-net"></div>
 
     <div id="forme-abstraite"></div>
@@ -79,6 +95,12 @@ desktop_listener1 = ["selector", "type", () => {
 
 desktop_listener2 = ["selector", "type", () => {
 
+}]
+
+desktop_socketOn1 = ["q1", () => {
+    document.getElementById("doTiltLR").innerHTML = Math.round(eventData.tiltLR);
+    document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
+    document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
 }]
 
 desktop_script = () => {
@@ -107,18 +129,18 @@ desktop_script = () => {
         wireframe: true
     });
 
-    var cube_formeNet = new THREE.Mesh(geometryFormeNet, materialFormeNet);
-    sceneFormeNet.add(cube_formeNet);
+    var cubeFormeNet = new THREE.Mesh(geometryFormeNet, materialFormeNet);
+    sceneFormeNet.add(cubeFormeNet);
 
     cameraFormeNet.position.z = 150;
 
-    var renderN = function() {
-        requestAnimationFrame(renderN);
-        cube_formeNet.rotation.x += 0.01;
-        cube_formeNet.rotation.y += 0.01;
+    var renderFormeNet = function() {
+        requestAnimationFrame(renderFormeNet);
+        cubeFormeNet.rotation.x += 0.01;
+        cubeFormeNet.rotation.y += 0.01;
         rendererFormeNet.render(sceneFormeNet, cameraFormeNet);
     };
-    renderN();
+    renderFormeNet();
 
     /**************** FIN FORME NET ****************/
 
@@ -186,7 +208,7 @@ q1_mobile = {
 q1_desktop = {
     html: desktop_html,
     listeners: [],
-    socketOn: [],
+    socketOn: ["q1"],
     script: desktop_script,
     transitions: desktop_transition,
 }

@@ -58,6 +58,11 @@ io.sockets.on('connection', function (socket) {
             socket.broadcast.to(socket.clientId).emit('mobileDisconnected')
         }
     })
+
+    // animation Q1
+    socket.on('q1', (data) => {
+        io.sockets.to(socket.clientId).emit('q1', data);
+    })
 });
 
 
