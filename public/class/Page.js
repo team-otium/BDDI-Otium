@@ -38,6 +38,8 @@ class Page{
     }
 
     addListeners(device){
+        this[device].script.call()
+        
         this[device].listeners.forEach(listeners => {
             document.querySelectorAll(listeners[0]).forEach(el => {
                 el.addEventListener(listeners[1] , listeners[2])
@@ -47,8 +49,6 @@ class Page{
         this[device].socketOn.forEach(so => {
             socket.on(so[0], so[1])
         })
-
-        this[device].script.call()
     }
 
     removeListener(device){
