@@ -58,6 +58,11 @@ io.sockets.on('connection', function (socket) {
             socket.broadcast.to(socket.clientId).emit('mobileDisconnected')
         }
     })
+
+    /****** Q2 */
+    socket.on("q2_doigt", (data) => {
+        socket.broadcast.to(socket.clientId).emit("q2_doigt", data)
+    })
 });
 
 

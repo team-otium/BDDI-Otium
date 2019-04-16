@@ -24,8 +24,10 @@
 
         if (start_move < act_move) {
             console.log("dezoom")
+            socket.emit("q2_doigt", "zoom")
         } else if (start_move > act_move) {
             console.log("zoom")
+            socket.emit("q2_doigt", "dezoom")
         }
         start_move = Math.sqrt( Math.pow(e.touches[1].pageX - e.touches[0].pageX,2) + Math.pow(e.touches[1].pageY - e.touches[0].pageY,2) )
     }
@@ -57,7 +59,8 @@
  
  desktop_html = 
  `
-
+ <h1 class="text_center">Avez-vous l'impression de manquer d'air ?</h1>
+<div id="bulles"></div>
  `
  
  desktop_listener1 = ["selector", "type", () => {
@@ -67,12 +70,54 @@
  desktop_listener2 = ["selector", "type", () => {
  
  }]
+
+ desktop_socketOn1 = ["q2_doigt", (data) => {
+    if (data === "dezoom") {
+        window.actBulles -= 3
+        if(window.actBulles < 0){
+            window.actBulles = 0
+        }
+    } else if (data === "zoom") {
+        window.actBulles += 3
+        if(window.actBulles > window.maxBulles){
+            window.actBulles = window.maxBulles
+        }
+    }
+}]
  
  desktop_script = () => {
-    for(let i=0; i < 20; i++){
+     let bulles = []
+    for(let i=0; i < (window.innerWidth/180) * ((window.innerHeight/140)+1); i++){
+        let minPx = Math.ceil(-50);
+        let maxPx = Math.floor(50);
+        let scale = Math.random()
         let div = document.createElement("div")
+        div.style.left = Math.random() * (maxPx - minPx +1) + minPx + "px"
+        div.style.top = Math.random() * (maxPx - minPx +1) + minPx + "px"
+        div.style.transform = "scale(" + scale + ")"
+        div.style.opacity =  0.5 * scale
+        
         div.classList.add("bulle")
-        document.getElementById("q2").appendChild(div)
+        document.getElementById("bulles").appendChild(div)
+
+        bulles.push({el: div, speed: scale * 10, opacity: div.style.opacity, offset: parseInt(div.offsetTop)})
+    }
+
+    window.maxBulles = bulles.length
+    window.actBulles = window.maxBulles
+    requestAnimationFrame(bullesAnimation)
+    function bullesAnimation() {
+        for (let i = 0; i < window.actBulles; i++) {
+            bulles[i].el.classList.remove("none")
+            bulles[i].el.style.top = (parseInt(bulles[i].el.style.top) + bulles[i].speed) + "px"
+            if (bulles[i].el.offsetTop >= window.innerHeight + 200) {
+                bulles[i].el.style.top = 0 - bulles[i].offset - 200 + "px"
+            }
+        }
+        for(let i = bulles.length - 1; i >= window.actBulles; i--) {
+            bulles[i].el.classList.add("none")
+        }
+        requestAnimationFrame(bullesAnimation)
     }
  }
  
@@ -93,7 +138,7 @@
 q2_desktop = {
      html: desktop_html,
      listeners: [],
-     socketOn: [],
+     socketOn: [desktop_socketOn1],
      script: desktop_script,
      transitions: desktop_transition,
  }
