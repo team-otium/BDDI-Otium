@@ -24,3 +24,11 @@ section{
     text-align: center;
     margin: auto;
   }
+
+  .bulle{
+    width: 100px;
+    height: 100px;
+    background-image: url("../../both/assets/img/q2/bulle.png");
+    background-position: center center;
+    background-size: 100% auto;
+  }
