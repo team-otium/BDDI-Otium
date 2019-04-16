@@ -66,7 +66,7 @@ mobile_transition = ["out", "in"]
 
 desktop_html =
     `
-        <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered">
         <tr>
             <td>Tilt Left/Right [gamma]</td>
             <td id="doTiltLR"></td>
