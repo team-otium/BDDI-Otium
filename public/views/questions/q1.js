@@ -97,10 +97,13 @@ desktop_listener2 = ["selector", "type", () => {
 
 }]
 
-desktop_socketOn1 = ["q1", () => {
+desktop_socketOn1 = ["q1", (eventData) => {
     document.getElementById("doTiltLR").innerHTML = Math.round(eventData.tiltLR);
     document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
     document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
+
+    document.getElementById("forme-net").style.width = 50 + eventData.tiltLR + '%';
+    document.getElementById("forme-abstraite").style.width = 50 - eventData.tiltLR + '%';
 }]
 
 desktop_script = () => {
@@ -208,7 +211,7 @@ q1_mobile = {
 q1_desktop = {
     html: desktop_html,
     listeners: [],
-    socketOn: ["q1"],
+    socketOn: [desktop_socketOn1],
     script: desktop_script,
     transitions: desktop_transition,
 }
