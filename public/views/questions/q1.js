@@ -66,20 +66,6 @@ mobile_transition = ["out", "in"]
 
 desktop_html =
     `
-    <table class="table table-striped table-bordered">
-        <tr>
-            <td>Tilt Left/Right [gamma]</td>
-            <td id="doTiltLR"></td>
-        </tr>
-        <tr>
-            <td>Tilt Front/Back [beta]</td>
-            <td id="doTiltFB"></td>
-        </tr>
-        <tr>
-            <td>Direction [alpha]</td>
-            <td id="doDirection"></td>
-        </tr>
-    </table>
     <div id="forme-net"></div>
 
     <div id="forme-abstraite"></div>
@@ -98,10 +84,6 @@ desktop_listener2 = ["selector", "type", () => {
 }]
 
 desktop_socketOn1 = ["q1", (eventData) => {
-    document.getElementById("doTiltLR").innerHTML = Math.round(eventData.tiltLR);
-    document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
-    document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
-
     document.getElementById("forme-net").style.width = 50 + eventData.tiltLR + '%';
     document.getElementById("forme-abstraite").style.width = 50 - eventData.tiltLR + '%';
 }]
