@@ -117,6 +117,8 @@ button {
   width: 50%; 
   overflow: hidden;
   position: absolute;
+  border-right: 5px solid white;
+  z-index: 3;
 }
 
 #forme-abstraite {
