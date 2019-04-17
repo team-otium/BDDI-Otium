@@ -83,3 +83,97 @@ CSS DESKTOP
     text-align: center;
     margin: auto;
   }
+
+
+  /**************************  
+  **************************  QUESTION 3
+  **************************/
+
+  .center_div {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
+  #curseur_frequence {
+    width: 200px;
+    border-top: 2px solid white;
+    border-top-style: dashed;
+    position: absolute;
+    left: 60px;
+    top: 90px;
+  }
+
+  #curseur_frequence::after{
+    content: "";
+    height: 35px;
+    width: 35px;
+    top: -20px;
+    left: 0;
+    margin-left: -35px;
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    background-color: white;
+  }
+
+  #curseur_frequence::before{
+    content: "";
+    height: 35px;
+    width: 35px;
+    top: -20px;
+    right: 0;
+    margin-right: -35px;
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    background-color: white;
+  }
+
+  #curseur_frequence img {
+    position: absolute;
+    top: -32px;
+    left: -48px;
+    width: 60px;
+  }
+
+  #curseur_amplitude {
+    height: 200px;
+    border-right: 2px solid white;
+    border-right-style: dashed;
+    position: absolute;
+    right: 60px;
+  }
+
+  #curseur_amplitude::after{
+    content: "";
+    height: 35px;
+    width: 35px;
+    top: -35px;
+    left: 0;
+    margin-left: -18px;
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    background-color: white;
+  }
+
+  #curseur_amplitude::before{
+    content: "";
+    height: 35px;
+    width: 35px;
+    bottom: -37px;
+    right: 17px;
+    margin-right: -35px;
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    background-color: white;
+  }
+
+  #curseur_amplitude img {
+    position: absolute;
+    left: -30px;
+    bottom: -50px;
+    width: 60px;
+  }
