@@ -6,11 +6,8 @@
  mobile_html = 
  `
  <div class="controls">
- <label for="length">Fréquence</label>
  <input type="range" id="length" min="10" max="100" value="30" class="input input-length">
- 
- <label for="amplitute">Amplitute</label>
- <input type="range" id="amplitute" min="0" max="90" value="45" class="input input-amplitute">
+ <input type="range" id="amplitude" min="0" max="90" value="45" class="input input-amplitude">
 </div>
  `
  
@@ -52,8 +49,8 @@
         <label for="length">Fréquence</label>
         <input type="range" id="length" min="10" max="100" value="30" class="input input-length">
         
-        <label for="amplitute">Amplitute</label>
-        <input type="range" id="amplitute" min="0" max="90" value="45" class="input input-amplitute">
+        <label for="amplitude">amplitude</label>
+        <input type="range" id="amplitude" min="0" max="90" value="45" class="input input-amplitude">
     </div>
  </div>
  `
@@ -69,11 +66,11 @@
  desktop_script = () => {
     // Get input tags
     const waveLengthInput = document.querySelector('input.input-length')
-    const waveAmplituteInput = document.querySelector('input.input-amplitute')
+    const waveamplitudeInput = document.querySelector('input.input-amplitude')
 
     // Get control input values
     let waveLength = waveLengthInput.value
-    let waveAmplitute = waveAmplituteInput.value
+    let waveamplitude = waveamplitudeInput.value
 
 
     var width = window.innerWidth
@@ -83,8 +80,8 @@
         waveLength = event.currentTarget.value
     })
 
-    waveAmplituteInput.addEventListener('input', event => {
-        waveAmplitute = event.currentTarget.value
+    waveamplitudeInput.addEventListener('input', event => {
+        waveamplitude = event.currentTarget.value
     })
 
 
@@ -98,7 +95,7 @@
 
     const animate = () => {
         let points = xs.map( x => {
-            let y = 100 + waveAmplitute * Math.sin( (x) / waveLength )
+            let y = 100 + waveamplitude * Math.sin( (x) / waveLength )
             return [x, y]
         })
         

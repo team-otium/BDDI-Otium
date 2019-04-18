@@ -22,7 +22,7 @@ CSS DESKTOP
     font-size: 32px;
   }
   
-  input {
+  .btn {
     font-family: "GothamRounded-Book", Helvetica, Arial, sans-serif;
     font-size: 16px;
     background: none;
@@ -91,6 +91,14 @@ CSS DESKTOP
 
   .controls {
     position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  #amplitude {
+    transform: rotate(90deg);
   }
 
   /* #curseur_frequence {
