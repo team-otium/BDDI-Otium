@@ -66,9 +66,8 @@
 
  desktop_socketOn1 = ["q3", (data) => {
     // Get control input values
-    waveLength = data.length
-    waveAmplitude = data.amplitude
-    console.log(data)
+    window.waveLength = parseInt(data.length)
+    window.waveAmplitude = parseInt(data.amplitude)
 }]
  
  desktop_listener1 = ["selector", "type", () => {
@@ -82,8 +81,8 @@
  desktop_script = () => {
 
     // Get control input values
-    let waveLength = document.querySelector('input.input-length').value
-    let waveAmplitude = document.querySelector('input.input-amplitude').value
+    window.waveLength = 30
+    window.waveAmplitude = 45
         
     // ***********
 
@@ -97,7 +96,7 @@
 
     const animate = () => {
         let points = xs.map( x => {
-            let y = 100 + waveAmplitude * Math.sin( (x) / waveLength )
+            let y = 100 + window.waveAmplitude * Math.sin( (x) / window.waveLength )
             return [x, y]
         })
         
