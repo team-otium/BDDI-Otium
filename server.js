@@ -59,7 +59,12 @@ io.sockets.on('connection', function (socket) {
         }
     })
 
-    /****** Q1 ******/
+    // Change page
+    socket.on('pageChange', (data) => {
+        io.sockets.to(socket.serverId).emit('pageChange', data);
+    })
+
+    // animation Q1
     socket.on('q1', (data) => {
         io.sockets.to(socket.clientId).emit('q1', data);
     })

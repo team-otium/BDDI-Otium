@@ -13,6 +13,7 @@
 <!-- BODY -->
 
 <body>
+    <div style="z-index: 10000; position: absolute;"><input id="q" type="number"><button id="go">GO</button></div>
     <!-- background color animation -->
     <div class="content content--canvas">
     </div>
@@ -73,6 +74,12 @@
 
     <script>
         intro.animationLogo.displayPage("desktop")
+        document.getElementById("go").addEventListener("click", () => {
+            let q = document.getElementById("q").value
+            console.log("q"+q)
+            questions["q"+q].comeBackTo('desktop')
+            socket.emit("pageChange", q)
+        })
     </script>
 </body>
 
