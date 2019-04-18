@@ -7,8 +7,8 @@
  `
  <div class="center_div">
     
-    <div id="curseur_frequence"><img class="cursor_frequence" src="/both/assets/img/cursor.png" alt=""></div>
-    <div id="curseur_amplitude"><img class="cursor_amplitude" src="/both/assets/img/cursor.png" alt=""></div>
+    <div id="curseur_frequence"><img class="text_element" src="/both/assets/img/cursor.png" alt=""></div>
+    <div id="curseur_amplitude"><img class="text_element" src="/both/assets/img/cursor.png" alt=""></div>
  </div>
  `
  
@@ -27,43 +27,6 @@
  // Script to be executed when the page is displayed
  mobile_script = () => {
      
-    /************* FREQUENCE ************/
-    function startDragFrequence(e) {
-        this.ontouchmove = this.onmspointermove = moveDragFrequence;
-      
-        this.ontouchend = this.onmspointerupFrequence = function () {
-          this.ontouchmove = this.onmspointermove = null;
-          this.ontouchend = this.onmspointerupFrequence = null;
-        }
-      
-        var pos = [this.offsetLeft];
-        var origin = getCoorsFrequence(e);
-      
-        function moveDragFrequence(e) {
-          var currentPos = getCoorsFrequence(e);
-          var deltaX = currentPos[0] - origin[0];
-          this.style.left = (pos[0] + deltaX) + 'px';
-          return false; // cancels scrolling
-        }
-      
-        function getCoorsFrequence(e) {
-          var coors = [];
-          if (e.targetTouches && e.targetTouches.length) {
-            var thisTouch = e.targetTouches[0];
-            coors[0] = thisTouch.clientX;
-          } else {
-            coors[0] = e.clientX;
-          }
-          return coors;
-        }
-      }
-      
-      var elements = document.querySelectorAll('.cursor_frequence');
-      [].forEach.call(elements, function (element) {
-        element.ontouchstart = element.onmspointerdown = startDragFrequence;
-      });
-
-    /************* AMPLITUDE ************/
     function startDrag(e) {
         this.ontouchmove = this.onmspointermove = moveDrag;
       
@@ -73,11 +36,14 @@
         }
       
         var pos = [this.offsetLeft, this.offsetTop];
+        var that = this;
         var origin = getCoors(e);
       
         function moveDrag(e) {
           var currentPos = getCoors(e);
+          var deltaX = currentPos[0] - origin[0];
           var deltaY = currentPos[1] - origin[1];
+          this.style.left = (pos[0] + deltaX) + 'px';
           this.style.top = (pos[1] + deltaY) + 'px';
           return false; // cancels scrolling
         }
@@ -86,15 +52,17 @@
           var coors = [];
           if (e.targetTouches && e.targetTouches.length) {
             var thisTouch = e.targetTouches[0];
+            coors[0] = thisTouch.clientX;
             coors[1] = thisTouch.clientY;
           } else {
+            coors[0] = e.clientX;
             coors[1] = e.clientY;
           }
           return coors;
         }
       }
       
-      var elements = document.querySelectorAll('.cursor_amplitude');
+      var elements = document.querySelectorAll('.text_element');
       [].forEach.call(elements, function (element) {
         element.ontouchstart = element.onmspointerdown = startDrag;
       });
@@ -116,7 +84,20 @@
  <div class="text_center">
     <h1>Modulez la ligne qui vous apaise</h1>
  </div>
- <canvas id="line"></canvas>
+
+ <div id="line">
+    <svg>
+        <path></path>
+    </svg>
+
+    <div class="controls">
+        <label for="length">Fréquence</label>
+        <input type="range" id="length" min="10" max="100" value="30" class="input input-length">
+        
+        <label for="amplitute">Amplitute</label>
+        <input type="range" id="amplitute" min="0" max="90" value="45" class="input input-amplitute">
+    </div>
+ </div>
  `
  
  desktop_listener1 = ["selector", "type", () => {
@@ -128,16 +109,51 @@
  }]
  
  desktop_script = () => {
-    var thecanvas = document.getElementById("line");
-    var ctx = thecanvas.getContext("2d");
-    ctx.canvas.width  = window.innerWidth;
-    ctx.canvas.height = window.innerHeight;
-    ctx.lineWidth = 5;
-    ctx.strokeStyle = "#ffffff";
-    ctx.beginPath();
-    ctx.moveTo(100,100);
-    ctx.bezierCurveTo(300,200,300,100,800,100);
-    ctx.stroke();
+    // Get input tags
+    const waveLengthInput = document.querySelector('input.input-length')
+    const waveAmplituteInput = document.querySelector('input.input-amplitute')
+
+    // Get control input values
+    let waveLength = waveLengthInput.value
+    let waveAmplitute = waveAmplituteInput.value
+
+
+    var width = window.innerWidth
+
+    // Listen to inputs and assign their values to the control variables
+    waveLengthInput.addEventListener('input', event => {
+        waveLength = event.currentTarget.value
+    })
+
+    waveAmplituteInput.addEventListener('input', event => {
+        waveAmplitute = event.currentTarget.value
+    })
+
+
+    // ***********
+
+    let xs = []
+
+    for (let i = 5; i <= width; i++) {
+        xs.push(i)
+    }
+
+    const animate = () => {
+        let points = xs.map( x => {
+            let y = 100 + waveAmplitute * Math.sin( (x) / waveLength )
+            return [x, y]
+        })
+        
+        let path = 'M' + points.map( p => {
+            return p[0] + ',' + p[1]
+        }).join(' L')
+        
+        document.querySelector('path').setAttribute('d', path)
+        
+        requestAnimationFrame(animate)
+    }
+
+    animate()
  }
  
  desktop_transition = ["out", "in"]

@@ -113,4 +113,18 @@ button {
 
 #line {
   position: absolute;
+  width: 100%;
+}
+
+svg {
+  height: 300px;
+  width: 100%;
+  transition: 1s ease-out;
+}
+
+path {
+  stroke: white;
+  stroke-width: 5px;
+  stroke-linecap: round;
+  fill: none;
 }
