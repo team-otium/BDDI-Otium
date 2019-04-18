@@ -38,6 +38,11 @@ mobile_listener2 = ["selector", "type", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
+    ValidationBtn.canValidate = true
+    ValidationBtn.actualPage = questions.q1
+    ValidationBtn.nextPage = questions.q2
+    ValidationBtn.actualQ = "1"
+    ValidationBtn.nextQ = "2"
     if ('DeviceOrientationEvent' in window) {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
     } else {
