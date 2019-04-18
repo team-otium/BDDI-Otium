@@ -45,6 +45,12 @@
  
  // Script to be executed when the page is displayed
  mobile_script = () => {
+    ValidationBtn.canValidate = true
+    ValidationBtn.actualPage = questions.q2
+    ValidationBtn.nextPage = questions.q3
+    ValidationBtn.actualQ = "2"
+    ValidationBtn.nextQ = "3"
+
     let scaling = false
     let start_move = []
 

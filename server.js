@@ -64,6 +64,18 @@ io.sockets.on('connection', function (socket) {
         io.sockets.to(socket.serverId).emit('pageChange', data);
     })
 
+    socket.on('validationQuestion', (data) => {
+        socket.broadcast.to(socket.clientId).emit('validationQuestion', data);
+    })
+
+    socket.on('validationWait', (data) => {
+        socket.broadcast.to(socket.clientId).emit('validationWait', data);
+    })
+
+    socket.on('validationCancel', (data) => {
+        socket.broadcast.to(socket.clientId).emit('validationCancel', data);
+    })
+
     // animation Q1
     socket.on('q1', (data) => {
         io.sockets.to(socket.clientId).emit('q1', data);

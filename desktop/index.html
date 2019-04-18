@@ -13,6 +13,7 @@
 <!-- BODY -->
 
 <body>
+    <div id="validation"></div>
     <div style="z-index: 10000; position: absolute;"><input id="q" type="number"><button id="go">GO</button></div>
     <!-- background color animation -->
     <div class="content content--canvas">
@@ -79,6 +80,18 @@
             console.log("q"+q)
             questions["q"+q].comeBackTo('desktop')
             socket.emit("pageChange", q)
+        })
+
+        socket.on("validationQuestion", (data) => {
+            questions["q"+data.from].transitionTo("desktop", questions["q"+data.to])
+        })
+
+        socket.on("validationWait", (data) => {
+            document.getElementById("validation").style.height = data + "%"
+        })
+
+        socket.on("validationCancel", (data) => {
+            document.getElementById("validation").style.height = 0+ "%"
         })
     </script>
 </body>
