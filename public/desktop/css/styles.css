@@ -90,6 +90,7 @@ button {
 
 .text_center {
   max-width: 750px;
+  height: 30%;
   position: absolute;
   top: 0;
   display: flex;
@@ -101,6 +102,7 @@ button {
   text-align: center;
   margin: auto;
   line-height: 25px;
+  z-index: 2;
 }
 
 .text_center p {
@@ -119,6 +121,44 @@ button {
   width: 90px;
   opacity: 0;
   transition: all 2s ease;
+
+}
+
+
+
+/**************************  
+**************************  QUESTION 1
+**************************/
+
+#forme-net {
+  width: 50%; 
+  overflow: hidden;
+  position: absolute;
+
+  border-right: 5px solid white;
+  z-index: 3;
+
+}
+
+#forme-abstraite {
+  width: 50%;
+  transform: scaleX(-1);
+  position: absolute;
+  overflow: hidden;
+  right: 0;
+}
+
+#ball {
+  z-index: 20;
+  top:0;
+  -webkit-transition: all;
+  transition: all;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-box-shadow: 2px 2px 25px 2px rgba(0, 0, 0, 0.2);
 }
 
 
