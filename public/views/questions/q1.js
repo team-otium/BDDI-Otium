@@ -84,8 +84,8 @@ desktop_listener2 = ["selector", "type", () => {
 }]
 
 desktop_socketOn1 = ["q1", (eventData) => {
-    document.getElementById("forme-net").style.width = 50 + eventData.tiltLR + '%';
-    document.getElementById("forme-abstraite").style.width = 50 - eventData.tiltLR + '%';
+        document.getElementById("forme-net").style.width = 49.5 + eventData.tiltLR + '%';
+        document.getElementById("forme-abstraite").style.width = 50 - eventData.tiltLR + '%';
 }]
 
 desktop_script = () => {
