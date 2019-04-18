@@ -69,7 +69,7 @@ io.sockets.on('connection', function (socket) {
         io.sockets.to(socket.clientId).emit('q1', data);
     })
   
-    /****** Q2 */
+    /****** Q2 ******/
     socket.on("q2_doigt", (data) => {
         socket.broadcast.to(socket.clientId).emit("q2_doigt", data)
     })
