@@ -75,6 +75,12 @@ class Page{
     comeBackTo(device){
         document.getElementById("navigation").innerHTML = ""
         document.getElementById("navigation").appendChild(this[device].element)
+        for (let variable in intro) {
+            intro[variable].removeListener(device)
+        }
+        for (let variable in questions) {
+            questions[variable].removeListener(device)
+        }
         setTimeout(()=>{
             this[device].element.classList.remove(this[device].transitionOut)
             this[device].element.classList.add(this[device].transitionIn)
