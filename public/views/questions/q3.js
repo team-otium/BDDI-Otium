@@ -5,11 +5,13 @@
  // The html (without section)
  mobile_html = 
  `
- <div class="center_div">
-    
-    <div id="curseur_frequence"><img class="text_element" src="/both/assets/img/cursor.png" alt=""></div>
-    <div id="curseur_amplitude"><img class="text_element" src="/both/assets/img/cursor.png" alt=""></div>
- </div>
+ <div class="controls">
+ <label for="length">Fréquence</label>
+ <input type="range" id="length" min="10" max="100" value="30" class="input input-length">
+ 
+ <label for="amplitute">Amplitute</label>
+ <input type="range" id="amplitute" min="0" max="90" value="45" class="input input-amplitute">
+</div>
  `
  
   // All listeners, one variable per listener
@@ -26,50 +28,6 @@
  
  // Script to be executed when the page is displayed
  mobile_script = () => {
-     
-    function startDrag(e) {
-        this.ontouchmove = this.onmspointermove = moveDrag;
-      
-        this.ontouchend = this.onmspointerup = function () {
-          this.ontouchmove = this.onmspointermove = null;
-          this.ontouchend = this.onmspointerup = null;
-        }
-      
-        var pos = [this.offsetLeft, this.offsetTop];
-        var that = this;
-        var origin = getCoors(e);
-      
-        function moveDrag(e) {
-          var currentPos = getCoors(e);
-          var deltaX = currentPos[0] - origin[0];
-          var deltaY = currentPos[1] - origin[1];
-          this.style.left = (pos[0] + deltaX) + 'px';
-          this.style.top = (pos[1] + deltaY) + 'px';
-          return false; // cancels scrolling
-        }
-      
-        function getCoors(e) {
-          var coors = [];
-          if (e.targetTouches && e.targetTouches.length) {
-            var thisTouch = e.targetTouches[0];
-            coors[0] = thisTouch.clientX;
-            coors[1] = thisTouch.clientY;
-          } else {
-            coors[0] = e.clientX;
-            coors[1] = e.clientY;
-          }
-          return coors;
-        }
-      }
-      
-      var elements = document.querySelectorAll('.text_element');
-      [].forEach.call(elements, function (element) {
-        element.ontouchstart = element.onmspointerdown = startDrag;
-      });
-      
-      document.ongesturechange = function () {
-        return false;
-      }
  }
  
  // Name of the transitions classes [when he leave, when he arrive]
