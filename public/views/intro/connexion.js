@@ -60,7 +60,7 @@ mobile_listener2 = [".start_q1", "click", () => {
 <!----------- 
 ------------- SECTION 3 connexion
 ----------->
-<div class="text_center">
+<div class="home_text_center">
     <h1>Connectez votre smartphone</h1>
     <p>Exsistit autem hoc loco quaedam quaestio subdifficilis, num quando amici novi,
         digni amicitia, veteribus sint anteponendi, ut equis vetulis teneros anteponere
