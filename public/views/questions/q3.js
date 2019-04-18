@@ -31,6 +31,9 @@
  
  // Script to be executed when the page is displayed
  mobile_script = () => {
+    // Get control input values
+    let waveLength = document.querySelector('input.input-length').value
+    let waveAmplitude = document.querySelector('input.input-amplitude').value
  }
  
  // Name of the transitions classes [when he leave, when he arrive]
@@ -60,10 +63,12 @@
     </div>
  </div>
  `
+
  desktop_socketOn1 = ["q3", (data) => {
     // Get control input values
     waveLength = data.length
     waveAmplitude = data.amplitude
+    console.log(data)
 }]
  
  desktop_listener1 = ["selector", "type", () => {
