@@ -15,13 +15,16 @@
  `
  
   // All listeners, one variable per listener
- mobile_listener1 = ["selector", "type", () => {
- 
+ mobile_listener1 = ["input.input-amplitude", "input", (event) => {
+    waveAmplitude = event.currentTarget.value
+    socket.emit("q3", {amplitude:waveAmplitude, length:waveLength});
  }]
  
- mobile_listener2 = ["selector", "type", () => {
- 
+ mobile_listener2 = ["input.input-length", "input", (event) => {
+    waveLength = event.currentTarget.value
+    socket.emit("q3", {amplitude:waveAmplitude, length:waveLength});
  }]
+
  /** And more... */
  
  // Socket on
@@ -57,6 +60,11 @@
     </div>
  </div>
  `
+ desktop_socketOn1 = ["q3", (data) => {
+    // Get control input values
+    waveLength = data.length
+    waveAmplitude = data.amplitude
+}]
  
  desktop_listener1 = ["selector", "type", () => {
  
@@ -67,28 +75,14 @@
  }]
  
  desktop_script = () => {
-    // Get input tags
-    const waveLengthInput = document.querySelector('input.input-length')
-    const waveamplitudeInput = document.querySelector('input.input-amplitude')
 
     // Get control input values
-    let waveLength = waveLengthInput.value
-    let waveamplitude = waveamplitudeInput.value
-
+    let waveLength = document.querySelector('input.input-length').value
+    let waveAmplitude = document.querySelector('input.input-amplitude').value
+        
+    // ***********
 
     var width = window.innerWidth
-
-    // Listen to inputs and assign their values to the control variables
-    waveLengthInput.addEventListener('input', event => {
-        waveLength = event.currentTarget.value
-    })
-
-    waveamplitudeInput.addEventListener('input', event => {
-        waveamplitude = event.currentTarget.value
-    })
-
-
-    // ***********
 
     let xs = []
 
@@ -98,7 +92,7 @@
 
     const animate = () => {
         let points = xs.map( x => {
-            let y = 100 + waveamplitude * Math.sin( (x) / waveLength )
+            let y = 100 + waveAmplitude * Math.sin( (x) / waveLength )
             return [x, y]
         })
         
@@ -122,7 +116,7 @@
  
  q3_mobile = {
      html: mobile_html,
-     listeners: [],
+     listeners: [mobile_listener1, mobile_listener2],
      socketOn: [],
      script: mobile_script,
      transitions: mobile_transition,
@@ -131,7 +125,7 @@
 q3_desktop = {
      html: desktop_html,
      listeners: [],
-     socketOn: [],
+     socketOn: [desktop_socketOn1],
      script: desktop_script,
      transitions: desktop_transition,
  }
