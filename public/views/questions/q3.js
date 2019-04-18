@@ -6,9 +6,9 @@
  mobile_html = 
  `
  <div class="controls">
- <input type="range" id="length" min="10" max="100" value="30" class="input input-length">
- <input type="range" id="amplitude" min="0" max="90" value="45" class="input input-amplitude">
-</div>
+    <input type="range" id="length" min="10" max="100" value="30" class="input input-length">
+    <input type="range" id="amplitude" min="0" max="90" value="45" class="input input-amplitude">
+ </div>
  `
  
   // All listeners, one variable per listener

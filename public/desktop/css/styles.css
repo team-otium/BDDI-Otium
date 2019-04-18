@@ -131,13 +131,11 @@ button {
 **************************/
 
 #forme-net {
-  width: 50%; 
+  width: 49.5%;
   overflow: hidden;
   position: absolute;
-
   border-right: 5px solid white;
   z-index: 3;
-
 }
 
 #forme-abstraite {
