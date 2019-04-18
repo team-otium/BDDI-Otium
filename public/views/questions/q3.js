@@ -6,7 +6,10 @@
  mobile_html = 
  `
  <div class="controls">
+    <label for="length">Fréquence</label>
     <input type="range" id="length" min="10" max="100" value="30" class="input input-length">
+    
+    <label for="amplitude">amplitude</label>
     <input type="range" id="amplitude" min="0" max="90" value="45" class="input input-amplitude">
  </div>
  `

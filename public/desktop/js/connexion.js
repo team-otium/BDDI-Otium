@@ -13,7 +13,7 @@ function createConnexionId () {
 
     // Start the experience when a mobile is connected to the desktop
     socket.on("mobileConnected", () => {
-        intro.connexion.transitionTo("desktop", questions.q1)
+        intro.connexion.transitionTo("desktop", intro.button_valider)
     })
 
     // Cancel the the experience if the mobile is disconnected

@@ -73,6 +73,11 @@ io.sockets.on('connection', function (socket) {
     socket.on("q2_doigt", (data) => {
         socket.broadcast.to(socket.clientId).emit("q2_doigt", data)
     })
+
+    // Q3
+    socket.on('q3', (data) => {
+        io.sockets.to(socket.clientId).emit('q3', data);
+    })
 });
 
 
