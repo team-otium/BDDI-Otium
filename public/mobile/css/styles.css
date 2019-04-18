@@ -89,13 +89,11 @@ CSS DESKTOP
   **************************  QUESTION 3
   **************************/
 
-  .center_div {
+  .controls {
     position: absolute;
-    left: 0;
-    right: 0;
   }
 
-  #curseur_frequence {
+  /* #curseur_frequence {
     width: 200px;
     border-top: 2px solid white;
     border-top-style: dashed;
@@ -178,4 +176,4 @@ CSS DESKTOP
     bottom: -50px;
     width: 80px;
     z-index: 5;
-  }
+  } */
