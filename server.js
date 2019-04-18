@@ -76,7 +76,7 @@ io.sockets.on('connection', function (socket) {
 
     // Q3
     socket.on('q3', (data) => {
-        io.sockets.to(socket.clientId).emit('q3', data);
+        socket.broadcast.to(socket.clientId).emit('q3', data);
     })
 });
 
