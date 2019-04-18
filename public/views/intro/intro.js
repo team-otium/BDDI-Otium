@@ -17,7 +17,7 @@ desktop_html =
 <!----------- 
 ------------- SECTION 2 intro  
 ----------->
-<div class="text_center">
+<div class="home_text_center">
     <h1>Bienvenue sur Otium</h1>
     <p>Exsistit autem hoc loco quaedam quaestio subdifficilis, num quando amici novi,
         digni amicitia, veteribus sint anteponendi, ut equis vetulis teneros anteponere

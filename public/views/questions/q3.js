@@ -86,7 +86,7 @@
  </div>
 
  <div id="line">
-    <svg>
+    <svg class="svg_line">
         <path></path>
     </svg>
 
