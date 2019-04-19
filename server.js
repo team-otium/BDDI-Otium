@@ -90,6 +90,11 @@ io.sockets.on('connection', function (socket) {
     socket.on('q3', (data) => {
         socket.broadcast.to(socket.clientId).emit('q3', data);
     })
+
+    // Q4
+    socket.on('q4', (data) => {
+        io.sockets.to(socket.clientId).emit('q4', data);
+    })
 });
 
 

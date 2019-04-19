@@ -65,3 +65,21 @@ section{
   .bulle.none{
     opacity: 0 !important;
   }
+
+  /**************************  
+  **************************  QUESTION 4
+  **************************/
+
+  
+#ball {
+  z-index: 20;
+  top:0;
+  -webkit-transition: all;
+  transition: all;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-box-shadow: 2px 2px 25px 2px rgba(0, 0, 0, 0.2);
+}
