@@ -112,6 +112,10 @@ CSS DESKTOP
     justify-content: space-around;
   }
 
+  #length {
+    z-index: 5;
+  }
+
   #amplitude {
     transform: rotate(90deg);
   }
