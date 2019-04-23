@@ -173,3 +173,9 @@ path {
   stroke-linecap: round;
   fill: none;
 }
+
+.q7_canvas{
+  position: absolute;
+  left: 0%;
+  width: 25%;
+}
