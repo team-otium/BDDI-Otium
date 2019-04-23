@@ -3,6 +3,7 @@ var socket = io.connect("http://"+ config.ip +":" + config.port.toString(), {tra
 
 function createConnexionId () {
     let id = randomInt(100000,999999)
+    window.resultats = new Result(id)
     
     /** TO DO : Check if id is unique */
     

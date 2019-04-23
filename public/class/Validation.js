@@ -68,6 +68,7 @@ class Validation{
                     ValidationBtn.actualPage.transitionTo("mobile", ValidationBtn.nextPage)
                     socket.emit("validationCancel", 0)
                     socket.emit("validationQuestion", {from: ValidationBtn.actualQ, to: ValidationBtn.nextQ})
+                    window.resultats.getResult(ValidationBtn.actualQ)
                 }
             }
 
