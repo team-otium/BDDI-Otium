@@ -269,7 +269,6 @@ desktop_script = () => {
         renderer.setPixelRatio( window.devicePixelRatio );
         renderer.setSize( 450, 400 );
         container.appendChild( renderer.domElement );
-        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
         //
         window.addEventListener( 'resize', onWindowResize, false );
     }
@@ -280,18 +279,13 @@ desktop_script = () => {
         camera.updateProjectionMatrix();
         renderer.setSize( 450, 400 );
     }
-    function onDocumentMouseMove( event ) {
-        mouseX = ( event.clientX - windowHalfX ) / 10;
-        mouseY = ( event.clientY - windowHalfY ) / 6;
-    }
     //
     function animate() {
         requestAnimationFrame( animate );
         render();
     }
     function render() {
-        camera.position.x += ( mouseX - camera.position.x ) * .03;
-        camera.position.y += ( - mouseY - camera.position.y ) * .03;
+        camera.position.y += ( ball.position.y - camera.position.y ) * .03;
         camera.lookAt( scene.position );
         renderer.render( scene, camera );
     }
@@ -373,8 +367,7 @@ desktop_script = () => {
         renderObj2();
     }
     function renderObj2() {
-        cameraObj2.position.x += ( ball.position.y - cameraObj2.position.x ) * .03;
-        cameraObj2.position.y += ( - ball.position.x - cameraObj2.position.y ) * .03;
+        cameraObj2.position.y += ( ball.position.y - cameraObj2.position.y ) * .03;
         cameraObj2.lookAt( sceneObj2.position );
         rendererObj2.render( sceneObj2, cameraObj2 );
     }
