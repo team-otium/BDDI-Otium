@@ -55,7 +55,7 @@ mobile_script = () => {
     var w;
     var h;
 
-    function init() {
+    function start() {
         ball = document.getElementById("ball");
         w = window.innerWidth;
         h = window.innerHeight;
@@ -114,7 +114,7 @@ mobile_script = () => {
         requestAnimationFrame(update);//KEEP ANIMATING
     }
 
-    init()
+    start()
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
@@ -141,8 +141,16 @@ desktop_html =
         <td id="doDirection"></td>
     </tr>
  </table>
+ <div id="all_object">
+    <div id="object1" class="object object1"></div>
+    <div class="object object2">Objet 2</div>
+    <div class="object object3">Objet 3</div>
+    <div class="object object4">Objet 4</div>
+    <div class="object object5">Objet 5</div>
+    <div class="object object6">Objet 6</div>
+ </div>
  <div class="text_center">
-    <h1>Question 4</h1>
+    <h1>Choisissez les éléments qui vous apaisent</h1>
  </div>
  `
 
@@ -165,7 +173,7 @@ desktop_listener2 = ["selector", "type", () => {
 }]
 
 desktop_script = () => {
-    function init() {
+    function start() {
         ball = document.getElementById("ball");
         w = window.innerWidth;
         h = window.innerHeight;
@@ -204,7 +212,89 @@ desktop_script = () => {
         requestAnimationFrame(update);//KEEP ANIMATING
     }
 
-    init()
+    start()
+
+    /**************** OBJECT1 3D ****************/
+    var container;
+    var camera, scene, renderer;
+    var mouseX = 0, mouseY = 0;
+    var windowHalfX = window.innerWidth / 2;
+    var windowHalfY = window.innerHeight / 2;
+    var object;
+    init();
+    animate();
+
+    function init() {
+        container = document.getElementById('object1');
+        camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 1, 2000 );
+        camera.position.z = 250;
+        // scene
+        scene = new THREE.Scene();
+        var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.6 );
+        scene.add( ambientLight );
+        var pointLight = new THREE.PointLight( 0xffffff, 0.6 );
+        camera.add( pointLight );
+        scene.add( camera );
+        // manager
+        function loadModel() {
+            object.traverse( function ( child ) {
+                if ( child.isMesh ) child.material.map = texture;
+            } );
+            object.position.y = - 5;
+            scene.add( object );
+        }
+        var manager = new THREE.LoadingManager( loadModel );
+        manager.onProgress = function ( item, loaded, total ) {
+            console.log( item, loaded, total );
+        };
+        // texture
+        var textureLoader = new THREE.TextureLoader( manager );
+        var texture = textureLoader.load( '/both/assets/img/q4/fond_bleu.png' );
+        // model
+        function onProgress( xhr ) {
+            if ( xhr.lengthComputable ) {
+                var percentComplete = xhr.loaded / xhr.total * 100;
+                console.log( 'model ' + Math.round( percentComplete, 2 ) + '% downloaded' );
+            }
+        }
+        function onError() {}
+        var loader = new THREE.OBJLoader( manager );
+        loader.load( '/both/assets/img/q4/bulles_eau_2.obj', function ( obj ) {
+            object = obj;
+        }, onProgress, onError );
+        //
+        renderer = new THREE.WebGLRenderer({
+            alpha: true
+        });
+        renderer.setPixelRatio( window.devicePixelRatio );
+        renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
+        container.appendChild( renderer.domElement );
+        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+        //
+        window.addEventListener( 'resize', onWindowResize, false );
+    }
+    function onWindowResize() {
+        windowHalfX = window.innerWidth / 2;
+        windowHalfY = window.innerHeight / 2;
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth / 3, window.innerHeight /3 );
+    }
+    function onDocumentMouseMove( event ) {
+        mouseX = ( event.clientX - windowHalfX ) / 2;
+        mouseY = ( event.clientY - windowHalfY ) / 2;
+    }
+    //
+    function animate() {
+        requestAnimationFrame( animate );
+        render();
+    }
+    function render() {
+        camera.position.x += ( mouseX - camera.position.x ) * .05;
+        camera.position.y += ( - mouseY - camera.position.y ) * .05;
+        camera.lookAt( scene.position );
+        renderer.render( scene, camera );
+    }
 }
 
 desktop_transition = ["out", "in"]
