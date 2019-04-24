@@ -196,6 +196,11 @@ display: flex;
   position: absolute;
 }
 
+#object4 {
+  position: absolute;
+  bottom: 0;
+}
+
 .object5 {
   left: 42%;
   bottom: 70px;
