@@ -101,11 +101,32 @@
         renderer.domElement.classList.add('q7_canvas')
         renderer.domElement.style.left = (25 * i )+ "%"
         document.getElementById("q7").appendChild( renderer.domElement );
+        let cube;
 
-        var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-        var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-        var cube = new THREE.Mesh( geometry, material );
-        scene.add( cube );
+        new THREE.OBJLoader().load(
+            // resource URL
+            '/both/assets/3d/q7/forme3o.obj',
+            // called when resource is loaded
+            function ( object ) {
+                cube = object
+                cube.scale.x = 0.9
+                cube.scale.y = 0.9
+                cube.scale.z = 0.9
+                scene.add( cube );
+            },
+            // called when loading is in progresses
+            function ( xhr ) {
+        
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+        
+            },
+            // called when loading has errors
+            function ( error ) {
+        
+                console.log( 'An error happened' );
+        
+            }
+        );
     
         camera.position.z = 5;
 
@@ -116,8 +137,8 @@
         requestAnimationFrame( animate );
 
         for (let i = 0; i < window.renderers.length; i++) {
-            window.renderers[i].obj.rotation.x += 0.01;
-            window.renderers[i].obj.rotation.y += 0.01;
+            //window.renderers[i].obj.rotation.x += 0.01;
+           // window.renderers[i].obj.rotation.y += 0.01;
 
             window.renderers[i].renderer.render( window.renderers[i].scene, window.renderers[i].camera );
         }
