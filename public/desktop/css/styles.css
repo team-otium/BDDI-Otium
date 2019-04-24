@@ -193,19 +193,16 @@ height: 100%;
 
 .object {
   position: absolute;
-  border: 1px solid black;
-  border-radius: 50%;
-  text-align: center;
 }
 
 .object1 {
   top: 70px;
-  left: 150px;
+  left: 250px;
 }
 
 .object2 {
-  left: 46%;
-  top: 100px;
+  left: 43%;
+  top: 80px;
 }
 
 .object3 {

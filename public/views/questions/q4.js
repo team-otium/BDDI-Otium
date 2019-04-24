@@ -143,8 +143,8 @@ desktop_html =
  </table>
  <div id="all_object">
     <div id="object1" class="object object1"></div>
-    <div class="object object2">Objet 2</div>
-    <div class="object object3">Objet 3</div>
+    <div id="object2" class="object object2"></div>
+    <div id="object3" class="object object3">Objet 3</div>
     <div class="object object4">Objet 4</div>
     <div class="object object5">Objet 5</div>
     <div class="object object6">Objet 6</div>
@@ -218,16 +218,16 @@ desktop_script = () => {
     var container;
     var camera, scene, renderer;
     var mouseX = 0, mouseY = 0;
-    var windowHalfX = window.innerWidth / 2;
-    var windowHalfY = window.innerHeight / 2;
+    var windowHalfX = 450;
+    var windowHalfY = 400;
     var object;
     init();
     animate();
 
     function init() {
         container = document.getElementById('object1');
-        camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 1, 2000 );
-        camera.position.z = 250;
+        camera = new THREE.PerspectiveCamera( 80, 450 / 400, 10, 2000 );
+        camera.position.z = 240;
         // scene
         scene = new THREE.Scene();
         var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.6 );
@@ -240,7 +240,7 @@ desktop_script = () => {
             object.traverse( function ( child ) {
                 if ( child.isMesh ) child.material.map = texture;
             } );
-            object.position.y = - 5;
+            object.position.y = - 3;
             scene.add( object );
         }
         var manager = new THREE.LoadingManager( loadModel );
@@ -267,22 +267,22 @@ desktop_script = () => {
             alpha: true
         });
         renderer.setPixelRatio( window.devicePixelRatio );
-        renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
+        renderer.setSize( 450, 400 );
         container.appendChild( renderer.domElement );
         document.addEventListener( 'mousemove', onDocumentMouseMove, false );
         //
         window.addEventListener( 'resize', onWindowResize, false );
     }
     function onWindowResize() {
-        windowHalfX = window.innerWidth / 2;
-        windowHalfY = window.innerHeight / 2;
-        camera.aspect = window.innerWidth / window.innerHeight;
+        windowHalfX = 450;
+        windowHalfY = 400;
+        camera.aspect = 450 / 400;
         camera.updateProjectionMatrix();
-        renderer.setSize( window.innerWidth / 3, window.innerHeight /3 );
+        renderer.setSize( 450, 400 );
     }
     function onDocumentMouseMove( event ) {
-        mouseX = ( event.clientX - windowHalfX ) / 2;
-        mouseY = ( event.clientY - windowHalfY ) / 2;
+        mouseX = ( event.clientX - windowHalfX ) / 10;
+        mouseY = ( event.clientY - windowHalfY ) / 6;
     }
     //
     function animate() {
@@ -290,10 +290,182 @@ desktop_script = () => {
         render();
     }
     function render() {
-        camera.position.x += ( mouseX - camera.position.x ) * .05;
-        camera.position.y += ( - mouseY - camera.position.y ) * .05;
+        camera.position.x += ( mouseX - camera.position.x ) * .03;
+        camera.position.y += ( - mouseY - camera.position.y ) * .03;
         camera.lookAt( scene.position );
         renderer.render( scene, camera );
+    }
+    /**************** FIN OBJECT1 3D ****************/
+
+
+    
+    /**************** OBJECT2 3D ****************/
+    var containerObj2;
+    var cameraObj2, sceneObj2, rendererObj2;
+    var mouseX = 0, mouseY = 0;
+    var windowHalfX = 450;
+    var windowHalfY = 400;
+    var objectObj2;
+    initObj2();
+    animateObj2();
+
+    function initObj2() {
+        containerObj2 = document.getElementById('object2');
+        cameraObj2 = new THREE.PerspectiveCamera( 90, 300 / 450, 10, 2000 );
+        cameraObj2.position.z = 240;
+        // scene
+        sceneObj2 = new THREE.Scene();
+        var ambientLightObj2 = new THREE.AmbientLight( 0xcccccc, 0.6 );
+        sceneObj2.add( ambientLightObj2 );
+        var pointLightobj2 = new THREE.PointLight( 0xffffff, 0.6 );
+        cameraObj2.add( pointLightobj2 );
+        sceneObj2.add( cameraObj2 );
+        // manager
+        function loadModelObj2() {
+            objectObj2.traverse( function ( child ) {
+                if ( child.isMesh ) child.material.map = textureObj2;
+            } );
+            objectObj2.position.y = - 190;
+            objectObj2.position.x = - 25;
+            sceneObj2.add( objectObj2 );
+        }
+        var managerObj2 = new THREE.LoadingManager( loadModelObj2 );
+        managerObj2.onProgress = function ( item, loaded, total ) {
+            console.log( item, loaded, total );
+        };
+        // texture
+        var textureLoaderObj2 = new THREE.TextureLoader( managerObj2 );
+        var textureObj2 = textureLoaderObj2.load( '/both/assets/img/q4/fond_vert.png' );
+        // model
+        function onProgress( xhr ) {
+            if ( xhr.lengthComputable ) {
+                var percentComplete = xhr.loaded / xhr.total * 100;
+                console.log( 'model ' + Math.round( percentComplete, 2 ) + '% downloaded' );
+            }
+        }
+        function onError() {}
+        var loaderObj2 = new THREE.OBJLoader( managerObj2 );
+        loaderObj2.load( '/both/assets/img/q4/feuilles.obj', function ( obj ) {
+            objectObj2 = obj;
+        }, onProgress, onError );
+        //
+        rendererObj2 = new THREE.WebGLRenderer({
+            alpha: true
+        });
+        rendererObj2.setPixelRatio( window.devicePixelRatio );
+        rendererObj2.setSize( 300, 450 );
+        containerObj2.appendChild( rendererObj2.domElement );
+        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+        //
+        window.addEventListener( 'resize', onWindowResize, false );
+    }
+    function onWindowResize() {
+        windowHalfX = 300;
+        windowHalfY = 450;
+        cameraObj2.aspect = 300 / 450;
+        cameraObj2.updateProjectionMatrix();
+        rendererObj2.setSize( 300, 420 );
+    }
+    function onDocumentMouseMove( event ) {
+        mouseX = ( event.clientX - windowHalfX ) / 10;
+        mouseY = ( event.clientY - windowHalfY ) / 6;
+    }
+    //
+    function animateObj2() {
+        requestAnimationFrame( animateObj2 );
+        renderObj2();
+    }
+    function renderObj2() {
+        cameraObj2.position.x += ( mouseX - cameraObj2.position.x ) * .03;
+        cameraObj2.position.y += ( - mouseY - cameraObj2.position.y ) * .03;
+        cameraObj2.lookAt( sceneObj2.position );
+        rendererObj2.render( sceneObj2, cameraObj2 );
+    }
+        /**************** FIN OBJECT2 3D ****************/
+
+
+    
+    /**************** OBJECT3 3D ****************/
+    var containerObj3;
+    var cameraObj3, sceneObj3, rendererObj3;
+    var mouseX = 0, mouseY = 0;
+    var windowHalfX = 450;
+    var windowHalfY = 400;
+    var objectObj2;
+    initObj3();
+    animateObj3();
+
+    function initObj3() {
+        containerObj3 = document.getElementById('object3');
+        cameraObj3 = new THREE.PerspectiveCamera( 90, 300 / 450, 10, 2000 );
+        cameraObj3.position.z = 240;
+        // scene
+        sceneObj3 = new THREE.Scene();
+        var ambientLightObj3 = new THREE.AmbientLight( 0xcccccc, 0.6 );
+        sceneObj2.add( ambientLightObj3 );
+        var pointLightobj3 = new THREE.PointLight( 0xffffff, 0.6 );
+        cameraObj3.add( pointLightobj3 );
+        sceneObj3.add( cameraObj3 );
+        // manager
+        function loadModelObj3() {
+            objectObj3.traverse( function ( child ) {
+                if ( child.isMesh ) child.material.map = textureObj3;
+            } );
+            objectObj3.position.y = - 190;
+            objectObj3.position.x = - 25;
+            sceneObj3.add( objectObj3 );
+        }
+        var managerObj3 = new THREE.LoadingManager( loadModelObj3 );
+        managerObj3.onProgress = function ( item, loaded, total ) {
+            console.log( item, loaded, total );
+        };
+        // texture
+        var textureLoaderObj3 = new THREE.TextureLoader( managerObj3 );
+        var textureObj3 = textureLoaderObj3.load( '/both/assets/img/q4/fond_vert.png' );
+        // model
+        function onProgress( xhr ) {
+            if ( xhr.lengthComputable ) {
+                var percentComplete = xhr.loaded / xhr.total * 100;
+                console.log( 'model ' + Math.round( percentComplete, 2 ) + '% downloaded' );
+            }
+        }
+        function onError() {}
+        var loaderObj3 = new THREE.OBJLoader( managerObj3 );
+        loaderObj3.load( '/both/assets/img/q4/goutte.obj', function ( obj ) {
+            objectObj3 = obj;
+        }, onProgress, onError );
+        //
+        rendererObj3 = new THREE.WebGLRenderer({
+            alpha: true
+        });
+        rendererObj3.setPixelRatio( window.devicePixelRatio );
+        rendererObj3.setSize( 300, 450 );
+        containerObj3.appendChild( rendererObj3.domElement );
+        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+        //
+        window.addEventListener( 'resize', onWindowResize, false );
+    }
+    function onWindowResize() {
+        windowHalfX = 300;
+        windowHalfY = 450;
+        cameraObj3.aspect = 300 / 450;
+        cameraObj3.updateProjectionMatrix();
+        rendererObj3.setSize( 300, 420 );
+    }
+    function onDocumentMouseMove( event ) {
+        mouseX = ( event.clientX - windowHalfX ) / 10;
+        mouseY = ( event.clientY - windowHalfY ) / 6;
+    }
+    //
+    function animateObj3() {
+        requestAnimationFrame( animateObj3 );
+        renderObj3();
+    }
+    function renderObj3() {
+        cameraObj3.position.x += ( mouseX - cameraObj3.position.x ) * .03;
+        cameraObj3.position.y += ( - mouseY - cameraObj3.position.y ) * .03;
+        cameraObj3.lookAt( sceneObj2.position );
+        rendererObj3.render( sceneObj2, cameraObj3 );
     }
 }
 
