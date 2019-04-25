@@ -22,7 +22,11 @@
  
  // Script to be executed when the page is displayed
  mobile_script = () => {
-     
+    ValidationBtn.canValidate = true
+    ValidationBtn.actualPage = questions.q6
+    ValidationBtn.nextPage = questions.q7
+    ValidationBtn.actualQ = "6"
+    ValidationBtn.nextQ = "7"
  }
  
  // Name of the transitions classes [when he leave, when he arrive]
