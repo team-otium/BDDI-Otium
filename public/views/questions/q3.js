@@ -28,6 +28,12 @@
  
  // Script to be executed when the page is displayed
  mobile_script = () => {
+    ValidationBtn.canValidate = true
+    ValidationBtn.actualPage = questions.q3
+    ValidationBtn.nextPage = questions.q4
+    ValidationBtn.actualQ = "3"
+    ValidationBtn.nextQ = "4"
+
     // Get control input values
     let waveLength = document.querySelector('input.input-length').value
     let waveAmplitude = document.querySelector('input.input-amplitude').value

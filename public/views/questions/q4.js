@@ -39,6 +39,12 @@ mobile_listener2 = ["selector", "type", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
+    ValidationBtn.canValidate = true
+    ValidationBtn.actualPage = questions.q4
+    ValidationBtn.nextPage = questions.q5
+    ValidationBtn.actualQ = "4"
+    ValidationBtn.nextQ = "5"
+
     if (!window.requestAnimationFrame) {
         window.requestAnimationFrame = (function () {
             return window.webkitRequestAnimationFrame ||
