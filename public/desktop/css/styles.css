@@ -192,21 +192,12 @@ height: 100%;
 display: flex;
 }
 
-#object {
-  position: absolute;
+.object {
+  height: 50%;
 }
 
 #object4 {
   position: absolute;
   bottom: 0;
-}
-
-.object5 {
-  left: 42%;
-  bottom: 70px;
-}
-
-.object6 {
-  bottom: 100px;
-  right: 100px;
+  height: 50%;
 }
