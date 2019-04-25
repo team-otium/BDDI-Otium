@@ -17,6 +17,11 @@ CSS DESKTOP
   font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
 }
 
+body {
+  padding: 0;
+  margin: 0;
+}
+
 h1 {
   font-family: "GothamRounded-Book", Helvetica, Arial, sans-serif;
   font-size: 32px;
