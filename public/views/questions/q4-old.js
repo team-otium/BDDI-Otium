@@ -162,18 +162,6 @@ desktop_socketOn1 = ["q4", (eventData) => {
     document.getElementById("doTiltLR").innerHTML = Math.round(eventData.tiltLR);
     document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
     document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
-
-    if (ball.position.x < window.innerWidth/3 && ball.position.y < window.innerHeight/2){
-        document.getElementById("object1").style.backgroundColor = 'blue';
-    } else if ((ball.position.x < window.innerWidth/3)*2 && ball.position.y < window.innerHeight/2){
-        document.getElementById("object2").style.backgroundColor = 'blue';
-    }  else if ((ball.position.x < window.innerWidth/3)*3 && ball.position.y < window.innerHeight/2){
-        document.getElementById("object3").style.backgroundColor = 'blue';
-    }  else if (ball.position.x < window.innerWidth/3 && (ball.position.y < window.innerHeight/2)*2){
-        document.getElementById("object4").style.backgroundColor = 'blue';
-    } else {
-        document.querySelector("#object1, #object2, #object3, #object4").style.backgroundColor = 'transparent';
-    }
 }]
 
 desktop_listener1 = ["selector", "type", () => {
