@@ -93,9 +93,40 @@
     let q5_textures = [
 
     ]
- }
- 
- desktop_transition = ["out", "in"]
+    for (let i = 1; i <= 15; i++) {
+        q5_textures.push(new THREE.TextureLoader().load( '/both/assets/textures/q5/drap_1.' ))
+    }
+    
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+    
+    var renderer = new THREE.WebGLRenderer({alpha: true});
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.domElement.style.position = "absolute"
+    document.getElementById("q5").appendChild( renderer.domElement );
+    
+    var light = new THREE.PointLight( 0xff0000, 1, 100 );
+    light.position.set( 50, 50, 50 );
+    scene.add( light );
+    
+    var geometry = new THREE.PlaneGeometry( 15, 15 );
+    var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+    var plane = new THREE.Mesh( geometry, q5_textures[1] );
+    scene.add( plane );
+
+    camera.position.z = 5;
+
+    var animate = function () {
+        requestAnimationFrame( animate );
+
+        renderer.render( scene, camera );
+    };
+
+    animate();
+
+    }
+    
+    desktop_transition = ["out", "in"]
  
  /**
   * Export
