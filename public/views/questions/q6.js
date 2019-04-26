@@ -5,7 +5,6 @@
  // The html (without section)
  mobile_html = 
  `
- <div id="ball"></div>
  <table class="table table-striped table-bordered">
  <tr>
      <td>Tilt Left/Right [gamma]</td>
@@ -47,8 +46,6 @@
 
     if ('DeviceOrientationEvent' in window) {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
-    } else {
-        document.getElementById('logoContainer').innerText = 'Device Orientation API not supported.';
     }
 
     function deviceOrientationHandler(eventData) {
@@ -92,19 +89,7 @@
  }]
 
  desktop_socketOn1 = ["q6", (eventData) => {
-     if (eventData.tiltLR > 0 && eventData.tiltLR < 50) {
-        VANTA.FOG({
-            el: "#background_anim",
-            highlightColor: 0x055ca4,
-            midtoneColor: 0x9198c7,
-            lowlightColor: 0x024391,
-            baseColor: 0x000041,
-            blurFactor: 0.70,
-            speed: 1.50,
-            zoom: 0.30
-          })
-     }
-    window.resultats.setResult("q6", {res: eventData.tiltLR})
+
 }]
  
  desktop_script = () => {
@@ -198,7 +183,7 @@
 q6_desktop = {
      html: desktop_html,
      listeners: [],
-     socketOn: [],
+     socketOn: [desktop_socketOn1],
      script: desktop_script,
      transitions: desktop_transition,
  }
