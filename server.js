@@ -101,6 +101,11 @@ io.sockets.on('connection', function (socket) {
     })
 
     // Q7
+    socket.on('q6', (data) => {
+        io.sockets.to(socket.clientId).emit('q6', data);
+    })
+
+    // Q7
     socket.on('q7', (data) => {
         io.sockets.to(socket.clientId).emit('q7', data);
     })

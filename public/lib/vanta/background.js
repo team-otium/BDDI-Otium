@@ -4,7 +4,7 @@ let background = VANTA.FOG({
     midtoneColor: 0xbed2fe,
     lowlightColor: 0xfdeefd,
     baseColor: 0xfae9fe,
-    blurFactor: 0.70,
-    speed: 2.70,
-    zoom: 2.20
+    blurFactor: 1.00,
+    speed: 2.00,
+    zoom: 0.20
   })
