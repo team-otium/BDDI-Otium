@@ -4,6 +4,13 @@ body{
   margin: 0;
 }
 
+p, h1 {
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+}
+
 section{
     transition: 0.8s all ease;
   }

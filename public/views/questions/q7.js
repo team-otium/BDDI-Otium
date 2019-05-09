@@ -5,7 +5,9 @@
  // The html (without section)
  mobile_html = 
  `
- 
+    <div class="text_center_mobile">
+        <h1 class="question_mobile">Quel objet vous attire le plus ?</h1>
+    </div>
  `
  
   // All listeners, one variable per listener
@@ -22,6 +24,8 @@
  
  // Script to be executed when the page is displayed
  mobile_script = () => {
+
+
     if ('DeviceOrientationEvent' in window) {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
     } else {
@@ -50,10 +54,11 @@
  
  desktop_html = 
  `
- <div class="text_center">
-    <h1>Quel objet vous attire le plus ?</h1>
-</div>
-<div id="cursor"></div>
+    <div class="text_center">
+        <h1 class="question_desktop">Quel objet vous attire le plus ?</h1>
+    </div>
+
+    <div id="cursor"></div>
  `
  
  desktop_listener1 = ["selector", "type", () => {

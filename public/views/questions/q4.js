@@ -5,24 +5,24 @@
 // The html (without section)
 mobile_html =
     `
- <div id="ball"></div>
- <table class="table table-striped table-bordered">
- <tr>
-     <td>Tilt Left/Right [gamma]</td>
-     <td id="doTiltLR"></td>
- </tr>
- <tr>
-     <td>Tilt Front/Back [beta]</td>
-     <td id="doTiltFB"></td>
- </tr>
- <tr>
-     <td>Direction [alpha]</td>
-     <td id="doDirection"></td>
- </tr>
-</table>
-<div class="text_center">
- <h1>Question 4</h1>
-</div>
+    <div id="ball"></div>
+    <table class="table table-striped table-bordered">
+    <tr>
+        <td>Tilt Left/Right [gamma]</td>
+        <td id="doTiltLR"></td>
+    </tr>
+    <tr>
+        <td>Tilt Front/Back [beta]</td>
+        <td id="doTiltFB"></td>
+    </tr>
+    <tr>
+        <td>Direction [alpha]</td>
+        <td id="doDirection"></td>
+    </tr>
+    </table>
+    <div class="text_center_mobile">
+        <h1 class="question_mobile">Choisissez les éléments qui vous apaisent</h1>
+    </div>
  `
 
 // All listeners, one variable per listener
@@ -132,32 +132,35 @@ mobile_transition = ["out", "in"]
 
 desktop_html =
     `
- <div id="ball"></div>
- <table class="table table-striped table-bordered">
-    <tr>
-        <td>Tilt Left/Right [gamma]</td>
-        <td id="doTiltLR"></td>
-    </tr>
-    <tr>
-        <td>Tilt Front/Back [beta]</td>
-        <td id="doTiltFB"></td>
-    </tr>
-    <tr>
-        <td>Direction [alpha]</td>
-        <td id="doDirection"></td>
-    </tr>
- </table>
- <div id="all_object">
-    <div id="object1" class="object"></div>
-    <div id="object2" class="object"></div>
-    <div id="object3" class="object"></div>
-    <canvas id="object4" class="object"></canvas>
-    <div class="object object5">Objet 5</div>
-    <div class="object object6">Objet 6</div>
- </div>
- <div class="text_center">
-    <h1>Choisissez les éléments qui vous apaisent</h1>
- </div>
+    <div id="ball"></div>
+    
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td>Tilt Left/Right [gamma]</td>
+            <td id="doTiltLR"></td>
+        </tr>
+        <tr>
+            <td>Tilt Front/Back [beta]</td>
+            <td id="doTiltFB"></td>
+        </tr>
+        <tr>
+            <td>Direction [alpha]</td>
+            <td id="doDirection"></td>
+        </tr>
+    </table>
+
+    <div id="all_object">
+        <div id="object1" class="object"></div>
+        <div id="object2" class="object"></div>
+        <div id="object3" class="object"></div>
+        <canvas id="object4" class="object"></canvas>
+        <div class="object object5">Objet 5</div>
+        <div class="object object6">Objet 6</div>
+    </div>
+
+    <div class="text_center">
+        <h1 class="question_desktop">Choisissez les éléments qui vous apaisent</h1>
+    </div>
  `
 
 desktop_socketOn1 = ["q4", (eventData) => {

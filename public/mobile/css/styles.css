@@ -18,12 +18,12 @@ CSS DESKTOP
   }
   
   h1 {
-    font-family: "GothamRounded-Book", Helvetica, Arial, sans-serif;
+    font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
     font-size: 32px;
   }
   
   .btn {
-    font-family: "GothamRounded-Book", Helvetica, Arial, sans-serif;
+    font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
     font-size: 16px;
     background: none;
     border: none;
@@ -61,8 +61,13 @@ CSS DESKTOP
     right: 0;
     text-align: center;
     margin: auto;
-    line-height: 25px;
+    line-height: 30px;
   }
+
+  .question_mobile {
+    font-size: 21px;
+    margin: 0 35px;
+}
   
   .text_center_mobile p {
     margin: 35px 0;
@@ -95,8 +100,6 @@ CSS DESKTOP
       left: 0;
       right: 0;
       z-index: 1;
-      background: white;
-      border: 1px solid black;
     }
 
 
@@ -112,95 +115,87 @@ CSS DESKTOP
     justify-content: space-around;
   }
 
-  #length {
-    z-index: 5;
-  }
 
   #amplitude {
     transform: rotate(90deg);
+    z-index: 4;
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    background: transparent; /* Otherwise white in Chrome */
   }
 
-  /* #curseur_frequence {
-    width: 200px;
-    border-top: 2px solid white;
-    border-top-style: dashed;
-    position: absolute;
-    left: 100px;
-    top: 90px;
-  }
-
-  #curseur_frequence::after{
-    content: "";
-    height: 35px;
-    width: 35px;
-    top: -20px;
-    left: 0;
-    margin-left: -35px;
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.6;
-    background-color: white;
-  }
-
-  #curseur_frequence::before{
-    content: "";
-    height: 35px;
-    width: 35px;
-    top: -20px;
-    right: 0;
-    margin-right: -35px;
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.6;
-    background-color: white;
-  }
-
-  #curseur_frequence img {
-    position: absolute;
-    top: -32px;
-    left: -45px;
-    width: 80px;
+  #length {
     z-index: 5;
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    background: transparent; /* Otherwise white in Chrome */
+  }
+  
+ #length::-webkit-slider-thumb,
+ #amplitude::-webkit-slider-thumb  {
+    -webkit-appearance: none;
+  }
+  
+ #length:focus,
+ #amplitude:focus {
+    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+  }
+  
+ #length::-ms-track,
+ #amplitude::-ms-track  {
+    cursor: pointer;
+    /* Hides the slider so custom styles can be added */
+    background: transparent; 
+    border-color: transparent;
+    color: transparent;
   }
 
-  #curseur_amplitude {
-    height: 200px;
-    border-right: 2px solid white;
-    border-right-style: dashed;
-    position: absolute;
-    right: 100px;
-  }
 
-  #curseur_amplitude::after{
-    content: "";
-    height: 35px;
-    width: 35px;
-    top: -35px;
-    left: 0;
-    margin-left: -18px;
-    position: absolute;
+
+ #length::-webkit-slider-thumb,
+ #amplitude::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
-    opacity: 0.6;
-    background-color: white;
+    background: #ffffff;
+    margin-top: -14px;
   }
-
-  #curseur_amplitude::before{
-    content: "";
-    height: 35px;
-    width: 35px;
-    bottom: -37px;
-    right: 17px;
-    margin-right: -35px;
-    position: absolute;
+ #length::-moz-range-thumb,
+ #amplitude::-moz-range-thumb {
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
-    opacity: 0.6;
-    background-color: white;
+    background: #ffffff;
+    margin-top: -14px;
+  }
+ #length::-ms-thumb,
+ #amplitude::-ms-thumb {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: #ffffff;
+    margin-top: -14px;
   }
 
-  #curseur_amplitude img {
-    position: absolute;
-    left: -30px;
-    bottom: -50px;
-    width: 80px;
-    z-index: 5;
-  } */
+
+
+  #length::-webkit-slider-runnable-track,
+  #amplitude::-webkit-slider-runnable-track  {
+    height: 0.5px;
+    cursor: pointer;
+    border: 1px dashed white;
+  }
+  #length::-moz-range-track,
+  #amplitude::-moz-range-track {
+    height: 0.5px;
+    cursor: pointer;
+    border: 1px dashed white;
+  }
+  #length::-ms-track,
+  #amplitude::-ms-track {
+    height: 1px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+  }
