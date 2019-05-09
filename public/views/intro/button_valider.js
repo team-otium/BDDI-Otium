@@ -27,6 +27,23 @@
     setTimeout(() => {
         intro.button_valider.transitionTo("mobile", questions.q1)
     }, 2000)
+
+
+    // FULL SCREEN
+    function launchIntoFullscreen(element) {
+        if(element.requestFullscreen) {
+        element.requestFullscreen();
+        } else if(element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+        } else if(element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+        } else if(element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+        }
+    }
+
+  launchIntoFullscreen(document.documentElement);
+
 }
  
  // Name of the transitions classes [when he leave, when he arrive]
