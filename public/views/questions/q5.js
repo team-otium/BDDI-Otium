@@ -5,7 +5,10 @@
  // The html (without section)
  mobile_html = 
  `
- <div id="q2_target"></div>
+    <div id="q2_target"></div>
+    <div class="text_center_mobile">
+        <h1 class="question_mobile">Choisissez un aspect</h1>
+    </div>
  `
  
   // All listeners, one variable per listener
@@ -65,9 +68,9 @@
  
  desktop_html = 
  `
- <div class="text_center">
-    <h1>Choisissez un aspect</h1>
-</div>
+    <div class="text_center">
+        <h1 class="question_desktop">Choisissez un aspect</h1>
+    </div>
  `
  
  desktop_listener1 = ["selector", "type", () => {

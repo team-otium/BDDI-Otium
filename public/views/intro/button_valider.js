@@ -29,7 +29,7 @@
     }, 2000)
 
 
-    // FULL SCREEN
+    /* FULL SCREEN
     function launchIntoFullscreen(element) {
         if(element.requestFullscreen) {
         element.requestFullscreen();
@@ -42,7 +42,7 @@
         }
     }
 
-  launchIntoFullscreen(document.documentElement);
+  launchIntoFullscreen(document.documentElement);*/
 
 }
  

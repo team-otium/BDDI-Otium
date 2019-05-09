@@ -5,10 +5,14 @@
  // The html (without section)
  mobile_html = 
  `
- <div class="controls">
-    <input type="range" id="length" min="10" max="100" value="30" class="input input-length">
-    <input type="range" id="amplitude" min="0" max="90" value="45" class="input input-amplitude">
- </div>
+   <div class="controls">
+      <input type="range" id="length" min="10" max="100" value="30" class="input input-length">
+      <input type="range" id="amplitude" min="0" max="90" value="45" class="input input-amplitude">
+   </div>
+
+   <div class="text_center_mobile">
+      <h1 class="question_mobile">Modulez la ligne qui vous apaise</h1>
+   </div>
  `
  
   // All listeners, one variable per listener
@@ -49,7 +53,7 @@
  desktop_html = 
  `
  <div class="text_center">
-    <h1>Modulez la ligne qui vous apaise</h1>
+    <h1 class="question_desktop">Modulez la ligne qui vous apaise</h1>
  </div>
 
  <div id="line">

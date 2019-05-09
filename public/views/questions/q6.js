@@ -5,23 +5,23 @@
  // The html (without section)
  mobile_html = 
  `
- <table class="table table-striped table-bordered">
- <tr>
-     <td>Tilt Left/Right [gamma]</td>
-     <td id="doTiltLR"></td>
- </tr>
- <tr>
-     <td>Tilt Front/Back [beta]</td>
-     <td id="doTiltFB"></td>
- </tr>
- <tr>
-     <td>Direction [alpha]</td>
-     <td id="doDirection"></td>
- </tr>
-</table>
-<div class="text_center">
- <h1>Question 6</h1>
-</div>
+    <table class="table table-striped table-bordered">
+    <tr>
+        <td>Tilt Left/Right [gamma]</td>
+        <td id="doTiltLR"></td>
+    </tr>
+    <tr>
+        <td>Tilt Front/Back [beta]</td>
+        <td id="doTiltFB"></td>
+    </tr>
+    <tr>
+        <td>Direction [alpha]</td>
+        <td id="doDirection"></td>
+    </tr>
+    </table>
+    <div class="text_center_mobile">
+        <h1 class="question_mobile">Quel est le moment de la journée le plus agréable visuellement ?</h1>
+    </div>
  `
  
   // All listeners, one variable per listener
@@ -70,9 +70,9 @@
  
  desktop_html = 
  `
- <div class="text_center">
-    <h1>Quel est le moment de la journée le plus agréable visuellement ?</h1>
-</div>
+    <div class="text_center">
+        <h1 class="question_desktop">Quel est le moment de la journée le plus agréable visuellement ?</h1>
+    </div>
  `
  
  desktop_listener1 = ["selector", "type", () => {
