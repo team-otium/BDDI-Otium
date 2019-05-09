@@ -72,11 +72,6 @@
  `
  <div class="text_center">
     <h1>Quel est le moment de la journée le plus agréable visuellement ?</h1>
-    <button id="leverSoleil">Lever du soleil</button>
-    <button id="matin">Petit matin</button>
-    <button id="journée">Journée</button>
-    <button id="coucherSoleil">Coucher du soleil</button>
-    <button id="nuit">Nuit</button>
 </div>
  `
  
@@ -90,80 +85,115 @@
 
  desktop_socketOn1 = ["q6", (eventData) => {
 
+    if (eventData.tiltFB > -50 && eventData.tiltFB < -80){
+        let moment = 0
+        if (window.moment != moment) {
+            window.moment = 0
+            document.getElementById('background_anim').innerHTML = ""
+            VANTA.FOG({
+                el: "#background_anim",
+                highlightColor: 0xc6c8f8,
+                midtoneColor: 0xf1a9b4,
+                lowlightColor: 0xf7d0d6,
+                baseColor: 0x9198c7,
+                blurFactor: 0.70,
+                speed: 1.50,
+                zoom: 0.40
+              })
+        }
+    }
+    if (eventData.tiltFB >= -80 && eventData.tiltFB < 10){
+        let moment = 1
+        if (window.moment != moment) {
+            window.moment = 1
+            document.getElementById('background_anim').innerHTML = ""
+            VANTA.FOG({
+                el: "#background_anim",
+                highlightColor: 0xf7d0d6,
+                midtoneColor: 0xc6c8f8,
+                lowlightColor: 0xdebeb5,
+                baseColor: 0xffffe0,
+                blurFactor: 0.70,
+                speed: 1.50,
+                zoom: 0.40
+              })
+        }
+    }
+    if (eventData.tiltFB >= 10 && eventData.tiltFB < 40){
+        let moment = 2
+        if (window.moment != moment) {
+            window.moment = 2
+            document.getElementById('background_anim').innerHTML = ""
+            VANTA.FOG({
+                el: "#background_anim",
+                highlightColor: 0xffffff,
+                midtoneColor: 0xa5e0fa,
+                lowlightColor: 0xbadaf5,
+                baseColor: 0x94bfe0,
+                blurFactor: 0.70,
+                speed: 1.50,
+                zoom: 0.40
+              })
+        }
+    }
+    if (eventData.tiltFB >= 40 && eventData.tiltFB < 70){
+        let moment = 3
+        if (window.moment != moment) {
+            window.moment = 3
+            document.getElementById('background_anim').innerHTML = ""
+            VANTA.FOG({
+                el: "#background_anim",
+                highlightColor: 0xeb4a3e,
+                midtoneColor: 0xf7e0b0,
+                lowlightColor: 0xfcb83b,
+                baseColor: 0xf0b1b1,
+                blurFactor: 0.70,
+                speed: 1.50,
+                zoom: 0.40
+              })
+        }   
+    }
+    if (eventData.tiltFB >= 70 && eventData.tiltFB < 100){
+        let moment = 4
+        if (window.moment != moment) {
+            window.moment = 4
+            document.getElementById('background_anim').innerHTML = ""
+            VANTA.FOG({
+                el: "#background_anim",
+                highlightColor: 0x055ca4,
+                midtoneColor: 0x9198c7,
+                lowlightColor: 0x024391,
+                baseColor: 0x000041,
+                blurFactor: 0.70,
+                speed: 1.50,
+                zoom: 0.40
+              })
+        }   
+    }
 }]
  
  desktop_script = () => {
-    let backgroundleverSoleil;
-    let backgroundmatin;
-    let backgroundjournée;
-    let backgroundcoucherSoleil;
-    let backgroundnuit;
 
-    document.getElementById("leverSoleil").onclick = function (){
+    /**
+     * 0 = leverSoleil
+     * 1 = matin
+     * 2 = journée
+     * 3 = coucher de soleil
+     * 4 = nuit
+     */
+    window.moment = 0
 
-        backgroundleverSoleil = VANTA.FOG({
-            el: "#background_anim",
-            highlightColor: 0xc6c8f8,
-            midtoneColor: 0xf1a9b4,
-            lowlightColor: 0xf7d0d6,
-            baseColor: 0x9198c7,
-            blurFactor: 0.70,
-            speed: 1.50,
-            zoom: 0.40
-          })
-    }
-    document.getElementById("matin").onclick = function (){
-
-        backgroundmatin = VANTA.FOG({
-            el: "#background_anim",
-            highlightColor: 0xe6aaaf,
-            midtoneColor: 0xbee1f7,
-            lowlightColor: 0x606289,
-            baseColor: 0xffffff,
-            blurFactor: 0.70,
-            speed: 1.50,
-            zoom: 0.40
-          })
-    }
-    document.getElementById("journée").onclick = function (){
-
-        backgroundjournée = VANTA.FOG({
-            el: "#background_anim",
-            highlightColor: 0xffffff,
-            midtoneColor: 0xa5e0fa,
-            lowlightColor: 0xbadaf5,
-            baseColor: 0x94bfe0,
-            blurFactor: 0.70,
-            speed: 1.50,
-            zoom: 0.40
-          })
-    }
-    document.getElementById("coucherSoleil").onclick = function (){
-
-        backgroundcoucherSoleil = VANTA.FOG({
-            el: "#background_anim",
-            highlightColor: 0xeb4a3e,
-            midtoneColor: 0xfcb83b,
-            lowlightColor: 0xf9cf72,
-            baseColor: 0xf27e38,
-            blurFactor: 0.70,
-            speed: 1.50,
-            zoom: 1.00
-          })
-    }
-    document.getElementById("nuit").onclick = function (){
-
-        backgroundnuit = VANTA.FOG({
-            el: "#background_anim",
-            highlightColor: 0x055ca4,
-            midtoneColor: 0x9198c7,
-            lowlightColor: 0x024391,
-            baseColor: 0x000041,
-            blurFactor: 0.70,
-            speed: 1.50,
-            zoom: 0.30
-          })
-    }
+    document.getElementById('background_anim').innerHTML = ""
+    VANTA.FOG({
+        el: "#background_anim",
+        highlightColor: 0xc6c8f8,
+        midtoneColor: 0xf1a9b4,
+        lowlightColor: 0xf7d0d6,
+        baseColor: 0x9198c7,
+        blurFactor: 0.70,
+        speed: 1.50,
+        zoom: 0.40
+      })
  }
  
  desktop_transition = ["out", "in"]
