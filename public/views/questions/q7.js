@@ -149,7 +149,7 @@
 
         /**************** TIMELINE ****************/
 
-        document.querySelector('.q7').style.fill = "#ffffff"
+        //document.querySelector('.q7').style.fill = "#ffffff"
 
  }
  
