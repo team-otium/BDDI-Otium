@@ -125,24 +125,24 @@ mobile_listener2 = ["selector", "type", () => {
 
    var container = document.getElementById('line')
 
-	var vertexHeight = 10000,
-		planeDefinition = 200,
-		planeSize = 1200000,
-      background = "#002135",
-		meshColor = "#005e97"; 
+	var vertexHeight = 17000,
+		planeDefinition = 190,
+		planeSize = 700000,
+      background = "#bed2fe",
+		meshColor = "#ffffff"; 
 
-	var camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 400000)
-	camera.position.z = 10000;
-	camera.position.y = 10000;
+	var camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 400000)
+	camera.position.z = 15000;
+   camera.position.y = 10000;
 
 	var scene = new THREE.Scene();
-	scene.fog = new THREE.Fog(background, 1, 200000);
+	scene.fog = new THREE.Fog(background, 1, 50000);
 
   var planeGeo = new THREE.PlaneGeometry(planeSize, planeSize, planeDefinition, planeDefinition);
 	var plane = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({
-		color: meshColor,
+      color: meshColor,
 	}));
-	plane.rotation.x -= Math.PI * .6;
+	plane.rotation.x -= Math.PI * .45;
 
 	scene.add(plane);
 
@@ -164,10 +164,21 @@ mobile_listener2 = ["selector", "type", () => {
 
 	render();
 
+   var count = 0
 	function render() {
 		requestAnimationFrame(render);
+
+    for (var i = 0; i < planeGeo.vertices.length; i++) {
+      var z = +planeGeo.vertices[i].z;
+      planeGeo.vertices[i].z = Math.sin(( i + count * 0.000001)) * (planeGeo.vertices[i]._myZ - (planeGeo.vertices[i]._myZ* 0.7))
+      plane.geometry.verticesNeedUpdate = true;
+
+      //count += 0.02
+    }
+
 		renderer.render(scene, camera);
 	}
+
 
 	window.addEventListener('resize', onWindowResize, false);
 
