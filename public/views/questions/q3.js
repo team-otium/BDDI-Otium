@@ -105,6 +105,7 @@ mobile_listener2 = ["selector", "type", () => {
  `
 
  desktop_socketOn1 = ["q3", (eventData) => {
+
    document.getElementById("doTiltLR").innerHTML = Math.round(eventData.tiltLR);
    document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
    document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
@@ -121,7 +122,6 @@ mobile_listener2 = ["selector", "type", () => {
  }]
  
  desktop_script = () => {
-
 
    var container = document.getElementById('line')
 

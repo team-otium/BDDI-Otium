@@ -135,7 +135,7 @@
 
         /**************** TIMELINE ****************/
 
-        document.querySelector('.q2').style.fill = "#ffffff"
+        //document.querySelector('.q2').style.fill = "#ffffff"
  }
  
  desktop_transition = ["out", "in"]
