@@ -85,18 +85,20 @@
 
  desktop_socketOn1 = ["q6", (eventData) => {
 
+        /**
+         * 0 = leverSoleil
+         * 1 = matin
+         * 2 = journée
+         * 3 = coucher de soleil
+         * 4 = nuit
+         */
+
     if (eventData.tiltFB > -50 && eventData.tiltFB < -80){
         let moment = 0
         if (window.moment != moment) {
             window.moment = 0
-
-            document.getElementById('background_anim').style.opacity = "1";
-            document.getElementById('background_anim').style.transition = "2s";
             
-            setTimeout(() => {
             document.getElementById('background_anim').innerHTML = ""
-            document.getElementById('background_anim').style.opacity = "0.5";
-            }, 2000)
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -115,24 +117,16 @@
         if (window.moment != moment) {
             window.moment = 1
             
-            document.getElementById('background_anim').style.opacity = "1";
-            document.getElementById('background_anim').style.transition = "2s";
-            
-            setTimeout(() => {
-            document.getElementById('background_anim').innerHTML = ""
-            document.getElementById('background_anim').style.opacity = "0.5";
-            }, 2000)
-
-            VANTA.FOG({
-                el: "#background_anim",
-                highlightColor: 0xf7d0d6,
-                midtoneColor: 0xc6c8f8,
-                lowlightColor: 0xdebeb5,
-                baseColor: 0xffffe0,
-                blurFactor: 0.70,
-                speed: 1.50,
-                zoom: 0.40
-              })
+                VANTA.FOG({
+                    el: "#background_anim",
+                    highlightColor: 0xf7d0d6,
+                    midtoneColor: 0xc6c8f8, 
+                    lowlightColor: 0xdebeb5,
+                    baseColor: 0xffffe0,
+                    blurFactor: 0.70,
+                    speed: 1.50,
+                    zoom: 0.40
+                  })
         }
     }
     if (eventData.tiltFB >= 10 && eventData.tiltFB < 40){
@@ -140,13 +134,7 @@
         if (window.moment != moment) {
             window.moment = 2
             
-            document.getElementById('background_anim').style.opacity = "1";
-            document.getElementById('background_anim').style.transition = "2s";
-            
-            setTimeout(() => {
             document.getElementById('background_anim').innerHTML = ""
-            document.getElementById('background_anim').style.opacity = "0.5";
-            }, 2000)
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -164,14 +152,8 @@
         let moment = 3
         if (window.moment != moment) {
             window.moment = 3
-            
-            document.getElementById('background_anim').style.opacity = "1";
-            document.getElementById('background_anim').style.transition = "2s";
-            
-            setTimeout(() => {
+
             document.getElementById('background_anim').innerHTML = ""
-            document.getElementById('background_anim').style.opacity = "0.5";
-            }, 2000)
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -190,13 +172,7 @@
         if (window.moment != moment) {
             window.moment = 4
             
-            document.getElementById('background_anim').style.opacity = "1";
-            document.getElementById('background_anim').style.transition = "2s";
-            
-            setTimeout(() => {
             document.getElementById('background_anim').innerHTML = ""
-            document.getElementById('background_anim').style.opacity = "0.5";
-            }, 2000)
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -214,28 +190,7 @@
  
  desktop_script = () => {
 
-    /**
-     * 0 = leverSoleil
-     * 1 = matin
-     * 2 = journée
-     * 3 = coucher de soleil
-     * 4 = nuit
-     */
-    window.moment = 0
-
-    document.getElementById('background_anim').innerHTML = ""
-    VANTA.FOG({
-        el: "#background_anim",
-        highlightColor: 0xc6c8f8,
-        midtoneColor: 0xf1a9b4,
-        lowlightColor: 0xf7d0d6,
-        baseColor: 0x9198c7,
-        blurFactor: 0.70,
-        speed: 1.50,
-        zoom: 0.40
-      })
-
-          /**************** TIMELINE ****************/
+    /**************** TIMELINE ****************/
 
     //document.querySelector('.q6').style.fill = "#ffffff"
  }
