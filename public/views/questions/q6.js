@@ -89,7 +89,15 @@
         let moment = 0
         if (window.moment != moment) {
             window.moment = 0
+
+            document.getElementById('background_anim').style.opacity = "1";
+            document.getElementById('background_anim').style.transition = "2s";
+            
+            setTimeout(() => {
             document.getElementById('background_anim').innerHTML = ""
+            document.getElementById('background_anim').style.opacity = "0.5";
+            }, 2000)
+
             VANTA.FOG({
                 el: "#background_anim",
                 highlightColor: 0xc6c8f8,
@@ -106,7 +114,15 @@
         let moment = 1
         if (window.moment != moment) {
             window.moment = 1
+            
+            document.getElementById('background_anim').style.opacity = "1";
+            document.getElementById('background_anim').style.transition = "2s";
+            
+            setTimeout(() => {
             document.getElementById('background_anim').innerHTML = ""
+            document.getElementById('background_anim').style.opacity = "0.5";
+            }, 2000)
+
             VANTA.FOG({
                 el: "#background_anim",
                 highlightColor: 0xf7d0d6,
@@ -123,7 +139,15 @@
         let moment = 2
         if (window.moment != moment) {
             window.moment = 2
+            
+            document.getElementById('background_anim').style.opacity = "1";
+            document.getElementById('background_anim').style.transition = "2s";
+            
+            setTimeout(() => {
             document.getElementById('background_anim').innerHTML = ""
+            document.getElementById('background_anim').style.opacity = "0.5";
+            }, 2000)
+
             VANTA.FOG({
                 el: "#background_anim",
                 highlightColor: 0xffffff,
@@ -140,7 +164,15 @@
         let moment = 3
         if (window.moment != moment) {
             window.moment = 3
+            
+            document.getElementById('background_anim').style.opacity = "1";
+            document.getElementById('background_anim').style.transition = "2s";
+            
+            setTimeout(() => {
             document.getElementById('background_anim').innerHTML = ""
+            document.getElementById('background_anim').style.opacity = "0.5";
+            }, 2000)
+
             VANTA.FOG({
                 el: "#background_anim",
                 highlightColor: 0xeb4a3e,
@@ -157,7 +189,15 @@
         let moment = 4
         if (window.moment != moment) {
             window.moment = 4
+            
+            document.getElementById('background_anim').style.opacity = "1";
+            document.getElementById('background_anim').style.transition = "2s";
+            
+            setTimeout(() => {
             document.getElementById('background_anim').innerHTML = ""
+            document.getElementById('background_anim').style.opacity = "0.5";
+            }, 2000)
+
             VANTA.FOG({
                 el: "#background_anim",
                 highlightColor: 0x055ca4,
@@ -197,7 +237,7 @@
 
           /**************** TIMELINE ****************/
 
-    document.querySelector('.q6').style.fill = "#ffffff"
+    //document.querySelector('.q6').style.fill = "#ffffff"
  }
  
  desktop_transition = ["out", "in"]
