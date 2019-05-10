@@ -111,6 +111,10 @@
     }
 
     animate()
+
+        /**************** TIMELINE ****************/
+
+        document.querySelector('.q3').style.fill = "#ffffff"
  }
  
  desktop_transition = ["out", "in"]
