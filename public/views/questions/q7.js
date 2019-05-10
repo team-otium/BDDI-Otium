@@ -37,10 +37,6 @@
         var tiltFB = eventData.beta;
         var dir = eventData.alpha;
 
-        //document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
-        //document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
-        //document.getElementById("doDirection").innerHTML = Math.round(dir);
-
         socket.emit("q7", {tiltFB:eventData.beta, tiltLR:eventData.gamma, dir:eventData.alpha});
     }
  }
