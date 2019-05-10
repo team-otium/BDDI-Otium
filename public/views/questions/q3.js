@@ -125,8 +125,8 @@ mobile_listener2 = ["selector", "type", () => {
 
    var container = document.getElementById('line')
 
-	var vertexHeight = 5000,
-		planeDefinition = 100,
+	var vertexHeight = 10000,
+		planeDefinition = 200,
 		planeSize = 1200000,
       background = "#002135",
 		meshColor = "#005e97"; 
