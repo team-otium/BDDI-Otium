@@ -127,6 +127,10 @@
 
     animate();
 
+        /**************** TIMELINE ****************/
+
+        document.querySelector('.q5').style.fill = "#ffffff"
+
     }
     
     desktop_transition = ["out", "in"]

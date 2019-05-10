@@ -769,7 +769,9 @@ desktop_script = () => {
     loop();
     /**************** FIN OBJECT4 3D ****************/
 
-    /**************** OBJECT5 3D ****************/
+        /**************** TIMELINE ****************/
+
+        document.querySelector('.q4').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

@@ -41,7 +41,7 @@
 
     <div class="event1">
     <svg height="18" width="10">
-      <circle cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="#ffffff" fill-opacity="0" />
+      <circle class="q1" cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="transparent" fill-opacity="1" />
     </svg>
     </div>
     <svg height="3" width="300">
@@ -52,7 +52,7 @@
 
     <div class="event2">
     <svg height="18" width="10">
-      <circle cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="#ffffff" fill-opacity="0" />
+    <circle class="q2" cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="transparent" fill-opacity="1" />
     </svg>
     </div>
     <svg height="3" width="300">
@@ -63,7 +63,7 @@
 
     <div class="event3">
     <svg height="18" width="10">
-      <circle cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="#ffffff" fill-opacity="0" />
+    <circle class="q3" cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="transparent" fill-opacity="1" />
     </svg>
     </div>
     <svg height="3" width="300">
@@ -74,7 +74,7 @@
 
     <div class="event4">
     <svg height="18" width="10">
-      <circle cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="#ffffff" fill-opacity="0" />
+    <circle class="q4" cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="transparent" fill-opacity="1" />
     </svg>
     </div>
     <svg height="3" width="300">
@@ -85,7 +85,7 @@
 
     <div class="event5">
     <svg height="18" width="10">
-      <circle cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="#ffffff" fill-opacity="0" />
+    <circle class="q5" cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="transparent" fill-opacity="1" />
     </svg>
     </div>
     <svg height="3" width="300">
@@ -96,7 +96,7 @@
 
     <div class="event6">
     <svg height="18" width="10">
-      <circle cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="#ffffff" fill-opacity="0" />
+    <circle class="q6" cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="transparent" fill-opacity="1" />
     </svg>
     </div>
     <svg height="3" width="300">
@@ -107,7 +107,7 @@
 
     <div class="event7">
     <svg height="18" width="10">
-      <circle cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="#ffffff" fill-opacity="0" />
+    <circle class="q7" cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="transparent" fill-opacity="1" />
     </svg>
     </div>
     <svg height="3" width="300">
@@ -118,7 +118,7 @@
 
     <div class="event8">
     <svg height="18" width="10">
-      <circle cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="#ffffff" fill-opacity="0" />
+    <circle class="q8" cx="5" cy="10" r="5" stroke="#ffffff" stroke-width="1" fill="transparent" fill-opacity="1" />
     </svg>
     </div>
 

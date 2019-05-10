@@ -70,7 +70,7 @@ desktop_listener2 = ["selector", "type", () => {
 }]
 
 desktop_socketOn1 = ["q1", (eventData) => {
-        document.getElementById("forme-net").style.width = 49.5 + eventData.tiltLR + '%';
+        document.getElementById("forme-net").style.width = 50 + eventData.tiltLR + '%';
         document.getElementById("forme-abstraite").style.width = 50 - eventData.tiltLR + '%';
         window.resultats.setResult("q1", {res: eventData.tiltLR})
 }]
@@ -158,6 +158,11 @@ desktop_script = () => {
     requestAnimationFrame(animate);
 
     /**************** FIN FORME ABSTRAITE ****************/
+
+    /**************** TIMELINE ****************/
+
+    document.querySelector('.q1').style.fill = "#ffffff"
+
 }
 
 desktop_transition = ["out", "in"]
