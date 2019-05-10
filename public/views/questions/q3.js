@@ -5,26 +5,33 @@
  // The html (without section)
  mobile_html = 
  `
-   <div class="controls">
-      <input type="range" id="length" min="10" max="100" value="30" class="input input-length">
-      <input type="range" id="amplitude" min="0" max="90" value="45" class="input input-amplitude">
-   </div>
-
+ <table class="table table-striped table-bordered">
+ <tr>
+     <td>Tilt Left/Right [gamma]</td>
+     <td id="doTiltLR"></td>
+ </tr>
+ <tr>
+     <td>Tilt Front/Back [beta]</td>
+     <td id="doTiltFB"></td>
+ </tr>
+ <tr>
+     <td>Direction [alpha]</td>
+     <td id="doDirection"></td>
+ </tr>
+ </table>
    <div class="text_center_mobile">
       <h1 class="question_mobile">Modulez la ligne qui vous apaise</h1>
    </div>
  `
  
-  // All listeners, one variable per listener
- mobile_listener1 = ["input.input-amplitude", "input", (event) => {
-    waveAmplitude = event.currentTarget.value
-    socket.emit("q3", {amplitude:waveAmplitude, length:waveLength});
- }]
- 
- mobile_listener2 = ["input.input-length", "input", (event) => {
-    waveLength = event.currentTarget.value
-    socket.emit("q3", {amplitude:waveAmplitude, length:waveLength});
- }]
+// All listeners, one variable per listener
+mobile_listener1 = ["selector", "type", () => {
+
+}]
+
+mobile_listener2 = ["selector", "type", () => {
+
+}]
 
  /** And more... */
  
@@ -38,9 +45,33 @@
     ValidationBtn.actualQ = "3"
     ValidationBtn.nextQ = "4"
 
-    // Get control input values
-    let waveLength = document.querySelector('input.input-length').value
-    let waveAmplitude = document.querySelector('input.input-amplitude').value
+    if (!window.requestAnimationFrame) {
+      window.requestAnimationFrame = (function () {
+          return window.webkitRequestAnimationFrame ||
+              window.mozRequestAnimationFrame ||
+              window.oRequestAnimationFrame ||
+              window.msRequestAnimationFrame ||
+              function ( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
+                  window.setTimeout(callback, 1000 / 60);
+              };
+      })();
+  }
+
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener("deviceorientation", function (eventData) {
+          var tiltLR = eventData.gamma;
+          var tiltFB = eventData.beta;
+          var dir = eventData.alpha;
+
+          document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
+          document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
+          document.getElementById("doDirection").innerHTML = Math.round(dir);
+
+          socket.emit("q3", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
+      })
+  }        else {
+            alert("Sorry, your browser doesn't support Device Orientation");
+        };
  }
  
  // Name of the transitions classes [when he leave, when he arrive]
@@ -52,23 +83,33 @@
  
  desktop_html = 
  `
+ <table class="table table-striped table-bordered" style="position: absolute; z-index:50">
+ <tr>
+     <td>Tilt Left/Right [gamma]</td>
+     <td id="doTiltLR"></td>
+ </tr>
+ <tr>
+     <td>Tilt Front/Back [beta]</td>
+     <td id="doTiltFB"></td>
+ </tr>
+ <tr>
+     <td>Direction [alpha]</td>
+     <td id="doDirection"></td>
+ </tr>
+ </table>
  <div class="text_center">
     <h1 class="question_desktop">Modulez la ligne qui vous apaise</h1>
  </div>
 
- <div id="line">
-    <svg class="svg_line">
-        <path></path>
-    </svg>
-
-
- </div>
+ <div id="line"></div>
  `
 
- desktop_socketOn1 = ["q3", (data) => {
-    // Get control input values
-    window.waveLength = parseInt(data.length)
-    window.waveAmplitude = parseInt(data.amplitude)
+ desktop_socketOn1 = ["q3", (eventData) => {
+   document.getElementById("doTiltLR").innerHTML = Math.round(eventData.tiltLR);
+   document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
+   document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
+
+   window.resultats.setResult("q3", {res: eventData.tiltLR})
 }]
  
  desktop_listener1 = ["selector", "type", () => {
@@ -81,40 +122,66 @@
  
  desktop_script = () => {
 
-    // Get control input values
-    window.waveLength = 30
-    window.waveAmplitude = 45
-        
-    // ***********
 
-    var width = window.innerWidth
+   var container = document.getElementById('line')
 
-    let xs = []
+	var vertexHeight = 5000,
+		planeDefinition = 100,
+		planeSize = 1200000,
+      background = "#002135",
+		meshColor = "#005e97"; 
 
-    for (let i = 5; i <= width; i++) {
-        xs.push(i)
-    }
+	var camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 400000)
+	camera.position.z = 10000;
+	camera.position.y = 10000;
 
-    const animate = () => {
-        let points = xs.map( x => {
-            let y = 100 + window.waveAmplitude * Math.sin( (x) / window.waveLength )
-            return [x, y]
-        })
-        
-        let path = 'M' + points.map( p => {
-            return p[0] + ',' + p[1]
-        }).join(' L')
-        
-        document.querySelector('path').setAttribute('d', path)
-        
-        requestAnimationFrame(animate)
-    }
+	var scene = new THREE.Scene();
+	scene.fog = new THREE.Fog(background, 1, 200000);
 
-    animate()
+  var planeGeo = new THREE.PlaneGeometry(planeSize, planeSize, planeDefinition, planeDefinition);
+	var plane = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({
+		color: meshColor,
+	}));
+	plane.rotation.x -= Math.PI * .6;
 
-        /**************** TIMELINE ****************/
+	scene.add(plane);
 
-        document.querySelector('.q3').style.fill = "#ffffff"
+	var renderer = new THREE.WebGLRenderer({alpha: true});
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	renderer.setClearColor(background, 1);
+
+  container.appendChild(renderer.domElement);
+
+
+  updatePlane();
+
+	function updatePlane() {
+		for (var i = 0; i < planeGeo.vertices.length; i++) {
+      planeGeo.vertices[i].z += Math.random() * vertexHeight - vertexHeight;
+      planeGeo.vertices[i]._myZ = planeGeo.vertices[i].z
+		}
+	};
+
+	render();
+
+	function render() {
+		requestAnimationFrame(render);
+		renderer.render(scene, camera);
+	}
+
+	window.addEventListener('resize', onWindowResize, false);
+
+	function onWindowResize() {
+		//changes the size of the canavs and updates it
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+		renderer.setSize(window.innerWidth, window.innerHeight);
+	}
+
+
+   /**************** TIMELINE ****************/
+
+   // document.querySelector('.q3').style.fill = "#ffffff"
  }
  
  desktop_transition = ["out", "in"]
@@ -125,7 +192,7 @@
  
  q3_mobile = {
      html: mobile_html,
-     listeners: [mobile_listener1, mobile_listener2],
+     listeners: [],
      socketOn: [],
      script: mobile_script,
      transitions: mobile_transition,

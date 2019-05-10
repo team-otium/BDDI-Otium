@@ -99,7 +99,7 @@ CSS DESKTOP
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: 1;
+      z-index: 5;
     }
 
 
@@ -107,95 +107,3 @@ CSS DESKTOP
   **************************  QUESTION 3
   **************************/
 
-  .controls {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-  }
-
-
-  #amplitude {
-    transform: rotate(90deg);
-    z-index: 4;
-    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-    background: transparent; /* Otherwise white in Chrome */
-  }
-
-  #length {
-    z-index: 5;
-    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-    background: transparent; /* Otherwise white in Chrome */
-  }
-  
- #length::-webkit-slider-thumb,
- #amplitude::-webkit-slider-thumb  {
-    -webkit-appearance: none;
-  }
-  
- #length:focus,
- #amplitude:focus {
-    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
-  }
-  
- #length::-ms-track,
- #amplitude::-ms-track  {
-    cursor: pointer;
-    /* Hides the slider so custom styles can be added */
-    background: transparent; 
-    border-color: transparent;
-    color: transparent;
-  }
-
-
-
- #length::-webkit-slider-thumb,
- #amplitude::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    background: #ffffff;
-    margin-top: -14px;
-  }
- #length::-moz-range-thumb,
- #amplitude::-moz-range-thumb {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    background: #ffffff;
-    margin-top: -14px;
-  }
- #length::-ms-thumb,
- #amplitude::-ms-thumb {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    background: #ffffff;
-    margin-top: -14px;
-  }
-
-
-
-  #length::-webkit-slider-runnable-track,
-  #amplitude::-webkit-slider-runnable-track  {
-    height: 0.5px;
-    cursor: pointer;
-    border: 1px dashed white;
-  }
-  #length::-moz-range-track,
-  #amplitude::-moz-range-track {
-    height: 0.5px;
-    cursor: pointer;
-    border: 1px dashed white;
-  }
-  #length::-ms-track,
-  #amplitude::-ms-track {
-    height: 1px;
-    cursor: pointer;
-    background: transparent;
-    border-color: transparent;
-    border-width: 16px 0;
-    color: transparent;
-  }
