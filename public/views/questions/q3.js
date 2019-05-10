@@ -187,9 +187,8 @@ mobile_listener2 = ["selector", "type", () => {
 		camera.aspect = window.innerWidth / window.innerHeight;
 		camera.updateProjectionMatrix();
 		renderer.setSize(window.innerWidth, window.innerHeight);
-	}
-
-
+  }
+  
    /**************** TIMELINE ****************/
 
    // document.querySelector('.q3').style.fill = "#ffffff"
