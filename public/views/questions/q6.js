@@ -190,6 +190,19 @@
  
  desktop_script = () => {
 
+    window.moment = 0
+
+    VANTA.FOG({
+        el: "#background_anim",
+        highlightColor: 0xc6c8f8,
+        midtoneColor: 0xf1a9b4,
+        lowlightColor: 0xf7d0d6,
+        baseColor: 0x9198c7,
+        blurFactor: 0.70,
+        speed: 1.50,
+        zoom: 0.40
+      })
+
     /**************** TIMELINE ****************/
 
     //document.querySelector('.q6').style.fill = "#ffffff"
