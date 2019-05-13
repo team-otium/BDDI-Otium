@@ -110,8 +110,8 @@ desktop_socketOn1 = ["q3", (eventData) => {
     document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
     document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
 
-    if (eventData.tiltFB >=0 && eventData.tiltFB <= 10){
-        window.move = Math.round(eventData.tiltFB); 
+    if (eventData.tiltFB >=0 && eventData.tiltFB <= 75){
+        window.move = Math.round(eventData.tiltFB)/75; 
     }    
  
 }]
@@ -175,7 +175,7 @@ desktop_script = () => {
 
         for (var i = 0; i < planeGeo.vertices.length; i++) {
             var z = +planeGeo.vertices[i].z;
-            planeGeo.vertices[i].z = Math.sin((i + count * 0.00001)) * (planeGeo.vertices[i]._myZ - (planeGeo.vertices[i]._myZ * (window.move/10)))
+            planeGeo.vertices[i].z = Math.sin((i + count * 0.00001)) * (planeGeo.vertices[i]._myZ - (planeGeo.vertices[i]._myZ * window.move))
             plane.geometry.verticesNeedUpdate = true;
 
             count += 0.02
