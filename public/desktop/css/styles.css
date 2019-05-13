@@ -195,3 +195,21 @@ display: flex;
   bottom: 0;
   height: 50%;
 }
+
+/**************************  
+**************************  QUESTION 6
+**************************/
+
+.vanta-canvas {
+  opacity: 1;
+  animation: fonduBG 1.5s;
+}
+
+@keyframes fonduBG {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -93,29 +93,33 @@
          * 4 = nuit
          */
 
-    if (eventData.tiltFB > -50 && eventData.tiltFB < -80){
+    if (eventData.tiltFB >= 0 && eventData.tiltFB < 20){
         let moment = 0
         if (window.moment != moment) {
             window.moment = 0
             
-            document.getElementById('background_anim').innerHTML = ""
+            
 
-            VANTA.FOG({
-                el: "#background_anim",
-                highlightColor: 0xc6c8f8,
-                midtoneColor: 0xf1a9b4,
-                lowlightColor: 0xf7d0d6,
-                baseColor: 0x9198c7,
-                blurFactor: 0.70,
-                speed: 1.50,
-                zoom: 0.40
-              })
+                VANTA.FOG({
+                    el: "#background_anim",
+                    highlightColor: 0xc6c8f8,
+                    midtoneColor: 0xf1a9b4,
+                    lowlightColor: 0xf7d0d6,
+                    baseColor: 0x9198c7,
+                    blurFactor: 0.70,
+                    speed: 1.50,
+                    zoom: 0.40
+                  })
+
+
         }
     }
-    if (eventData.tiltFB >= -80 && eventData.tiltFB < 10){
+    if (eventData.tiltFB >= 20 && eventData.tiltFB < 40){
         let moment = 1
         if (window.moment != moment) {
             window.moment = 1
+
+            document.getElementById('background_anim').innerHTML = ""
             
                 VANTA.FOG({
                     el: "#background_anim",
@@ -129,7 +133,7 @@
                   })
         }
     }
-    if (eventData.tiltFB >= 10 && eventData.tiltFB < 40){
+    if (eventData.tiltFB >= 40 && eventData.tiltFB < 60){
         let moment = 2
         if (window.moment != moment) {
             window.moment = 2
@@ -148,7 +152,7 @@
               })
         }
     }
-    if (eventData.tiltFB >= 40 && eventData.tiltFB < 70){
+    if (eventData.tiltFB >= 60 && eventData.tiltFB < 80){
         let moment = 3
         if (window.moment != moment) {
             window.moment = 3
@@ -167,7 +171,7 @@
               })
         }   
     }
-    if (eventData.tiltFB >= 70 && eventData.tiltFB < 100){
+    if (eventData.tiltFB >= 80 && eventData.tiltFB < 100){
         let moment = 4
         if (window.moment != moment) {
             window.moment = 4
@@ -192,6 +196,8 @@
 
     window.moment = 0
 
+    document.getElementById('background_anim').innerHTML = ""
+
     VANTA.FOG({
         el: "#background_anim",
         highlightColor: 0xc6c8f8,
@@ -202,6 +208,8 @@
         speed: 1.50,
         zoom: 0.40
       })
+
+
 
     /**************** TIMELINE ****************/
 
