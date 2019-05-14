@@ -1,0 +1,25 @@
+{
+  "name": "bddi-otium",
+  "version": "1.0.0",
+  "description": "A Gobelins project",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/team-otium/BDDI-Otium.git"
+  },
+  "author": "Nadia Essoubai & Rémi Rucojevic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/team-otium/BDDI-Otium/issues"
+  },
+  "homepage": "https://github.com/team-otium/BDDI-Otium#readme"
+}
