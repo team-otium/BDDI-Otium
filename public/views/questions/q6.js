@@ -5,23 +5,13 @@
  // The html (without section)
  mobile_html = 
  `
-    <table class="table table-striped table-bordered">
-    <tr>
-        <td>Tilt Left/Right [gamma]</td>
-        <td id="doTiltLR"></td>
-    </tr>
-    <tr>
-        <td>Tilt Front/Back [beta]</td>
-        <td id="doTiltFB"></td>
-    </tr>
-    <tr>
-        <td>Direction [alpha]</td>
-        <td id="doDirection"></td>
-    </tr>
-    </table>
     <div class="text_center_mobile">
         <h1 class="question_mobile">Quel est le moment de la journée le plus agréable visuellement ?</h1>
     </div>
+
+    <div class="circle3"></div>
+    <div><div class="circle rotating"><div class="circle2"></div></div></div>
+    <div class="buttonAnim"><img src="/both/assets/img/validation.gif" alt=""></div>
  `
  
   // All listeners, one variable per listener
@@ -52,10 +42,6 @@
         var tiltLR = eventData.gamma;
         var tiltFB = eventData.beta;
         var dir = eventData.alpha;
-
-        document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
-        document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
-        document.getElementById("doDirection").innerHTML = Math.round(dir);
 
         socket.emit("q6", {tiltFB:eventData.beta, tiltLR:eventData.gamma, dir:eventData.alpha});
     }
