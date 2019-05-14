@@ -53,7 +53,6 @@ CSS DESKTOP
   .circle{
     width: 0px;
     height: 0px;
-  
     border-radius : 46%;
     background: #64d8dc;
     position: absolute;
@@ -62,12 +61,12 @@ CSS DESKTOP
     left: 0;
     right: 0;
     margin: auto;
+    display: none;
   }
   
   .circle2{
     width: 0px;
     height: 0px;
-
     border-radius : 50%;
     background: #64d8dc;
     position: absolute;
@@ -76,6 +75,7 @@ CSS DESKTOP
     left: 0;
     right: 0;
     margin: auto;
+    display: none;
   }
 
   .circle3 {
@@ -91,6 +91,7 @@ CSS DESKTOP
     background: transparent;
     border: 1px solid white;
     position: absolute;
+    display: none;
   }
 
   @keyframes full {
