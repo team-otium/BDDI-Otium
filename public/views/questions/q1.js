@@ -8,6 +8,11 @@ mobile_html =
     <div class="text_center_mobile">
         <h1 class="question_mobile">Êtes-vous de nature rêveur/imaginatif ?</h1>
     </div>
+
+
+    <div class="circle3"></div>
+    <div><div class="circle rotating"><div class="circle2"></div></div></div>
+    <div class="buttonAnim"><img src="/both/assets/img/validation.gif" alt=""></div>
  `
 
 // All listeners, one variable per listener
