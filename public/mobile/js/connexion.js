@@ -1,4 +1,4 @@
-var socket = io.connect("https://"+ config.ip +":" + config.port.toString(), {transports: ['websocket'], upgrade: false})
+var socket = io.connect("https://"+ config.ip, {transports: ['websocket'], upgrade: false})
 
 let rooms = []
 
