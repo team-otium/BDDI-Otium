@@ -42,6 +42,7 @@ class Validation{
                 document.querySelector(".circle").style.width = 0+ "px"
                 document.querySelector(".circle2").style.height = 0+ "px"
                 document.querySelector(".circle2").style.width = 0+ "px"
+                document.querySelector(".buttonAnim").style.display = "none"
                 document.querySelector(".circle3").style.animation = "full 2s reverse"
                 this.deltaTime = 0
                 this.last = this.now
