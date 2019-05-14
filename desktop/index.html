@@ -38,6 +38,9 @@
 
 
     <!-- Lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+
+    
     <script src="/dev/utils.js"></script>
     <script src="/lib/utils/utils.js"></script>
     <script src="/lib/threejs/build/three.min.js"></script>
@@ -82,7 +85,7 @@
     <script src="/views/arborescence.js"></script>
 
     <script>
-        //questions.q3.displayPage("desktop")
+        //intro.timeline.displayPage("desktop")
         
         intro.animationLogo.displayPage("desktop")
         document.getElementById("go").addEventListener("click", () => {
@@ -102,7 +105,7 @@
 
         socket.on("validationCancel", (data) => {
             document.getElementById("validation").style.height = 0+ "%"
-        }) 
+        })
     </script>
 </body>
 

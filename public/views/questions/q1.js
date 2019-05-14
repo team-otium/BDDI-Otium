@@ -85,7 +85,6 @@ desktop_socketOn1 = ["q1", (eventData) => {
 
             window.resultats.setResult("q1", {res: eventData.tiltLR})
         }
-       
 }]
 
 desktop_script = () => {
@@ -172,10 +171,19 @@ desktop_script = () => {
 
     /**************** FIN FORME ABSTRAITE ****************/
 
+
+
     /**************** TIMELINE ****************/
+    let timeline = {
+        lineWidth: 0
+    }
 
-    //document.querySelector('.q1').style.fill = "#ffffff"
+    TweenMax.to(timeline, 5, {lineWidth:300, onUpdate: () => {
+        document.querySelector('.svgLine2').setAttribute('x2',timeline.lineWidth);
+    }})
 
+    document.querySelector('.q1').style.fill = "#ffffff"
+    
 }
 
 desktop_transition = ["out", "in"]
