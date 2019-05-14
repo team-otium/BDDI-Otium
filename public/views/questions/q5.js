@@ -9,10 +9,6 @@
     <div class="text_center_mobile">
         <h1 class="question_mobile">Choisissez un aspect</h1>
     </div>
-
-    <div class="circle3"></div>
-    <div><div class="circle rotating"><div class="circle2"></div></div></div>
-    <div class="buttonAnim"><img src="/both/assets/img/validation.gif" alt=""></div>
  `
  
   // All listeners, one variable per listener

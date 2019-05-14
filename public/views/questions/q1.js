@@ -8,11 +8,6 @@ mobile_html =
     <div class="text_center_mobile">
         <h1 class="question_mobile">Êtes-vous de nature rêveur/imaginatif ?</h1>
     </div>
-
-
-    <div class="circle3"></div>
-    <div><div class="circle rotating"><div class="circle2"></div></div></div>
-    <div class="buttonAnim"><img src="/both/assets/img/validation.gif" alt=""></div>
  `
 
 // All listeners, one variable per listener
@@ -29,6 +24,9 @@ mobile_listener2 = ["selector", "type", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
+    document.querySelector(".circle").style.display = "block"
+    document.querySelector(".circle2").style.display = "block"
+    document.querySelector(".circle3").style.display = "block"
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q1
     ValidationBtn.nextPage = questions.q2
@@ -174,15 +172,18 @@ desktop_script = () => {
 
 
     /**************** TIMELINE ****************/
-    let timeline = {
-        lineWidth: 0
-    }
 
-    TweenMax.to(timeline, 5, {lineWidth:300, onUpdate: () => {
-        document.querySelector('.svgLine2').setAttribute('x2',timeline.lineWidth);
-    }})
+        let timeline = {
+            lineWidth: 0
+        }
+    
+        TweenMax.to(timeline, 10, {lineWidth:300, onUpdate: () => {
+            document.querySelector('.svgLine2').setAttribute('x2',timeline.lineWidth);
+        }})
+    
+        document.querySelector('.q1').style.fill = "#ffffff"
 
-    document.querySelector('.q1').style.fill = "#ffffff"
+
     
 }
 
