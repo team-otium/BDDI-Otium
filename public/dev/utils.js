@@ -1,5 +1,5 @@
 let config = {
     //ip: "192.168.43.173",
-    ip : "10.137.26.65",
-    port: 1337
+    ip : "otium-project.herokuapp.com",
+    port: 3000
 }
