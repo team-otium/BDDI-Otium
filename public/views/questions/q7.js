@@ -92,6 +92,22 @@
 }]
  
  desktop_script = () => {
+
+    /** INITIAL BACKGROUND **/
+    document.getElementById('background_anim').innerHTML = ""
+
+    VANTA.FOG({
+        el: "#background_anim",
+        highlightColor: 0xbbe9fd,
+        midtoneColor: 0xbed2fe,
+        lowlightColor: 0xfdeefd,
+        baseColor: 0xfae9fe,
+        blurFactor: 1.00,
+        speed: 2.00,
+        zoom: 0.20
+      })
+
+
      window.renderers = []
      for (let i = 0; i < 4; i++) {
         var scene = new THREE.Scene();
@@ -146,11 +162,6 @@
     };
 
     animate()
-
-        /**************** TIMELINE ****************/
-
-        //document.querySelector('.q7').style.fill = "#ffffff"
-
  }
  
  desktop_transition = ["out", "in"]

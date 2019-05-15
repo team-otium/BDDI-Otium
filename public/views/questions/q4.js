@@ -24,6 +24,8 @@ mobile_listener2 = ["selector", "type", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
+    document.querySelector(".circle").style.display = "block"
+    document.querySelector(".circleIn").style.display = "block"
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q4
     ValidationBtn.nextPage = questions.q5
@@ -32,13 +34,13 @@ mobile_script = () => {
 
     if ('DeviceOrientationEvent' in window) {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
-    } else {
-        document.getElementById('logoContainer').innerText = 'Device Orientation API not supported.';
     }
 
     function deviceOrientationHandler(eventData) {
-
-        socket.emit("q4", {tiltFB:eventData.beta, tiltLR:eventData.gamma, dir:eventData.alpha});
+        if (ValidationBtn.touch === true) {
+        } else {
+            socket.emit("q4", {tiltFB:eventData.beta, tiltLR:eventData.gamma, dir:eventData.alpha});
+        }
     }
 }
 
@@ -441,10 +443,6 @@ desktop_script = () => {
 
     /**************** OBJECT4 3D ****************/
 
-
-    /**************** TIMELINE ****************/
-
-    // document.querySelector('.q4').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

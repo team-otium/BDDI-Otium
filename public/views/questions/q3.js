@@ -25,6 +25,8 @@ mobile_listener2 = ["selector", "type", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
+    document.querySelector(".circle").style.display = "block"
+    document.querySelector(".circleIn").style.display = "block"
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q3
     ValidationBtn.nextPage = questions.q4
@@ -49,7 +51,10 @@ mobile_script = () => {
             var tiltFB = eventData.beta;
             var dir = eventData.alpha;
 
-            socket.emit("q3", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
+            if (ValidationBtn.touch === true) {
+            } else {
+                socket.emit("q3", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
+            }
         })
     } else {
         alert("Sorry, your browser doesn't support Device Orientation");
@@ -175,10 +180,6 @@ desktop_script = () => {
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
-
-    /**************** TIMELINE ****************/
-
-    // document.querySelector('.q3').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]
