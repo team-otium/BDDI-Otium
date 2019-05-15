@@ -20,6 +20,7 @@ class Validation{
                         this.now = Date.now()
                         this.last = this.now
                         this.touch = true
+                        socket.emit("validationWait", {height:ValidationBtn.height, width:ValidationBtn.width, actualQuestion:ValidationBtn.actualQ})
                         console.log(this.time)
                         requestAnimationFrame(this.animationMobile)
                     } else {
@@ -28,8 +29,6 @@ class Validation{
                         this.width = 0
                         document.querySelector(".circle").style.height = 0+ "px"
                         document.querySelector(".circle").style.width = 0+ "px"
-                        document.querySelector(".circle2").style.height = 0+ "px"
-                        document.querySelector(".circle2").style.width = 0+ "px"
                         this.deltaTime = 0
                         this.last = this.now
                         this.time = 0
@@ -43,13 +42,11 @@ class Validation{
                 this.width = 0
                 document.querySelector(".circle").style.height = 0+ "px"
                 document.querySelector(".circle").style.width = 0+ "px"
-                document.querySelector(".circle2").style.height = 0+ "px"
-                document.querySelector(".circle2").style.width = 0+ "px"
-                document.querySelector(".circle3").style.animation = "full 2s reverse"
+                document.querySelector(".circleIn").style.animation = "full 2s reverse"
                 this.deltaTime = 0
                 this.last = this.now
                 this.time = 0
-                socket.emit("validationCancel", 0)
+                socket.emit("validationCancel", {actualQuestion:ValidationBtn.actualQ})
             })
         }
     }
@@ -66,19 +63,15 @@ class Validation{
             ValidationBtn.time += ValidationBtn.deltaTime
             
             
-            if (ValidationBtn.time >= 60) {
-                ValidationBtn.height = ValidationBtn.easeInQuad(ValidationBtn.time - 60, 0, 100, 2000)
-                ValidationBtn.width = ValidationBtn.easeInQuad(ValidationBtn.time - 60, 0, 100, 2000)
+            if (ValidationBtn.time >= 100) {
+                ValidationBtn.height = ValidationBtn.easeInQuad(ValidationBtn.time - 100, 0, 100, 2000)
+                ValidationBtn.width = ValidationBtn.easeInQuad(ValidationBtn.time - 100, 0, 100, 2000)
 
-                document.querySelector(".circle").style.height = (ValidationBtn.height*7) + "px"
-                document.querySelector(".circle").style.width = (ValidationBtn.width*7) + "px"
-                document.querySelector(".circle2").style.height = (ValidationBtn.height*7) + "px"
-                document.querySelector(".circle2").style.width = (ValidationBtn.width*7) + "px"
-                document.querySelector(".circle3").style.animation = "full 3s forwards"
+                document.querySelector(".circle").style.height = (ValidationBtn.height*6) + "px"
+                document.querySelector(".circle").style.width = (ValidationBtn.width*6) + "px"
+                document.querySelector(".circleIn").style.animation = "full 3s forwards"
 
-
-                socket.emit("validationWait", {height:ValidationBtn.height, width:ValidationBtn.width})
-                if (ValidationBtn.time >= 2000) {
+                if (ValidationBtn.time >= 3000) {
                     ValidationBtn.height = 0
                     ValidationBtn.width = 0
                     document.querySelector(".buttonAnim").style.display = "block"
@@ -88,15 +81,14 @@ class Validation{
                     ValidationBtn.touch = false
                     ValidationBtn.canValidate = false
                     setTimeout(() => {
-                        document.querySelector(".buttonAnim").style.display = "none"
                         ValidationBtn.actualPage.transitionTo("mobile", ValidationBtn.nextPage)
-                        socket.emit("validationCancel", 0)
                         socket.emit("validationQuestion", {from: ValidationBtn.actualQ, to: ValidationBtn.nextQ})
-                        window.resultats.getResult(ValidationBtn.actualQ)
+                        document.querySelector(".buttonAnim").style.display = "none"
+                        document.querySelector(".circle").style.display = "none"
+                        document.querySelector(".circleIn").style.display = "none"
                     }, 1000);
                 }
             }
-
             requestAnimationFrame(ValidationBtn.animationMobile)
         }
     }

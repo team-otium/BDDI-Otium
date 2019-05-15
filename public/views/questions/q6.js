@@ -24,6 +24,8 @@
  
  // Script to be executed when the page is displayed
  mobile_script = () => {
+    document.querySelector(".circle").style.display = "block"
+    document.querySelector(".circleIn").style.display = "block"
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q6
     ValidationBtn.nextPage = questions.q7
@@ -39,7 +41,10 @@
         var tiltFB = eventData.beta;
         var dir = eventData.alpha;
 
-        socket.emit("q6", {tiltFB:eventData.beta, tiltLR:eventData.gamma, dir:eventData.alpha});
+        if (ValidationBtn.touch === true) {
+        } else {
+            socket.emit("q6", {tiltFB:eventData.beta, tiltLR:eventData.gamma, dir:eventData.alpha});
+        }
     }
  }
  
@@ -190,12 +195,6 @@
         speed: 1.50,
         zoom: 0.40
       })
-
-
-
-    /**************** TIMELINE ****************/
-
-    //document.querySelector('.q6').style.fill = "#ffffff"
  }
  
  desktop_transition = ["out", "in"]

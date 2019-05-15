@@ -47,6 +47,8 @@
  
  // Script to be executed when the page is displayed
  mobile_script = () => {
+    document.querySelector(".circle").style.display = "block"
+    document.querySelector(".circleIn").style.display = "block"
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q5
     ValidationBtn.nextPage = questions.q6
@@ -127,11 +129,7 @@
 
     animate();
 
-        /**************** TIMELINE ****************/
-
-        //document.querySelector('.q5').style.fill = "#ffffff"
-
-    }
+}
     
     desktop_transition = ["out", "in"]
  

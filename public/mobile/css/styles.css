@@ -63,22 +63,8 @@ CSS DESKTOP
     margin: auto;
     display: none;
   }
-  
-  .circle2{
-    width: 0px;
-    height: 0px;
-    border-radius : 50%;
-    background: #64d8dc;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    display: none;
-  }
 
-  .circle3 {
+  .circleIn {
     width: 60px;
     height: 60px;
     border-radius : 50%;

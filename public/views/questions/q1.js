@@ -25,8 +25,7 @@ mobile_listener2 = ["selector", "type", () => {
 // Script to be executed when the page is displayed
 mobile_script = () => {
     document.querySelector(".circle").style.display = "block"
-    document.querySelector(".circle2").style.display = "block"
-    document.querySelector(".circle3").style.display = "block"
+    document.querySelector(".circleIn").style.display = "block"
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q1
     ValidationBtn.nextPage = questions.q2
@@ -36,13 +35,13 @@ mobile_script = () => {
     
     if ('DeviceOrientationEvent' in window) {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
-    } else {
-        document.getElementById('logoContainer').innerText = 'Device Orientation API not supported.';
     }
 
     function deviceOrientationHandler(eventData) {
-
-        socket.emit("q1", {tiltFB:eventData.beta, tiltLR:eventData.gamma, dir:eventData.alpha});
+        if (ValidationBtn.touch === true) {
+        } else {
+            socket.emit("q1", {tiltFB:eventData.beta, tiltLR:eventData.gamma, dir:eventData.alpha});
+        }
     }
 }
 
@@ -74,15 +73,15 @@ desktop_listener2 = ["selector", "type", () => {
 
 desktop_socketOn1 = ["q1", (eventData) => {
 
-        if (eventData.tiltLR >= -50 && eventData.tiltLR <= 50){
-            document.getElementById("forme-net").style.width = 50 + eventData.tiltLR + '%';
-            document.getElementById("forme-abstraite").style.width = 50 - eventData.tiltLR + '%';
+    if (eventData.tiltLR >= -50 && eventData.tiltLR <= 50){
+        document.getElementById("forme-net").style.width = 50 + eventData.tiltLR + '%';
+        document.getElementById("forme-abstraite").style.width = 50 - eventData.tiltLR + '%';
 
-            document.getElementById("forme-net").style.transition = '2s';
-            document.getElementById("forme-abstraite").style.transition = '2s';
+        document.getElementById("forme-net").style.transition = '1.5s';
+        document.getElementById("forme-abstraite").style.transition = '1.5s';
 
-            window.resultats.setResult("q1", {res: eventData.tiltLR})
-        }
+        window.resultats.setResult("q1", {res: eventData.tiltLR})
+    }
 }]
 
 desktop_script = () => {
@@ -121,7 +120,7 @@ desktop_script = () => {
     };
     renderFormeNet();
 
-    /**************** FIN FORME NET ****************/
+
 
     /**************** FORME ABSTRAITE ****************/
 
@@ -166,25 +165,6 @@ desktop_script = () => {
     }
 
     requestAnimationFrame(animate);
-
-    /**************** FIN FORME ABSTRAITE ****************/
-
-
-
-    /**************** TIMELINE ****************/
-
-        let timeline = {
-            lineWidth: 0
-        }
-    
-        TweenMax.to(timeline, 10, {lineWidth:300, onUpdate: () => {
-            document.querySelector('.svgLine2').setAttribute('x2',timeline.lineWidth);
-        }})
-    
-        document.querySelector('.q1').style.fill = "#ffffff"
-
-
-    
 }
 
 desktop_transition = ["out", "in"]

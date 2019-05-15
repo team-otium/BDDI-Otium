@@ -59,6 +59,7 @@ button {
   right: 0;
   margin: auto;
   padding: 0 40px;
+  z-index: 1000;
 }
 
 
