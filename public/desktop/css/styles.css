@@ -187,12 +187,28 @@ button {
 
 .object {
     height: 50%;
+    position: relative;
 }
 
 #object4 {
     position: absolute;
     bottom: 0;
     height: 50%;
+}
+
+.border1,
+.border2,
+.border3 {
+    width: 300px;
+    height: 300px;
+    border: 2px solid white;
+    left: 0;
+    border-radius: 50%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
 }
 
 
