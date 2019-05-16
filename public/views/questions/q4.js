@@ -443,6 +443,8 @@ desktop_script = () => {
 
     /**************** OBJECT4 3D ****************/
 
+        /*** TIMELINE ***/
+        document.querySelector('.q4').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

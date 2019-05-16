@@ -180,6 +180,9 @@ desktop_script = () => {
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
+
+        /*** TIMELINE ***/
+        document.querySelector('.q3').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

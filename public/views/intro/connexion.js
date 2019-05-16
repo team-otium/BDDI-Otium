@@ -45,7 +45,9 @@ mobile_listener2 = [".start_q1", "click", () => {
  
  // Script to be executed when the page is displayed
  mobile_script = () => {
-     
+    document.querySelector(".buttonAnim").style.display = "none"
+    document.querySelector(".circle").style.display = "none"
+    document.querySelector(".circleIn").style.display = "none"
  }
  
  // Name of the transitions classes [when he leave, when he arrive]

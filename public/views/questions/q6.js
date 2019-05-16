@@ -195,6 +195,9 @@
         speed: 1.50,
         zoom: 0.40
       })
+
+          /*** TIMELINE ***/
+    document.querySelector('.q6').style.fill = "#ffffff"
  }
  
  desktop_transition = ["out", "in"]
