@@ -82,14 +82,17 @@
     <script src="/views/questions/q7.js"></script>
     <script src="/views/questions/q8.js"></script>
 
+    <!-- UNIVERS -->
+    <script src="/views/univers/univers.js"></script>
+
     <script src="/views/arborescence.js"></script>
 
     <script src="/desktop/js/gestion_timeline.js"></script>
 
     <script>
-        //intro.timeline.displayPage("desktop")
+        univers.univers.displayPage("desktop")
 
-        intro.animationLogo.displayPage("desktop")
+        /*intro.animationLogo.displayPage("desktop")
         document.getElementById("go").addEventListener("click", () => {
             let q = document.getElementById("q").value
             console.log("q" + q)
@@ -99,7 +102,7 @@
 
         socket.on("validationQuestion", (data) => {
             questions["q" + data.from].transitionTo("desktop", questions["q" + data.to])
-        })
+        })*/
     </script>
 </body>
 
