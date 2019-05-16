@@ -39,7 +39,7 @@ mobile_script = () => {
     function deviceOrientationHandler(eventData) {
         if (ValidationBtn.touch === true) {
         } else {
-            socket.emit("q4", {tiltFB:eventData.beta, tiltLR:eventData.gamma, dir:eventData.alpha});
+            socket.emit("q4", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }
 }
@@ -93,27 +93,27 @@ desktop_socketOn1 = ["q4", (eventData) => {
     document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
     document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
 
-    if (ball.position.x <= window.innerWidth/3 && ball.position.y <= window.innerHeight/2){
+    if (ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
         document.getElementById("object1").style.backgroundColor = 'blue';
     } else {
         document.getElementById("object1").style.backgroundColor = 'transparent';
     }
 
-    if (ball.position.x > window.innerWidth/3 && ball.position.x <= (window.innerWidth/3)*2
-    && ball.position.y <= window.innerHeight/2){
+    if (ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2
+        && ball.position.y <= window.innerHeight / 2) {
         document.getElementById("object2").style.backgroundColor = 'blue';
     } else {
         document.getElementById("object2").style.backgroundColor = 'transparent';
     }
 
-    if (ball.position.x > (window.innerWidth/3)*2 && ball.position.x <= (window.innerWidth/3)*3
-    && ball.position.y <= window.innerHeight/2){
+    if (ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3
+        && ball.position.y <= window.innerHeight / 2) {
         document.getElementById("object3").style.backgroundColor = 'blue';
     } else {
         document.getElementById("object3").style.backgroundColor = 'transparent';
     }
 
-    if (ball.position.x <= window.innerWidth/3 && ball.position.y > window.innerHeight/2){
+    if (ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight / 2) {
         document.getElementById("object4").style.backgroundColor = 'blue';
     } else {
         document.getElementById("object4").style.backgroundColor = 'transparent';
@@ -163,7 +163,9 @@ desktop_script = () => {
 
     start()
 
-    /**************** OBJECT1 3D ****************/
+    /******************* 
+    ****** OBJET 1 ****
+    ********************/
     var container;
     var camera, scene, renderer;
     var mouseX = 0, mouseY = 0;
@@ -203,17 +205,17 @@ desktop_script = () => {
         // MTL
         var mtlLoader = new THREE.MTLLoader();
         var url = "/both/assets/img/q4/bulles_eau_2.mtl";
-        mtlLoader.load( url, function( materials ) {
+        mtlLoader.load(url, function (materials) {
 
             materials.preload();
 
             var loader = new THREE.OBJLoader(manager);
-            loader.setMaterials( materials );
-            loader.load( '/both/assets/img/q4/bulles_eau_2.obj', function ( obj ) {
+            loader.setMaterials(materials);
+            loader.load('/both/assets/img/q4/bulles_eau_2.obj', function (obj) {
 
                 object = obj;
 
-            }, onProgress, onError );
+            }, onProgress, onError);
 
         });
         //
@@ -257,7 +259,9 @@ desktop_script = () => {
     }
 
 
-    /**************** OBJECT2 3D ****************/
+    /******************* 
+    ****** OBJET 2 ****
+    ********************/
     var containerObj2;
     var cameraObj2, sceneObj2, rendererObj2;
     var mouseX = 0, mouseY = 0;
@@ -298,17 +302,17 @@ desktop_script = () => {
         // MTL
         var mtlLoaderObj2 = new THREE.MTLLoader();
         var urlObj2 = "/both/assets/img/q4/feuilles.mtl";
-        mtlLoaderObj2.load( urlObj2, function( materialsObj2 ) {
-        
+        mtlLoaderObj2.load(urlObj2, function (materialsObj2) {
+
             materialsObj2.preload();
-        
+
             var loaderObj2 = new THREE.OBJLoader(managerObj2);
-            loaderObj2.setMaterials( materialsObj2 );
-            loaderObj2.load( '/both/assets/img/q4/feuilles.obj', function ( obj ) {
-        
+            loaderObj2.setMaterials(materialsObj2);
+            loaderObj2.load('/both/assets/img/q4/feuilles.obj', function (obj) {
+
                 objectObj2 = obj;
-        
-            }, onProgress, onError );
+
+            }, onProgress, onError);
         });
         //
         function onError() { }
@@ -352,7 +356,9 @@ desktop_script = () => {
 
 
 
-    /**************** OBJECT3 3D ****************/
+    /******************* 
+    ****** OBJET 3 ****
+    ********************/
     var containerObj3;
     var cameraObj3, sceneObj3, rendererObj3;
     var mouseX = 0, mouseY = 0;
@@ -392,19 +398,19 @@ desktop_script = () => {
         // MTL
         var mtlLoaderObj3 = new THREE.MTLLoader();
         var urlObj3 = "/both/assets/img/q4/goutte.mtl";
-        mtlLoaderObj3.load( urlObj3, function( materialsObj3 ) {
-                
+        mtlLoaderObj3.load(urlObj3, function (materialsObj3) {
+
             materialsObj3.preload();
-                
+
             var loaderObj3 = new THREE.OBJLoader(managerObj3);
-            loaderObj3.setMaterials( materialsObj3 );
-            loaderObj3.load( '/both/assets/img/q4/goutte.obj', function ( obj ) {
-                
+            loaderObj3.setMaterials(materialsObj3);
+            loaderObj3.load('/both/assets/img/q4/goutte.obj', function (obj) {
+
                 objectObj3 = obj;
-                
-            }, onProgress, onError );
+
+            }, onProgress, onError);
         });
-                //
+        //
         function onError() { }
         //
         rendererObj3 = new THREE.WebGLRenderer({
@@ -441,10 +447,16 @@ desktop_script = () => {
         rendererObj3.render(sceneObj3, cameraObj3);
     }
 
-    /**************** OBJECT4 3D ****************/
+    /******************* 
+    ****** OBJET 4 ****
+    ********************/
 
-        /*** TIMELINE ***/
-        document.querySelector('.q4').style.fill = "#ffffff"
+    
+    
+    /**************** 
+     *** TIMELINE ***
+     ****************/
+    document.querySelector('.q4').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]
