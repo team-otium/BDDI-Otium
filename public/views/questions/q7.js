@@ -17,14 +17,20 @@ mobile_listener1 = ["selector", "type", () => {
 
 mobile_listener2 = ["selector", "type", () => {
 
-}]
-/** And more... */
+    }]
+    /** And more... */
 
 // Socket on
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-
+    document.querySelector(".circle").style.display = "block"
+    document.querySelector(".circleIn").style.display = "block"
+    ValidationBtn.canValidate = true
+    ValidationBtn.actualPage = questions.q7
+    ValidationBtn.nextPage = questions.q8
+    ValidationBtn.actualQ = "7"
+    ValidationBtn.nextQ = "8"
 
     if ('DeviceOrientationEvent' in window) {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
@@ -124,7 +130,7 @@ desktop_script = () => {
             // resource URL
             '/both/assets/3d/q7/forme3o.obj',
             // called when resource is loaded
-            function (object) {
+            function(object) {
                 cube = object
                 cube.scale.x = 0.9
                 cube.scale.y = 0.9
@@ -132,13 +138,13 @@ desktop_script = () => {
                 scene.add(cube);
             },
             // called when loading is in progresses
-            function (xhr) {
+            function(xhr) {
 
                 console.log((xhr.loaded / xhr.total * 100) + '% loaded');
 
             },
             // called when loading has errors
-            function (error) {
+            function(error) {
 
                 console.log('An error happened');
 
@@ -150,7 +156,7 @@ desktop_script = () => {
         window.renderers.push({ scene: scene, camera: camera, renderer: renderer, obj: cube })
     }
 
-    var animate = function () {
+    var animate = function() {
         requestAnimationFrame(animate);
 
         for (let i = 0; i < window.renderers.length; i++) {
