@@ -4,62 +4,64 @@ CSS DESKTOP
 
 
 /*** GENERAL ***/
+
 @font-face {
-  font-family: "GothamRounded-Book";
-  src: url("../../both/assets/font/GothamRounded-Book.otf");
- }
- @font-face {
-  font-family: "GothamRounded-Light";
-  src: url("../../both/assets/font/GothamRounded-Light.otf");
- }
+    font-family: "GothamRounded-Book";
+    src: url("../../both/assets/font/GothamRounded-Book.otf");
+}
+
+@font-face {
+    font-family: "GothamRounded-Light";
+    src: url("../../both/assets/font/GothamRounded-Light.otf");
+}
 
 * {
-  font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
-  color: #494949;
+    font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
+    color: #494949;
 }
 
 body {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 h1 {
-  font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
-  font-size: 32px;
-  line-height: 1.3em;
+    font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    line-height: 1.3em;
 }
 
 button {
-  font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  background: none;
-  border: none;
-  background-image: url(/both/assets/img/button.svg);
-  background-position: center;
-  background-size: cover;
-  width: 300px;
-  height: 55px;
-  background-repeat: no-repeat;
-  cursor: pointer;
+    font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    background: none;
+    border: none;
+    background-image: url(/both/assets/img/button.svg);
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 55px;
+    background-repeat: no-repeat;
+    cursor: pointer;
 }
-
 
 
 /**************************  
 **************************  TIMELINE
 **************************/
+
 .Timeline {
-  position: absolute;
-  bottom: 30px;
-  display: flex;
-  align-items: center;
-  max-width: 1600px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  padding: 0 40px;
-  z-index: 1000;
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    align-items: center;
+    max-width: 1600px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 0 40px;
+    z-index: 1000;
 }
 
 
@@ -68,57 +70,56 @@ button {
 **************************/
 
 
-
 /**************************  
 **************************  SECTION 1
 **************************/
 
 .logo_center {
-  position: absolute;
-  left: 0;
-  top: 25%;
-  right: 0;
-  height: 40%;
-  display: flex;
-  justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 25%;
+    right: 0;
+    height: 40%;
+    display: flex;
+    justify-content: center;
 }
 
 .logo_center img {
-  width: 310px;
+    width: 310px;
 }
 
 .home_text_center {
-  max-width: 750px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  height: 40%;
-  right: 0;
-  text-align: center;
-  margin: auto;
-  line-height: 25px;
+    max-width: 750px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 40%;
+    right: 0;
+    text-align: center;
+    margin: auto;
+    line-height: 25px;
 }
 
 .text_center {
-  max-width: 750px;
-  height: 30%;
-  position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  margin: auto;
-  line-height: 25px;
-  z-index: 4;
+    max-width: 750px;
+    height: 30%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+    line-height: 25px;
+    z-index: 4;
 }
 
 .text_center p {
-  margin: 35px 0;
+    margin: 35px 0;
 }
 
 
@@ -127,15 +128,13 @@ button {
 **************************/
 
 .logo_top_left {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  width: 90px;
-  opacity: 0;
-  transition: all 2s ease;
-
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 90px;
+    opacity: 0;
+    transition: all 2s ease;
 }
-
 
 
 /**************************  
@@ -143,21 +142,20 @@ button {
 **************************/
 
 #forme-net {
-  width: 50%;
-  overflow: hidden;
-  position: absolute;
-  border-right: 5px solid white;
-  z-index: 3;
+    width: 50%;
+    overflow: hidden;
+    position: absolute;
+    border-right: 5px solid white;
+    z-index: 3;
 }
 
 #forme-abstraite {
-  width: 50%;
-  transform: scaleX(-1);
-  position: absolute;
-  overflow: hidden;
-  right: 0;
+    width: 50%;
+    transform: scaleX(-1);
+    position: absolute;
+    overflow: hidden;
+    right: 0;
 }
-
 
 
 /**************************  
@@ -165,52 +163,53 @@ button {
 **************************/
 
 #line {
-  position: absolute;
+    position: absolute;
 }
 
-
-.q7_canvas{
-  position: absolute;
-  left: 0%;
-  width: 25%;
+.q7_canvas {
+    position: absolute;
+    left: 0%;
+    width: 25%;
 }
+
 
 /**************************  
 **************************  QUESTION 4
 **************************/
 
 #all_object {
-position: absolute;
-top: 0;
-width: 100%;
-height: 100%;
-display: flex;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
 }
 
 .object {
-  height: 50%;
+    height: 50%;
 }
 
 #object4 {
-  position: absolute;
-  bottom: 0;
-  height: 50%;
+    position: absolute;
+    bottom: 0;
+    height: 50%;
 }
+
 
 /**************************  
 **************************  QUESTION 6
 **************************/
 
 .vanta-canvas {
-  opacity: 1;
-  animation: fonduBG 1.5s;
+    opacity: 1;
+    animation: fonduBG 1.5s;
 }
 
 @keyframes fonduBG {
-  from {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 1;
-  }
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
 }

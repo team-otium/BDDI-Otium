@@ -2,13 +2,13 @@
  * MOBILE
  */
 
- // The html (without section)
-let mobile_html = 
-`
+// The html (without section)
+let mobile_html =
+    `
 
 `
 
- // All listeners, one variable per listener
+// All listeners, one variable per listener
 let mobile_listener1 = ["selector", "type", () => {
 
 }]
@@ -22,7 +22,7 @@ let mobile_listener2 = ["selector", "type", () => {
 
 // Script to be executed when the page is displayed
 let mobile_script = () => {
-    
+
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
@@ -32,8 +32,8 @@ let mobile_transition = ["out", "in"]
  * DESKTOP
  */
 
-let desktop_html = 
-`
+let desktop_html =
+    `
 <!----------- 
 ------------- SECTION 1 animation logo  
 ----------->
@@ -71,7 +71,7 @@ let animation_logo_mobile = {
     html: mobile_html,
     listeners: [],
     socketOn: [],
-    script: () => {},
+    script: () => { },
     transitions: mobile_transition,
 }
 

@@ -4,7 +4,7 @@
 
 // The html (without section)
 mobile_html =
-`
+    `
     <div class="text_center_mobile">
         <h1 class="question_mobile">Êtes-vous de nature rêveur/imaginatif ?</h1>
     </div>
@@ -32,7 +32,7 @@ mobile_script = () => {
     ValidationBtn.actualQ = "1"
     ValidationBtn.nextQ = "2"
 
-    
+
     if ('DeviceOrientationEvent' in window) {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
     }
@@ -40,7 +40,7 @@ mobile_script = () => {
     function deviceOrientationHandler(eventData) {
         if (ValidationBtn.touch === true) {
         } else {
-            socket.emit("q1", {tiltFB:eventData.beta, tiltLR:eventData.gamma, dir:eventData.alpha});
+            socket.emit("q1", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }
 }
@@ -53,7 +53,7 @@ mobile_transition = ["out", "in"]
  */
 
 desktop_html =
- `
+    `
     <div class="text_center">
         <h1 class="question_desktop">Êtes-vous de nature rêveur/imaginatif ?</h1>
     </div>
@@ -73,20 +73,23 @@ desktop_listener2 = ["selector", "type", () => {
 
 desktop_socketOn1 = ["q1", (eventData) => {
 
-    if (eventData.tiltLR >= -50 && eventData.tiltLR <= 50){
+    if (eventData.tiltLR >= -50 && eventData.tiltLR <= 50) {
         document.getElementById("forme-net").style.width = 50 + eventData.tiltLR + '%';
         document.getElementById("forme-abstraite").style.width = 50 - eventData.tiltLR + '%';
 
         document.getElementById("forme-net").style.transition = '1.5s';
         document.getElementById("forme-abstraite").style.transition = '1.5s';
 
-        window.resultats.setResult("q1", {res: eventData.tiltLR})
+        window.resultats.setResult("q1", { res: eventData.tiltLR })
     }
 }]
 
 desktop_script = () => {
 
-    /**************** FORME NET ****************/
+    /************************** 
+    ****** FORME NET ****
+    ***************************/
+
 
     var sceneFormeNet = new THREE.Scene();
     var cameraFormeNet = new THREE.PerspectiveCamera(54, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -112,7 +115,7 @@ desktop_script = () => {
 
     cameraFormeNet.position.z = 150;
 
-    var renderFormeNet = function() {
+    var renderFormeNet = function () {
         requestAnimationFrame(renderFormeNet);
         cubeFormeNet.rotation.x += 0.01;
         cubeFormeNet.rotation.y += 0.01;
@@ -121,8 +124,9 @@ desktop_script = () => {
     renderFormeNet();
 
 
-
-    /**************** FORME ABSTRAITE ****************/
+    /************************** 
+    ****** FORME ABSTRAITE ****
+    ***************************/
 
     var sceneFormeAbstraite = new THREE.Scene();
     var cameraFormeAbstraite = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -143,7 +147,7 @@ desktop_script = () => {
     var sphere = new THREE.Mesh(sphere_geometry, materialA);
     sceneFormeAbstraite.add(sphere);
 
-    var update = function() {
+    var update = function () {
         var time = performance.now() * 0.001;
         var k = 3;
         for (var i = 0; i < sphere.geometry.vertices.length; i++) {
@@ -166,7 +170,10 @@ desktop_script = () => {
 
     requestAnimationFrame(animate);
 
-    /*** TIMELINE ***/
+    
+    /**************** 
+     *** TIMELINE ***
+     ****************/
     document.querySelector('.q1').style.fill = "#ffffff"
 }
 

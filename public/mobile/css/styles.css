@@ -4,25 +4,27 @@ CSS DESKTOP
 
 
 /*** GENERAL ***/
+
 @font-face {
     font-family: "GothamRounded-Book";
     src: url("../../both/assets/font/GothamRounded-Book.otf");
-   }
-   @font-face {
+}
+
+@font-face {
     font-family: "GothamRounded-Light";
     src: url("../../both/assets/font/GothamRounded-Light.otf");
-   }
-  
-  * {
+}
+
+* {
     font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
-  }
-  
-  h1 {
+}
+
+h1 {
     font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
     font-size: 32px;
-  }
-  
-  .btn {
+}
+
+.btn {
     font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
     font-size: 16px;
     background: none;
@@ -36,24 +38,24 @@ CSS DESKTOP
     width: 240px;
     height: 40px;
     padding: 0 25px;
-  }
+}
 
-  * {
-    -webkit-user-select: none;  
-    -moz-user-select: none;    
-    -ms-user-select: none;      
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
-  }
+}
 
 
-  /**************************  
+/**************************  
   **************************  BOUTON VALIDATION
   **************************/
 
-  .circle{
+.circle {
     width: 200px;
     height: 200px;
-    border-radius : 46%;
+    border-radius: 46%;
     background: #64d8dc;
     position: absolute;
     top: 0;
@@ -62,12 +64,12 @@ CSS DESKTOP
     right: -50%;
     margin: auto;
     display: none;
-  }
+}
 
-  .circleIn {
+.circleIn {
     width: 60px;
     height: 60px;
-    border-radius : 50%;
+    border-radius: 50%;
     z-index: 10;
     top: 0;
     bottom: 0;
@@ -78,27 +80,27 @@ CSS DESKTOP
     border: 1px solid white;
     position: absolute;
     display: none;
-  }
+}
 
-  @keyframes full {
+@keyframes full {
     from {
-      background: transparent;
+        background: transparent;
     }
     to {
-      background: white;
+        background: white;
     }
-  }
+}
 
-  .buttonAnim {
+.buttonAnim {
     width: 100%;
     height: 100vh;
     background: #64d8dc;
     position: absolute;
     z-index: 10;
     display: none;
-  }
+}
 
-  .buttonAnim img {
+.buttonAnim img {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -106,35 +108,36 @@ CSS DESKTOP
     right: 0;
     text-align: center;
     margin: auto;
-  }
+}
 
-  .rotating {
+.rotating {
     -webkit-animation: rotating 1s linear infinite;
-  }
+}
 
-  @-webkit-keyframes rotating {
-      from{
-          -webkit-transform: rotate(0deg);
-      }
-      to{
-          -webkit-transform: rotate(360deg);
-      }
-  }
-  
-  /**************************  
+@-webkit-keyframes rotating {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+
+/**************************  
   **************************  SECTION CONNEXION
   **************************/
-  
-  .logo_center_mobile {
+
+.logo_center_mobile {
     display: flex;
     justify-content: center;
-  }
-  
-  .logo_center_mobile img {
+}
+
+.logo_center_mobile img {
     width: 310px;
-  }
-  
-  .text_center_mobile {
+}
+
+.text_center_mobile {
     max-width: 750px;
     height: 75%;
     position: absolute;
@@ -145,23 +148,23 @@ CSS DESKTOP
     text-align: center;
     margin: auto;
     line-height: 30px;
-  }
+}
 
-  .question_mobile {
+.question_mobile {
     font-size: 21px;
     margin: 0 35px;
 }
-  
-  .text_center_mobile p {
+
+.text_center_mobile p {
     margin: 35px 0;
-  }
+}
 
 
-  /**************************  
+/**************************  
   **************************  BUTTON_VALIDER
   **************************/
 
-  .fondu_valider {
+.fondu_valider {
     height: 25%;
     position: absolute;
     top: 0;
@@ -170,22 +173,20 @@ CSS DESKTOP
     right: 0;
     text-align: center;
     margin: auto;
-  }
-
-    /*** Q2 ***********/
-
-    #q2_target {
-      width: 100vw;
-      height: 100vh;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 5;
-    }
+}
 
 
-    
+/**************************  
+  **************************  Q2
+  **************************/
 
-
+#q2_target {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+}
