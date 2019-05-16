@@ -38,12 +38,12 @@ mobile_listener2 = ["#q2_target", "touchmove", (e) => {
 }]
 
 mobile_listener3 = ["#q2_target", "touchend", (e) => {
-    if (scaling) {
-        //pinchEnd(e);
-        scaling = false;
-    }
-}]
-/** And more... */
+        if (scaling) {
+            //pinchEnd(e);
+            scaling = false;
+        }
+    }]
+    /** And more... */
 
 // Socket on
 
@@ -121,6 +121,7 @@ desktop_script = () => {
     window.maxBulles = bulles.length
     window.actBulles = window.maxBulles
     requestAnimationFrame(bullesAnimation)
+
     function bullesAnimation() {
         for (let i = 0; i < window.actBulles; i++) {
             bulles[i].el.classList.remove("none")
