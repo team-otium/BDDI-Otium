@@ -17,8 +17,8 @@ mobile_listener1 = ["selector", "type", () => {
 
 mobile_listener2 = ["selector", "type", () => {
 
-}]
-/** And more... */
+    }]
+    /** And more... */
 
 // Socket on
 
@@ -37,8 +37,7 @@ mobile_script = () => {
     }
 
     function deviceOrientationHandler(eventData) {
-        if (ValidationBtn.touch === true) {
-        } else {
+        if (ValidationBtn.touch === true) {} else {
             socket.emit("q4", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }
@@ -54,29 +53,13 @@ mobile_transition = ["out", "in"]
 desktop_html =
     `
     <div id="ball"></div>
-    
-    <table class="table table-striped table-bordered">
-        <tr>
-            <td>Tilt Left/Right [gamma]</td>
-            <td id="doTiltLR"></td>
-        </tr>
-        <tr>
-            <td>Tilt Front/Back [beta]</td>
-            <td id="doTiltFB"></td>
-        </tr>
-        <tr>
-            <td>Direction [alpha]</td>
-            <td id="doDirection"></td>
-        </tr>
-    </table>
 
     <div id="all_object">
-        <div id="object1" class="object"></div>
-        <div id="object2" class="object"></div>
-        <div id="object3" class="object"></div>
-        <canvas id="object4" class="object"></canvas>
-        <div class="object object5">Objet 5</div>
-        <div class="object object6">Objet 6</div>
+        <div id="object1" class="object"><div id="border1"></div></div>
+        <div id="object2" class="object"><div id="border2"></div></div>
+        <div id="object3" class="object"><div id="border3"></div></div>
+        <div id="object4" class="object"></div>
+        <div id="object5" class="object"></div>
     </div>
 
     <div class="text_center">
@@ -89,34 +72,24 @@ desktop_socketOn1 = ["q4", (eventData) => {
     ball.velocity.y = Math.round(-eventData.tiltFB) / 2;
     ball.velocity.x = Math.round(eventData.tiltLR) / 2;
 
-    document.getElementById("doTiltLR").innerHTML = Math.round(eventData.tiltLR);
-    document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
-    document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
-
     if (ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
-        document.getElementById("object1").style.backgroundColor = 'blue';
+        document.getElementById("border1").classList.add("border1")
     } else {
-        document.getElementById("object1").style.backgroundColor = 'transparent';
+        document.getElementById("border1").classList.remove("border1")
     }
 
-    if (ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2
-        && ball.position.y <= window.innerHeight / 2) {
-        document.getElementById("object2").style.backgroundColor = 'blue';
+    if (ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 &&
+        ball.position.y <= window.innerHeight / 2) {
+        document.getElementById("border2").classList.add("border2")
     } else {
-        document.getElementById("object2").style.backgroundColor = 'transparent';
+        document.getElementById("border2").classList.remove("border2")
     }
 
-    if (ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3
-        && ball.position.y <= window.innerHeight / 2) {
-        document.getElementById("object3").style.backgroundColor = 'blue';
+    if (ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 &&
+        ball.position.y <= window.innerHeight / 2) {
+        document.getElementById("border3").classList.add("border3")
     } else {
-        document.getElementById("object3").style.backgroundColor = 'transparent';
-    }
-
-    if (ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight / 2) {
-        document.getElementById("object4").style.backgroundColor = 'blue';
-    } else {
-        document.getElementById("object4").style.backgroundColor = 'transparent';
+        document.getElementById("border3").classList.remove("border3")
     }
 }]
 
@@ -164,11 +137,12 @@ desktop_script = () => {
     start()
 
     /******************* 
-    ****** OBJET 1 ****
-    ********************/
+     ****** OBJET 1 ****
+     ********************/
     var container;
     var camera, scene, renderer;
-    var mouseX = 0, mouseY = 0;
+    var mouseX = 0,
+        mouseY = 0;
     var windowHalfX = window.innerWidth / 3;
     var windowHalfY = window.innerHeight / 2;
     var object;
@@ -188,11 +162,11 @@ desktop_script = () => {
         scene.add(camera);
         // manager
         function loadModel() {
-            object.position.y = - 3;
+            object.position.y = -3;
             scene.add(object);
         }
         var manager = new THREE.LoadingManager(loadModel);
-        manager.onProgress = function (item, loaded, total) {
+        manager.onProgress = function(item, loaded, total) {
             console.log(item, loaded, total);
         };
         // model
@@ -204,14 +178,14 @@ desktop_script = () => {
         }
         // MTL
         var mtlLoader = new THREE.MTLLoader();
-        var url = "/both/assets/img/q4/bulles_eau_2.mtl";
-        mtlLoader.load(url, function (materials) {
+        var url = "/both/assets/img/q4/bulles_eau_sans-transparence-ni-reflexion.mtl";
+        mtlLoader.load(url, function(materials) {
 
             materials.preload();
 
             var loader = new THREE.OBJLoader(manager);
             loader.setMaterials(materials);
-            loader.load('/both/assets/img/q4/bulles_eau_2.obj', function (obj) {
+            loader.load('/both/assets/img/q4/bulles_eau_2.obj', function(obj) {
 
                 object = obj;
 
@@ -219,7 +193,7 @@ desktop_script = () => {
 
         });
         //
-        function onError() { }
+        function onError() {}
         //
         renderer = new THREE.WebGLRenderer({
             alpha: true
@@ -252,7 +226,7 @@ desktop_script = () => {
     //
     function render() {
         camera.position.x += (mouseX - camera.position.x) * .05;
-        camera.position.y += (- mouseY - camera.position.y) * .05;
+        camera.position.y += (-mouseY - camera.position.y) * .05;
         camera.position.y += (ball.position.y - camera.position.y) * .03;
         camera.lookAt(scene.position);
         renderer.render(scene, camera);
@@ -260,11 +234,12 @@ desktop_script = () => {
 
 
     /******************* 
-    ****** OBJET 2 ****
-    ********************/
+     ****** OBJET 2 ****
+     ********************/
     var containerObj2;
     var cameraObj2, sceneObj2, rendererObj2;
-    var mouseX = 0, mouseY = 0;
+    var mouseX = 0,
+        mouseY = 0;
     var windowHalfX = window.innerWidth / 3;
     var windowHalfY = window.innerHeight / 2;
     var objectObj2;
@@ -284,12 +259,12 @@ desktop_script = () => {
         sceneObj2.add(cameraObj2);
         // manager
         function loadModelObj2() {
-            objectObj2.position.y = - 190;
-            objectObj2.position.x = - 25;
+            objectObj2.position.y = -190;
+            objectObj2.position.x = -25;
             sceneObj2.add(objectObj2);
         }
         var managerObj2 = new THREE.LoadingManager(loadModelObj2);
-        managerObj2.onProgress = function (item, loaded, total) {
+        managerObj2.onProgress = function(item, loaded, total) {
             console.log(item, loaded, total);
         };
         // model
@@ -302,20 +277,20 @@ desktop_script = () => {
         // MTL
         var mtlLoaderObj2 = new THREE.MTLLoader();
         var urlObj2 = "/both/assets/img/q4/feuilles.mtl";
-        mtlLoaderObj2.load(urlObj2, function (materialsObj2) {
+        mtlLoaderObj2.load(urlObj2, function(materialsObj2) {
 
             materialsObj2.preload();
 
             var loaderObj2 = new THREE.OBJLoader(managerObj2);
             loaderObj2.setMaterials(materialsObj2);
-            loaderObj2.load('/both/assets/img/q4/feuilles.obj', function (obj) {
+            loaderObj2.load('/both/assets/img/q4/feuilles.obj', function(obj) {
 
                 objectObj2 = obj;
 
             }, onProgress, onError);
         });
         //
-        function onError() { }
+        function onError() {}
 
         rendererObj2 = new THREE.WebGLRenderer({
             alpha: true
@@ -348,7 +323,7 @@ desktop_script = () => {
     //
     function renderObj2() {
         cameraObj2.position.x += (mouseX - cameraObj2.position.x) * .05;
-        cameraObj2.position.y += (- mouseY - cameraObj2.position.y) * .05;
+        cameraObj2.position.y += (-mouseY - cameraObj2.position.y) * .05;
         cameraObj2.position.y += (ball.position.y - cameraObj2.position.y) * .03;
         cameraObj2.lookAt(sceneObj2.position);
         rendererObj2.render(sceneObj2, cameraObj2);
@@ -357,11 +332,12 @@ desktop_script = () => {
 
 
     /******************* 
-    ****** OBJET 3 ****
-    ********************/
+     ****** OBJET 3 ****
+     ********************/
     var containerObj3;
     var cameraObj3, sceneObj3, rendererObj3;
-    var mouseX = 0, mouseY = 0;
+    var mouseX = 0,
+        mouseY = 0;
     var windowHalfX = window.innerWidth / 3;
     var windowHalfY = window.innerHeight / 2;
     var objectObj3;
@@ -381,11 +357,11 @@ desktop_script = () => {
         sceneObj3.add(cameraObj3);
         // manager
         function loadModelObj3() {
-            objectObj3.position.y = - 3;
+            objectObj3.position.y = -3;
             sceneObj3.add(objectObj3);
         }
         var managerObj3 = new THREE.LoadingManager(loadModelObj3);
-        managerObj3.onProgress = function (item, loaded, total) {
+        managerObj3.onProgress = function(item, loaded, total) {
             console.log(item, loaded, total);
         };
         // model
@@ -397,21 +373,21 @@ desktop_script = () => {
         }
         // MTL
         var mtlLoaderObj3 = new THREE.MTLLoader();
-        var urlObj3 = "/both/assets/img/q4/goutte.mtl";
-        mtlLoaderObj3.load(urlObj3, function (materialsObj3) {
+        var urlObj3 = "/both/assets/img/q4/goutte_sans-transparence.mtl";
+        mtlLoaderObj3.load(urlObj3, function(materialsObj3) {
 
             materialsObj3.preload();
 
             var loaderObj3 = new THREE.OBJLoader(managerObj3);
             loaderObj3.setMaterials(materialsObj3);
-            loaderObj3.load('/both/assets/img/q4/goutte.obj', function (obj) {
+            loaderObj3.load('/both/assets/img/q4/goutte.obj', function(obj) {
 
                 objectObj3 = obj;
 
             }, onProgress, onError);
         });
         //
-        function onError() { }
+        function onError() {}
         //
         rendererObj3 = new THREE.WebGLRenderer({
             alpha: true
@@ -423,6 +399,7 @@ desktop_script = () => {
         //
         window.addEventListener('resize', onWindowResize, false);
     }
+
     function onWindowResize() {
         windowHalfX = window.innerWidth / 3;
         windowHalfY = window.innerHeight / 2;
@@ -430,6 +407,7 @@ desktop_script = () => {
         cameraObj3.updateProjectionMatrix();
         rendererObj3.setSize(450, 400);
     }
+
     function onDocumentMouseMove(event) {
         mouseX = (event.clientX - windowHalfX) / 3;
         mouseY = (event.clientY - windowHalfY) / 2;
@@ -439,20 +417,21 @@ desktop_script = () => {
         requestAnimationFrame(animateObj3);
         renderObj3();
     }
+
     function renderObj3() {
         cameraObj3.position.x += (mouseX - cameraObj3.position.x) * .05;
-        cameraObj3.position.y += (- mouseY - cameraObj3.position.y) * .05;
+        cameraObj3.position.y += (-mouseY - cameraObj3.position.y) * .05;
         cameraObj3.position.y += (ball.position.y - cameraObj3.position.y) * .03;
         cameraObj3.lookAt(sceneObj3.position);
         rendererObj3.render(sceneObj3, cameraObj3);
     }
 
     /******************* 
-    ****** OBJET 4 ****
-    ********************/
+     ****** OBJET 4 ****
+     ********************/
 
-    
-    
+
+
     /**************** 
      *** TIMELINE ***
      ****************/
