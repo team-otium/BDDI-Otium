@@ -58,7 +58,7 @@ desktop_html =
         <div id="object1" class="object"><div id="border1"></div></div>
         <div id="object2" class="object"><div id="border2"></div></div>
         <div id="object3" class="object"><div id="border3"></div></div>
-        <div id="object4" class="object"></div>
+        <div id="object4" class="object"><div id="border4"></div></div>
         <div id="object5" class="object"></div>
     </div>
 
@@ -155,12 +155,6 @@ desktop_script = () => {
      cameraObj1.position.x = 0;
      cameraObj1.position.y = 0;
 
-
-     var controls = new THREE.OrbitControls(cameraObj1, rendererObj1.domElement);
-     controls.enableDamping = true;
-     controls.campingFactor = 0.25;
-     controls.enableZoom = true;
-
      var keyLightObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.5);
      keyLightObj1.position.set(-100,0,100);
  
@@ -181,8 +175,8 @@ desktop_script = () => {
          var objLoaderObj1 = new THREE.OBJLoader();
          objLoaderObj1.setMaterials(materials);
          objLoaderObj1.load('/both/assets/img/q4/bulles_eau_2.obj', function(object){
-             object.position.y = 0;
-             object.position.x = 0;
+             object.position.y = -10;
+             object.position.x = 20;
              object.position.z = 0;
 
              sceneObj1.add(object);
@@ -191,8 +185,6 @@ desktop_script = () => {
 
      var animateObj1 = function () {
          requestAnimationFrame(animateObj1);
-
-         controls.update();
 
          rendererObj1.render(sceneObj1, cameraObj1);
      };
@@ -218,12 +210,6 @@ desktop_script = () => {
     cameraObj2.position.x = 0;
     cameraObj2.position.y = 0;
 
-
-    var controls = new THREE.OrbitControls(cameraObj2, rendererObj2.domElement);
-    controls.enableDamping = true;
-    controls.campingFactor = 0.25;
-    controls.enableZoom = true;
-
     var keyLightObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
     keyLightObj2.position.set(-100,0,100);
 
@@ -244,9 +230,9 @@ desktop_script = () => {
         var objLoaderObj2 = new THREE.OBJLoader();
         objLoaderObj2.setMaterials(materials);
         objLoaderObj2.load('/both/assets/img/q4/feuilles.obj', function(object){
-            object.position.y = -150;
-            object.position.x = 0;
-            object.position.z = 0;
+            object.position.y = -180;
+            object.position.x = -50;
+            object.position.z = 20;
 
             sceneObj2.add(object);
         })
@@ -254,8 +240,6 @@ desktop_script = () => {
 
     var animateObj2 = function () {
         requestAnimationFrame(animateObj2);
-
-        controls.update();
 
         rendererObj2.render(sceneObj2, cameraObj2);
     };
@@ -280,12 +264,6 @@ desktop_script = () => {
     cameraObj3.position.z = 500;
     cameraObj3.position.x = 0;
     cameraObj3.position.y = 0;
-
-
-    var controls = new THREE.OrbitControls(cameraObj3, rendererObj3.domElement);
-    controls.enableDamping = true;
-    controls.campingFactor = 0.25;
-    controls.enableZoom = true;
 
     var keyLightObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
     keyLightObj3.position.set(-100,0,100);
@@ -318,8 +296,6 @@ desktop_script = () => {
     var animateObj3 = function () {
         requestAnimationFrame(animateObj3);
 
-        controls.update();
-
         rendererObj3.render(sceneObj3, cameraObj3);
     };
 
@@ -343,12 +319,6 @@ desktop_script = () => {
     cameraObj4.position.z = 500;
     cameraObj4.position.x = 0;
     cameraObj4.position.y = 0;
-
-
-    var controls = new THREE.OrbitControls(cameraObj4, rendererObj4.domElement);
-    controls.enableDamping = true;
-    controls.campingFactor = 0.25;
-    controls.enableZoom = true;
 
     var keyLightObj4 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
     keyLightObj4.position.set(-100,0,100);
@@ -383,8 +353,6 @@ desktop_script = () => {
 
     var animateObj4 = function () {
         requestAnimationFrame(animateObj4);
-
-        controls.update();
 
         rendererObj4.render(sceneObj4, cameraObj4);
     };
