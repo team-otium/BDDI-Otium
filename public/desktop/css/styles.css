@@ -196,11 +196,12 @@ button {
     height: 50%;
 }
 
-.border1,
-.border2,
-.border3 {
-    width: 300px;
-    height: 300px;
+#border1,
+#border2,
+#border3,
+#border4 {
+    width: 400px;
+    height: 400px;
     border: 2px solid white;
     left: 0;
     border-radius: 50%;
