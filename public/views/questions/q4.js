@@ -309,10 +309,30 @@ desktop_script = () => {
     var cameraObj4 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
         containerObj4 = document.getElementById('object4');
 
+
     var rendererObj4 = new THREE.WebGLRenderer({
        alpha: true
    });
-   
+
+
+
+    var geometry = new THREE.PlaneGeometry( 200, 50, 2 );
+    var plane = new THREE.Mesh( geometry, material );
+    var texture = new THREE.TextureLoader().load( '/both/assets/img/q4/nuage.png' );
+    var material = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        opacity: 0.5,
+        map: texture,
+        transparent: true
+    });
+
+    plane.position.y = -50;
+    plane.position.x = 0;
+    plane.position.z = 250;
+
+    sceneObj4.add(plane);
+
+
     rendererObj4.setSize(window.innerWidth / 3, window.innerHeight / 2);
     containerObj4.appendChild(rendererObj4.domElement);
 
