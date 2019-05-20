@@ -45,6 +45,7 @@
     <script src="/lib/threejs/build/three.min.js"></script>
     <script src="/lib/threejs/examples/js/loaders/OBJLoader.js"></script>
     <script src="/lib/threejs/examples/js/loaders/MTLLoader.js"></script>
+    <script src="/lib/threejs/examples/js/controls/OrbitControls.js"></script>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/lib/perlin/perlin.js"></script>
@@ -87,9 +88,9 @@
     <script src="/desktop/js/gestion_timeline.js"></script>
 
     <script>
-        //intro.timeline.displayPage("desktop")
+        questions.q4.displayPage("desktop")
 
-        intro.animationLogo.displayPage("desktop")
+        /*intro.animationLogo.displayPage("desktop")
         document.getElementById("go").addEventListener("click", () => {
             let q = document.getElementById("q").value
             console.log("q" + q)
@@ -99,7 +100,7 @@
 
         socket.on("validationQuestion", (data) => {
             questions["q" + data.from].transitionTo("desktop", questions["q" + data.to])
-        })
+        })*/
     </script>
 </body>
 
