@@ -140,87 +140,257 @@ desktop_script = () => {
      ****** OBJET 1 ****
      ********************/
 
-     var scene = new THREE.Scene();
-     var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-     var container = document.getElementById('all_object');
+     var sceneObj1 = new THREE.Scene();
+     var cameraObj1 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+     var containerObj1 = document.getElementById('object1');
 
-     var renderer = new THREE.WebGLRenderer({
+     var rendererObj1 = new THREE.WebGLRenderer({
         alpha: true
     });
-     renderer.setSize(window.innerWidth, window.innerHeight);
-     container.appendChild(renderer.domElement);
 
-     var geometry = new THREE.BoxGeometry(1,1,1);
-     var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+     rendererObj1.setSize(window.innerWidth / 3, window.innerHeight / 2);
+     containerObj1.appendChild(rendererObj1.domElement);
 
-     camera.position.z = 500;
-     camera.position.x = 220;
-     camera.position.y = -100;
+     cameraObj1.position.z = 500;
+     cameraObj1.position.x = 0;
+     cameraObj1.position.y = 0;
 
 
-     var controls = new THREE.OrbitControls(camera, renderer.domElement);
+     var controls = new THREE.OrbitControls(cameraObj1, rendererObj1.domElement);
      controls.enableDamping = true;
      controls.campingFactor = 0.25;
      controls.enableZoom = true;
 
-     var keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(30, 100%, 75%)'), 1.0);
-     keyLight.position.set(-100,0,100);
+     var keyLightObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.5);
+     keyLightObj1.position.set(-100,0,100);
+ 
+     var fillLightObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.5);
+     fillLightObj1.position.set(100, 0, -100).normalize();
 
-     var fillLight = new THREE.DirectionalLight(new THREE.Color('hsl(240, 100%, 75%)'), 0.75);
-     fillLight.position.set(100, 0, -100).normalize();
+     var backLightObj1 = new THREE.DirectionalLight(0xffffff, 1.0);
+     backLightObj1.position.set(100,0,-100).normalize();
 
-     var backLight = new THREE.DirectionalLight(0xffffff, 1.0);
-     backLight.position.set(100,0,-100).normalize();
-
-     scene.add(keyLight);
-     scene.add(fillLight);
-     scene.add(backLight);
+     sceneObj1.add(keyLightObj1);
+     sceneObj1.add(fillLightObj1);
+     sceneObj1.add(backLightObj1);
 
      var mtlLoaderObj1 = new THREE.MTLLoader();
-     mtlLoaderObj1.setTexturePath('/both/assets/img/q4/');
-     mtlLoaderObj1.setPath('/both/assets/img/q4/');
-     mtlLoaderObj1.load('bulles_eau_2.mtl', function(materials) {
+     mtlLoaderObj1.load('/both/assets/img/q4/bulles_eau_2.mtl', function(materials) {
          materials.preload();
 
          var objLoaderObj1 = new THREE.OBJLoader();
          objLoaderObj1.setMaterials(materials);
-         objLoaderObj1.setPath('/both/assets/img/q4/');
-         objLoaderObj1.load('bulles_eau_2.obj', function(object){
-             object.position.y = 60;
+         objLoaderObj1.load('/both/assets/img/q4/bulles_eau_2.obj', function(object){
+             object.position.y = 0;
              object.position.x = 0;
              object.position.z = 0;
 
-             scene.add(object);
+             sceneObj1.add(object);
          })
      })
 
-     var mtlLoaderObj4 = new THREE.MTLLoader();
-     mtlLoaderObj4.setTexturePath('/both/assets/img/q4/');
-     mtlLoaderObj4.setPath('/both/assets/img/q4/');
-     mtlLoaderObj4.load('montagnes_seules.mtl', function(materials) {
-         materials.preload();
-
-         var objLoaderObj4 = new THREE.OBJLoader();
-         objLoaderObj4.setMaterials(materials);
-         objLoaderObj4.setPath('/both/assets/img/q4/');
-         objLoaderObj4.load('montagnes_s300.obj', function(object){
-             object.position.y = -250;
-             object.position.x = -100;
-             object.position.z = 10;
-
-             scene.add(object);
-         })
-     })
-
-     var animate = function () {
-         requestAnimationFrame(animate);
+     var animateObj1 = function () {
+         requestAnimationFrame(animateObj1);
 
          controls.update();
 
-         renderer.render(scene, camera);
+         rendererObj1.render(sceneObj1, cameraObj1);
      };
 
-     animate();
+     animateObj1();
+
+    /******************* 
+     ****** OBJET 2 ****
+     ********************/
+
+    var sceneObj2 = new THREE.Scene();
+    var cameraObj2 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+        containerObj2 = document.getElementById('object2');
+
+    var rendererObj2 = new THREE.WebGLRenderer({
+       alpha: true
+   });
+   
+    rendererObj2.setSize(window.innerWidth / 3, window.innerHeight / 2);
+    containerObj2.appendChild(rendererObj2.domElement);
+
+    cameraObj2.position.z = 500;
+    cameraObj2.position.x = 0;
+    cameraObj2.position.y = 0;
+
+
+    var controls = new THREE.OrbitControls(cameraObj2, rendererObj2.domElement);
+    controls.enableDamping = true;
+    controls.campingFactor = 0.25;
+    controls.enableZoom = true;
+
+    var keyLightObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    keyLightObj2.position.set(-100,0,100);
+
+    var fillLightObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    fillLightObj2.position.set(100, 0, -100).normalize();
+
+    var backLightObj2 = new THREE.DirectionalLight(0xffffff, 1.0);
+    backLightObj2.position.set(100,0,-100).normalize();
+
+    sceneObj2.add(keyLightObj2);
+    sceneObj2.add(fillLightObj2);
+    sceneObj2.add(backLightObj2);
+
+    var mtlLoaderObj2 = new THREE.MTLLoader();
+    mtlLoaderObj2.load('/both/assets/img/q4/feuilles.mtl', function(materials) {
+        materials.preload();
+
+        var objLoaderObj2 = new THREE.OBJLoader();
+        objLoaderObj2.setMaterials(materials);
+        objLoaderObj2.load('/both/assets/img/q4/feuilles.obj', function(object){
+            object.position.y = -150;
+            object.position.x = 0;
+            object.position.z = 0;
+
+            sceneObj2.add(object);
+        })
+    })
+
+    var animateObj2 = function () {
+        requestAnimationFrame(animateObj2);
+
+        controls.update();
+
+        rendererObj2.render(sceneObj2, cameraObj2);
+    };
+
+    animateObj2();
+
+    /******************** 
+     ****** OBJET 3 *****
+     ********************/
+
+    var sceneObj3 = new THREE.Scene();
+    var cameraObj3 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+        containerObj3 = document.getElementById('object3');
+
+    var rendererObj3 = new THREE.WebGLRenderer({
+       alpha: true
+   });
+   
+    rendererObj3.setSize(window.innerWidth / 3, window.innerHeight / 2);
+    containerObj3.appendChild(rendererObj3.domElement);
+
+    cameraObj3.position.z = 500;
+    cameraObj3.position.x = 0;
+    cameraObj3.position.y = 0;
+
+
+    var controls = new THREE.OrbitControls(cameraObj3, rendererObj3.domElement);
+    controls.enableDamping = true;
+    controls.campingFactor = 0.25;
+    controls.enableZoom = true;
+
+    var keyLightObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    keyLightObj3.position.set(-100,0,100);
+
+    var fillLightObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    fillLightObj3.position.set(100, 0, -100).normalize();
+
+    var backLightObj3 = new THREE.DirectionalLight(0xffffff, 1.0);
+    backLightObj3.position.set(100,0,-100).normalize();
+
+    sceneObj3.add(keyLightObj3);
+    sceneObj3.add(fillLightObj3);
+    sceneObj3.add(backLightObj3);
+
+    var mtlLoaderObj3 = new THREE.MTLLoader();
+    mtlLoaderObj3.load('/both/assets/img/q4/goutte.mtl', function(materials) {
+        materials.preload();
+
+        var objLoaderObj3 = new THREE.OBJLoader();
+        objLoaderObj3.setMaterials(materials);
+        objLoaderObj3.load('/both/assets/img/q4/goutte.obj', function(object){
+            object.position.y = 0;
+            object.position.x = 0;
+            object.position.z = 100;
+
+            sceneObj3.add(object);
+        })
+    })
+
+    var animateObj3 = function () {
+        requestAnimationFrame(animateObj3);
+
+        controls.update();
+
+        rendererObj3.render(sceneObj3, cameraObj3);
+    };
+
+    animateObj3();
+
+    /******************** 
+     ****** OBJET 4 *****
+     ********************/
+
+    var sceneObj4 = new THREE.Scene();
+    var cameraObj4 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+        containerObj4 = document.getElementById('object4');
+
+    var rendererObj4 = new THREE.WebGLRenderer({
+       alpha: true
+   });
+   
+    rendererObj4.setSize(window.innerWidth / 3, window.innerHeight / 2);
+    containerObj4.appendChild(rendererObj4.domElement);
+
+    cameraObj4.position.z = 500;
+    cameraObj4.position.x = 0;
+    cameraObj4.position.y = 0;
+
+
+    var controls = new THREE.OrbitControls(cameraObj4, rendererObj4.domElement);
+    controls.enableDamping = true;
+    controls.campingFactor = 0.25;
+    controls.enableZoom = true;
+
+    var keyLightObj4 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    keyLightObj4.position.set(-100,0,100);
+
+    var fillLightObj4 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    fillLightObj4.position.set(100, 0, -100).normalize();
+
+    var backLightObj4 = new THREE.DirectionalLight(0xffffff, 1.0);
+    backLightObj4.position.set(100,0,-100).normalize();
+
+    sceneObj4.add(keyLightObj4);
+    sceneObj4.add(fillLightObj4);
+    sceneObj4.add(backLightObj4);
+
+    var mtlLoaderObj4 = new THREE.MTLLoader();
+    mtlLoaderObj4.load('/both/assets/img/q4/montagnes_seules.mtl', function(materials) {
+        materials.preload();
+
+        var objLoaderObj4 = new THREE.OBJLoader();
+        objLoaderObj4.setMaterials(materials);
+        objLoaderObj4.load('/both/assets/img/q4/montagnes_s300.obj', function(object){
+            object.position.y = -20;
+            object.position.x = 150;
+            object.position.z = -100;
+
+            object.rotation.y = 1;
+            object.rotation.x = 0.1;
+
+            sceneObj4.add(object);
+        })
+    })
+
+    var animateObj4 = function () {
+        requestAnimationFrame(animateObj4);
+
+        controls.update();
+
+        rendererObj4.render(sceneObj4, cameraObj4);
+    };
+
+    animateObj4();
+
 
 
 
