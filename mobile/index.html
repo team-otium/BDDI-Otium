@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -8,57 +9,76 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    <div id="validation"></div>
-        <!-- background color animation -->
-        <div class="content content--canvas">
-        </div>
-        <!-- fin background color animation -->
+    <!-- bouton validation -->
+    <div class="circleIn"></div>
+    <div>
+        <div class="circle rotating"></div>
+    </div>
+    <div class="buttonAnim"><img src="/both/assets/img/validation.gif" alt=""></div>
+
+    <!-- background color animation -->
+    <div class="content content--canvas">
+    </div>
+    <!-- fin background color animation -->
 
 
-        <div id="navigation">
-        </div>
+    <div id="navigation">
+    </div>
 
 
+
+    <!-- background color animation links -->
+    <script src="/lib/noise/noise.min.js"></script>
+    <script src="/desktop/js/background.js"></script>
+
+    <!-- Lib -->
+    <script src="/dev/utils.js"></script>
+    <script src="/lib/utils/utils.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="/mobile/js/connexion.js"></script>
+
+    <script src="/lib/nosleep/NoSleep.min.js"></script>
+
+    <!-- PAGES -->
+    <script src="/class/Page.js"></script>
+    <script src="/class/Validation.js"></script>
+
+    <!-- INTRO -->
+    <script src="/views/intro/animation-logo.js"></script>
+    <script src="/views/intro/intro.js"></script>
+    <script src="/views/intro/connexion.js"></script>
+    <script src="/views/intro/button_valider.js"></script>
+    <script src="/views/intro/timeline.js"></script>
+
+    <!-- QUESTION -->
+    <script src="/views/questions/q1.js"></script>
+    <script src="/views/questions/q2.js"></script>
+    <script src="/views/questions/q3.js"></script>
+    <script src="/views/questions/q4.js"></script>
+    <script src="/views/questions/q5.js"></script>
+    <script src="/views/questions/q6.js"></script>
+    <script src="/views/questions/q7.js"></script>
+    <script src="/views/questions/q8.js"></script>
+
+    <script src="/views/arborescence.js"></script>
+
+    <script>
+        intro.connexion.displayPage("mobile")
+        socket.on("pageChange", (q) => {
+            questions["q" + q].comeBackTo('mobile')
+        })
+
+        // Enable wake lock.
+        var noSleep = new NoSleep();
         
-        <!-- background color animation links -->
-        <script src="/lib/noise/noise.min.js"></script>
-        <script src="/desktop/js/background.js"></script>
-    
-        <!-- Lib -->
-        <script src="/dev/utils.js"></script>
-        <script src="/lib/utils/utils.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-
-        <script src="/mobile/js/connexion.js"></script>
-    
-        <!-- PAGES -->
-        <script src="/class/Page.js"></script>
-        <script src="/class/Validation.js"></script>
-    
-        <!-- INTRO -->
-        <script src="/views/intro/animation-logo.js"></script>
-        <script src="/views/intro/intro.js"></script>
-        <script src="/views/intro/connexion.js"></script>
-        <script src="/views/intro/button_valider.js"></script>
-        <script src="/views/intro/timeline.js"></script>
-        
-        <!-- QUESTION -->
-        <script src="/views/questions/q1.js"></script>
-        <script src="/views/questions/q2.js"></script>
-        <script src="/views/questions/q3.js"></script>
-        <script src="/views/questions/q4.js"></script>
-        <script src="/views/questions/q5.js"></script>
-        <script src="/views/questions/q6.js"></script>
-        <script src="/views/questions/q7.js"></script>
-    
-        <script src="/views/arborescence.js"></script>
-    
-        <script>
-            intro.connexion.displayPage("mobile")
-            socket.on("pageChange", (q)=>{
-                questions["q"+q].comeBackTo('mobile')
-            })
-        </script>
+        document.addEventListener('click', function enableNoSleep() {
+        document.removeEventListener('click', enableNoSleep, false);
+        noSleep.enable();
+        }, false);
+    </script>
 </body>
+
 </html>

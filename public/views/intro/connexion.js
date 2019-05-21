@@ -2,9 +2,9 @@
  * MOBILE
  */
 
- // The html (without section)
- mobile_html = 
- `
+// The html (without section)
+mobile_html =
+    `
     <!----------- 
     ------------- SECTION 2 intro  
     ----------->
@@ -22,41 +22,43 @@
     ------------- FIN SECTION 2 intro  
     ----------->   
  `
- 
-  // All listeners, one variable per listener
- mobile_listener1 = ["#code", "change", () => {
+
+// All listeners, one variable per listener
+mobile_listener1 = ["#code", "change", () => {
     let code = document.getElementById("code").value
-    let i = rooms.indexOf( code )
+    let i = rooms.indexOf(code)
     if (i > -1) {
         console.log(code)
         socket.emit("askMobileConnexion", code)
     }
- }]
+}]
 
 mobile_listener2 = [".start_q1", "click", () => {
     intro.connexion.transitionTo("mobile", intro.button_valider)
- }]
- /** And more... */
- 
- // Socket on
- let mobile_socketOn1 = ["mobileConnected", () => {
-    
 }]
- 
- // Script to be executed when the page is displayed
- mobile_script = () => {
-     
- }
- 
- // Name of the transitions classes [when he leave, when he arrive]
- mobile_transition = ["out", "in"]
- 
- /**
-  * DESKTOP
-  */
- 
- desktop_html = 
- `
+/** And more... */
+
+// Socket on
+let mobile_socketOn1 = ["mobileConnected", () => {
+
+}]
+
+// Script to be executed when the page is displayed
+mobile_script = () => {
+    document.querySelector(".buttonAnim").style.display = "none"
+    document.querySelector(".circle").style.display = "none"
+    document.querySelector(".circleIn").style.display = "none"
+}
+
+// Name of the transitions classes [when he leave, when he arrive]
+mobile_transition = ["out", "in"]
+
+/**
+ * DESKTOP
+ */
+
+desktop_html =
+    `
 <!----------- 
 ------------- SECTION 3 connexion
 ----------->
@@ -77,38 +79,37 @@ mobile_listener2 = [".start_q1", "click", () => {
 ------------- FIN SECTION 3 connexion 
 ----------->
  `
- 
- desktop_listener1 = [".start_q1", "click", () => {
+
+desktop_listener1 = [".start_q1", "click", () => {
     intro.connexion.transitionTo("desktop", intro.button_valider)
- }]
- 
+}]
+
 let desktop_socketOn1 = ["mobileConnected", () => {
     intro.connexion.transitionTo("desktop", intro.button_valider)
 }]
- 
- desktop_script = () => {
+
+desktop_script = () => {
     createConnexionId()
- }
- 
- desktop_transition = ["out", "in"]
- 
- /**
-  * Export
-  */
- 
- let connexion_mobile = {
-     html: mobile_html,
-     listeners: [mobile_listener1, mobile_listener2],
-     socketOn: [mobile_socketOn1],
-     script: mobile_script,
-     transitions: mobile_transition,
- }
- 
- let connexion_desktop = {
-     html: desktop_html,
-     listeners: [desktop_listener1],
-     socketOn: [desktop_socketOn1],
-     script: desktop_script,
-     transitions: desktop_transition,
- }
- 
+}
+
+desktop_transition = ["out", "in"]
+
+/**
+ * Export
+ */
+
+let connexion_mobile = {
+    html: mobile_html,
+    listeners: [mobile_listener1, mobile_listener2],
+    socketOn: [mobile_socketOn1],
+    script: mobile_script,
+    transitions: mobile_transition,
+}
+
+let connexion_desktop = {
+    html: desktop_html,
+    listeners: [desktop_listener1],
+    socketOn: [desktop_socketOn1],
+    script: desktop_script,
+    transitions: desktop_transition,
+}
