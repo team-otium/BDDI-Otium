@@ -5,20 +5,6 @@
 // The html (without section)
 mobile_html =
     `
- <table class="table table-striped table-bordered">
- <tr>
-     <td>Tilt Left/Right [gamma]</td>
-     <td id="doTiltLR"></td>
- </tr>
- <tr>
-     <td>Tilt Front/Back [beta]</td>
-     <td id="doTiltFB"></td>
- </tr>
- <tr>
-     <td>Direction [alpha]</td>
-     <td id="doDirection"></td>
- </tr>
- </table>
    <div class="text_center_mobile">
       <h1 class="question_mobile">Modulez la ligne qui vous apaise</h1>
    </div>
@@ -39,6 +25,8 @@ mobile_listener2 = ["selector", "type", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
+    document.querySelector(".circle").style.display = "block"
+    document.querySelector(".circleIn").style.display = "block"
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q3
     ValidationBtn.nextPage = questions.q4
@@ -63,11 +51,10 @@ mobile_script = () => {
             var tiltFB = eventData.beta;
             var dir = eventData.alpha;
 
-            document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
-            document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
-            document.getElementById("doDirection").innerHTML = Math.round(dir);
-
-            socket.emit("q3", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
+            if (ValidationBtn.touch === true) {
+            } else {
+                socket.emit("q3", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
+            }
         })
     } else {
         alert("Sorry, your browser doesn't support Device Orientation");
@@ -110,10 +97,10 @@ desktop_socketOn1 = ["q3", (eventData) => {
     document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
     document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
 
-    if (eventData.tiltFB >=0 && eventData.tiltFB <= 75){
-        window.move = Math.round(eventData.tiltFB)/75; 
-    }    
- 
+    if (eventData.tiltFB >= 0 && eventData.tiltFB <= 75) {
+        window.move = Math.round(eventData.tiltFB) / 75;
+    }
+
 }]
 
 desktop_listener1 = ["selector", "type", () => {
@@ -125,8 +112,6 @@ desktop_listener2 = ["selector", "type", () => {
 }]
 
 desktop_script = () => {
-
-    
 
     var container = document.getElementById('line')
 
@@ -194,9 +179,10 @@ desktop_script = () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-    /**************** TIMELINE ****************/
-
-    // document.querySelector('.q3').style.fill = "#ffffff"
+    /**************** 
+     *** TIMELINE ***
+     ****************/
+    document.querySelector('.q3').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

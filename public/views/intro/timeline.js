@@ -2,37 +2,37 @@
  * MOBILE
  */
 
- // The html (without section)
- mobile_html = 
+// The html (without section)
+mobile_html =
+  `
  `
- `
- 
-  // All listeners, one variable per listener
- mobile_listener1 = ["selector", "type", () => {
- 
- }]
- 
- mobile_listener2 = ["selector", "type", () => {
- 
- }]
- /** And more... */
- 
- // Socket on
- 
- // Script to be executed when the page is displayed
- mobile_script = () => {
-     
- }
- 
- // Name of the transitions classes [when he leave, when he arrive]
- mobile_transition = ["out", "in"]
- 
- /**
-  * DESKTOP
-  */
- 
- desktop_html = 
- `
+
+// All listeners, one variable per listener
+mobile_listener1 = ["selector", "type", () => {
+
+}]
+
+mobile_listener2 = ["selector", "type", () => {
+
+}]
+/** And more... */
+
+// Socket on
+
+// Script to be executed when the page is displayed
+mobile_script = () => {
+
+}
+
+// Name of the transitions classes [when he leave, when he arrive]
+mobile_transition = ["out", "in"]
+
+/**
+ * DESKTOP
+ */
+
+desktop_html =
+  `
  <!----------- 
  ------------- TIMELINE
  ----------->
@@ -45,7 +45,7 @@
     </svg>
     </div>
     <svg height="3" width="300">
-    <line x1="0" y1="0" x2="300" y2="0" style="stroke:#ffffff; stroke-width:2" />
+    <line class="svgLine1" x1="0" y1="0" x2="0" y2="0" style="stroke:#ffffff; stroke-width:2" />
     </svg>
 
 
@@ -56,7 +56,7 @@
     </svg>
     </div>
     <svg height="3" width="300">
-    <line x1="0" y1="0" x2="300" y2="0" style="stroke:#ffffff;stroke-width:2" />
+    <line class="svgLine2" x1="0" y1="0" x2="0" y2="0" style="stroke:#ffffff; stroke-width:2" />
     </svg>
 
 
@@ -67,7 +67,7 @@
     </svg>
     </div>
     <svg height="3" width="300">
-    <line x1="0" y1="0" x2="300" y2="0" style="stroke:#ffffff;stroke-width:2" />
+    <line class="svgLine3" x1="0" y1="0" x2="0" y2="0" style="stroke:#ffffff;stroke-width:2" />
     </svg>
 
 
@@ -78,7 +78,7 @@
     </svg>
     </div>
     <svg height="3" width="300">
-    <line x1="0" y1="0" x2="300" y2="0" style="stroke:#ffffff;stroke-width:2" />
+    <line class="svgLine4" x1="0" y1="0" x2="0" y2="0" style="stroke:#ffffff;stroke-width:2" />
     </svg>
 
 
@@ -89,7 +89,7 @@
     </svg>
     </div>
     <svg height="3" width="300">
-    <line x1="0" y1="0" x2="300" y2="0" style="stroke:#ffffff;stroke-width:2" />
+    <line class="svgLine5" x1="0" y1="0" x2="0" y2="0" style="stroke:#ffffff;stroke-width:2" />
     </svg>
 
 
@@ -100,7 +100,7 @@
     </svg>
     </div>
     <svg height="3" width="300">
-    <line x1="0" y1="0" x2="300" y2="0" style="stroke:#ffffff;stroke-width:2" />
+    <line class="svgLine6" x1="0" y1="0" x2="0" y2="0" style="stroke:#ffffff;stroke-width:2" />
     </svg>
 
 
@@ -111,7 +111,7 @@
     </svg>
     </div>
     <svg height="3" width="300">
-    <line x1="0" y1="0" x2="300" y2="0" style="stroke:#ffffff;stroke-width:2" />
+    <line class="svgLine7" x1="0" y1="0" x2="0" y2="0" style="stroke:#ffffff;stroke-width:2" />
     </svg>
 
 
@@ -127,38 +127,37 @@
  ------------- FIN TIMELINE
  ----------->
  `
- 
- desktop_listener1 = ["selector", "type", () => {
- 
- }]
- 
- desktop_listener2 = ["selector", "type", () => {
- 
- }]
- 
- desktop_script = () => {
-    
- }
- 
- desktop_transition = ["out", "in"]
- 
- /**
-  * Export
-  */
- 
+
+desktop_listener1 = ["selector", "type", () => {
+
+}]
+
+desktop_listener2 = ["selector", "type", () => {
+
+}]
+
+desktop_script = () => {
+
+}
+
+desktop_transition = ["out", "in"]
+
+/**
+ * Export
+ */
+
 timeline_mobile = {
-     html: mobile_html,
-     listeners: [],
-     socketOn: [],
-     script: mobile_script,
-     transitions: mobile_transition,
- }
- 
- timeline_desktop = {
-     html: desktop_html,
-     listeners: [],
-     socketOn: [],
-     script: desktop_script,
-     transitions: desktop_transition,
- }
- 
+  html: mobile_html,
+  listeners: [],
+  socketOn: [],
+  script: mobile_script,
+  transitions: mobile_transition,
+}
+
+timeline_desktop = {
+  html: desktop_html,
+  listeners: [],
+  socketOn: [],
+  script: desktop_script,
+  transitions: desktop_transition,
+}

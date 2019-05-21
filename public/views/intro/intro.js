@@ -2,8 +2,8 @@
  * MOBILE
  */
 
-mobile_html = 
-`
+mobile_html =
+    `
 `
 
 mobile_transition = ["out", "in"]
@@ -12,8 +12,8 @@ mobile_transition = ["out", "in"]
  * DESKTOP
  */
 
-desktop_html = 
-`
+desktop_html =
+    `
 <!----------- 
 ------------- SECTION 2 intro  
 ----------->
@@ -33,7 +33,7 @@ desktop_html =
 `
 
 desktop_listener1 = [".commencer", "click", () => {
- intro.intro.transitionTo("desktop", intro.connexion)
+    intro.intro.transitionTo("desktop", intro.connexion)
 }]
 
 desktop_script = () => {
@@ -50,7 +50,7 @@ let intro_mobile = {
     html: mobile_html,
     listeners: [],
     socketOn: [],
-    script: () => {},
+    script: () => { },
     transitions: mobile_transition,
 }
 

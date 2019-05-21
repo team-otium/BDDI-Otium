@@ -13,7 +13,6 @@
 <!-- BODY -->
 
 <body>
-    <div id="validation"></div>
     <div style="z-index: 10000; position: absolute;"><input id="q" type="number"><button id="go">GO</button></div>
     <!-- background color animation -->
     <div id="background_anim">
@@ -21,9 +20,9 @@
     <!-- fin background color animation -->
 
     <!-- fixed logo  -->
-        <div class="logo_top_left">
-            <img src="/both/assets/img/otium_logo.svg" alt="">
-        </div>
+    <div class="logo_top_left">
+        <img src="/both/assets/img/otium_logo.svg" alt="">
+    </div>
     <!-- end fixed logo  -->
 
     <div id="navigation">
@@ -38,18 +37,21 @@
 
 
     <!-- Lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+
+
     <script src="/dev/utils.js"></script>
     <script src="/lib/utils/utils.js"></script>
     <script src="/lib/threejs/build/three.min.js"></script>
+    <script src="/lib/threejs/examples/js/Cloth.js"></script>
     <script src="/lib/threejs/examples/js/loaders/OBJLoader.js"></script>
     <script src="/lib/threejs/examples/js/loaders/MTLLoader.js"></script>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/lib/perlin/perlin.js"></script>
 
-    
 
-    
     <!-- background color animation links 
     <script src="/lib/noise/noise.min.js"></script>
     <script src="/desktop/js/background.js"></script> -->
@@ -69,7 +71,7 @@
     <script src="/views/intro/connexion.js"></script>
     <script src="/views/intro/button_valider.js"></script>
     <script src="/views/intro/timeline.js"></script>
-    
+
     <!-- QUESTION -->
     <script src="/views/questions/q1.js"></script>
     <script src="/views/questions/q2.js"></script>
@@ -78,31 +80,26 @@
     <script src="/views/questions/q5.js"></script>
     <script src="/views/questions/q6.js"></script>
     <script src="/views/questions/q7.js"></script>
+    <script src="/views/questions/q8.js"></script>
 
     <script src="/views/arborescence.js"></script>
 
+    <script src="/desktop/js/gestion_timeline.js"></script>
+
     <script>
-        //questions.q3.displayPage("desktop")
-        
+        //questions.q4.displayPage("desktop")
+
         intro.animationLogo.displayPage("desktop")
         document.getElementById("go").addEventListener("click", () => {
             let q = document.getElementById("q").value
-            console.log("q"+q)
-            questions["q"+q].comeBackTo('desktop')
+            console.log("q" + q)
+            questions["q" + q].comeBackTo('desktop')
             socket.emit("pageChange", q)
         })
 
         socket.on("validationQuestion", (data) => {
-            questions["q"+data.from].transitionTo("desktop", questions["q"+data.to])
+            questions["q" + data.from].transitionTo("desktop", questions["q" + data.to])
         })
-
-        socket.on("validationWait", (data) => {
-            document.getElementById("validation").style.height = data + "%"
-        })
-
-        socket.on("validationCancel", (data) => {
-            document.getElementById("validation").style.height = 0+ "%"
-        }) 
     </script>
 </body>
 
