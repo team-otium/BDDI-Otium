@@ -69,6 +69,8 @@ desktop_html =
     <div class="text_center">
         <h1 class="question_desktop">Choisissez les éléments qui vous apaisent</h1>
     </div>
+
+    <div class="tuto"><img src="/both/assets/img/tuto-q4.gif"></div>
  `
 
 desktop_socketOn1 = ["q4", (eventData) => {

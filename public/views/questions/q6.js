@@ -60,6 +60,8 @@ desktop_html =
     <div class="text_center">
         <h1 class="question_desktop">Quel est le moment de la journée le plus agréable visuellement ?</h1>
     </div>
+
+    <div class="tuto"><img src="/both/assets/img/tuto-q6.gif"></div>
  `
 
 desktop_listener1 = ["selector", "type", () => {

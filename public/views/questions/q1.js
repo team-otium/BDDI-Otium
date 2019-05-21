@@ -61,6 +61,8 @@ desktop_html =
     <div id="forme-net"></div>
 
     <div id="forme-abstraite"></div>
+
+    <div class="tuto"><img src="/both/assets/img/tuto-q1.gif"></div>
  `
 
 desktop_listener1 = ["selector", "type", () => {
