@@ -89,6 +89,8 @@ desktop_html =
  </div>
 
  <div id="line"></div>
+
+ <div class="tuto"><img src="/both/assets/img/tuto-q3.gif"></div>
  `
 
 desktop_socketOn1 = ["q3", (eventData) => {
