@@ -178,18 +178,19 @@ desktop_script = () => {
 
          var objLoaderObj1 = new THREE.OBJLoader();
          objLoaderObj1.setMaterials(materials);
-         objLoaderObj1.load('/both/assets/img/q4/bulles_eau_2.obj', function(object){
-             object.position.y = -10;
-             object.position.x = 20;
-             object.position.z = 0;
+         objLoaderObj1.load('/both/assets/img/q4/bulles_eau_2.obj', function(object1){
+             object1.position.y = -10;
+             object1.position.x = 20;
+             object1.position.z = 0;
 
-             sceneObj1.add(object);
+             sceneObj1.add(object1);
          })
      })
 
      var animateObj1 = function () {
          requestAnimationFrame(animateObj1);
 
+         sceneObj1.rotation.y += 0.01;
          rendererObj1.render(sceneObj1, cameraObj1);
      };
 
@@ -233,17 +234,19 @@ desktop_script = () => {
 
         var objLoaderObj2 = new THREE.OBJLoader();
         objLoaderObj2.setMaterials(materials);
-        objLoaderObj2.load('/both/assets/img/q4/feuilles.obj', function(object){
-            object.position.y = -180;
-            object.position.x = -50;
-            object.position.z = 20;
+        objLoaderObj2.load('/both/assets/img/q4/feuilles.obj', function(object2){
+            object2.position.y = -180;
+            object2.position.x = -50;
+            object2.position.z = 20;
 
-            sceneObj2.add(object);
+            sceneObj2.add(object2);
         })
     })
 
     var animateObj2 = function () {
         requestAnimationFrame(animateObj2);
+
+        sceneObj2.rotation.y += 0.01;
 
         rendererObj2.render(sceneObj2, cameraObj2);
     };
@@ -288,17 +291,19 @@ desktop_script = () => {
 
         var objLoaderObj3 = new THREE.OBJLoader();
         objLoaderObj3.setMaterials(materials);
-        objLoaderObj3.load('/both/assets/img/q4/goutte.obj', function(object){
-            object.position.y = 0;
-            object.position.x = 0;
-            object.position.z = 100;
+        objLoaderObj3.load('/both/assets/img/q4/goutte.obj', function(object3){
+            object3.position.y = 0;
+            object3.position.x = 0;
+            object3.position.z = 100;
 
-            sceneObj3.add(object);
+            sceneObj3.add(object3);
         })
     })
 
     var animateObj3 = function () {
         requestAnimationFrame(animateObj3);
+
+        sceneObj3.rotation.y += 0.01;
 
         rendererObj3.render(sceneObj3, cameraObj3);
     };
@@ -381,20 +386,32 @@ desktop_script = () => {
 
         var objLoaderObj4 = new THREE.OBJLoader();
         objLoaderObj4.setMaterials(materials);
-        objLoaderObj4.load('/both/assets/img/q4/montagnes_s300.obj', function(object){
-            object.position.y = -20;
-            object.position.x = 150;
-            object.position.z = -100;
+        objLoaderObj4.load('/both/assets/img/q4/montagnes_s300.obj', function(object4){
+            object4.position.y = -20;
+            object4.position.x = 150;
+            object4.position.z = -100;
 
-            object.rotation.y = 1;
-            object.rotation.x = 0.1;
+            object4.rotation.y = 1;
+            object4.rotation.x = 0.1;
 
-            sceneObj4.add(object);
+            sceneObj4.add(object4);
         })
     })
 
     var animateObj4 = function () {
         requestAnimationFrame(animateObj4);
+
+        var test = false;
+
+        cameraObj4.rotation.x -= 0.001;
+
+        if (cameraObj4.rotation.x <= -0.2){
+            test = true;
+
+        }
+        if(test == true) {
+            cameraObj4.rotation.x += 0.001;
+        }
 
         rendererObj4.render(sceneObj4, cameraObj4);
     };
