@@ -320,29 +320,44 @@ desktop_script = () => {
 
 
 
-    var geometrytest = new THREE.PlaneGeometry( 200, 50, 2 );
-    var texturetest = new THREE.TextureLoader().load( '/both/assets/img/q4/nuage2.png' );
-    texturetest.repeat.set( 1, 1 );
-    var materialtest = new THREE.MeshBasicMaterial({
+    var geometryCloud = new THREE.PlaneGeometry( 180, 130, 2 );
+    var geometryCloud3 = new THREE.PlaneGeometry( 170, 100, 2 );
+    var textureCloud = new THREE.TextureLoader().load( '/both/assets/img/q4/nuage2.png' );
+    textureCloud.repeat.set( 1, 1 );
+    var materialCloud = new THREE.MeshBasicMaterial({
         color: 0xffffff,
         opacity: 0.99,
-        map: texturetest,
+        map: textureCloud,
         transparent: true,
         side: THREE.DoubleSide
     });
-    var plane = new THREE.Mesh( geometrytest, materialtest );
+    var plane = new THREE.Mesh( geometryCloud, materialCloud );
+    var plane2 = new THREE.Mesh( geometryCloud, materialCloud );
+    var plane3 = new THREE.Mesh( geometryCloud3, materialCloud );
 
-    plane.position.y = -50;
-    plane.position.x = 0;
-    plane.position.z = 250;
+    plane.position.y = -58;
+    plane.position.x = -95;
+    plane.position.z = 210;
+    plane.rotation.y = -10;
+
+    plane2.position.y = -60;
+    plane2.position.x = -20;
+    plane2.position.z = 270;
+    plane2.rotation.y = -9.7;
+
+    plane3.position.y = -35;
+    plane3.position.x = 60;
+    plane3.position.z = 320;
+    plane3.rotation.y = -39.9;
 
     
+    sceneObj4.add(plane, plane2, plane3);
 
 
     rendererObj4.setSize(window.innerWidth / 3, window.innerHeight / 2);
     containerObj4.appendChild(rendererObj4.domElement);
 
-    cameraObj4.position.z = 400;
+    cameraObj4.position.z = 500;
     cameraObj4.position.x = 0;
     cameraObj4.position.y = 0;
 
@@ -376,8 +391,6 @@ desktop_script = () => {
             sceneObj4.add(object);
         })
     })
-
-    sceneObj4.add(plane);
 
     var animateObj4 = function () {
         requestAnimationFrame(animateObj4);
