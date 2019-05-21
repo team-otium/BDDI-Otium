@@ -321,7 +321,7 @@ desktop_script = () => {
 
 
     var geometryCloud = new THREE.PlaneGeometry( 180, 130, 2 );
-    var geometryCloud3 = new THREE.PlaneGeometry( 170, 100, 2 );
+    var geometryCloud3 = new THREE.PlaneGeometry( 190, 120, 2 );
     var textureCloud = new THREE.TextureLoader().load( '/both/assets/img/q4/nuage2.png' );
     textureCloud.repeat.set( 1, 1 );
     var materialCloud = new THREE.MeshBasicMaterial({
@@ -335,8 +335,8 @@ desktop_script = () => {
     var plane2 = new THREE.Mesh( geometryCloud, materialCloud );
     var plane3 = new THREE.Mesh( geometryCloud3, materialCloud );
 
-    plane.position.y = -58;
-    plane.position.x = -95;
+    plane.position.y = -53;
+    plane.position.x = -100;
     plane.position.z = 210;
     plane.rotation.y = -10;
 
@@ -345,10 +345,11 @@ desktop_script = () => {
     plane2.position.z = 270;
     plane2.rotation.y = -9.7;
 
-    plane3.position.y = -35;
+    plane3.position.y = -37;
     plane3.position.x = 60;
-    plane3.position.z = 320;
-    plane3.rotation.y = -39.9;
+    plane3.position.z = 308;
+    plane3.rotation.y = -40;
+    plane3.rotation.x = 0.15;
 
     
     sceneObj4.add(plane, plane2, plane3);
@@ -357,7 +358,7 @@ desktop_script = () => {
     rendererObj4.setSize(window.innerWidth / 3, window.innerHeight / 2);
     containerObj4.appendChild(rendererObj4.domElement);
 
-    cameraObj4.position.z = 500;
+    cameraObj4.position.z = 499;
     cameraObj4.position.x = 0;
     cameraObj4.position.y = 0;
 
