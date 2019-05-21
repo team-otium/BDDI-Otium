@@ -212,6 +212,41 @@ button {
     position: absolute;
 }
 
+.nuage1 {
+    width: 50%;
+    position: absolute;
+    bottom: 20px;
+    left: -9px;
+    -webkit-transform: rotate(17deg);
+    -moz-transform: rotate(17deg);
+    -o-transform: rotate(17deg);
+    -ms-transform: rotate(17deg);
+    transform: rotate(17deg)
+}
+
+.nuage2 {
+    width: 50%;
+    position: absolute;
+    bottom: -2px;
+    left: 119px;
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    transform: rotate(3deg)
+}
+
+.nuage3 {
+    width: 48%;
+    position: absolute;
+    bottom: 20px;
+    left: 208px;
+    -webkit-transform: rotate(-26deg);
+    -moz-transform: rotate(-26deg);
+    -o-transform: rotate(-26deg);
+    -ms-transform: rotate(-26deg);
+    transform: rotate(-26deg);
+}
 
 /**************************  
 **************************  QUESTION 6

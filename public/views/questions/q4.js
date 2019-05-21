@@ -58,7 +58,11 @@ desktop_html =
         <div id="object1" class="object"><div id="border1"></div></div>
         <div id="object2" class="object"><div id="border2"></div></div>
         <div id="object3" class="object"><div id="border3"></div></div>
-        <div id="object4" class="object"><div id="border4"></div></div>
+        <div id="object4" class="object"><div id="border4">
+            <img class="nuage1" src="/both/assets/img/q4/nuage2.png">
+            <img class="nuage2" src="/both/assets/img/q4/nuage2.png">
+            <img class="nuage3" src="/both/assets/img/q4/nuage2.png">
+        </div></div>
         <div id="object5" class="object"></div>
     </div>
 
@@ -316,7 +320,7 @@ desktop_script = () => {
 
 
 
-    var geometry = new THREE.PlaneGeometry( 200, 50, 2 );
+    /*var geometry = new THREE.PlaneGeometry( 200, 50, 2 );
     var plane = new THREE.Mesh( geometry, material );
     var texture = new THREE.TextureLoader().load( '/both/assets/img/q4/nuage.png' );
     var material = new THREE.MeshBasicMaterial({
@@ -330,7 +334,7 @@ desktop_script = () => {
     plane.position.x = 0;
     plane.position.z = 250;
 
-    sceneObj4.add(plane);
+    sceneObj4.add(plane);*/
 
 
     rendererObj4.setSize(window.innerWidth / 3, window.innerHeight / 2);
