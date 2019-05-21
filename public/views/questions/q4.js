@@ -59,9 +59,7 @@ desktop_html =
         <div id="object2" class="object"><div id="border2"></div></div>
         <div id="object3" class="object"><div id="border3"></div></div>
         <div id="object4" class="object"><div id="border4">
-            <img class="nuage1" src="/both/assets/img/q4/nuage2.png">
-            <img class="nuage2" src="/both/assets/img/q4/nuage2.png">
-            <img class="nuage3" src="/both/assets/img/q4/nuage2.png">
+
         </div></div>
         <div id="object5" class="object"></div>
     </div>
@@ -322,27 +320,29 @@ desktop_script = () => {
 
 
 
-    /*var geometry = new THREE.PlaneGeometry( 200, 50, 2 );
-    var plane = new THREE.Mesh( geometry, material );
-    var texture = new THREE.TextureLoader().load( '/both/assets/img/q4/nuage.png' );
-    var material = new THREE.MeshBasicMaterial({
+    var geometrytest = new THREE.PlaneGeometry( 200, 50, 2 );
+    var texturetest = new THREE.TextureLoader().load( '/both/assets/img/q4/nuage2.png' );
+    texturetest.repeat.set( 1, 1 );
+    var materialtest = new THREE.MeshBasicMaterial({
         color: 0xffffff,
-        opacity: 0.5,
-        map: texture,
-        transparent: true
+        opacity: 0.99,
+        map: texturetest,
+        transparent: true,
+        side: THREE.DoubleSide
     });
+    var plane = new THREE.Mesh( geometrytest, materialtest );
 
     plane.position.y = -50;
     plane.position.x = 0;
     plane.position.z = 250;
 
-    sceneObj4.add(plane);*/
+    
 
 
     rendererObj4.setSize(window.innerWidth / 3, window.innerHeight / 2);
     containerObj4.appendChild(rendererObj4.domElement);
 
-    cameraObj4.position.z = 500;
+    cameraObj4.position.z = 400;
     cameraObj4.position.x = 0;
     cameraObj4.position.y = 0;
 
@@ -376,6 +376,8 @@ desktop_script = () => {
             sceneObj4.add(object);
         })
     })
+
+    sceneObj4.add(plane);
 
     var animateObj4 = function () {
         requestAnimationFrame(animateObj4);
