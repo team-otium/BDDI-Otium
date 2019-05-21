@@ -40,6 +40,8 @@
 
     <script src="/mobile/js/connexion.js"></script>
 
+    <script src="/lib/nosleep/NoSleep.min.js"></script>
+
     <!-- PAGES -->
     <script src="/class/Page.js"></script>
     <script src="/class/Validation.js"></script>
@@ -68,6 +70,14 @@
         socket.on("pageChange", (q) => {
             questions["q" + q].comeBackTo('mobile')
         })
+
+        // Enable wake lock.
+        var noSleep = new NoSleep();
+        
+        document.addEventListener('click', function enableNoSleep() {
+        document.removeEventListener('click', enableNoSleep, false);
+        noSleep.enable();
+        }, false);
     </script>
 </body>
 
