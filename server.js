@@ -109,6 +109,11 @@ io.sockets.on('connection', function (socket) {
     socket.on('q7', (data) => {
         io.sockets.to(socket.clientId).emit('q7', data);
     })
+
+    // Univers
+    socket.on('univers', (data) => {
+        socket.broadcast.to(socket.clientId).emit('univers', data);
+    })
 });
 
 

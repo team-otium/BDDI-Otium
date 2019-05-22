@@ -5,7 +5,9 @@
 // The html (without section)
 mobile_html =
     `
-    
+    <div class="text_center_mobile">
+    <h1 class="question_mobile">Univers 3D</h1>
+ </div>
  `
 
 // All listeners, one variable per listener
@@ -25,7 +27,29 @@ mobile_socketOn1 = ["name", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = (function () {
+            return window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                window.oRequestAnimationFrame ||
+                window.msRequestAnimationFrame ||
+                function ( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
+                    window.setTimeout(callback, 1000 / 60);
+                };
+        })();
+    }
 
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", function (eventData) {
+            var tiltLR = eventData.gamma;
+            var tiltFB = eventData.beta;
+            var dir = eventData.alpha;
+
+            socket.emit("univers", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
+        })
+    } else {
+        alert("Sorry, your browser doesn't support Device Orientation");
+    };
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
@@ -37,6 +61,20 @@ mobile_transition = ["out", "in"]
 
 desktop_html =
     `
+    <table class="table table-striped table-bordered" style="position: absolute; z-index:50">
+    <tr>
+        <td>Tilt Left/Right [gamma]</td>
+        <td id="doTiltLR"></td>
+    </tr>
+    <tr>
+        <td>Tilt Front/Back [beta]</td>
+        <td id="doTiltFB"></td>
+    </tr>
+    <tr>
+        <td>Direction [alpha]</td>
+        <td id="doDirection"></td>
+    </tr>
+    </table>
     <div class="text_center">
         <h1 class="question_desktop">UNIVERS 3D</h1>
     </div>
@@ -51,7 +89,11 @@ desktop_listener2 = ["selector", "type", () => {
 
 }]
 
-desktop_socketOn1 = ["name", () => {
+desktop_socketOn1 = ["univers", (eventData) => {
+    document.getElementById("doTiltLR").innerHTML = Math.round(eventData.tiltLR);
+    document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
+    document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
+
 
 }]
 
@@ -100,18 +142,20 @@ desktop_script = () => {
         smokeMaterial = new THREE.MeshLambertMaterial({ color: 0xc6c8f8, map: smokeTexture, transparent: true });
         smokeGeo = new THREE.PlaneGeometry(300, 300);
         smokeParticles = [];
+        var test = 250;
 
 
-        for (p = 0; p < 150; p++) {
+        for (p = 0; p < test; p++) {
             var particle = new THREE.Mesh(smokeGeo, smokeMaterial);
             particle.position.set(Math.random() * 500 - 250, Math.random() * 500 - 250, Math.random() * 1000 - 100);
             particle.rotation.z = Math.random() * 360;
             scene.add(particle);
             smokeParticles.push(particle);
+
         }
 
-        container.appendChild(renderer.domElement);
 
+        container.appendChild(renderer.domElement);
     }
 
     function animate() {
@@ -160,7 +204,7 @@ univers_mobile = {
 univers_desktop = {
     html: desktop_html,
     listeners: [],
-    socketOn: [],
+    socketOn: [desktop_socketOn1],
     script: desktop_script,
     transitions: desktop_transition,
 }
