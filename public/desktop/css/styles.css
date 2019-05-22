@@ -177,20 +177,35 @@ button {
 
 #forme-net {
     width: 50%;
+    height: 60%;
     overflow: hidden;
     position: absolute;
-    border-right: 5px solid white;
+    border-right: 4px solid white;
     z-index: 3;
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 #forme-abstraite {
     width: 50%;
+    height: 60%;
     transform: scaleX(-1);
     position: absolute;
     overflow: hidden;
     right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }
 
+#forme-net canvas,
+#forme-abstraite canvas {
+    position: absolute;
+    bottom: 0;
+    margin: auto;
+    top: 0;
+}
 
 /**************************  
 **************************  QUESTION 3
@@ -230,7 +245,7 @@ button {
     height: 50%;
 }
 
-#border1,
+/*#border1,
 #border2,
 #border3,
 #border4 {
@@ -244,7 +259,7 @@ button {
     bottom: 0;
     margin: auto;
     position: absolute;
-}
+}*/
 
 .nuage1 {
     width: 50%;
