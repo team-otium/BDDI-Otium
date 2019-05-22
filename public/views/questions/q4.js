@@ -155,14 +155,14 @@ desktop_script = () => {
      rendererObj1.setSize(window.innerWidth / 3, window.innerHeight / 2);
      containerObj1.appendChild(rendererObj1.domElement);
 
-     cameraObj1.position.z = 500;
+     cameraObj1.position.z = 400;
      cameraObj1.position.x = 0;
      cameraObj1.position.y = 0;
 
-     var keyLightObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.5);
+     var keyLightObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.9);
      keyLightObj1.position.set(-100,0,100);
  
-     var fillLightObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.5);
+     var fillLightObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.1);
      fillLightObj1.position.set(100, 0, -100).normalize();
 
      var backLightObj1 = new THREE.DirectionalLight(0xffffff, 1.0);
@@ -268,7 +268,7 @@ desktop_script = () => {
     rendererObj3.setSize(window.innerWidth / 3, window.innerHeight / 2);
     containerObj3.appendChild(rendererObj3.domElement);
 
-    cameraObj3.position.z = 500;
+    cameraObj3.position.z = 400;
     cameraObj3.position.x = 0;
     cameraObj3.position.y = 0;
 
@@ -294,7 +294,7 @@ desktop_script = () => {
         objLoaderObj3.load('/both/assets/img/q4/goutte.obj', function(object3){
             object3.position.y = 0;
             object3.position.x = 0;
-            object3.position.z = 100;
+            object3.position.z = 0;
 
             sceneObj3.add(object3);
         })
@@ -350,11 +350,11 @@ desktop_script = () => {
     plane2.position.z = 270;
     plane2.rotation.y = -9.7;
 
-    plane3.position.y = -37;
+    plane3.position.y = -32;
     plane3.position.x = 60;
-    plane3.position.z = 308;
+    plane3.position.z = 304;
     plane3.rotation.y = -40;
-    plane3.rotation.x = 0.15;
+    plane3.rotation.x = 0.17;
 
     
     sceneObj4.add(plane, plane2, plane3);
@@ -363,7 +363,7 @@ desktop_script = () => {
     rendererObj4.setSize(window.innerWidth / 3, window.innerHeight / 2);
     containerObj4.appendChild(rendererObj4.domElement);
 
-    cameraObj4.position.z = 499;
+    cameraObj4.position.z = 460;
     cameraObj4.position.x = 0;
     cameraObj4.position.y = 0;
 
@@ -400,6 +400,11 @@ desktop_script = () => {
 
     var animateObj4 = function () {
         requestAnimationFrame(animateObj4);
+
+
+
+
+        //sceneObj4.rotation.y += 0.001;
 
         rendererObj4.render(sceneObj4, cameraObj4);
     };
