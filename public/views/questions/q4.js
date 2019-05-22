@@ -401,18 +401,6 @@ desktop_script = () => {
     var animateObj4 = function () {
         requestAnimationFrame(animateObj4);
 
-        var test = false;
-
-        cameraObj4.rotation.x -= 0.001;
-
-        if (cameraObj4.rotation.x <= -0.2){
-            test = true;
-
-        }
-        if(test == true) {
-            cameraObj4.rotation.x += 0.001;
-        }
-
         rendererObj4.render(sceneObj4, cameraObj4);
     };
 
