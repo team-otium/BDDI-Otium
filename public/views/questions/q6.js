@@ -98,6 +98,11 @@ desktop_socketOn1 = ["q6", (eventData) => {
             
             document.getElementById('leverSoleil').classList.add("animNav");
 
+            document.getElementById('matin').classList.remove("animNav");
+            document.getElementById('journee').classList.remove("animNav");
+            document.getElementById('coucherDeSoleil').classList.remove("animNav");
+            document.getElementById('nuit').classList.remove("animNav");
+
             VANTA.FOG({
                 el: "#background_anim",
                 highlightColor: 0xc6c8f8,
@@ -120,6 +125,11 @@ desktop_socketOn1 = ["q6", (eventData) => {
             document.getElementById('background_anim').innerHTML = ""
             document.getElementById('matin').classList.add("animNav");
 
+            document.getElementById('leverSoleil').classList.remove("animNav");
+            document.getElementById('journee').classList.remove("animNav");
+            document.getElementById('coucherDeSoleil').classList.remove("animNav");
+            document.getElementById('nuit').classList.remove("animNav");
+
             VANTA.FOG({
                 el: "#background_anim",
                 highlightColor: 0xf7d0d6,
@@ -139,6 +149,11 @@ desktop_socketOn1 = ["q6", (eventData) => {
 
             document.getElementById('background_anim').innerHTML = ""
             document.getElementById('journee').classList.add("animNav");
+
+            document.getElementById('leverSoleil').classList.remove("animNav");
+            document.getElementById('matin').classList.remove("animNav");
+            document.getElementById('coucherDeSoleil').classList.remove("animNav");
+            document.getElementById('nuit').classList.remove("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -160,6 +175,11 @@ desktop_socketOn1 = ["q6", (eventData) => {
             document.getElementById('background_anim').innerHTML = ""
             document.getElementById('coucherDeSoleil').classList.add("animNav");
 
+            document.getElementById('leverSoleil').classList.remove("animNav");
+            document.getElementById('matin').classList.remove("animNav");
+            document.getElementById('journee').classList.remove("animNav");
+            document.getElementById('nuit').classList.remove("animNav");
+
             VANTA.FOG({
                 el: "#background_anim",
                 highlightColor: 0xeb4a3e,
@@ -179,6 +199,11 @@ desktop_socketOn1 = ["q6", (eventData) => {
 
             document.getElementById('background_anim').innerHTML = ""
             document.getElementById('nuit').classList.add("animNav");
+
+            document.getElementById('leverSoleil').classList.remove("animNav");
+            document.getElementById('matin').classList.remove("animNav");
+            document.getElementById('journee').classList.remove("animNav");
+            document.getElementById('nuit').classList.remove("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",

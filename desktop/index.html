@@ -51,6 +51,7 @@
     <script src="/lib/threejs/examples/js/Cloth.js"></script>
     <script src="/lib/threejs/examples/js/loaders/OBJLoader.js"></script>
     <script src="/lib/threejs/examples/js/loaders/MTLLoader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/lib/perlin/perlin.js"></script>
@@ -86,14 +87,18 @@
     <script src="/views/questions/q7.js"></script>
     <script src="/views/questions/q8.js"></script>
 
+    <!-- UNIVERS -->
+    <script src="/views/univers/univers.js"></script>
+
     <script src="/views/arborescence.js"></script>
 
     <script src="/desktop/js/gestion_timeline.js"></script>
 
     <script>
         //questions.q6.displayPage("desktop")
+        univers.univers.displayPage("desktop")
 
-        intro.animationLogo.displayPage("desktop")
+        /*intro.animationLogo.displayPage("desktop")
         document.getElementById("go").addEventListener("click", () => {
             let q = document.getElementById("q").value
             console.log("q" + q)
@@ -103,7 +108,7 @@
 
         socket.on("validationQuestion", (data) => {
             questions["q" + data.from].transitionTo("desktop", questions["q" + data.to])
-        })
+        })*/
     </script>
 </body>
 

@@ -16,3 +16,7 @@ let questions = {
     q7: new Page(q7_desktop, q7_mobile, "q7"),
     q8: new Page(q8_desktop, q8_mobile, "q8"),
 }
+
+let univers = {
+    univers: new Page(univers_desktop, univers_mobile, "univers")
+}
