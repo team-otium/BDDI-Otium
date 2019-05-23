@@ -15,7 +15,7 @@ mobile_html =
         <h1>Bienvenue sur Otium</h1>
         <p>Entrez votre code afin de connecter votre smartphone.
         </p>
-        <input class="btn" id="code" type="number">
+        <input class="btn" id="code" type="number" autocomplete="off" maxlength="6">
         <button class="start_q1">test connexion</button>
     </div>
     <!----------- 
