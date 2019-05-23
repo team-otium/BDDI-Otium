@@ -350,7 +350,7 @@ button {
 }
 
 .animNav {
-    animation: animNav 2s;
+    animation: animNav 1s;
     animation-fill-mode: forwards;
 }
 
@@ -365,4 +365,14 @@ button {
         font-size: 16px;
         font-weight: bold;
     }
+}
+
+
+/**************************  
+**************************  UNIVERS
+**************************/
+
+#univers {
+    position: absolute;
+    z-index: 10;
 }
