@@ -13,6 +13,10 @@
 <!-- BODY -->
 
 <body>
+    <!-- sound -->
+
+    <iframe src="/both/assets/sound/ambiance-site.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe> 
+
     <div style="z-index: 10000; position: absolute;"><input id="q" type="number"><button id="go">GO</button></div>
     <!-- background color animation -->
     <div id="background_anim">
@@ -87,9 +91,9 @@
     <script src="/desktop/js/gestion_timeline.js"></script>
 
     <script>
-        questions.q4.displayPage("desktop")
+        //questions.q6.displayPage("desktop")
 
-        /*intro.animationLogo.displayPage("desktop")
+        intro.animationLogo.displayPage("desktop")
         document.getElementById("go").addEventListener("click", () => {
             let q = document.getElementById("q").value
             console.log("q" + q)
@@ -99,7 +103,7 @@
 
         socket.on("validationQuestion", (data) => {
             questions["q" + data.from].transitionTo("desktop", questions["q" + data.to])
-        })*/
+        })
     </script>
 </body>
 

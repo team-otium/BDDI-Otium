@@ -60,6 +60,15 @@ desktop_html =
     <div class="text_center">
         <h1 class="question_desktop">Quel est le moment de la journée le plus agréable visuellement ?</h1>
     </div>
+    <div class="nav">
+        <ul>
+            <li id="leverSoleil">Lever de soleil</li>
+            <li id="matin">Petit matin</li>
+            <li id="journee">Journée</li>
+            <li id="coucherDeSoleil">Coucher de soleil</li>
+            <li id="nuit">Nuit</li>
+        </ul>
+    </div>
 
     <div class="tuto"><img src="/both/assets/img/tuto-q6.gif"></div>
  `
@@ -86,8 +95,8 @@ desktop_socketOn1 = ["q6", (eventData) => {
         let moment = 0
         if (window.moment != moment) {
             window.moment = 0
-
-
+            
+            document.getElementById('leverSoleil').classList.add("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -109,6 +118,7 @@ desktop_socketOn1 = ["q6", (eventData) => {
             window.moment = 1
 
             document.getElementById('background_anim').innerHTML = ""
+            document.getElementById('matin').classList.add("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -128,6 +138,7 @@ desktop_socketOn1 = ["q6", (eventData) => {
             window.moment = 2
 
             document.getElementById('background_anim').innerHTML = ""
+            document.getElementById('journee').classList.add("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -147,6 +158,7 @@ desktop_socketOn1 = ["q6", (eventData) => {
             window.moment = 3
 
             document.getElementById('background_anim').innerHTML = ""
+            document.getElementById('coucherDeSoleil').classList.add("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -166,6 +178,7 @@ desktop_socketOn1 = ["q6", (eventData) => {
             window.moment = 4
 
             document.getElementById('background_anim').innerHTML = ""
+            document.getElementById('nuit').classList.add("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
