@@ -27,7 +27,11 @@ mobile_socketOn1 = ["name", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-
+    ValidationBtn.canValidate = true
+    ValidationBtn.actualPage = questions.q3
+    ValidationBtn.nextPage = univers.univers
+    ValidationBtn.actualQ = "8"
+    ValidationBtn.nextQ = "univers"
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
