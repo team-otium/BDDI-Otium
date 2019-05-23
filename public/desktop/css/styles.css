@@ -116,6 +116,20 @@ button {
     height: 40%;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+#logoAnim.opacityAdd{
+    opacity: 1;
+}
+
+#logoAnim{
+    opacity: 0;
+    transition: all 2s;
+}
+
+#video{
+    display: none;
 }
 
 .logo_center img {
