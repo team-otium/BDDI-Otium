@@ -61,7 +61,7 @@ let desktop_script = () => {
         intro.animationLogo.transitionTo("desktop", intro.intro)
         document.querySelector(".logo_top_left").classList.add("out")
         document.querySelector(".logo_top_left").classList.add("in")
-    }, 3700)
+    }, 4950)
 
     var canvas = document.getElementById('logoAnim');
     var ctx = canvas.getContext('2d');
