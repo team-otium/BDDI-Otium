@@ -336,7 +336,7 @@ button {
 }
 
 .animNav {
-    animation: animNav 2s;
+    animation: animNav 1s;
     animation-fill-mode: forwards;
 }
 
