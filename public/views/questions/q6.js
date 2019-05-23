@@ -203,7 +203,7 @@ desktop_socketOn1 = ["q6", (eventData) => {
             document.getElementById('leverSoleil').classList.remove("animNav");
             document.getElementById('matin').classList.remove("animNav");
             document.getElementById('journee').classList.remove("animNav");
-            document.getElementById('nuit').classList.remove("animNav");
+            document.getElementById('coucherDeSoleil').classList.remove("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
