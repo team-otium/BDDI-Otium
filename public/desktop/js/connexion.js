@@ -1,4 +1,4 @@
-var socket = io.connect("https://"+ config.ip, {transports: ['websocket'], upgrade: false})
+var socket = io.connect("https://"+ config.ip + ":" + config.port, {transports: ['websocket'], upgrade: false})
 
 
 function createConnexionId () {
