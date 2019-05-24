@@ -376,3 +376,7 @@ button {
     position: absolute;
     z-index: 10;
 }
+
+.dg {
+    z-index: 100!important;
+}
