@@ -95,82 +95,57 @@ desktop_socketOn1 = ["q5_doigt", (data) => {
 }]
 
 desktop_script = () => {
-    let q5_actual_texture
-    let q5_textures = [
+    // let q5_actual_texture
+    // let q5_textures = [
 
-    ]
-    for (let i = 1; i <= 15; i++) {
-        q5_textures.push(new THREE.TextureLoader().load('/both/assets/textures/q5/texture_drap-'+i+'.jpg'))
-    }
+    // ]
+    // for (let i = 1; i <= 15; i++) {
+    //     q5_textures.push(new THREE.TextureLoader().load('/both/assets/textures/q5/texture_drap-'+i+'.jpg'))
+    // }
 
     var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(54, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+    var W = window.innerWidth;
+    var H = window.innerHeight;
+    
+    var renderer = new THREE.WebGLRenderer({
+        alpha: true
+    });
+    renderer.setSize(W, H);
+    
+    var camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 10000);
+    
+    var planeGeometry = new THREE.PlaneGeometry(800, 150, 150, 100);
+    var planeMaterial = new THREE.MeshBasicMaterial({color: 0x45BEBF, wireframe: true});
+    var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+    
+    plane.rotation.x = -0.2 * Math.PI;
+    
+    plane.position.set(0, 0, 0);
+    
+    scene.add(plane);
+    
+    camera.position.set(0, 50, 100);
+    camera.lookAt(scene.position);
 
     var container = document.getElementById('drap');
-
-	var vertexHeight = 15000,
-		planeDefinition = 100,
-		planeSize = 300000,
-		totalObjects = 1,
-        background = "#ffffff",
-		meshColor = "#005e97"; 
-
-	var camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 400000)
-	camera.position.z = 100000;
-	camera.position.y = 10000;
-
-	var scene = new THREE.Scene();
-	scene.fog = new THREE.Fog(background, 1, 300000);
-
-    var planeGeo = new THREE.PlaneGeometry(planeSize, planeSize, planeDefinition, planeDefinition);
-	var plane = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({
-		color: meshColor,
-	
-	}));
-	plane.rotation.x -= Math.PI * .1;
-	plane.rotation.z -= Math.PI * .4;
-
-	scene.add(plane);
-
-	var renderer = new THREE.WebGLRenderer({alpha: false});
-	renderer.setSize(window.innerWidth, window.innerHeight);
-	renderer.setClearColor(background, 1);
-
+    
     container.appendChild(renderer.domElement);
-
-
-    updatePlane();
-
-	function updatePlane() {
-		for (var i = 0; i < planeGeo.vertices.length; i++) {
-      planeGeo.vertices[i].z += Math.random() * vertexHeight - vertexHeight;
-      planeGeo.vertices[i]._myZ = planeGeo.vertices[i].z
-		}
-	};
-
-	render();
-
-    var count = 0
-	function render() {
-	requestAnimationFrame(render);
-    var x = camera.position.x;
-    var z = camera.position.z;
-    camera.position.x = x * Math.cos(0.001) + z * Math.sin(0.001) - 10;
-    camera.position.z = z * Math.cos(0.001) - x * Math.sin(0.001) - 10;
-    camera.lookAt(new THREE.Vector3(0, 8000, 0))
-
-    for (var i = 0; i < planeGeo.vertices.length; i++) {
-        var z = +planeGeo.vertices[i].z;
-        planeGeo.vertices[i].z = Math.sin(( i + count * 0.00002)) * (planeGeo.vertices[i]._myZ - (planeGeo.vertices[i]._myZ* 0.6))
-        plane.geometry.verticesNeedUpdate = true;
-  
-        count += 0.2
-    }
-
-		renderer.render(scene, camera);
-	}
-
-
+    
+    (function drawFrame(ts){
+      var center = new THREE.Vector2(0,0);
+      window.requestAnimationFrame(drawFrame);
+      var vLength = plane.geometry.vertices.length;
+      for (var i = 0; i < vLength; i++) {
+        var v = plane.geometry.vertices[i];
+        var dist = new THREE.Vector2(v.x, v.y).sub(center);
+        var size = 2.0;
+        var magnitude = 7;
+        v.z = Math.sin(dist.length()/-size + (ts/900)) * magnitude;
+      }
+      plane.geometry.verticesNeedUpdate = true;
+      renderer.render(scene, camera);
+    }());
 
 
     /**************** 
