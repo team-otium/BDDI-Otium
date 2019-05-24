@@ -103,6 +103,62 @@ desktop_script = () => {
     //     q5_textures.push(new THREE.TextureLoader().load('/both/assets/textures/q5/texture_drap-'+i+'.jpg'))
     // }
 
+    var scene = new THREE.Scene();
+
+    var W = window.innerWidth;
+    var H = window.innerHeight;
+    
+    var renderer = new THREE.WebGLRenderer({
+        alpha: true
+    });
+    renderer.setSize(W, H);
+    
+    var camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 10000);
+
+    var planeGeometry = new THREE.PlaneGeometry(300, 200, 200, 100);
+    var texture = new THREE.TextureLoader().load( '/both/assets/textures/q5/texture_drap-10_NORMALES.jpg' );
+    var planeMaterial = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        map: texture,
+        transparent: true,
+        side: THREE.DoubleSide
+    });
+
+    
+    var plane = new THREE.Mesh( planeGeometry, planeMaterial );
+
+    plane.rotation.x = -0.01 * Math.PI;
+    
+    plane.position.set(0, 0, 0);
+    
+    scene.add(plane);
+
+
+    planeGeometry.computeFaceNormals();
+    planeGeometry.computeVertexNormals();
+
+
+    camera.position.set(0, 0, 300);
+    camera.lookAt(scene.position);
+
+    var container = document.getElementById('drap');
+    
+    container.appendChild(renderer.domElement);
+    
+    (function drawFrame(ts){
+      var center = new THREE.Vector2(0,0);
+      window.requestAnimationFrame(drawFrame);
+      var vLength = plane.geometry.vertices.length;
+      for (var i = 0; i < vLength; i++) {
+        var v = plane.geometry.vertices[i];
+        var dist = new THREE.Vector2(v.x, v.y);
+        var size = 4.0;
+        var magnitude = 6;
+        v.z = Math.sin(dist.length()/-size + (ts/200)) * magnitude;
+      }
+      plane.geometry.verticesNeedUpdate = true;
+      renderer.render(scene, camera);
+    }());
 
 
     /**************** 
