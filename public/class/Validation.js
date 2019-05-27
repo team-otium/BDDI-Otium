@@ -12,7 +12,6 @@ class Validation{
         this.deltaTime = 0
 
 
-
         if (device === "mobile") {
             document.body.addEventListener("touchstart", (e) => {
                 if (this.canValidate) {
@@ -27,8 +26,7 @@ class Validation{
                         this.touch = false
                         this.height = 0
                         this.width = 0
-                        document.querySelector(".circle").style.height = 0+ "px"
-                        document.querySelector(".circle").style.width = 0+ "px"
+                        document.querySelector(".gifValidation").style.opacity = "0"
                         this.deltaTime = 0
                         this.last = this.now
                         this.time = 0
@@ -40,9 +38,8 @@ class Validation{
                 this.touch = false
                 this.height = 0
                 this.width = 0
-                document.querySelector(".circle").style.height = 0+ "px"
-                document.querySelector(".circle").style.width = 0+ "px"
-                document.querySelector(".circleIn").style.animation = "full 2s reverse"
+                document.querySelector(".circle2").classList.remove("test1")
+                document.querySelector(".circle2").classList.remove("test2")
                 this.deltaTime = 0
                 this.last = this.now
                 this.time = 0
@@ -67,26 +64,55 @@ class Validation{
                 ValidationBtn.height = ValidationBtn.easeInQuad(ValidationBtn.time - 100, 0, 100, 2000)
                 ValidationBtn.width = ValidationBtn.easeInQuad(ValidationBtn.time - 100, 0, 100, 2000)
 
-                document.querySelector(".circle").style.height = (ValidationBtn.height*6) + "px"
-                document.querySelector(".circle").style.width = (ValidationBtn.width*6) + "px"
-                document.querySelector(".circleIn").style.animation = "full 3s forwards"
+                document.querySelector(".circle2").classList.add("test1")
+                document.querySelector(".circle2").classList.add("test2")
 
                 if (ValidationBtn.time >= 3000) {
                     ValidationBtn.height = 0
                     ValidationBtn.width = 0
-                    document.querySelector(".buttonAnim").style.display = "block"
+                    document.querySelector(".gifValidation").style.opacity = "1"
                     ValidationBtn.deltaTime = 0
                     ValidationBtn.last = ValidationBtn.now
                     ValidationBtn.time = 0
                     ValidationBtn.touch = false
                     ValidationBtn.canValidate = false
                     setTimeout(() => {
+                        /** button go to left **/
+                        document.querySelector(".gifValidation").style.opacity = "0"
+                        document.querySelector(".circle1").style.opacity = "0"
+                        document.querySelector(".circle1").style.right = "100%"
+                        document.querySelector(".circle1").style.transition = "2s"
+                        document.querySelector(".circle2").style.opacity = "0"
+                        document.querySelector(".circle2").style.right = "100%"
+                        document.querySelector(".circle2").style.transition = "2s"
+                        document.querySelector(".gifValidation").style.right = "100%"
+                        document.querySelector(".gifValidation").style.transition = "2s"
+
                         ValidationBtn.actualPage.transitionTo("mobile", ValidationBtn.nextPage)
                         socket.emit("validationQuestion", {from: ValidationBtn.actualQ, to: ValidationBtn.nextQ})
-                        document.querySelector(".buttonAnim").style.display = "none"
-                        document.querySelector(".circle").style.display = "none"
-                        document.querySelector(".circleIn").style.display = "none"
-                    }, 1000);
+                    }, 1400);
+                    setTimeout(() => {
+                            
+                        /** button go to right **/
+                        document.querySelector(".circle1").style.right = "-50%"
+                        document.querySelector(".circle1").style.left = "100%"
+                        document.querySelector(".circle2").style.right = "-50%"
+                        document.querySelector(".circle2").style.left = "100%"
+                        document.querySelector(".gifValidation").style.right = "-50%"
+                        document.querySelector(".gifValidation").style.left = "100%"
+                    }, 2700)
+                    setTimeout(() => {
+                            
+                        /** button come from right **/
+                        document.querySelector(".circle1").style.right = "-50%"
+                        document.querySelector(".circle1").style.left = "-50%"
+                        document.querySelector(".circle2").style.right = "-50%"
+                        document.querySelector(".circle2").style.left = "-50%"
+                        document.querySelector(".gifValidation").style.right = "-50%"
+                        document.querySelector(".gifValidation").style.left = "-50%"
+                        document.querySelector(".circle1").style.opacity = "1"
+                    }, 3100)
+
                 }
             }
             requestAnimationFrame(ValidationBtn.animationMobile)

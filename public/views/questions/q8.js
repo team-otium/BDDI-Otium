@@ -1,3 +1,7 @@
+/**************************  
+**************************  QUESTION 8
+**************************/
+
 /**
  * MOBILE
  */
@@ -27,8 +31,9 @@ mobile_socketOn1 = ["name", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    document.querySelector(".circle").style.display = "block"
-    document.querySelector(".circleIn").style.display = "block"
+    document.querySelector(".circle1").style.display = "block"
+    document.querySelector(".circle2").style.display = "block"
+    
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q8
     ValidationBtn.nextPage = questions.q9

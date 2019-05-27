@@ -5,18 +5,7 @@ CSS DESKTOP
 
 /*** GENERAL ***/
 
-@font-face {
-    font-family: "GothamRounded-Book";
-    src: url("../../both/assets/font/GothamRounded-Book.otf");
-}
-
-@font-face {
-    font-family: "GothamRounded-Light";
-    src: url("../../both/assets/font/GothamRounded-Light.otf");
-}
-
 * {
-    font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
     color: #494949;
 }
 
@@ -26,25 +15,11 @@ body {
 }
 
 h1 {
-    font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
     font-size: 32px;
     line-height: 1.3em;
 }
 
-button {
-    font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    background: none;
-    border: none;
-    background-image: url(/both/assets/img/button.svg);
-    background-position: center;
-    background-size: cover;
-    width: 300px;
-    height: 55px;
-    background-repeat: no-repeat;
-    cursor: pointer;
-}
-
+/*** GIF TUTO ON BOTTOM ***/
 
 .tuto,
 .tuto2 {
@@ -105,36 +80,8 @@ button {
 
 
 /**************************  
-**************************  SECTION 1
+************************** PAGE 1 INTRODUCTION
 **************************/
-
-.logo_center {
-    position: absolute;
-    left: 0;
-    top: 25%;
-    right: 0;
-    height: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#logoAnim.opacityAdd{
-    opacity: 1;
-}
-
-#logoAnim{
-    opacity: 0;
-    transition: all 2s;
-}
-
-#video{
-    display: none;
-}
-
-.logo_center img {
-    width: 310px;
-}
 
 .home_text_center {
     max-width: 750px;
@@ -169,11 +116,6 @@ button {
 .text_center p {
     margin: 35px 0;
 }
-
-
-/**************************  
-**************************  SECTION 2
-**************************/
 
 .logo_top_left {
     position: absolute;
@@ -275,42 +217,6 @@ button {
     position: absolute;
 }*/
 
-.nuage1 {
-    width: 50%;
-    position: absolute;
-    bottom: 20px;
-    left: -9px;
-    -webkit-transform: rotate(17deg);
-    -moz-transform: rotate(17deg);
-    -o-transform: rotate(17deg);
-    -ms-transform: rotate(17deg);
-    transform: rotate(17deg)
-}
-
-.nuage2 {
-    width: 50%;
-    position: absolute;
-    bottom: -2px;
-    left: 119px;
-    -webkit-transform: rotate(3deg);
-    -moz-transform: rotate(3deg);
-    -o-transform: rotate(3deg);
-    -ms-transform: rotate(3deg);
-    transform: rotate(3deg)
-}
-
-.nuage3 {
-    width: 48%;
-    position: absolute;
-    bottom: 20px;
-    left: 208px;
-    -webkit-transform: rotate(-26deg);
-    -moz-transform: rotate(-26deg);
-    -o-transform: rotate(-26deg);
-    -ms-transform: rotate(-26deg);
-    transform: rotate(-26deg);
-}
-
 /**************************  
 **************************  QUESTION 6
 **************************/
@@ -369,7 +275,7 @@ button {
 
 
 /**************************  
-**************************  UNIVERS
+**************************  UNIVERS 3D
 **************************/
 
 #univers {
