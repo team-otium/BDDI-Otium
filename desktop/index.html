@@ -56,6 +56,7 @@
     <script src="/lib/threejs/examples/js/loaders/OBJLoader.js"></script>
     <script src="/lib/threejs/examples/js/loaders/MTLLoader.js"></script>
     <script src="/lib/threejs/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="/lib/threejs/examples/js/controls/TrackballControls.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
 
     <script src="/socket.io/socket.io.js"></script>
@@ -105,20 +106,23 @@
     <!-- SOUND -->
     <script src="/desktop/js/gestion_sound.js"></script>
 
+
     <!-- FIRST PAGE LOAD -->
     <script>
-        //questions.q4.displayPage("desktop")
-        intro.animationLogo.displayPage("desktop")
-        document.getElementById("go").addEventListener("click", () => {
-            let q = document.getElementById("q").value
-            console.log("q" + q)
-            questions["q" + q].comeBackTo('desktop')
-            socket.emit("pageChange", q)
-        })
-        socket.on("validationQuestion", (data) => {
-            questions["q" + data.from].transitionTo("desktop", questions["q" + data.to])
-        })
+        questions.q5.displayPage("desktop")
+        // intro.animationLogo.displayPage("desktop")
+        // document.getElementById("go").addEventListener("click", () => {
+        //     let q = document.getElementById("q").value
+        //     console.log("q" + q)
+        //     questions["q" + q].comeBackTo('desktop')
+        //     socket.emit("pageChange", q)
+        // })
+        // socket.on("validationQuestion", (data) => {
+        //     questions["q" + data.from].transitionTo("desktop", questions["q" + data.to])
+        // })
     </script>
+
+    
 </body>
 
 </html>

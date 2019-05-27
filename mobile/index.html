@@ -88,18 +88,19 @@
 
     <!-- FIRST PAGE LOAD -->
     <script>
-        intro.connexion.displayPage("mobile")
-        socket.on("pageChange", (q) => {
-            questions["q" + q].comeBackTo('mobile')
-        })
+        questions.q5.displayPage("mobile")
+        // intro.connexion.displayPage("mobile")
+        // socket.on("pageChange", (q) => {
+        //     questions["q" + q].comeBackTo('mobile')
+        // })
 
-        // Enable wake lock.
-        var noSleep = new NoSleep();
+        // // Enable wake lock.
+        // var noSleep = new NoSleep();
 
-        document.addEventListener('click', function enableNoSleep() {
-            document.removeEventListener('click', enableNoSleep, false);
-            noSleep.enable();
-        }, false);
+        // document.addEventListener('click', function enableNoSleep() {
+        //     document.removeEventListener('click', enableNoSleep, false);
+        //     noSleep.enable();
+        // }, false);
     </script>
 </body>
 
