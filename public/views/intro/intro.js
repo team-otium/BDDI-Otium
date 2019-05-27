@@ -25,8 +25,7 @@ mobile_html =
 `
 
 mobile_script = () => {
-    document.querySelector(".circle1").style.display = "none"
-    document.querySelector(".circle2").style.display = "none"
+
 }
 
 mobile_transition = ["out", "in"]

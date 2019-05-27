@@ -18,14 +18,15 @@
     <div id="buttons">
         <div class="circle1 rotating"></div>
         <div class="spin circle2"></div>
-        <div class="gifValidation" oncontextmenu="return false" onselectstart="return false" ondragstart="return false"><img src="/both/assets/img/validation.gif" alt=""></div>
+        <div class="gifValidation" oncontextmenu="return false" onselectstart="return false" ondragstart="return false"><img
+                src="/both/assets/img/validation.gif" alt=""></div>
     </div>
 
     <div id="navigation">
     </div>
 
     <!-- bottom menu -->
-    <nav class="menu">
+    <nav class="firstMenu">
         <input class="menu-toggler" id="menu-toggler" type="checkbox">
         <label for="menu-toggler"></label>
         <div class="bgButton"></div>
@@ -88,20 +89,21 @@
 
     <!-- FIRST PAGE LOAD -->
     <script>
-        questions.q5.displayPage("mobile")
-        // intro.connexion.displayPage("mobile")
-        // socket.on("pageChange", (q) => {
-        //     questions["q" + q].comeBackTo('mobile')
-        // })
+        //questions.q5.displayPage("mobile")
+        intro.animationLogo.displayPage("mobile")
+        socket.on("pageChange", (q) => {
+            questions["q" + q].comeBackTo('mobile')
+        })
 
-        // // Enable wake lock.
-        // var noSleep = new NoSleep();
+        // Enable wake lock.
+        var noSleep = new NoSleep();
 
-        // document.addEventListener('click', function enableNoSleep() {
-        //     document.removeEventListener('click', enableNoSleep, false);
-        //     noSleep.enable();
-        // }, false);
+        document.addEventListener('click', function enableNoSleep() {
+            document.removeEventListener('click', enableNoSleep, false);
+            noSleep.enable();
+        }, false);
     </script>
+
 </body>
 
 </html>

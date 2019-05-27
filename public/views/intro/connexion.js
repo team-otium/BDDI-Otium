@@ -52,14 +52,14 @@ let mobile_socketOn1 = ["mobileConnected", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    document.querySelector(".menu").style.display = "block"
+    document.querySelector(".firstMenu").style.display = "block"
 
     // check if inpu is clicked and disable menu
     window.addEventListener('click', function(e){   
         if (document.getElementById('code').contains(e.target)){
-            document.querySelector(".menu").style.display = "none"
+            document.querySelector(".firstMenu").style.display = "none"
         } else{
-            document.querySelector(".menu").style.display = "block"
+            document.querySelector(".firstMenu").style.display = "block"
         }
       });
 

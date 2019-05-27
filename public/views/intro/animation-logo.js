@@ -34,6 +34,8 @@ let mobile_listener2 = ["selector", "type", () => {
 
 // Script to be executed when the page is displayed
 let mobile_script = () => {
+    document.querySelector(".circle1").style.display = "none"
+    document.querySelector(".circle2").style.display = "none"
     setTimeout(() => {
         intro.animationLogo.transitionTo("mobile", intro.intro)
     }, 4000)
