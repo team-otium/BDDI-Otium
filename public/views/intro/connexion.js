@@ -19,7 +19,7 @@ mobile_html =
         <div class="container">
         <div class="line"></div>
         </div>
-        <button class="btn">valider</button>
+        <button class="btn start_q1">valider</button>
     </div>
 
     <!----------- 
