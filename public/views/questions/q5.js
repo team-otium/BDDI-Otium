@@ -1,3 +1,7 @@
+/**************************  
+**************************  QUESTION 5
+**************************/
+
 /**
  * MOBILE
  */
@@ -47,8 +51,9 @@ mobile_listener3 = ["#q2_target", "touchend", (e) => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    document.querySelector(".circle").style.display = "block"
-    document.querySelector(".circleIn").style.display = "block"
+    document.querySelector(".circle1").style.display = "block"
+    document.querySelector(".circle2").style.display = "block"
+    
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q5
     ValidationBtn.nextPage = questions.q6
@@ -73,7 +78,6 @@ desktop_html =
     <div class="text_center">
         <h1 class="question_desktop">Choisissez un aspect</h1>
     </div>
-    <div id="drap" style="position: absolute; z-index: 50"></div>
  `
 
 desktop_listener1 = ["selector", "type", () => {
@@ -95,20 +99,57 @@ desktop_socketOn1 = ["q5_doigt", (data) => {
 }]
 
 desktop_script = () => {
-    // let q5_actual_texture
-    // let q5_textures = [
+    let q5_actual_texture
+    let q5_textures = [
 
-    // ]
-    // for (let i = 1; i <= 15; i++) {
-    //     q5_textures.push(new THREE.TextureLoader().load('/both/assets/textures/q5/texture_drap-'+i+'.jpg'))
-    // }
+    ]
+    for (let i = 1; i <= 15; i++) {
+        q5_textures.push(new THREE.TextureLoader().load('/both/assets/textures/q5/texture_drap-'+i+'.jpg'))
+    }
 
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
+    var simplex = new SimplexNoise()
+
+    var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.domElement.style.position = "absolute"
+    document.getElementById("q5").appendChild(renderer.domElement);
+
+    var light = new THREE.PointLight(0xffffff, 1, 100);
+    light.position.set(5, 5, 15);
+    scene.add(light);
+
+    var geometry = new THREE.ParametricBufferGeometry(clothFunction, 30, 30);
+    var material = new THREE.MeshLambertMaterial({ map: q5_textures[0], side: THREE.DoubleSide, wireframe: false });
+    var plane = new THREE.Mesh(geometry, material);
+    scene.add(plane);
+    plane.rotation.z = Math.PI / 6
+    plane.rotation.x = - Math.PI / 12
+
+    camera.position.z = 5;
+
+    var animate = function () {
+        requestAnimationFrame(animate);
+
+        var p = planes.particles;
+        for ( var i = 0, il = p.length; i < il; i ++ ) {
+            var v = p[ i ].position;
+            geometry.attributes.position.setXYZ( i, v.x, v.y, v.z );
+        }
+        geometry.attributes.position.needsUpdate = true;
+        geometry.computeVertexNormals();
+
+        renderer.render(scene, camera);
+    };
+
+    animate();
 
     /**************** 
      *** TIMELINE ***
      ****************/
-    //document.querySelector('.q5').style.fill = "#ffffff"
+    document.querySelector('.q5').style.fill = "#ffffff"
 
 }
 

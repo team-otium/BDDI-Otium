@@ -7,31 +7,49 @@
     <link rel="stylesheet" type="text/css" href="/mobile/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="/both/css/styles.css" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Otium</title>
 </head>
 
 <body>
-    <!-- bouton validation -->
-    <div class="circleIn"></div>
-    <div>
-        <div class="circle rotating"></div>
-    </div>
-    <div class="buttonAnim"><img src="/both/assets/img/validation.gif" alt=""></div>
 
     <!-- background color animation -->
-    <div class="content content--canvas">
-    </div>
-    <!-- fin background color animation -->
+    <div id="background_anim"></div>
 
+    <!-- button validation question -->
+    <div>
+        <div class="circle1"></div>
+        <div class="spin circle2"></div>
+        <div class="gifValidation"><img src="/both/assets/img/validation.gif" alt=""></div>
+    </div>
 
     <div id="navigation">
     </div>
 
-
+    <!-- bottom menu -->
+    <nav class="menu">
+        <input class="menu-toggler" id="menu-toggler" type="checkbox">
+        <label for="menu-toggler"></label>
+        <div class="bgButton"></div>
+        <ul>
+            <li class="menu-item">
+                <a class="" href="#">A</a>
+            </li>
+            <li class="menu-item">
+                <a class="" href="#">B</a>
+            </li>
+            <li class="menu-item">
+                <a class="" href="#">C</a>
+            </li>
+            <li class="menu-item">
+                <a class="" href="#">D</a>
+            </li>
+        </ul>
+    </nav>
 
     <!-- background color animation links -->
-    <script src="/lib/noise/noise.min.js"></script>
-    <script src="/desktop/js/background.js"></script>
+    <script src="/lib/threejs/build/three.min.js"></script>
+    <script src="/lib/vanta/vanta.fog.min.js"></script>
+    <script src="/lib/vanta/background.js"></script>
 
     <!-- Lib -->
     <script src="/dev/utils.js"></script>
@@ -53,7 +71,7 @@
     <script src="/views/intro/button_valider.js"></script>
     <script src="/views/intro/timeline.js"></script>
 
-    <!-- QUESTION -->
+    <!-- QUESTIONS -->
     <script src="/views/questions/q1.js"></script>
     <script src="/views/questions/q2.js"></script>
     <script src="/views/questions/q3.js"></script>
@@ -66,20 +84,22 @@
     <!-- UNIVERS -->
     <script src="/views/univers/univers.js"></script>
 
+    <!-- PAGE ARBORESCENCE -->
     <script src="/views/arborescence.js"></script>
 
+    <!-- FIRST PAGE LOAD -->
     <script>
-        intro.connexion.displayPage("mobile")
+        intro.animationLogo.displayPage("mobile")
         socket.on("pageChange", (q) => {
             questions["q" + q].comeBackTo('mobile')
         })
 
         // Enable wake lock.
         var noSleep = new NoSleep();
-        
+
         document.addEventListener('click', function enableNoSleep() {
-        document.removeEventListener('click', enableNoSleep, false);
-        noSleep.enable();
+            document.removeEventListener('click', enableNoSleep, false);
+            noSleep.enable();
         }, false);
     </script>
 </body>

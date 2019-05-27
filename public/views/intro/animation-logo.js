@@ -1,3 +1,7 @@
+/**************************  
+**************************  LOGO ANIMATION VIDEO
+**************************/
+
 /**
  * MOBILE
  */
@@ -5,7 +9,15 @@
 // The html (without section)
 let mobile_html =
     `
-
+    <!----------- 
+    ------------- Animation logo  
+    ----------->
+    <div class="logo_center">
+        <img src="/both/assets/img/otium_logo.svg" alt="">
+    </div>
+    <!----------- 
+    ------------- FIN Animation logo  
+    ----------->
 `
 
 // All listeners, one variable per listener
@@ -22,7 +34,9 @@ let mobile_listener2 = ["selector", "type", () => {
 
 // Script to be executed when the page is displayed
 let mobile_script = () => {
-
+    setTimeout(() => {
+        intro.animationLogo.transitionTo("mobile", intro.intro)
+    }, 4000)
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
@@ -35,7 +49,7 @@ let mobile_transition = ["out", "in"]
 let desktop_html =
     `
 <!----------- 
-------------- SECTION 1 animation logo  
+------------- Animation logo  
 ----------->
 <div class="logo_center">
     <video autoplay="" muted="" id="video">
@@ -44,7 +58,7 @@ let desktop_html =
     <canvas id="logoAnim"></canvas>
 </div>
 <!----------- 
-------------- FIN SECTION 1 animation logo  
+------------- FIN Animation logo  
 ----------->
 `
 
@@ -111,7 +125,7 @@ let animation_logo_mobile = {
     html: mobile_html,
     listeners: [],
     socketOn: [],
-    script: () => { },
+    script: mobile_script,
     transitions: mobile_transition,
 }
 

@@ -14,23 +14,24 @@
 
 <body>
     <!-- sound -->
+    <iframe src="/both/assets/sound/ambiance-site.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe>
 
-    <iframe src="/both/assets/sound/ambiance-site.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe> 
 
     <div style="z-index: 10000; position: absolute;"><input id="q" type="number"><button id="go">GO</button></div>
+
+
     <!-- background color animation -->
     <div id="background_anim">
     </div>
-    <!-- fin background color animation -->
+
 
     <!-- fixed logo  -->
     <div class="logo_top_left">
         <img src="/both/assets/img/otium_logo.svg" alt="">
     </div>
-    <!-- end fixed logo  -->
+
 
     <div id="navigation">
-
     </div>
 
 
@@ -57,11 +58,12 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/lib/perlin/perlin.js"></script>
 
+    <script src="/lib/dat.gui/dat.gui.js"></script>
 
     <!-- background color animation links -->
     <script src="/lib/vanta/vanta.fog.min.js"></script>
     <script src="/lib/vanta/background.js"></script>
-    <script src="/lib/dat.gui/dat.gui.js"></script>
+
 
 
     <script src="/class/Result.js"></script>
@@ -77,7 +79,7 @@
     <script src="/views/intro/button_valider.js"></script>
     <script src="/views/intro/timeline.js"></script>
 
-    <!-- QUESTION -->
+    <!-- QUESTIONS -->
     <script src="/views/questions/q1.js"></script>
     <script src="/views/questions/q2.js"></script>
     <script src="/views/questions/q3.js"></script>
@@ -91,23 +93,25 @@
     <script src="/views/univers/univers.js"></script>
     <script src="lib/dat.gui/dat.gui.js"></script>
 
+    <!-- PAGE ARBORESCENCE -->
     <script src="/views/arborescence.js"></script>
+
+    <!-- TIMELINE -->
     <script src="/desktop/js/gestion_timeline.js"></script>
 
+    <!-- FIRST PAGE LOAD -->
     <script>
-        questions.q5.displayPage("desktop")
-
-        // intro.animationLogo.displayPage("desktop")
-        // document.getElementById("go").addEventListener("click", () => {
-        //     let q = document.getElementById("q").value
-        //     console.log("q" + q)
-        //     questions["q" + q].comeBackTo('desktop')
-        //     socket.emit("pageChange", q)
-        // })
-
-        // socket.on("validationQuestion", (data) => {
-        //     questions["q" + data.from].transitionTo("desktop", questions["q" + data.to])
-        // })
+        //questions.q5.displayPage("desktop")
+        intro.animationLogo.displayPage("desktop")
+        document.getElementById("go").addEventListener("click", () => {
+            let q = document.getElementById("q").value
+            console.log("q" + q)
+            questions["q" + q].comeBackTo('desktop')
+            socket.emit("pageChange", q)
+        })
+        socket.on("validationQuestion", (data) => {
+            questions["q" + data.from].transitionTo("desktop", questions["q" + data.to])
+        })
     </script>
 </body>
 

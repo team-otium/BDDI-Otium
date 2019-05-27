@@ -1,12 +1,39 @@
+/**************************  
+**************************  PAGE 1 INTRODUCTION
+**************************/
+
 /**
  * MOBILE
  */
 
 mobile_html =
     `
+    <!----------- 
+    ------------- INTRO 
+    ----------->
+    <div class="text_center_mobile">
+        <h1>Bienvenue sur Otium</h1>
+        <p>
+        Relaxez vous grâce à Otium.<br>
+        Concevez l'univers qui vous correspond et retrouvez la sérénité que vous avez oubliée.
+        </p>
+        <button class="commencer btn">Commencer l'expérience</button>
+    </div>
+    <!----------- 
+    ------------- FIN INTRO  
+    ----------->   
 `
 
+mobile_script = () => {
+    document.querySelector(".circle1").style.display = "none"
+    document.querySelector(".circle2").style.display = "none"
+}
+
 mobile_transition = ["out", "in"]
+
+mobile_listener1 = [".commencer", "click", () => {
+    intro.intro.transitionTo("mobile", intro.connexion)
+}]
 
 /**
  * DESKTOP
@@ -15,7 +42,7 @@ mobile_transition = ["out", "in"]
 desktop_html =
     `
 <!----------- 
-------------- SECTION 2 intro  
+------------- INTRO 
 ----------->
 <div class="home_text_center">
     <h1>Bienvenue sur Otium</h1>
@@ -25,10 +52,10 @@ desktop_html =
         rerum satietates, veterrima quaeque, ut ea vina, quae vetustatem ferunt, esse debet
         suavissima, verumque illud est.
     </p>
-    <button class="commencer">Commencer l'expérience</button>
+    <button class="commencer btn">Commencer l'expérience</button>
 </div>
 <!----------- 
-------------- FIN SECTION 2 intro  
+------------- FIN INTRO 
 ----------->
 `
 
@@ -37,7 +64,6 @@ desktop_listener1 = [".commencer", "click", () => {
 }]
 
 desktop_script = () => {
-
 }
 
 desktop_transition = ["out", "in"]
@@ -48,9 +74,9 @@ desktop_transition = ["out", "in"]
 
 let intro_mobile = {
     html: mobile_html,
-    listeners: [],
+    listeners: [mobile_listener1],
     socketOn: [],
-    script: () => { },
+    script: mobile_script,
     transitions: mobile_transition,
 }
 

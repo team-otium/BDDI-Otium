@@ -1,3 +1,7 @@
+/**************************  
+**************************  PAGE 2 CONNEXION
+**************************/
+
 /**
  * MOBILE
  */
@@ -6,20 +10,20 @@
 mobile_html =
     `
     <!----------- 
-    ------------- SECTION 2 intro  
+    ------------- CONNEXION 
     ----------->
-    <div class="text_center_mobile">
-        <div class="logo_center_mobile">
-            <img src="/both/assets/img/otium_logo.svg" alt="">
+    <div class="text_center_mobile connexion">
+        <h2>Connectez votre smartphone pour commencer l'expérience</h2>
+
+        <input class="enterCode" id="code" autocomplete="off" maxlength="6" placeholder="xxxxxx">
+        <div class="container">
+        <div class="line"></div>
         </div>
-        <h1>Bienvenue sur Otium</h1>
-        <p>Entrez votre code afin de connecter votre smartphone.
-        </p>
-        <input class="btn" id="code" type="number" autocomplete="off" maxlength="6">
-        <button class="start_q1">test connexion</button>
+        <button class="btn">valider</button>
     </div>
+
     <!----------- 
-    ------------- FIN SECTION 2 intro  
+    ------------- CONNEXION  
     ----------->   
  `
 
@@ -45,9 +49,7 @@ let mobile_socketOn1 = ["mobileConnected", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    document.querySelector(".buttonAnim").style.display = "none"
-    document.querySelector(".circle").style.display = "none"
-    document.querySelector(".circleIn").style.display = "none"
+    document.querySelector(".menu").style.display = "block"
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
