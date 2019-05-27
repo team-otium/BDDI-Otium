@@ -73,6 +73,18 @@ h1 {
     z-index: 1000;
 }
 
+/**************************  
+**************************  SOUND
+**************************/
+
+.iconSound {
+    position: absolute;
+    z-index: 10000;
+    right: 20px;
+    top: 25px;
+    font-size: 20px;
+}
+
 
 /**************************  
 **************************  TITLE ANIMATION
@@ -190,7 +202,8 @@ h1 {
     display: flex;
 }
 
-.object {
+.object,
+.finalObject {
     height: 50%;
     position: relative;
 }

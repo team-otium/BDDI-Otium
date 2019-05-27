@@ -39,16 +39,12 @@ mobile_script = () => {
 
     if ('DeviceOrientationEvent' in window) {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
-    } else {
-        document.getElementById('logoContainer').innerText = 'Device Orientation API not supported.';
     }
 
     function deviceOrientationHandler(eventData) {
-        var tiltLR = eventData.gamma;
-        var tiltFB = eventData.beta;
-        var dir = eventData.alpha;
-
-        socket.emit("q7", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
+        if (ValidationBtn.touch === true) {} else {
+            socket.emit("q7", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
+        }
     }
 }
 
@@ -61,11 +57,19 @@ mobile_transition = ["out", "in"]
 
 desktop_html =
     `
-    <div class="text_center">
-        <h1 class="question_desktop">Quel objet vous attire le plus ?</h1>
+    <div id="ball"></div>
+
+    <div id="all_object">
+        <div id="finalObject1" class="FinalObject"><div id="border1"></div></div>
+        <div id="finalObject2" class="FinalObject"><div id="border2"></div></div>
+        <div id="finalObject3" class="FinalObject"><div id="border3"></div></div>
     </div>
 
-    <div id="cursor"></div>
+    <div class="text_center">
+        <h1 class="question_desktop">Choisissez les éléments qui vous apaisent</h1>
+    </div>
+
+    <div class="tuto"><img src="/both/assets/img/tuto-q4.gif"></div>
  `
 
 desktop_listener1 = ["selector", "type", () => {
@@ -77,29 +81,28 @@ desktop_listener2 = ["selector", "type", () => {
 }]
 
 desktop_socketOn1 = ["q7", (eventData) => {
-    function map(value, low1, high1, low2, high2) {
-        return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+    ball.velocity.y = Math.round(-eventData.tiltFB) / 2;
+    ball.velocity.x = Math.round(eventData.tiltLR) / 2;
+
+    if (ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight) {
+        document.getElementById("border1").classList.add("border1")
+    } else {
+        document.getElementById("border1").classList.remove("border1")
     }
-    // CURSOR POSITION
-    if (eventData.tiltFB > 80) eventData.tiltFB = 80
-    if (eventData.tiltFB < 0) eventData.tiltFB = 0
-    if (eventData.tiltLR > 35) eventData.tiltFB = 35
-    if (eventData.tiltLR < -35) eventData.tiltFB = -35
 
-    let y = map(eventData.tiltLR, -35, 35, 0, window.innerWidth)
-    document.getElementById("cursor").style.top = map(eventData.tiltFB, 0, 80, 0, window.innerHeight) + 'px';
-    document.getElementById("cursor").style.left = y + 'px';
+    if (ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 &&
+        ball.position.y <= window.innerHeight) {
+        document.getElementById("border2").classList.add("border2")
+    } else {
+        document.getElementById("border2").classList.remove("border2")
+    }
 
-    window.renderers.forEach(
-        el => { el.obj.position.y = 0 }
-    );
-    // RESULT
-    if (y > 0 && y <= (window.innerWidth / 4)) window.renderers[0].obj.position.y = 2;
-    if (y > (window.innerWidth / 4) && y <= (window.innerWidth / 4) * 2) window.renderers[1].obj.position.y = 2;
-    if (y > (window.innerWidth / 4) * 2 && y <= (window.innerWidth / 4) * 3) window.renderers[2].obj.position.y = 2;
-    if (y > (window.innerWidth / 4) * 3 && y <= (window.innerWidth / 4) * 4) window.renderers[3].obj.position.y = 2;
-
-    window.resultats.setResult("q7", { res: eventData })
+    if (ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 &&
+        ball.position.y <= window.innerHeight) {
+        document.getElementById("border3").classList.add("border3")
+    } else {
+        document.getElementById("border3").classList.remove("border3")
+    }
 }]
 
 desktop_script = () => {
@@ -118,66 +121,218 @@ desktop_script = () => {
         zoom: 0.20
     })
 
+    /******************* 
+     ****** BALL *******
+     ********************/
 
-    window.renderers = []
-    for (let i = 0; i < 4; i++) {
-        var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(75, (window.innerWidth / 4) / window.innerHeight, 0.1, 1000);
-
-        var renderer = new THREE.WebGLRenderer({ alpha: true });
-        renderer.setSize(window.innerWidth / 4, window.innerHeight);
-        renderer.domElement.classList.add('q7_canvas')
-        renderer.domElement.style.left = (25 * i) + "%"
-        document.getElementById("q7").appendChild(renderer.domElement);
-        let cube;
-
-        new THREE.OBJLoader().load(
-            // resource URL
-            '/both/assets/3d/q7/forme3o.obj',
-            // called when resource is loaded
-            function(object) {
-                cube = object
-                cube.scale.x = 0.9
-                cube.scale.y = 0.9
-                cube.scale.z = 0.9
-                scene.add(cube);
-            },
-            // called when loading is in progresses
-            function(xhr) {
-
-                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-
-            },
-            // called when loading has errors
-            function(error) {
-
-                console.log('An error happened');
-
-            }
-        );
-
-        camera.position.z = 5;
-
-        window.renderers.push({ scene: scene, camera: camera, renderer: renderer, obj: cube })
+    function start() {
+        ball = document.getElementById("ball");
+        w = window.innerWidth;
+        h = window.innerHeight;
+        ball.style.left = (w / 2) - 50 + "px";
+        ball.style.top = (h / 2) - 50 + "px";
+        ball.velocity = { x: 0, y: 0 }
+        ball.position = { x: 0, y: 0 }
+        update();
     }
 
-    var animate = function() {
-        requestAnimationFrame(animate);
-
-        for (let i = 0; i < window.renderers.length; i++) {
-            //window.renderers[i].obj.rotation.x += 0.01;
-            // window.renderers[i].obj.rotation.y += 0.01;
-
-            window.renderers[i].renderer.render(window.renderers[i].scene, window.renderers[i].camera);
+    function update() {
+        ball.position.x += ball.velocity.x;
+        ball.position.y += ball.velocity.y;
+        if (ball.position.x > (w - 100) && ball.velocity.x > 0) {
+            ball.position.x = w - 100;
         }
+        if (ball.position.x < 0 && ball.velocity.x < 0) {
+            ball.position.x = 0;
+        }
+        if (ball.position.y > (h - 100) && ball.velocity.y > 0) {
+            ball.position.y = h - 100;
+        }
+        if (ball.position.y < 0 && ball.velocity.y < 0) {
+            ball.position.y = 0;
+        }
+        ball.style.top = ball.position.y + "px"
+        ball.style.left = ball.position.x + "px"
+        requestAnimationFrame(update);
+    }
+
+    start()
+
+
+    /******************* 
+     ****** OBJET 1 ****
+     ********************/
+
+    var sceneFinalObj1 = new THREE.Scene();
+    var cameraFinalObj1 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / window.innerHeight, 0.1, 1000);
+    var containerFinalObj1 = document.getElementById('finalObject1');
+
+    var rendererFinalObj1 = new THREE.WebGLRenderer({
+       alpha: true
+   });
+
+    rendererFinalObj1.setSize(window.innerWidth / 3, window.innerHeight);
+    containerFinalObj1.appendChild(rendererFinalObj1.domElement);
+
+    cameraFinalObj1.position.z = 400;
+    cameraFinalObj1.position.x = 0;
+    cameraFinalObj1.position.y = 0;
+
+    var keyLightFinalObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.9);
+    keyLightFinalObj1.position.set(-100,0,100);
+
+    var fillLightFinalObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.1);
+    fillLightFinalObj1.position.set(100, 0, -100).normalize();
+
+    var backLightFinalObj1 = new THREE.DirectionalLight(0xffffff, 1.0);
+    backLightFinalObj1.position.set(100,0,-100).normalize();
+
+    sceneFinalObj1.add(keyLightFinalObj1);
+    sceneFinalObj1.add(fillLightFinalObj1);
+    sceneFinalObj1.add(backLightFinalObj1);
+
+    var mtlLoaderFinalObj1 = new THREE.MTLLoader();
+    mtlLoaderFinalObj1.load('/both/assets/img/q4/bulles_eau_2.mtl', function(materials) {
+        materials.preload();
+
+        var objLoaderFinalObj1 = new THREE.OBJLoader();
+        objLoaderFinalObj1.setMaterials(materials);
+        objLoaderFinalObj1.load('/both/assets/img/q4/bulles_eau_2.obj', function(finalObject1){
+            finalObject1.position.y = -10;
+            finalObject1.position.x = 20;
+            finalObject1.position.z = 0;
+
+            sceneFinalObj1.add(finalObject1);
+        })
+    })
+
+    var animateFinalObj1 = function () {
+        requestAnimationFrame(animateFinalObj1);
+
+        sceneFinalObj1.rotation.y += 0.01;
+        rendererFinalObj1.render(sceneFinalObj1, cameraFinalObj1);
     };
 
-    animate()
+    animateFinalObj1();
+
+   /******************* 
+    ****** OBJET 2 ****
+    ********************/
+
+   var sceneFinalObj2 = new THREE.Scene();
+   var cameraFinalObj2 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / window.innerHeight, 0.1, 1000);
+       containerFinalObj2 = document.getElementById('finalObject2');
+
+   var rendererFinalObj2 = new THREE.WebGLRenderer({
+      alpha: true
+  });
+  
+   rendererFinalObj2.setSize(window.innerWidth / 3, window.innerHeight);
+   containerFinalObj2.appendChild(rendererFinalObj2.domElement);
+
+   cameraFinalObj2.position.z = 500;
+   cameraFinalObj2.position.x = 0;
+   cameraFinalObj2.position.y = 0;
+
+   var keyLightFinalObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+   keyLightFinalObj2.position.set(-100,0,100);
+
+   var fillLightFinalObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+   fillLightFinalObj2.position.set(100, 0, -100).normalize();
+
+   var backLightFinalObj2 = new THREE.DirectionalLight(0xffffff, 1.0);
+   backLightFinalObj2.position.set(100,0,-100).normalize();
+
+   sceneFinalObj2.add(keyLightFinalObj2);
+   sceneFinalObj2.add(fillLightFinalObj2);
+   sceneFinalObj2.add(backLightFinalObj2);
+
+   var mtlLoaderFinalObj2 = new THREE.MTLLoader();
+   mtlLoaderFinalObj2.load('/both/assets/img/q4/feuilles.mtl', function(materials) {
+       materials.preload();
+
+       var objLoaderFinalObj2 = new THREE.OBJLoader();
+       objLoaderFinalObj2.setMaterials(materials);
+       objLoaderFinalObj2.load('/both/assets/img/q4/feuilles.obj', function(finalObject2){
+           finalObject2.position.y = -180;
+           finalObject2.position.x = -50;
+           finalObject2.position.z = 20;
+
+           sceneFinalObj2.add(finalObject2);
+       })
+   })
+
+   var animateFinalObj2 = function () {
+       requestAnimationFrame(animateFinalObj2);
+
+       sceneFinalObj2.rotation.y += 0.01;
+
+       rendererFinalObj2.render(sceneFinalObj2, cameraFinalObj2);
+   };
+
+   animateFinalObj2();
+
+   /******************** 
+    ****** OBJET 3 *****
+    ********************/
+
+   var sceneFinalObj3 = new THREE.Scene();
+   var cameraFinalObj3 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / window.innerHeight, 0.1, 1000);
+       containerFinalObj3 = document.getElementById('finalObject3');
+
+   var rendererFinalObj3 = new THREE.WebGLRenderer({
+      alpha: true
+  });
+  
+   rendererFinalObj3.setSize(window.innerWidth / 3, window.innerHeight);
+   containerFinalObj3.appendChild(rendererFinalObj3.domElement);
+
+   cameraFinalObj3.position.z = 400;
+   cameraFinalObj3.position.x = 0;
+   cameraFinalObj3.position.y = 0;
+
+   var keyLightFinalObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+   keyLightFinalObj3.position.set(-100,0,100);
+
+   var fillLightFinalObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+   fillLightFinalObj3.position.set(100, 0, -100).normalize();
+
+   var backLightFinalObj3 = new THREE.DirectionalLight(0x132ef9, 1.0);
+   backLightFinalObj3.position.set(100,0,-100).normalize();
+
+   sceneFinalObj3.add(keyLightFinalObj3);
+   sceneFinalObj3.add(fillLightFinalObj3);
+   sceneFinalObj3.add(backLightFinalObj3);
+
+   var mtlLoaderFinalObj3 = new THREE.MTLLoader();
+   mtlLoaderFinalObj3.load('/both/assets/img/q4/goutte.mtl', function(materials) {
+       materials.preload();
+
+       var objLoaderFinalObj3 = new THREE.OBJLoader();
+       objLoaderFinalObj3.setMaterials(materials);
+       objLoaderFinalObj3.load('/both/assets/img/q4/goutte.obj', function(finalObject3){
+           finalObject3.position.y = 0;
+           finalObject3.position.x = 0;
+           finalObject3.position.z = 0;
+
+           sceneFinalObj3.add(finalObject3);
+       })
+   })
+
+   var animateFinalObj3 = function () {
+       requestAnimationFrame(animateFinalObj3);
+
+       sceneFinalObj3.rotation.y += 0.01;
+
+       rendererFinalObj3.render(sceneFinalObj3, cameraFinalObj3);
+   };
+
+   animateFinalObj3();
 
     /**************** 
      *** TIMELINE ***
      ****************/
-    document.querySelector('.q7').style.fill = "#ffffff"
+    //document.querySelector('.q7').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]
