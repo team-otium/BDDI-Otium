@@ -19,6 +19,7 @@ mobile_html =
         <div class="container">
         <div class="line"></div>
         </div>
+        <p class="errMsg">Le code est incorrect. Veuillez réessayer.</p>
         <button class="btn start_q1">valider</button>
     </div>
 
@@ -34,6 +35,8 @@ mobile_listener1 = ["#code", "change", () => {
     if (i > -1) {
         console.log(code)
         socket.emit("askMobileConnexion", code)
+    } else {
+        document.querySelector(".errMsg").style.display = "block"
     }
 }]
 
@@ -50,6 +53,17 @@ let mobile_socketOn1 = ["mobileConnected", () => {
 // Script to be executed when the page is displayed
 mobile_script = () => {
     document.querySelector(".menu").style.display = "block"
+
+    // check if inpu is clicked and disable menu
+    window.addEventListener('click', function(e){   
+        if (document.getElementById('code').contains(e.target)){
+            document.querySelector(".menu").style.display = "none"
+        } else{
+            document.querySelector(".menu").style.display = "block"
+        }
+      });
+
+
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
