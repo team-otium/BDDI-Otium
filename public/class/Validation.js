@@ -13,7 +13,7 @@ class Validation{
 
 
         if (device === "mobile") {
-            document.body.addEventListener("touchstart", (e) => {
+            document.querySelector("#buttons").addEventListener("touchstart", (e) => {
                 if (this.canValidate) {
                     if (e.touches.length == 1) {
                         this.now = Date.now()
@@ -27,6 +27,8 @@ class Validation{
                         this.height = 0
                         this.width = 0
                         document.querySelector(".gifValidation").style.opacity = "0"
+                        document.querySelector(".circle2").classList.add("test1")
+                        document.querySelector(".circle2").classList.add("test2")
                         this.deltaTime = 0
                         this.last = this.now
                         this.time = 0
@@ -34,7 +36,7 @@ class Validation{
                 }
             })
 
-            document.body.addEventListener("touchend", () => {
+            document.querySelector("#buttons").addEventListener("touchend", () => {
                 this.touch = false
                 this.height = 0
                 this.width = 0
@@ -78,21 +80,21 @@ class Validation{
                     ValidationBtn.canValidate = false
                     setTimeout(() => {
                         /** button go to left **/
-                        document.querySelector(".gifValidation").style.opacity = "0"
                         document.querySelector(".circle1").style.opacity = "0"
                         document.querySelector(".circle1").style.right = "100%"
-                        document.querySelector(".circle1").style.transition = "2s"
-                        document.querySelector(".circle2").style.opacity = "0"
+                        document.querySelector(".circle1").style.transition = "1.5s"
                         document.querySelector(".circle2").style.right = "100%"
-                        document.querySelector(".circle2").style.transition = "2s"
+                        document.querySelector(".circle2").style.transition = "1.5s"
                         document.querySelector(".gifValidation").style.right = "100%"
-                        document.querySelector(".gifValidation").style.transition = "2s"
+                        document.querySelector(".gifValidation").style.transition = "1.5s"
+                        document.querySelector(".gifValidation").style.opacity = "0"
+                        document.querySelector(".circle2").style.opacity = "0"
 
                         ValidationBtn.actualPage.transitionTo("mobile", ValidationBtn.nextPage)
                         socket.emit("validationQuestion", {from: ValidationBtn.actualQ, to: ValidationBtn.nextQ})
                     }, 1400);
+
                     setTimeout(() => {
-                            
                         /** button go to right **/
                         document.querySelector(".circle1").style.right = "-50%"
                         document.querySelector(".circle1").style.left = "100%"
@@ -100,9 +102,9 @@ class Validation{
                         document.querySelector(".circle2").style.left = "100%"
                         document.querySelector(".gifValidation").style.right = "-50%"
                         document.querySelector(".gifValidation").style.left = "100%"
-                    }, 2700)
+                    }, 2800)
+
                     setTimeout(() => {
-                            
                         /** button come from right **/
                         document.querySelector(".circle1").style.right = "-50%"
                         document.querySelector(".circle1").style.left = "-50%"
@@ -111,7 +113,10 @@ class Validation{
                         document.querySelector(".gifValidation").style.right = "-50%"
                         document.querySelector(".gifValidation").style.left = "-50%"
                         document.querySelector(".circle1").style.opacity = "1"
-                    }, 3100)
+                        document.querySelector(".circle2").style.opacity = "1"
+                        document.querySelector(".circle2").classList.remove("test1")
+                        document.querySelector(".circle2").classList.remove("test2")
+                    }, 3300)
 
                 }
             }

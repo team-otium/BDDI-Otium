@@ -30,7 +30,7 @@ mobile_listener2 = ["selector", "type", () => {
 mobile_script = () => {
     document.querySelector(".circle1").style.display = "block"
     document.querySelector(".circle2").style.display = "block"
-    
+    document.querySelector(".gifValidation").style.display = "block"
 
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q1
