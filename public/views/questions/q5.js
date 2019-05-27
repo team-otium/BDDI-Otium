@@ -13,6 +13,37 @@ mobile_html =
     <div class="text_center_mobile">
         <h1 class="question_mobile">Choisissez un aspect</h1>
     </div>
+
+    <!-- MENU SELECTION TEXTURE -->
+    <div class="wheel">
+    <div class="wheel__list">
+      <div class="wheel__list__item">1</div>
+      <div class="wheel__list__item">2</div>
+      <div class="wheel__list__item">3</div>
+      <div class="wheel__list__item">4</div>
+      <div class="wheel__list__item">5</div>
+      <div class="wheel__list__item">6</div>
+      <div class="wheel__list__item">7</div>
+      <div class="wheel__list__item">8</div>
+      <div class="wheel__list__item">9</div>
+      <div class="wheel__list__item">10</div>
+      <div class="wheel__list__item">11</div>
+      <div class="wheel__list__item">12</div>
+    </div>
+  </div>
+  
+  <!-- SCRIPT FOR Q5 MENU -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/mobile/js/jquery.circlemenu.js"></script>
+  <script>
+      $(document).ready(function () {
+          $('.wheel').circleMenu({
+              lockDirection: true,
+              dragMouse: true,
+              dragTouch: true
+          });
+      });
+  </script>
  `
 
 // All listeners, one variable per listener
@@ -190,7 +221,7 @@ desktop_script = () => {
     /**************** 
      *** TIMELINE ***
      ****************/
-    //document.querySelector('.q5').style.fill = "#ffffff"
+    document.querySelector('.q5').style.fill = "#ffffff"
 
 }
 

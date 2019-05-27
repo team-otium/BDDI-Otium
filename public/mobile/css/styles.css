@@ -13,6 +13,10 @@ CSS MOBILE
   user-select: text;
 }
 
+body {
+  overflow: hidden;
+}
+
 
 h1 {
     font-size: 30px;
@@ -68,7 +72,7 @@ h2 {
   margin: auto;
   border-radius: 50%;
   position: absolute;
-  z-index: 100;
+  z-index: 10;
   padding: 0;
   display: none;
 }
@@ -117,7 +121,7 @@ h2 {
 
 .gifValidation {
   position: absolute;
-  z-index: 100;
+  z-index: 10;
   background: blue;
   top: 0;
   bottom: 0;
@@ -137,7 +141,7 @@ h2 {
   **************************  BOTTOM MENU MOBILE (nav_mobile.js)
   **************************/
 
-  .menu {
+  .firstMenu {
     position: fixed;
     bottom: 50px;
     right: 0;
@@ -406,4 +410,124 @@ h2 {
 }
 
 
+/*!
+ * jQuery Circle Menu 
+ * https://github.com/Richard1320/jQuery-Circle-Menu
+ * 
+ * This CSS file last updated
+ * 2018-10-30
+ */
+
+
+
+ .circle-menu {
+  position: relative;
+  z-index: 1;
+}
+
+.circle-menu.is-draggable-horizontal {
+  cursor: e-resize;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -35%;
+  z-index: 15;
+}
+
+.circle-menu.is-draggable-vertical {
+  cursor: n-resize;
+}
+
+.circle-menu__circle {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.circle-menu__circle__item {
+  width: 0;
+  height: 100%;
+  position: absolute;
+  margin: 0 50%;
+  cursor: auto;
+}
+
+.circle-menu__circle__item__inner {
+  position: absolute;
+  left: 50%;
+  bottom: 96%;
+  margin-left: -5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #333;
+}
+
+.circle-menu__circle__svg {
+  height: 100%;
+  overflow: visible;
+}
+
+.circle-menu__circle__svg__circle {
+  fill: transparent;
+  stroke: #333;
+  stroke-width: 1;
+}
+
+.circle-menu__circle__svg__line {
+  fill: transparent;
+  stroke: black;
+  stroke-width: 1;
+  stroke-dasharray: 315;
+  stroke-dashoffset: 315;
+  -webkit-transition: stroke-dashoffset 1s;
+  transition: stroke-dashoffset 1s;
+}
+
+#jquery-script-menu {
+  position: fixed;
+  height: 90px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-top: 5px solid #316594;
+  background: #fff;
+  -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+  z-index: 999999;
+  padding: 10px 0;
+  -webkit-box-sizing:content-box;
+  -moz-box-sizing:content-box;
+  box-sizing:content-box;
+  }
+  
+  .jquery-script-center {
+  width: 960px;
+  margin: 0 auto;
+  }
+  .jquery-script-center ul {
+  width: 212px;
+  float:left;
+  line-height:45px;
+  margin:0;
+  padding:0;
+  list-style:none;
+  }
+  .jquery-script-center a {
+    text-decoration:none;
+  }
+  .jquery-script-ads {
+  width: 728px;
+  height:90px;
+  float:right;
+  }
+  .jquery-script-clear {
+  clear:both;
+  height:0;
+  }
 
