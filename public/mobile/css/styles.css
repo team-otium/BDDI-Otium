@@ -6,10 +6,11 @@ CSS MOBILE
 /*** GENERAL ***/
 
 * {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -o-user-select: text;
+  user-select: text;
 }
 
 
