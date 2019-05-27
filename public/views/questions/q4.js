@@ -283,7 +283,7 @@ desktop_script = () => {
     var fillLightObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
     fillLightObj3.position.set(100, 0, -100).normalize();
 
-    var backLightObj3 = new THREE.DirectionalLight(0xffffff, 1.0);
+    var backLightObj3 = new THREE.DirectionalLight(0x132ef9, 1.0);
     backLightObj3.position.set(100,0,-100).normalize();
 
     sceneObj3.add(keyLightObj3);
@@ -385,6 +385,7 @@ desktop_script = () => {
     sceneObj4.add(fillLightObj4);
     sceneObj4.add(backLightObj4);
 
+
     var mtlLoaderObj4 = new THREE.MTLLoader();
     mtlLoaderObj4.load('/both/assets/img/q4/montagnes_seules.mtl', function(materials) {
         materials.preload();
@@ -399,22 +400,22 @@ desktop_script = () => {
             object4.rotation.y = 1;
             object4.rotation.x = 0.1;
 
+            axes = new THREE.AxisHelper( 300 );
+            sceneObj4.add( axes );
+
             sceneObj4.add(object4);
+
+            var animateObj4 = function () {
+                requestAnimationFrame(animateObj4);
+        
+                //object4.rotation.y += 0.003;
+        
+                rendererObj4.render(sceneObj4, cameraObj4);
+            };
+            animateObj4();
         })
     })
 
-    var animateObj4 = function () {
-        requestAnimationFrame(animateObj4);
-
-
-
-
-        //sceneObj4.rotation.y += 0.001;
-
-        rendererObj4.render(sceneObj4, cameraObj4);
-    };
-
-    animateObj4();
 
 
 

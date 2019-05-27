@@ -107,49 +107,12 @@ desktop_script = () => {
         q5_textures.push(new THREE.TextureLoader().load('/both/assets/textures/q5/texture_drap-'+i+'.jpg'))
     }
 
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-    var simplex = new SimplexNoise()
-
-    var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.domElement.style.position = "absolute"
-    document.getElementById("q5").appendChild(renderer.domElement);
-
-    var light = new THREE.PointLight(0xffffff, 1, 100);
-    light.position.set(5, 5, 15);
-    scene.add(light);
-
-    var geometry = new THREE.ParametricBufferGeometry(clothFunction, 30, 30);
-    var material = new THREE.MeshLambertMaterial({ map: q5_textures[0], side: THREE.DoubleSide, wireframe: false });
-    var plane = new THREE.Mesh(geometry, material);
-    scene.add(plane);
-    plane.rotation.z = Math.PI / 6
-    plane.rotation.x = - Math.PI / 12
-
-    camera.position.z = 5;
-
-    var animate = function () {
-        requestAnimationFrame(animate);
-
-        var p = planes.particles;
-        for ( var i = 0, il = p.length; i < il; i ++ ) {
-            var v = p[ i ].position;
-            geometry.attributes.position.setXYZ( i, v.x, v.y, v.z );
-        }
-        geometry.attributes.position.needsUpdate = true;
-        geometry.computeVertexNormals();
-
-        renderer.render(scene, camera);
-    };
-
-    animate();
 
     /**************** 
      *** TIMELINE ***
      ****************/
-    document.querySelector('.q5').style.fill = "#ffffff"
+    //document.querySelector('.q5').style.fill = "#ffffff"
 
 }
 
