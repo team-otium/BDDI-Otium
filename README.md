@@ -37,7 +37,7 @@ Run with the following command :
     
 The web site run on http://localhost:1337
 
-But to use it proprely, launch http://localhost:1337 on a desktop device and http://<your private ip address>:1337/mobile on a mobile device.
+But to use it proprely, launch http://localhost:1337 on a desktop device and http://'your private ip address':1337/mobile on a mobile device.
 
 ## 👩‍🎨  Contributors
 
