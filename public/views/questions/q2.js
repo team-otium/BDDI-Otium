@@ -9,8 +9,6 @@
 // The html (without section)
 mobile_html =
     `
-    <div id="q2_target"></div>
-
     <div class="text_center_mobile">
         <h1 class="question_mobile">Avez-vous l'impression de manquer d'air ?</h1>
     </div>
