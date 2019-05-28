@@ -93,7 +93,7 @@ desktop_html =
     <h1 class="question_desktop">Modulez la ligne qui vous apaise</h1>
  </div>
 
- <div id="line"></div>
+ <div id="line" style="position: absolute; z-index: 100"></div>
 
  <div class="tuto"><img src="/both/assets/img/tuto-q3.gif"></div>
  `
@@ -104,9 +104,9 @@ desktop_socketOn1 = ["q3", (eventData) => {
     document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
     document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
 
-    if (eventData.tiltFB >= 0 && eventData.tiltFB <= 75) {
-        window.move = Math.round(eventData.tiltFB) / 75;
-    }
+
+    window.move = Math.round(eventData.tiltFB)/1000;
+
 
 }]
 
@@ -120,71 +120,146 @@ desktop_listener2 = ["selector", "type", () => {
 
 desktop_script = () => {
 
-    var container = document.getElementById('line')
+function line(){
+		
+    function Wave(opt) {
+    
+        opt = opt || {};
+            
+        this.phase = 0;
+        this.run = false;
+        
+        this.ratio = opt.ratio || window.devicePixelRatio || 1;
+        
+        this.width = this.ratio * ( opt.width || window.innerWidth || 1280);
+        this.width_2 = this.width / 2;
+        this.width_4 = this.width / 2;
+        
+        this.height = this.ratio * (opt.height || window.innerHeight || 720);
+        this.height_2 = this.height / 4;
+        
+        this.MAX = (this.height_2) - 4;
+        
+        this.amplitude = opt.amplitude || 0.1;
+        this.speed = opt.speed || 0.01;
+        this.frequency = opt.frequency || 2;			
+        
+        this.canvas = document.createElement('canvas');
+        this.canvas.width = this.width;
+        this.canvas.height = this.height;
 
-    var vertexHeight = 17000,
-        planeDefinition = 190,
-        planeSize = 700000,
-        background = "#bed2fe",
-        meshColor = "#ffffff";
+        this.container = document.getElementById("line")
+        this.container.appendChild(this.canvas);
+        this.ctx = this.canvas.getContext('2d');
 
-    var camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 400000)
-    camera.position.z = 15000;
-    camera.position.y = 10000;
+        this.start();
 
-    var scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(background, 1, 50000);
+    }
+    
+    Wave.prototype._GATF_cache = {};
 
-    var planeGeo = new THREE.PlaneGeometry(planeSize, planeSize, planeDefinition, planeDefinition);
-    var plane = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({
-        color: meshColor,
-    }));
-    plane.rotation.x -= Math.PI * .45;
-
-    scene.add(plane);
-
-    var renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(background, 1);
-
-    container.appendChild(renderer.domElement);
-
-
-    updatePlane();
-
-    function updatePlane() {
-        for (var i = 0; i < planeGeo.vertices.length; i++) {
-            planeGeo.vertices[i].z += Math.random() * vertexHeight - vertexHeight;
-            planeGeo.vertices[i]._myZ = planeGeo.vertices[i].z
+    Wave.prototype._globAttFunc = function(x) {
+        if (Wave.prototype._GATF_cache[x] == null) {
+            Wave.prototype._GATF_cache[x] =	Math.pow(4/(4+Math.pow(x,4)), 4);
         }
-    };
-
-    render();
-
-    var count = 0
-    function render() {
-        requestAnimationFrame(render);
-
-        for (var i = 0; i < planeGeo.vertices.length; i++) {
-            var z = +planeGeo.vertices[i].z;
-            planeGeo.vertices[i].z = Math.sin((i + count * 0.00003)) * (planeGeo.vertices[i]._myZ - (planeGeo.vertices[i]._myZ * window.move))
-            plane.geometry.verticesNeedUpdate = true;
-
-            count += 0.02
-        }
-
-        renderer.render(scene, camera);
+        return Wave.prototype._GATF_cache[x];
     }
 
+    Wave.prototype._color = function(opacity){
+        opacity = opacity || 1;
 
-    window.addEventListener('resize', onWindowResize, false);
+        var gradient = this.ctx.createLinearGradient(0,0, this.width, 0);
+             gradient.addColorStop(0, 'rgba(255,255,255,' + opacity + ')');
+            gradient.addColorStop(1, 'rgba(255,255,255,' + opacity + ')');
 
-    function onWindowResize() {
-        //changes the size of the canavs and updates it
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        return gradient;
     }
+
+    Wave.prototype._xpos = function(i){
+        return this.width_2 + i * this.width_4;
+    }
+
+    Wave.prototype._ypos = function(i, attenuation) {
+        var att = (this.MAX * this.amplitude) / attenuation;
+        return this.height_2 + this._globAttFunc(i) * att * Math.sin(this.frequency * i - this.phase);
+    }
+
+    Wave.prototype._drawLine = function(attenuation, color, thickness){
+
+        this.ctx.moveTo(0,0);
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = color;
+        this.ctx.lineWidth = thickness || 1;
+
+        var i = -2;
+        while ((i += 0.01) <= 2 ) {
+            var y = this._ypos(i, attenuation);
+            if ( Math.abs(i) >= 1.90) y = this.height_2;
+            
+            this.ctx.lineTo(this._xpos(i), y);
+
+        }
+
+        this.ctx.stroke();
+
+    }
+
+    Wave.prototype._clear = function(){
+        
+        this.ctx.globalCompositeOperation = 'destination-out';
+        this.ctx.fillRect(0,0, this.width, this.height);
+        this.ctx.globalCompositeOperation = 'source-over';
+    }
+
+    Wave.prototype._draw = function() {
+        if ( this.run === false ) return;
+
+        this.phase = (this.phase + Math.PI * this.speed) % (2*Math.PI);
+
+        this._clear();
+
+        this._drawLine(-2, this._color(0.4));
+        this._drawLine(-6, this._color(1));
+        this._drawLine(0.4, this._color(0.3));
+        this._drawLine(2, this._color(0.2));
+        this._drawLine(0.8, this._color(), 1.5);
+
+        if ( window.requestAnimationFrame ){
+            requestAnimationFrame(this._draw.bind(this));
+            return;
+        }
+
+        setTimeout(this._draw.bind( this ), 20);
+
+    }
+
+    Wave.prototype.start = function(){
+        this.phase = 0;
+        this.run = true;
+        this._draw();
+    }
+
+    Wave.prototype.changeNoise = function(e){
+
+        // console.log( Math.abs(this.width/2 - e.offsetX) * 0.001);
+
+        if ( e.offsetY < this.width/2 - this.width * 0.1  && e.offsetY < this.width/2 + this.width * 0.1){
+            this.amplitude = Math.abs(this.height/2 - e.offsetY) * 0.0003 || 0;
+            console.log(window.move)
+        }
+
+    }
+
+    var wave = new Wave({frequency: 4});
+    
+    
+
+
+    window.addEventListener('mousemove', function(e){ wave.changeNoise(e) }, false);
+    
+}
+
+line();
 
     /**************** 
      *** TIMELINE ***

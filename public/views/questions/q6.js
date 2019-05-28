@@ -30,7 +30,6 @@ mobile_listener2 = ["selector", "type", () => {
 mobile_script = () => {
     document.querySelector(".circle1").style.display = "block"
     document.querySelector(".circle2").style.display = "block"
-    document.querySelector(".circle-menu").style.display = "none"
     
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q6
@@ -245,7 +244,7 @@ desktop_script = () => {
     /**************** 
      *** TIMELINE ***
      ****************/
-    document.querySelector('.q6').style.fill = "#ffffff"
+    //document.querySelector('.q6').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]
