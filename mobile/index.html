@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" type="text/css" href="/mobile/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="/both/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/mobile/css/jquery.circlemenu.css" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Otium</title>
 </head>
 
-<body>
+<body id="q2_target">
     <!-- background color animation -->
     <div id="background_anim"></div>
 
@@ -45,6 +46,24 @@
             </li>
         </ul>
     </nav>
+
+    <!-- MENU SELECTION TEXTURE -->
+    <div class="wheel">
+        <div class="wheel__list">
+            <div class="wheel__list__item">1</div>
+            <div class="wheel__list__item">2</div>
+            <div class="wheel__list__item">3</div>
+            <div class="wheel__list__item">4</div>
+            <div class="wheel__list__item">5</div>
+            <div class="wheel__list__item">6</div>
+            <div class="wheel__list__item">7</div>
+            <div class="wheel__list__item">8</div>
+            <div class="wheel__list__item">9</div>
+            <div class="wheel__list__item">10</div>
+            <div class="wheel__list__item">11</div>
+            <div class="wheel__list__item">12</div>
+        </div>
+    </div>
 
     <!-- background color animation links -->
     <script src="/lib/threejs/build/three.min.js"></script>
@@ -86,6 +105,21 @@
 
     <!-- PAGE ARBORESCENCE -->
     <script src="/views/arborescence.js"></script>
+
+
+      <!-- SCRIPT FOR Q5 MENU -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/mobile/js/jquery.circlemenu.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.wheel').circleMenu({
+                lockDirection: true,
+                dragMouse: true,
+                dragTouch: true
+            });
+        });
+    </script>
+
 
     <!-- FIRST PAGE LOAD -->
     <script>
