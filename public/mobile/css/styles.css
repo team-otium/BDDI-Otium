@@ -147,6 +147,19 @@ h2 {
     right: 0;
     left: 0;
     display: none;
+    animation: animFirstmenu 2s backwards;
+  }
+
+  @keyframes animFirstmenu {
+    0% {
+      opacity : 0;
+    }
+    30% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   .bgButton {

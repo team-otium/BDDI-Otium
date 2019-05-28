@@ -4,12 +4,10 @@ var isPlaying = false;
 function togglePlay() {
     if (isPlaying) {
         sound.play()
-        document.querySelector('.iconSound').classList.add('fa-volume-up')
-        document.querySelector('.iconSound').classList.remove('fa-volume-mute')
+        document.querySelector('.iconSound').style.background = "url('../../both/assets/img/svg-son.svg')"
     } else {
         sound.pause();
-        document.querySelector('.iconSound').classList.remove('fa-volume-up')
-        document.querySelector('.iconSound').classList.add('fa-volume-mute')
+        document.querySelector('.iconSound').style.background = "url('../../both/assets/img/icone-son-stop.svg')"
     }
 };
 sound.onplaying = function() {
