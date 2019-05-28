@@ -5,6 +5,8 @@
     <title>Otium</title>
     <link rel="stylesheet" type="text/css" href="/desktop/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="/both/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/desktop/css/cloud.css" />
+
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
@@ -15,7 +17,7 @@
 
 <body>
     <!-- sound -->
-    <i onClick="togglePlay()" class="fas fa-volume-up iconSound"></i>
+    <div onClick="togglePlay()" class="iconSound"></div>
 
     <audio src="/both/assets/sound/ambiance-site.mp3" autoplay loop style="display:none" id="iframeAudio"></audio>
 
@@ -109,7 +111,7 @@
 
     <!-- FIRST PAGE LOAD -->
     <script>
-        //questions.q3.displayPage("desktop")
+        //questions.q4.displayPage("desktop")
         intro.animationLogo.displayPage("desktop")
         document.getElementById("go").addEventListener("click", () => {
             let q = document.getElementById("q").value
