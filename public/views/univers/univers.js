@@ -107,32 +107,6 @@ desktop_script = () => {
         renderer.render( scene, camera );
     };
 
-    let params = {
-        q1: {
-            rep: 2
-        },
-        q2: {
-            rep: 2
-        },
-        q3: {
-            amp: 15,
-            freq: 60
-        },
-        q4: {
-            rep1: 0,
-            rep2: 0
-        },
-        q5: {
-            rep: 1
-        },
-        q6: {
-            rep: 2
-        },
-        q7: {
-            rep: 0
-        },
-    }
-
     let gui = new dat.GUI()
     var q1 = gui.addFolder('Question 1')
     var q2 = gui.addFolder('Question 2')
@@ -148,15 +122,15 @@ desktop_script = () => {
     q5.open()
     q6.open()
     q7.open()
-    let controllerq1 = q1.add(params.q1, 'rep', 1, 15).step(1);
-    let controllerq2 = q2.add(params.q2, 'rep', 2, 15).step(1);
-    let controllerq31 = q3.add(params.q3, 'amp', 0, 100)
-    let controllerq32 = q3.add(params.q3, 'freq', 1, 100)
-    q4.add(params.q4, 'rep1', 0, 10)
-    q4.add(params.q4, 'rep2', 0, 10)
-    let controllerq5 = q5.add(params.q5, 'rep', 1, 15)
-    let controllerq6 = q6.add(params.q6, 'rep', 0, 4).step(1)
-    q7.add(params.q7, 'rep', 0, 10)
+    let controllerq1 = q1.add(window.resultats.questions.q1, 'rep', 1, 15).step(1);
+    let controllerq2 = q2.add(window.resultats.questions.q2, 'rep', 2, 15).step(1);
+    let controllerq31 = q3.add(window.resultats.questions.q3, 'amp', 0, 100)
+    let controllerq32 = q3.add(window.resultats.questions.q3, 'freq', 1, 100)
+    q4.add(window.resultats.questions.q4, 'rep1', 0, 10)
+    q4.add(window.resultats.questions.q4, 'rep2', 0, 10)
+    let controllerq5 = q5.add(window.resultats.questions.q5, 'rep', 1, 15)
+    let controllerq6 = q6.add(window.resultats.questions.q6, 'rep', 0, 4).step(1)
+    q7.add(window.resultats.questions.q7, 'rep', 0, 10)
 
     function rand(min, max) {
         min = min;
@@ -171,10 +145,10 @@ desktop_script = () => {
           let random = Math.floor(Math.random() * 2)
           switch(random){
             case 0:
-              var geometry = new THREE.SphereGeometry(1, params.q1.rep, params.q1.rep)
+              var geometry = new THREE.SphereGeometry(1, window.resultats.questions.q1.rep, window.resultats.questions.q1.rep)
               break
             case 1:
-              var geometry = new THREE.ConeGeometry( 1, 3, params.q1.rep );
+              var geometry = new THREE.ConeGeometry( 1, 3, window.resultats.questions.q1.rep );
               break
           }
           
@@ -191,7 +165,7 @@ desktop_script = () => {
       
       let spheres = []
       
-      for (let i = 0; i < params.q2.rep; i++) {
+      for (let i = 0; i < window.resultats.questions.q2.rep; i++) {
         let s = new FloatingObj()
         spheres.push(s)
         scene.add(s.obj)
@@ -210,7 +184,7 @@ desktop_script = () => {
             scene.remove(s.obj)
           })
           spheres = []
-          for (let i = 0; i < params.q2.rep; i++) {
+          for (let i = 0; i < window.resultats.questions.q2.rep; i++) {
             let s = new FloatingObj()
             spheres.push(s)
             scene.add(s.obj)
@@ -227,7 +201,7 @@ desktop_script = () => {
 
       /********** Q3 */
 
-      var geometryPlane = new THREE.PlaneGeometry( 500, 500, params.q3.freq, params.q3.freq );
+      var geometryPlane = new THREE.PlaneGeometry( 500, 500, window.resultats.questions.q3.freq, window.resultats.questions.q3.freq );
 var material = new THREE.MeshLambertMaterial( {color: 0xf2d4c2, side: THREE.DoubleSide} );
 var plane = new THREE.Mesh( geometryPlane, material );
 plane.rotation.x = Math.PI/2
@@ -236,7 +210,7 @@ scene.add( plane );
 let count = 0
 
 for (var i = 0; i < geometryPlane.vertices.length; i++) {
-  geometryPlane.vertices[i].z += Math.random() * params.q3.amp - params.q3.amp;
+  geometryPlane.vertices[i].z += Math.random() * window.resultats.questions.q3.amp - window.resultats.questions.q3.amp;
   geometryPlane.vertices[i]._myZ = geometryPlane.vertices[i].z
     plane.geometry.verticesNeedUpdate = true;
 }
@@ -259,7 +233,7 @@ controllerq31.onChange(function(value) {
 
   function updateq3(val){
     scene.remove(plane)
-    geometryPlane = new THREE.PlaneGeometry( 500, 500, params.q3.freq, params.q3.freq );
+    geometryPlane = new THREE.PlaneGeometry( 500, 500, window.resultats.questions.q3.freq, window.resultats.questions.q3.freq );
     material = new THREE.MeshLambertMaterial( {color: 0xf2d4c2, side: THREE.DoubleSide} );
     plane = new THREE.Mesh( geometryPlane, material );
     plane.rotation.x = Math.PI/2
@@ -267,7 +241,7 @@ controllerq31.onChange(function(value) {
     scene.add( plane );
     count = 0
     for (var i = 0; i < geometryPlane.vertices.length; i++) {
-      geometryPlane.vertices[i].z += Math.random() * params.q3.amp - params.q3.amp;
+      geometryPlane.vertices[i].z += Math.random() * window.resultats.questions.q3.amp - window.resultats.questions.q3.amp;
       geometryPlane.vertices[i]._myZ = geometryPlane.vertices[i].z
         plane.geometry.verticesNeedUpdate = true;
     }
@@ -352,7 +326,7 @@ class Box {
     }
   }
 
-  let box = new Box(params.q6.rep)
+  let box = new Box(window.resultats.questions.q6.rep)
   scene.add(box.obj)
   controllerq6.onChange(function(value) {
     updateq6(value)
@@ -360,7 +334,7 @@ class Box {
 
   function updateq6(val){
     scene.remove(box.obj)
-    box = new Box(params.q6.rep)
+    box = new Box(window.resultats.questions.q6.rep)
     scene.add(box.obj)
   }
 var animateq6 = function () {
