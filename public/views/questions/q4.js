@@ -317,6 +317,104 @@ desktop_script = () => {
      ****** OBJET 4 *****
      ********************/
 
+    /******************** 
+     ****** OBJET 4 *****
+     ********************/
+
+    var sceneObj4 = new THREE.Scene();
+    var cameraObj4 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+        containerObj4 = document.getElementById('object4');
+
+
+    var rendererObj4 = new THREE.WebGLRenderer({
+       alpha: true
+   });
+
+
+
+    var geometryCloud = new THREE.PlaneGeometry( 180, 130, 2 );
+    var geometryCloud3 = new THREE.PlaneGeometry( 190, 120, 2 );
+    var textureCloud = new THREE.TextureLoader().load( '/both/assets/img/q4/nuage2.png' );
+    textureCloud.repeat.set( 1, 1 );
+    var materialCloud = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        opacity: 0.99,
+        map: textureCloud,
+        transparent: true,
+        side: THREE.DoubleSide
+    });
+    var plane = new THREE.Mesh( geometryCloud, materialCloud );
+    var plane2 = new THREE.Mesh( geometryCloud, materialCloud );
+    var plane3 = new THREE.Mesh( geometryCloud3, materialCloud );
+
+    plane.position.y = -53;
+    plane.position.x = -100;
+    plane.position.z = 210;
+    plane.rotation.y = -10;
+
+    plane2.position.y = -60;
+    plane2.position.x = -20;
+    plane2.position.z = 270;
+    plane2.rotation.y = -9.7;
+
+    plane3.position.y = -32;
+    plane3.position.x = 60;
+    plane3.position.z = 304;
+    plane3.rotation.y = -40;
+    plane3.rotation.x = 0.17;
+
+    
+    sceneObj4.add(plane, plane2, plane3);
+
+
+    rendererObj4.setSize(window.innerWidth / 3, window.innerHeight / 2);
+    containerObj4.appendChild(rendererObj4.domElement);
+
+    cameraObj4.position.z = 460;
+    cameraObj4.position.x = 0;
+    cameraObj4.position.y = 0;
+
+    var keyLightObj4 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    keyLightObj4.position.set(-100,0,100);
+
+    var fillLightObj4 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    fillLightObj4.position.set(100, 0, -100).normalize();
+
+    var backLightObj4 = new THREE.DirectionalLight(0xffffff, 1.0);
+    backLightObj4.position.set(100,0,-100).normalize();
+
+    sceneObj4.add(keyLightObj4);
+    sceneObj4.add(fillLightObj4);
+    sceneObj4.add(backLightObj4);
+
+    var mtlLoaderObj4 = new THREE.MTLLoader();
+    mtlLoaderObj4.load('/both/assets/img/q4/montagnes_seules.mtl', function(materials) {
+        materials.preload();
+
+        var objLoaderObj4 = new THREE.OBJLoader();
+        objLoaderObj4.setMaterials(materials);
+        objLoaderObj4.load('/both/assets/img/q4/montagnes_s300.obj', function(object4){
+            object4.position.y = -20;
+            object4.position.x = 150;
+            object4.position.z = -100;
+
+            object4.rotation.y = 1;
+            object4.rotation.x = 0.1;
+
+            sceneObj4.add(object4);
+        })
+    })
+
+    var animateObj4 = function () {
+        requestAnimationFrame(animateObj4);
+
+
+        //sceneObj4.rotation.y += 0.001;
+
+        rendererObj4.render(sceneObj4, cameraObj4);
+    };
+
+    animateObj4();
 
 
     /**************** 

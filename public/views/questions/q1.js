@@ -182,7 +182,7 @@ desktop_script = () => {
     /**************** 
      *** TIMELINE ***
      ****************/
-    document.querySelector('.q1').style.fill = "#ffffff"
+    //document.querySelector('.q1').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

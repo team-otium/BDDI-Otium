@@ -52,8 +52,6 @@ mobile_listener3 = ["#q2_target", "touchend", (e) => {
 mobile_script = () => {
     document.querySelector(".circle1").style.display = "block"
     document.querySelector(".circle2").style.display = "block"
-    document.querySelector(".circle-menu").style.display = "block"
-    document.querySelector(".firstMenu").style.display = "none"
     
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q5
@@ -119,13 +117,13 @@ desktop_script = () => {
 		meshColor = "#005e97"; 
 
 	var camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 400000)
-	camera.position.z = 11000;
-	camera.position.y = 11000;
+	camera.position.z = 15000;
+	camera.position.y = 15000;
 
 	var scene = new THREE.Scene();
     
 
-	var texture = new THREE.TextureLoader().load( "/both/assets/textures/q5/texture_drap-7_NORMALES.jpg" );
+	var texture = new THREE.TextureLoader().load( "/both/assets/textures/q5/texture_drap-6_BUMP.jpg" );
 
     var planeGeo = new THREE.PlaneGeometry(planeSize, planeSize, planeDefinition, planeDefinition);
 
@@ -191,7 +189,7 @@ desktop_script = () => {
     /**************** 
      *** TIMELINE ***
      ****************/
-    document.querySelector('.q5').style.fill = "#ffffff"
+    //document.querySelector('.q5').style.fill = "#ffffff"
 
 }
 
