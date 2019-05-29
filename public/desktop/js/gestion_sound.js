@@ -1,5 +1,5 @@
 var sound = document.getElementById("iframeAudio");
-var isPlaying = false;
+var isPlaying = true;
 
 function togglePlay() {
     if (isPlaying) {
