@@ -79,6 +79,7 @@ h1 {
 
 .iconSound {
     position: absolute;
+    cursor: pointer;
     z-index: 10000;
     right: 20px;
     top: 25px;
@@ -140,6 +141,14 @@ h1 {
     transition: all 2s ease;
 }
 
+/**************************  
+**************************  PAGE 2 CONNEXION
+**************************/
+
+.qrLink {
+    cursor: pointer;
+    border-bottom : 1px solid #494949;
+}
 
 /**************************  
 **************************  QUESTION 1

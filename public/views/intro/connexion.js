@@ -82,13 +82,11 @@ desktop_html =
 ----------->
 <div class="home_text_center">
     <h1>Connectez votre smartphone</h1>
-    <p>Exsistit autem hoc loco quaedam quaestio subdifficilis, num quando amici novi,
-        digni amicitia, veteribus sint anteponendi, ut equis vetulis teneros anteponere
-        solemus. Indigna homine dubitatio! Non enim debent esse amicitiarum sicut
-        rerum satietates, veterrima quaeque, ut ea vina, quae vetustatem ferunt, esse debet
-        suavissima, verumque illud est.
+    <p>
+    Afin de commencer l'expérience, entrez ce lien sur votre smartphone : www.exemple.com ou utilisez le <span class="qrLink">QR code</span> pour y accéder directement.
+    Une fois sur la page, insérez le code ci-dessous.
         <br><br>
-        Code à insérer dans votre smartphone : <span id="id">####</span>
+        Code à insérer sur votre smartphone : <span id="id">####</span>
         <br><br>
         <button class="start_q1">test connexion</button>
     </p>

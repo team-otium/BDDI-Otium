@@ -66,7 +66,7 @@ desktop_html =
     </div>
 
     <div class="text_center">
-        <h1 class="question_desktop">Choisissez les éléments qui vous apaisent</h1>
+        <h1 class="question_desktop">Choisissez l'objet qui vous attire le plus</h1>
     </div>
 
     <div class="tuto"><img src="/both/assets/img/tuto-q4.gif"></div>
