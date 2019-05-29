@@ -40,6 +40,10 @@ body{
   cursor: pointer;
 }
 
+input:focus, button:focus{
+  outline: none;
+}
+
 
 /*** ANIMATION PAGE ***/
 section{
