@@ -96,16 +96,16 @@ desktop_socketOn1 = ["q5_doigt", (data) => {
         q5_actual_texture--
         if (q5_actual_texture < 0) q5_actual_texture = q5_textures.length - 1
     }
+    plane.material.map = q5_textures[q5_actual_texture];
+    plane.material.needsUpdate = true;
 }]
 
 desktop_script = () => {
-    // let q5_actual_texture
-    // let q5_textures = [
-
-    // ]
-    // for (let i = 1; i <= 15; i++) {
-    //     q5_textures.push(new THREE.TextureLoader().load('/both/assets/textures/q5/texture_drap-'+i+'.jpg'))
-    // }
+     let q5_actual_texture
+     let q5_textures = []
+     for (let i = 1; i <= 15; i++) {
+         q5_textures.push(new THREE.TextureLoader().load('/both/assets/textures/q5/texture_drap-'+i+'.jpg'))
+     }
 
 
     var container = document.getElementById('drap')
@@ -121,14 +121,11 @@ desktop_script = () => {
 	camera.position.y = 15000;
 
 	var scene = new THREE.Scene();
-    
-
-	var texture = new THREE.TextureLoader().load( "/both/assets/textures/q5/texture_drap-6_BUMP.jpg" );
 
     var planeGeo = new THREE.PlaneGeometry(planeSize, planeSize, planeDefinition, planeDefinition);
 
 	var plane = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({
-        map: texture
+        map: q5_textures[0]
     }));
     
 

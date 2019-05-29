@@ -43,6 +43,14 @@ mobile_listener1 = ["#code", "change", () => {
 mobile_listener2 = [".start_q1", "click", () => {
     intro.connexion.transitionTo("mobile", intro.button_valider)
 }]
+
+let mobile_listener3 = ["#code", "focusin", () => {
+    document.querySelector(".firstMenu").style.display = "none"
+}]
+
+let mobile_listener4 = ["#code", "focusout", () => {
+    document.querySelector(".firstMenu").style.display = "block"
+}]
 /** And more... */
 
 // Socket on
@@ -55,17 +63,6 @@ mobile_script = () => {
     document.querySelector(".firstMenu").style.display = "block"
     document.querySelector(".circle1").style.display = "none"
     document.querySelector(".circle2").style.display = "none"
-
-    // check if inpu is clicked and disable menu
-    window.addEventListener('click', function(e){   
-        if (document.getElementById('code').contains(e.target)){
-            document.querySelector(".firstMenu").style.display = "none"
-        } else{
-            document.querySelector(".firstMenu").style.display = "block"
-        }
-      });
-
-
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
@@ -116,7 +113,7 @@ desktop_transition = ["out", "in"]
 
 let connexion_mobile = {
     html: mobile_html,
-    listeners: [mobile_listener1, mobile_listener2],
+    listeners: [mobile_listener1, mobile_listener2, mobile_listener3, mobile_listener4],
     socketOn: [mobile_socketOn1],
     script: mobile_script,
     transitions: mobile_transition,
