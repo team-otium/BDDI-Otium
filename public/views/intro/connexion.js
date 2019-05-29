@@ -88,7 +88,7 @@ desktop_html =
         <br><br>
         Code à insérer sur votre smartphone : <span id="id">####</span>
         <br><br>
-        <button class="start_q1">test connexion</button>
+        <!--<button class="start_q1">test connexion</button>-->
     </p>
 </div>
 <!----------- 
