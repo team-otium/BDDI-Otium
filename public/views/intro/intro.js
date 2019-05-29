@@ -46,11 +46,9 @@ desktop_html =
 ----------->
 <div class="home_text_center">
     <h1>Bienvenue sur Otium</h1>
-    <p>Exsistit autem hoc loco quaedam quaestio subdifficilis, num quando amici novi,
-        digni amicitia, veteribus sint anteponendi, ut equis vetulis teneros anteponere
-        solemus. Indigna homine dubitatio! Non enim debent esse amicitiarum sicut
-        rerum satietates, veterrima quaeque, ut ea vina, quae vetustatem ferunt, esse debet
-        suavissima, verumque illud est.
+    <p>
+    Vous cherchez une solution afin de vous évader et d'échapper au stress du quotidien ?<br>
+    Relaxez vous grâce à Otium! Concevez l'univers qui vous correspond et retrouvez la sérénité que vous avez oubliée.
     </p>
     <button class="commencer btn">Commencer l'expérience</button>
 </div>
