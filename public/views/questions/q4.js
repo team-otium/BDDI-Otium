@@ -26,7 +26,7 @@ mobile_html =
 
 // All listeners, one variable per listener
 mobile_listener1 = [".circleQ5", "click", () => {
-        socket.emit("q4-2", "test")
+        socket.emit("q4-2", "selectObj")
         document.querySelector('.selected1').style.fill = "#000000"
         document.querySelector('.selectedNumber').innerHTML = "1/2"
 }]
@@ -109,32 +109,32 @@ desktop_socketOn1 = ["q4", (eventData) => {
 
 desktop_socketOn2 = ["q4-2", (eventData) => {
     // click on object 1 //
-    if (eventData === "test" && ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
+    if (eventData === "selectObj" && ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
         document.getElementById("hover1").style.opacity = "1"
     }
 
     // click on object 2 //
-    if (eventData === "test" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y <= window.innerHeight / 2) {
+    if (eventData === "selectObj" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y <= window.innerHeight / 2) {
     document.getElementById("hover2").style.opacity = "1"
     }
 
     // click on object 3 //
-    if (eventData === "test" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y <= window.innerHeight / 2) {
+    if (eventData === "selectObj" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y <= window.innerHeight / 2) {
         document.getElementById("hover3").style.opacity = "1"
     }
 
     // click on object 4 //
-    if (eventData === "test" && ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight/2) {
+    if (eventData === "selectObj" && ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight/2) {
         document.getElementById("hover4").style.opacity = "1"
     }
 
     // click on object 5 //
-    if (eventData === "test" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y > window.innerHeight/2) {
+    if (eventData === "selectObj" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y > window.innerHeight/2) {
         document.getElementById("hover5").style.opacity = "1"
     }
 
     // click on object 6 //
-    if (eventData === "test" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y > window.innerHeight/2) {
+    if (eventData === "selectObj" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y > window.innerHeight/2) {
         document.getElementById("hover6").style.opacity = "1"
     }
 }]

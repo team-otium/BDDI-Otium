@@ -100,10 +100,10 @@ io.sockets.on('connection', function (socket) {
         io.sockets.to(socket.clientId).emit('q4', data);
     })
 
-        // Q4
-        socket.on('q4-2', (data) => {
-            io.sockets.to(socket.clientId).emit('q4-2', data);
-        })
+    // Q4 select obj
+    socket.on('q4-2', (data) => {
+        io.sockets.to(socket.clientId).emit('q4-2', data);
+    })
 
     // Q6
     socket.on('q6', (data) => {
