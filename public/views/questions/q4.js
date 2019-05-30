@@ -12,24 +12,36 @@ mobile_html =
     <div class="text_center_mobile">
         <h1 class="question_mobile">Choisissez les éléments qui vous apaisent</h1>
     </div>
+
+    <div class="circleQ5"><span class="selectedNumber">0/2</span></div>
+    <div id="selected1">
+        <svg height="20" width="20">
+            <circle class="selected1" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="selected2" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+         </svg>
+    </div>
  `
 
 // All listeners, one variable per listener
-mobile_listener1 = ["selector", "type", () => {
-
+mobile_listener1 = [".circleQ5", "click", () => {
+        socket.emit("q4-2", "test")
+        document.querySelector('.selected1').style.fill = "#000000"
+        document.querySelector('.selectedNumber').innerHTML = "1/2"
 }]
 
 mobile_listener2 = ["selector", "type", () => {
 
-    }]
+}]
     /** And more... */
 
 // Socket on
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    document.querySelector(".circle1").style.display = "block"
-    document.querySelector(".circle2").style.display = "block"
+    // document.querySelector(".circle1").style.display = "block"
+    // document.querySelector(".circle2").style.display = "block"
     
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q4
@@ -40,9 +52,9 @@ mobile_script = () => {
     if ('DeviceOrientationEvent' in window) {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
     }
-
     function deviceOrientationHandler(eventData) {
         if (ValidationBtn.touch === true) {} else {
+            
             socket.emit("q4", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }
@@ -93,50 +105,37 @@ desktop_socketOn1 = ["q4", (eventData) => {
     ball.velocity.y = Math.round(-eventData.tiltFB) / 2;
     ball.velocity.x = Math.round(eventData.tiltLR) / 2;
 
-    // hover object 1 //
-    if (ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
+}]
+
+desktop_socketOn2 = ["q4-2", (eventData) => {
+    // click on object 1 //
+    if (eventData === "test" && ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
         document.getElementById("hover1").style.opacity = "1"
-    } else {
-        document.getElementById("hover1").style.opacity = "0"
     }
 
-    // hover object 2 //
-    if (ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 &&
-        ball.position.y <= window.innerHeight / 2) {
-        document.getElementById("hover2").style.opacity = "1"
-    } else {
-        document.getElementById("hover2").style.opacity = "0"
+    // click on object 2 //
+    if (eventData === "test" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y <= window.innerHeight / 2) {
+    document.getElementById("hover2").style.opacity = "1"
     }
 
-    // hover object 3 //
-    if (ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 &&
-        ball.position.y <= window.innerHeight / 2) {
+    // click on object 3 //
+    if (eventData === "test" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y <= window.innerHeight / 2) {
         document.getElementById("hover3").style.opacity = "1"
-    } else {
-        document.getElementById("hover3").style.opacity = "0"
     }
 
-    // hover object 4 //
-    if (ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight/2) {
+    // click on object 4 //
+    if (eventData === "test" && ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight/2) {
         document.getElementById("hover4").style.opacity = "1"
-    } else {
-        document.getElementById("hover4").style.opacity = "0"
     }
 
-    // hover object 5 //
-    if (ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 &&
-        ball.position.y > window.innerHeight/2) {
+    // click on object 5 //
+    if (eventData === "test" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y > window.innerHeight/2) {
         document.getElementById("hover5").style.opacity = "1"
-    } else {
-        document.getElementById("hover5").style.opacity = "0"
     }
 
-    // hover object 6 //
-    if (ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 &&
-        ball.position.y > window.innerHeight/2) {
+    // click on object 6 //
+    if (eventData === "test" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y > window.innerHeight/2) {
         document.getElementById("hover6").style.opacity = "1"
-    } else {
-        document.getElementById("hover6").style.opacity = "0"
     }
 }]
 
@@ -471,7 +470,7 @@ desktop_transition = ["out", "in"]
 
 q4_mobile = {
     html: mobile_html,
-    listeners: [],
+    listeners: [mobile_listener1],
     socketOn: [],
     script: mobile_script,
     transitions: mobile_transition,
@@ -480,7 +479,7 @@ q4_mobile = {
 q4_desktop = {
     html: desktop_html,
     listeners: [],
-    socketOn: [desktop_socketOn1],
+    socketOn: [desktop_socketOn1, desktop_socketOn2],
     script: desktop_script,
     transitions: desktop_transition,
 }
