@@ -60,11 +60,25 @@ desktop_html =
     <div id="ball"></div>
 
     <div id="all_object">
-        <div id="object1" class="object"><div id="border1"></div></div>
-        <div id="object2" class="object"><div id="border2"></div></div>
-        <div id="object3" class="object"><div id="border3"></div></div>
-        <div id="object4" class="object"><div id="border4"></div></div>
+
+        <div id="hoverTop">
+            <div class="blocHover"><div id="hover1"></div></div>
+            <div class="blocHover"><div id="hover2"></div></div>
+            <div class="blocHover"><div id="hover3"></div></div>
+        </div>
+
+        <div id="hoverBottom">
+            <div class="blocHover"><div id="hover4"></div></div>
+            <div class="blocHover"><div id="hover5"></div></div>
+            <div class="blocHover"><div id="hover6"></div></div>
+        </div>
+
+        <div id="object1" class="object"></div>
+        <div id="object2" class="object"></div>
+        <div id="object3" class="object"></div>
+        <div id="object4" class="object"></div>
         <div id="object5" class="object"></div>
+
     </div>
 
     <div class="text_center">
@@ -79,24 +93,50 @@ desktop_socketOn1 = ["q4", (eventData) => {
     ball.velocity.y = Math.round(-eventData.tiltFB) / 2;
     ball.velocity.x = Math.round(eventData.tiltLR) / 2;
 
+    // hover object 1 //
     if (ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
-        document.getElementById("border1").classList.add("border1")
+        document.getElementById("hover1").style.opacity = "1"
     } else {
-        document.getElementById("border1").classList.remove("border1")
+        document.getElementById("hover1").style.opacity = "0"
     }
 
+    // hover object 2 //
     if (ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 &&
         ball.position.y <= window.innerHeight / 2) {
-        document.getElementById("border2").classList.add("border2")
+        document.getElementById("hover2").style.opacity = "1"
     } else {
-        document.getElementById("border2").classList.remove("border2")
+        document.getElementById("hover2").style.opacity = "0"
     }
 
+    // hover object 3 //
     if (ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 &&
         ball.position.y <= window.innerHeight / 2) {
-        document.getElementById("border3").classList.add("border3")
+        document.getElementById("hover3").style.opacity = "1"
     } else {
-        document.getElementById("border3").classList.remove("border3")
+        document.getElementById("hover3").style.opacity = "0"
+    }
+
+    // hover object 4 //
+    if (ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight/2) {
+        document.getElementById("hover4").style.opacity = "1"
+    } else {
+        document.getElementById("hover4").style.opacity = "0"
+    }
+
+    // hover object 5 //
+    if (ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 &&
+        ball.position.y > window.innerHeight/2) {
+        document.getElementById("hover5").style.opacity = "1"
+    } else {
+        document.getElementById("hover5").style.opacity = "0"
+    }
+
+    // hover object 6 //
+    if (ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 &&
+        ball.position.y > window.innerHeight/2) {
+        document.getElementById("hover6").style.opacity = "1"
+    } else {
+        document.getElementById("hover6").style.opacity = "0"
     }
 }]
 
