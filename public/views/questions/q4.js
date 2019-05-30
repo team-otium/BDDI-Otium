@@ -13,7 +13,7 @@ mobile_html =
         <h1 class="question_mobile">Choisissez les éléments qui vous apaisent</h1>
     </div>
 
-    <div class="circleQ5"><span class="selectedNumber">0/2</span></div>
+    <div class="circleQ5 circleQ5-1"></div>
     <div id="selected1">
         <svg height="20" width="20">
             <circle class="selected1" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
@@ -23,25 +23,38 @@ mobile_html =
          </svg>
     </div>
  `
-
+var canValide = false;
+var select = 0;
 // All listeners, one variable per listener
-mobile_listener1 = [".circleQ5", "click", () => {
+mobile_listener1 = [".circleQ5-1", "click", () => {
         socket.emit("q4-2", "selectObj")
         document.querySelector('.selected1').style.fill = "#000000"
-        document.querySelector('.selectedNumber').innerHTML = "1/2"
+        document.querySelector('.circleQ5').classList.remove("circleQ5-1")
+        document.querySelector('.circleQ5').classList.add("circleQ5-2")
+        select = 1;
+
+        if(select == 1){
+            document.querySelector('.circleQ5-2').onclick = function() {
+                document.querySelector('.selected2').style.fill = "#000000"
+            
+            // 2 obj are selected 
+            canValide = true;
+            if (canValide === true){
+                console.log("canvalide")
+                document.querySelector(".circleQ5").style.display = "none"
+                document.querySelector(".circle1").style.display = "block"
+                document.querySelector(".circle2").style.display = "block"
+            }
+          };
+        }
 }]
 
-mobile_listener2 = ["selector", "type", () => {
-
-}]
-    /** And more... */
+/** And more... */
 
 // Socket on
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    // document.querySelector(".circle1").style.display = "block"
-    // document.querySelector(".circle2").style.display = "block"
     
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q4
@@ -54,7 +67,6 @@ mobile_script = () => {
     }
     function deviceOrientationHandler(eventData) {
         if (ValidationBtn.touch === true) {} else {
-            
             socket.emit("q4", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }
@@ -102,38 +114,36 @@ desktop_html =
 
 desktop_socketOn1 = ["q4", (eventData) => {
 
-    ball.velocity.y = Math.round(-eventData.tiltFB) / 2;
-    ball.velocity.x = Math.round(eventData.tiltLR) / 2;
+    ball.velocity.y = Math.round(-eventData.tiltFB + 10) / 2;
+    ball.velocity.x = Math.round(eventData.tiltLR + 10) / 2;
 
 }]
 
+/***
+ * WHEN CLICK ON MOBILE TO SELECT OBJ
+ ***/
 desktop_socketOn2 = ["q4-2", (eventData) => {
-    // click on object 1 //
+    // click on obj 1 //
     if (eventData === "selectObj" && ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
         document.getElementById("hover1").style.opacity = "1"
     }
-
-    // click on object 2 //
+    // click on obj 2 //
     if (eventData === "selectObj" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y <= window.innerHeight / 2) {
-    document.getElementById("hover2").style.opacity = "1"
+        document.getElementById("hover2").style.opacity = "1"
     }
-
-    // click on object 3 //
+    // click on obj 3 //
     if (eventData === "selectObj" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y <= window.innerHeight / 2) {
         document.getElementById("hover3").style.opacity = "1"
     }
-
-    // click on object 4 //
+    // click on obj 4 //
     if (eventData === "selectObj" && ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight/2) {
         document.getElementById("hover4").style.opacity = "1"
     }
-
-    // click on object 5 //
+    // click on obj 5 //
     if (eventData === "selectObj" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y > window.innerHeight/2) {
         document.getElementById("hover5").style.opacity = "1"
     }
-
-    // click on object 6 //
+    // click on obj 6 //
     if (eventData === "selectObj" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y > window.innerHeight/2) {
         document.getElementById("hover6").style.opacity = "1"
     }

@@ -436,11 +436,3 @@ h2 {
   text-align: center;
   z-index: 10;
 }
-
-.selectedNumber {
-  position: absolute;
-  font-size: 36px;
-  top: 70px;
-  left: 0;
-  right: 0;
-}
