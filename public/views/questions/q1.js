@@ -31,6 +31,8 @@ mobile_script = () => {
     document.querySelector(".circle1").style.display = "block"
     document.querySelector(".circle2").style.display = "block"
     document.querySelector(".gifValidation").style.display = "block"
+    document.querySelector(".firstMenu").style.display = "block"
+
 
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q1
@@ -114,9 +116,22 @@ desktop_script = () => {
     var segmentsFormeNet = 50;
     var ringsFormeNet = 30;
 
+    var keyLightN = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.9);
+    keyLightN.position.set(-100,0,100);
+
+    var fillLightN = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.1);
+    fillLightN.position.set(100, 0, -100).normalize();
+
+    var backLightN = new THREE.DirectionalLight(0xffffff, 1.0);
+    backLightN.position.set(100,0,-100).normalize();
+
+    sceneFormeNet.add(keyLightN);
+    sceneFormeNet.add(fillLightN);
+    sceneFormeNet.add(backLightN);
+
     var geometryFormeNet = new THREE.SphereGeometry(radiusFormeNet, segmentsFormeNet, ringsFormeNet);
 
-    var materialFormeNet = new THREE.MeshNormalMaterial();
+    var materialFormeNet = new THREE.MeshLambertMaterial();
 
     var cubeFormeNet = new THREE.Mesh(geometryFormeNet, materialFormeNet);
     sceneFormeNet.add(cubeFormeNet);
@@ -149,8 +164,21 @@ desktop_script = () => {
     formeAbstraite.appendChild(rendererFormeAbstraite.domElement);
     cameraFormeAbstraite.position.z = 5;
 
+    var keyLightA = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.9);
+     keyLightA.position.set(-100,0,100);
+ 
+     var fillLightA = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.1);
+     fillLightA.position.set(100, 0, -100).normalize();
+
+     var backLightA = new THREE.DirectionalLight(0xffffff, 1.0);
+     backLightA.position.set(100,0,-100).normalize();
+
+     sceneFormeAbstraite.add(keyLightA);
+     sceneFormeAbstraite.add(fillLightA);
+     sceneFormeAbstraite.add(backLightA);
+
     var sphere_geometry = new THREE.SphereGeometry(1, 150, 150);
-    var materialA = new THREE.MeshNormalMaterial();
+    var materialA = new THREE.MeshLambertMaterial();
 
     var sphere = new THREE.Mesh(sphere_geometry, materialA);
     sceneFormeAbstraite.add(sphere);

@@ -407,9 +407,10 @@ h2 {
 }
 
 /**************************  
-  **************************  QUESTION 5
+  **************************  QUESTION 4 ET Q5
   **************************/
 
+.circleQ4,
 .circleQ5 {
   width: 200px;
   height: 200px;
@@ -425,7 +426,8 @@ h2 {
   text-align: center;
 }
 
-#selected1 {
+#selected1,
+#selectedTexture {
   position: absolute;
   top: 205px;
   bottom: 0;
@@ -435,4 +437,13 @@ h2 {
   height: 20px;
   text-align: center;
   z-index: 10;
+}
+
+#selectedTexture svg {
+  margin-right: 20px;
+  margin-bottom: 15px;
+}
+
+#selectedTexture svg:nth-child(8){
+  margin-right: 0;
 }

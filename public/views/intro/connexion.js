@@ -87,7 +87,8 @@ desktop_html =
 <div class="home_text_center">
     <h1>Connectez votre smartphone</h1>
     <p>
-    Afin de commencer l'expérience, entrez ce lien sur votre smartphone : www.exemple.com ou utilisez le <span class="qrLink">QR code</span> pour y accéder directement.
+    Afin de commencer l'expérience, entrez ce lien sur votre smartphone : <br>
+    <span class="websiteLink">https://otium-project.herokuapp.com/mobile</span> ou utilisez le <span class="qrLink">QR code</span> pour y accéder directement.
     Une fois sur la page, insérez le code ci-dessous.
         <br><br>
         Code à insérer sur votre smartphone : <span id="id">####</span>

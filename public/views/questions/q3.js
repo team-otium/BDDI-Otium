@@ -105,9 +105,9 @@ desktop_socketOn1 = ["q3", (eventData) => {
     document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
 
 
-    window.move = Math.round(eventData.tiltFB)/1000;
-
-
+    if (eventData.tiltFB >= 0 && eventData.tiltFB <= 75) {
+        window.amp = Math.round(eventData.tiltFB) / 75;
+    }
 }]
 
 desktop_listener1 = ["selector", "type", () => {
@@ -120,8 +120,8 @@ desktop_listener2 = ["selector", "type", () => {
 
 desktop_script = () => {
 
-function line(){
-		
+    console.log(window.amp)    
+    
     function Wave(opt) {
     
         opt = opt || {};
@@ -136,11 +136,11 @@ function line(){
         this.width_4 = this.width / 2;
         
         this.height = this.ratio * (opt.height || window.innerHeight || 720);
-        this.height_2 = this.height / 4;
+        this.height_2 = this.height / 2;
         
         this.MAX = (this.height_2) - 4;
         
-        this.amplitude = opt.amplitude || 0.1;
+        this.amplitude = opt.amplitude || 0.5;
         this.speed = opt.speed || 0.01;
         this.frequency = opt.frequency || 2;			
         
@@ -239,27 +239,16 @@ function line(){
         this._draw();
     }
 
-    Wave.prototype.changeNoise = function(e){
+    // Wave.prototype.changeNoise = function(e){
 
-        // console.log( Math.abs(this.width/2 - e.offsetX) * 0.001);
+    //     if ( e.offsetY < this.width/2 - this.width * 0.1  && e.offsetY < this.width/2 + this.width * 0.1){
+    //         this.amplitude = Math.abs(this.height/2 - e.offsetY) * 0.0003 || 0;
+    //     }
+    // }
 
-        if ( e.offsetY < this.width/2 - this.width * 0.1  && e.offsetY < this.width/2 + this.width * 0.1){
-            this.amplitude = Math.abs(this.height/2 - e.offsetY) * 0.0003 || 0;
-            console.log(window.move)
-        }
-
-    }
-
-    var wave = new Wave({frequency: 4});
+    var wave = new Wave({frequency: 8});
     
-    
-
-
-    window.addEventListener('mousemove', function(e){ wave.changeNoise(e) }, false);
-    
-}
-
-line();
+    // window.addEventListener('mousemove', function(e){ wave.changeNoise(e) }, false);
 
     /**************** 
      *** TIMELINE ***

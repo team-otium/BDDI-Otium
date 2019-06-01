@@ -13,7 +13,7 @@ mobile_html =
         <h1 class="question_mobile">Choisissez les éléments qui vous apaisent</h1>
     </div>
 
-    <div class="circleQ5 circleQ5-1"></div>
+    <div class="circleQ4 circleQ4-1"></div>
     <div id="selected1">
         <svg height="20" width="20">
             <circle class="selected1" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
@@ -26,22 +26,22 @@ mobile_html =
 var canValide = false;
 var select = 0;
 // All listeners, one variable per listener
-mobile_listener1 = [".circleQ5-1", "click", () => {
+mobile_listener1 = [".circleQ4-1", "click", () => {
         socket.emit("q4-2", "selectObj")
         document.querySelector('.selected1').style.fill = "#000000"
-        document.querySelector('.circleQ5').classList.remove("circleQ5-1")
-        document.querySelector('.circleQ5').classList.add("circleQ5-2")
+        document.querySelector('.circleQ4').classList.remove("circleQ4-1")
+        document.querySelector('.circleQ4').classList.add("circleQ4-2")
         select = 1;
 
         if(select == 1){
-            document.querySelector('.circleQ5-2').onclick = function() {
+            document.querySelector('.circleQ4-2').onclick = function() {
                 document.querySelector('.selected2').style.fill = "#000000"
             
             // 2 obj are selected 
             canValide = true;
             if (canValide === true){
                 console.log("canvalide")
-                document.querySelector(".circleQ5").style.display = "none"
+                document.querySelector(".circleQ4").style.display = "none"
                 document.querySelector(".circle1").style.display = "block"
                 document.querySelector(".circle2").style.display = "block"
             }

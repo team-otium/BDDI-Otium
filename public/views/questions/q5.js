@@ -12,6 +12,56 @@ mobile_html =
     <div class="text_center_mobile">
         <h1 class="question_mobile">Choisissez un aspect</h1>
     </div>
+
+    <div class="circleQ5 circleQ5-1"></div>
+
+    <div id="selectedTexture">
+        <svg height="20" width="20">
+            <circle class="texture1" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture2" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture3" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture4" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture5" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture6" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture7" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture8" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture9" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture10" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture11" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture12" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture13" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture14" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="texture15" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+    </div>
  `
 
 // All listeners, one variable per listener
@@ -50,8 +100,6 @@ mobile_listener3 = ["#q2_target", "touchend", (e) => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    document.querySelector(".circle1").style.display = "block"
-    document.querySelector(".circle2").style.display = "block"
     
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q5
