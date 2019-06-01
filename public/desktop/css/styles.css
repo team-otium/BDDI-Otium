@@ -150,6 +150,10 @@ h1 {
     border-bottom : 1px solid #494949;
 }
 
+.websiteLink {
+    border-bottom : 1px solid #494949;
+}
+
 /**************************  
 **************************  QUESTION 1
 **************************/
@@ -191,7 +195,14 @@ h1 {
 **************************/
 
 #line {
-    position: absolute;
+    position: absolute; 
+    z-index: 100;
+    width: 100%;
+}
+
+#line canvas {
+    width: 100%;
+    height: 100vh;
 }
 
 .q7_canvas {
