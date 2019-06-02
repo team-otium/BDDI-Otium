@@ -56,9 +56,9 @@ mobile_script = () => {
             var tiltFB = eventData.beta;
             var dir = eventData.alpha;
 
-            if (ValidationBtn.touch === false) {
+           
                 socket.emit("q3", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
-            }
+            
         })
     } else {
         alert("Sorry, your browser doesn't support Device Orientation");
@@ -74,7 +74,7 @@ mobile_transition = ["out", "in"]
 
 desktop_html =
     `
- <table class="table table-striped table-bordered" style="position: absolute; z-index:50">
+ <!--<table class="table table-striped table-bordered" style="position: absolute; z-index:50">
  <tr>
      <td>Tilt Left/Right [gamma]</td>
      <td id="doTiltLR"></td>
@@ -87,26 +87,26 @@ desktop_html =
      <td>Direction [alpha]</td>
      <td id="doDirection"></td>
  </tr>
- </table>
+ </table>-->
  <div class="text_center">
     <h1 class="question_desktop">Modulez la ligne qui vous apaise</h1>
  </div>
 
- <div id="line" style="position: absolute; z-index: 100"></div>
+ <canvas id="canvas" style="position: absolute; z-index: 100; height: 100%"></canvas>
 
  <div class="tuto"><img src="/both/assets/img/tuto-q3.gif"></div>
  `
 
 desktop_socketOn1 = ["q3", (eventData) => {
 
-    document.getElementById("doTiltLR").innerHTML = Math.round(eventData.tiltLR);
-    document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
-    document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
+    // document.getElementById("doTiltLR").innerHTML = Math.round(eventData.tiltLR);
+    // document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
+    // document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
 
-
-    if (eventData.tiltFB >= 0 && eventData.tiltFB <= 75) {
-        window.amp = Math.round(eventData.tiltFB) / 75;
+    if (eventData.tiltFB >= 0 && eventData.tiltFB <= 90) {
+        window.amp = Math.round(eventData.tiltFB);
     }
+    //window.freq = Math.round(eventData.tiltLR)/100;
 }]
 
 desktop_listener1 = ["selector", "type", () => {
@@ -119,135 +119,41 @@ desktop_listener2 = ["selector", "type", () => {
 
 desktop_script = () => {
 
-    console.log(window.amp)    
     
-    function Wave(opt) {
+
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
     
-        opt = opt || {};
-            
-        this.phase = 0;
-        this.run = false;
-        
-        this.ratio = opt.ratio || window.devicePixelRatio || 1;
-        
-        this.width = this.ratio * ( opt.width || window.innerWidth || 1280);
-        this.width_2 = this.width / 2;
-        this.width_4 = this.width / 2;
-        
-        this.height = this.ratio * (opt.height || window.innerHeight || 720);
-        this.height_2 = this.height / 2;
-        
-        this.MAX = (this.height_2) - 4;
-        
-        this.amplitude = opt.amplitude || 0.5;
-        this.speed = opt.speed || 0.01;
-        this.frequency = opt.frequency || 2;			
-        
-        this.canvas = document.createElement('canvas');
-        this.canvas.width = this.width;
-        this.canvas.height = this.height;
-
-        this.container = document.getElementById("line")
-        this.container.appendChild(this.canvas);
-        this.ctx = this.canvas.getContext('2d');
-
-        this.start();
-
+    var w = ctx.canvas.width;
+    var h = ctx.canvas.height;
+    
+    var MAX_LINES = 6;
+    window.amp = 0;
+    var freq = 0.025;
+    var rate = 0;
+    
+    var ctr = 0;
+    function draw() {
+      w = ctx.canvas.width = window.innerWidth;
+      h = ctx.canvas.height = 400;
+      ctx.moveTo(0, h/2); //start at left center
+      ctr++;
+      for (var i = 1; i < MAX_LINES; i++) {
+        ctr++;
+        rate = ctr/2250;
+        ctx.beginPath();
+        for (var x = 0; x < w; x++) {
+          y = Math.sin(x * freq * (i/3) + rate) * window.amp / i;
+          ctx.lineTo(x, y + h/2);
+        }//for
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 0.75;
+        ctx.stroke();
+      }//for
+      
     }
     
-    Wave.prototype._GATF_cache = {};
-
-    Wave.prototype._globAttFunc = function(x) {
-        if (Wave.prototype._GATF_cache[x] == null) {
-            Wave.prototype._GATF_cache[x] =	Math.pow(4/(4+Math.pow(x,4)), 4);
-        }
-        return Wave.prototype._GATF_cache[x];
-    }
-
-    Wave.prototype._color = function(opacity){
-        opacity = opacity || 1;
-
-        var gradient = this.ctx.createLinearGradient(0,0, this.width, 0);
-             gradient.addColorStop(0, 'rgba(255,255,255,' + opacity + ')');
-            gradient.addColorStop(1, 'rgba(255,255,255,' + opacity + ')');
-
-        return gradient;
-    }
-
-    Wave.prototype._xpos = function(i){
-        return this.width_2 + i * this.width_4;
-    }
-
-    Wave.prototype._ypos = function(i, attenuation) {
-        var att = (this.MAX * this.amplitude) / attenuation;
-        return this.height_2 + this._globAttFunc(i) * att * Math.sin(this.frequency * i - this.phase);
-    }
-
-    Wave.prototype._drawLine = function(attenuation, color, thickness){
-
-        this.ctx.moveTo(0,0);
-        this.ctx.beginPath();
-        this.ctx.strokeStyle = color;
-        this.ctx.lineWidth = thickness || 1;
-
-        var i = -2;
-        while ((i += 0.01) <= 2 ) {
-            var y = this._ypos(i, attenuation);
-            if ( Math.abs(i) >= 1.90) y = this.height_2;
-            
-            this.ctx.lineTo(this._xpos(i), y);
-
-        }
-
-        this.ctx.stroke();
-
-    }
-
-    Wave.prototype._clear = function(){
-        
-        this.ctx.globalCompositeOperation = 'destination-out';
-        this.ctx.fillRect(0,0, this.width, this.height);
-        this.ctx.globalCompositeOperation = 'source-over';
-    }
-
-    Wave.prototype._draw = function() {
-        if ( this.run === false ) return;
-
-        this.phase = (this.phase + Math.PI * this.speed) % (2*Math.PI);
-
-        this._clear();
-
-        this._drawLine(-2, this._color(0.4));
-        this._drawLine(-6, this._color(1));
-        this._drawLine(0.4, this._color(0.3));
-        this._drawLine(2, this._color(0.2));
-        this._drawLine(0.8, this._color(), 1.5);
-
-        if ( window.requestAnimationFrame ){
-            requestAnimationFrame(this._draw.bind(this));
-            return;
-        }
-
-        setTimeout(this._draw.bind( this ), 20);
-
-    }
-
-    Wave.prototype.start = function(){
-        this.phase = 0;
-        this.run = true;
-        this._draw();
-    }
-
-    // Wave.prototype.changeNoise = function(e){
-
-    //     if ( e.offsetY < this.width/2 - this.width * 0.1  && e.offsetY < this.width/2 + this.width * 0.1){
-    //         this.amplitude = Math.abs(this.height/2 - e.offsetY) * 0.0003 || 0;
-    //     }
-    // }
-
-    var wave = new Wave({frequency: 8});
-    
-    // window.addEventListener('mousemove', function(e){ wave.changeNoise(e) }, false);
+    setInterval(draw, 1);
 
     /**************** 
      *** TIMELINE ***

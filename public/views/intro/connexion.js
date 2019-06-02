@@ -57,6 +57,9 @@ let mobile_socketOn1 = ["mobileConnected", () => {
 // Script to be executed when the page is displayed
 mobile_script = () => {
     document.querySelector(".firstMenu").style.display = "block"
+    document.querySelector(".firstMenu2").style.display = "none"
+    document.querySelector(".firstMenu3").style.display = "none"
+    document.querySelector(".firstMenu4").style.display = "none"
     document.querySelector(".circle1").style.display = "none"
     document.querySelector(".circle2").style.display = "none"
 

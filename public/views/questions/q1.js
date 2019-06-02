@@ -32,6 +32,7 @@ mobile_script = () => {
     document.querySelector(".circle2").style.display = "block"
     document.querySelector(".gifValidation").style.display = "block"
     document.querySelector(".firstMenu").style.display = "block"
+    document.querySelector(".firstMenu4").style.display = "block"
 
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q1
