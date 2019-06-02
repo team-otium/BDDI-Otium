@@ -59,7 +59,7 @@ desktop_html =
     `
     <div id="ball"></div>
 
-    <div id="all_object">
+    <div class="all_object">
         <div id="finalObject1" class="FinalObject"><div id="border1"></div></div>
         <div id="finalObject2" class="FinalObject"><div id="border2"></div></div>
         <div id="finalObject3" class="FinalObject"><div id="border3"></div></div>
@@ -174,9 +174,9 @@ desktop_script = () => {
     rendererFinalObj1.setSize(window.innerWidth / 3, window.innerHeight);
     containerFinalObj1.appendChild(rendererFinalObj1.domElement);
 
-    cameraFinalObj1.position.z = 400;
+    cameraFinalObj1.position.z = 10;
     cameraFinalObj1.position.x = 0;
-    cameraFinalObj1.position.y = 0;
+    cameraFinalObj1.position.y = -0.5;
 
     var keyLightFinalObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.9);
     keyLightFinalObj1.position.set(-100,0,100);
@@ -184,27 +184,21 @@ desktop_script = () => {
     var fillLightFinalObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.1);
     fillLightFinalObj1.position.set(100, 0, -100).normalize();
 
-    var backLightFinalObj1 = new THREE.DirectionalLight(0xffffff, 1.0);
+    var backLightFinalObj1 = new THREE.DirectionalLight(0xffffff, 0.3);
     backLightFinalObj1.position.set(100,0,-100).normalize();
 
     sceneFinalObj1.add(keyLightFinalObj1);
     sceneFinalObj1.add(fillLightFinalObj1);
     sceneFinalObj1.add(backLightFinalObj1);
 
-    var mtlLoaderFinalObj1 = new THREE.MTLLoader();
-    mtlLoaderFinalObj1.load('/both/assets/img/q4/bulles_eau_2.mtl', function(materials) {
-        materials.preload();
-
         var objLoaderFinalObj1 = new THREE.OBJLoader();
-        objLoaderFinalObj1.setMaterials(materials);
-        objLoaderFinalObj1.load('/both/assets/img/q4/bulles_eau_2.obj', function(finalObject1){
-            finalObject1.position.y = -10;
-            finalObject1.position.x = 20;
+        objLoaderFinalObj1.load('/both/assets/img/q7/organiques/tore_2.obj', function(finalObject1){
+            finalObject1.position.y = 0;
+            finalObject1.position.x = 0;
             finalObject1.position.z = 0;
 
             sceneFinalObj1.add(finalObject1);
         })
-    })
 
     var animateFinalObj1 = function () {
         requestAnimationFrame(animateFinalObj1);
@@ -230,9 +224,9 @@ desktop_script = () => {
    rendererFinalObj2.setSize(window.innerWidth / 3, window.innerHeight);
    containerFinalObj2.appendChild(rendererFinalObj2.domElement);
 
-   cameraFinalObj2.position.z = 500;
+   cameraFinalObj2.position.z = 20;
    cameraFinalObj2.position.x = 0;
-   cameraFinalObj2.position.y = 0;
+   cameraFinalObj2.position.y = -1;
 
    var keyLightFinalObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
    keyLightFinalObj2.position.set(-100,0,100);
@@ -240,27 +234,21 @@ desktop_script = () => {
    var fillLightFinalObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
    fillLightFinalObj2.position.set(100, 0, -100).normalize();
 
-   var backLightFinalObj2 = new THREE.DirectionalLight(0xffffff, 1.0);
+   var backLightFinalObj2 = new THREE.DirectionalLight(0xffffff, 0.3);
    backLightFinalObj2.position.set(100,0,-100).normalize();
 
    sceneFinalObj2.add(keyLightFinalObj2);
    sceneFinalObj2.add(fillLightFinalObj2);
    sceneFinalObj2.add(backLightFinalObj2);
 
-   var mtlLoaderFinalObj2 = new THREE.MTLLoader();
-   mtlLoaderFinalObj2.load('/both/assets/img/q4/feuilles.mtl', function(materials) {
-       materials.preload();
-
        var objLoaderFinalObj2 = new THREE.OBJLoader();
-       objLoaderFinalObj2.setMaterials(materials);
-       objLoaderFinalObj2.load('/both/assets/img/q4/feuilles.obj', function(finalObject2){
-           finalObject2.position.y = -180;
-           finalObject2.position.x = -50;
-           finalObject2.position.z = 20;
+       objLoaderFinalObj2.load('/both/assets/img/q7/organiques/sphere_1.obj', function(finalObject2){
+           finalObject2.position.y = 0;
+           finalObject2.position.x = 0;
+           finalObject2.position.z = 0;
 
            sceneFinalObj2.add(finalObject2);
        })
-   })
 
    var animateFinalObj2 = function () {
        requestAnimationFrame(animateFinalObj2);
@@ -287,9 +275,9 @@ desktop_script = () => {
    rendererFinalObj3.setSize(window.innerWidth / 3, window.innerHeight);
    containerFinalObj3.appendChild(rendererFinalObj3.domElement);
 
-   cameraFinalObj3.position.z = 400;
+   cameraFinalObj3.position.z = 20;
    cameraFinalObj3.position.x = 0;
-   cameraFinalObj3.position.y = 0;
+   cameraFinalObj3.position.y = -1;
 
    var keyLightFinalObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
    keyLightFinalObj3.position.set(-100,0,100);
@@ -297,7 +285,7 @@ desktop_script = () => {
    var fillLightFinalObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
    fillLightFinalObj3.position.set(100, 0, -100).normalize();
 
-   var backLightFinalObj3 = new THREE.DirectionalLight(0x132ef9, 1.0);
+   var backLightFinalObj3 = new THREE.DirectionalLight(0xffffff, 0.3);
    backLightFinalObj3.position.set(100,0,-100).normalize();
 
    sceneFinalObj3.add(keyLightFinalObj3);
@@ -310,7 +298,7 @@ desktop_script = () => {
 
        var objLoaderFinalObj3 = new THREE.OBJLoader();
        objLoaderFinalObj3.setMaterials(materials);
-       objLoaderFinalObj3.load('/both/assets/img/q4/goutte.obj', function(finalObject3){
+       objLoaderFinalObj3.load('/both/assets/img/q7/organiques/isocaedre_2.obj', function(finalObject3){
            finalObject3.position.y = 0;
            finalObject3.position.x = 0;
            finalObject3.position.z = 0;
