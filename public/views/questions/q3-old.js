@@ -56,10 +56,9 @@ mobile_script = () => {
             var tiltFB = eventData.beta;
             var dir = eventData.alpha;
 
-            if (ValidationBtn.touch === true) {
-            } else {
+           
                 socket.emit("q3", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
-            }
+            
         })
     } else {
         alert("Sorry, your browser doesn't support Device Orientation");
@@ -93,7 +92,7 @@ desktop_html =
     <h1 class="question_desktop">Modulez la ligne qui vous apaise</h1>
  </div>
 
- <div id="line"></div>
+ <canvas id="canvas" style="position: absolute; z-index: 100"></canvas>
 
  <div class="tuto"><img src="/both/assets/img/tuto-q3.gif"></div>
  `
@@ -104,10 +103,8 @@ desktop_socketOn1 = ["q3", (eventData) => {
     document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
     document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
 
-    if (eventData.tiltFB >= 0 && eventData.tiltFB <= 75) {
-        window.move = Math.round(eventData.tiltFB) / 75;
-    }
-
+    window.amp = Math.round(eventData.tiltFB);
+    
 }]
 
 desktop_listener1 = ["selector", "type", () => {
@@ -120,71 +117,43 @@ desktop_listener2 = ["selector", "type", () => {
 
 desktop_script = () => {
 
-    var container = document.getElementById('line')
+    window.amp;
 
-    var vertexHeight = 17000,
-        planeDefinition = 190,
-        planeSize = 700000,
-        background = "#bed2fe",
-        meshColor = "#ffffff";
+    console.log( window.amp)
 
-    var camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 400000)
-    camera.position.z = 15000;
-    camera.position.y = 10000;
-
-    var scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(background, 1, 50000);
-
-    var planeGeo = new THREE.PlaneGeometry(planeSize, planeSize, planeDefinition, planeDefinition);
-    var plane = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({
-        color: meshColor,
-    }));
-    plane.rotation.x -= Math.PI * .45;
-
-    scene.add(plane);
-
-    var renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(background, 1);
-
-    container.appendChild(renderer.domElement);
-
-
-    updatePlane();
-
-    function updatePlane() {
-        for (var i = 0; i < planeGeo.vertices.length; i++) {
-            planeGeo.vertices[i].z += Math.random() * vertexHeight - vertexHeight;
-            planeGeo.vertices[i]._myZ = planeGeo.vertices[i].z
-        }
-    };
-
-    render();
-
-    var count = 0
-    function render() {
-        requestAnimationFrame(render);
-
-        for (var i = 0; i < planeGeo.vertices.length; i++) {
-            var z = +planeGeo.vertices[i].z;
-            planeGeo.vertices[i].z = Math.sin((i + count * 0.00003)) * (planeGeo.vertices[i]._myZ - (planeGeo.vertices[i]._myZ * window.move))
-            plane.geometry.verticesNeedUpdate = true;
-
-            count += 0.02
-        }
-
-        renderer.render(scene, camera);
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    
+    var w = ctx.canvas.width;
+    var h = ctx.canvas.height;
+    
+    var MAX_LINES = 6;
+    var amplitude = 35;
+    var freq = 0.025;
+    var rate = 0;
+    
+    var ctr = 0;
+    function draw() {
+      w = ctx.canvas.width = window.innerWidth;
+      h = ctx.canvas.height = 400;
+      ctx.moveTo(0, h/2); //start at left center
+      ctr++;
+      for (var i = 1; i < MAX_LINES; i++) {
+        ctr++;
+        rate = ctr/2250;
+        ctx.beginPath();
+        for (var x = 0; x < w; x++) {
+          y = Math.sin(x * freq * (i/3) + rate) * amplitude / i;
+          ctx.lineTo(x, y + h/2);
+        }//for
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 0.75;
+        ctx.stroke();
+      }//for
+      
     }
-
-
-    window.addEventListener('resize', onWindowResize, false);
-
-    function onWindowResize() {
-        //changes the size of the canavs and updates it
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    }
+    
+    setInterval(draw, 1);
 
     /**************** 
      *** TIMELINE ***

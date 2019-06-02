@@ -38,7 +38,7 @@ let mobile_script = () => {
     document.querySelector(".circle2").style.display = "none"
     setTimeout(() => {
         intro.animationLogo.transitionTo("mobile", intro.intro)
-    }, 4000)
+    }, 2000)
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
