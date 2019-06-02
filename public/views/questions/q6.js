@@ -46,8 +46,7 @@ mobile_script = () => {
         var tiltFB = eventData.beta;
         var dir = eventData.alpha;
 
-        if (ValidationBtn.touch === true) {
-        } else {
+        if (ValidationBtn.touch === false) {
             socket.emit("q6", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }

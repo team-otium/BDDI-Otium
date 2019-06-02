@@ -42,7 +42,7 @@ mobile_script = () => {
     }
 
     function deviceOrientationHandler(eventData) {
-        if (ValidationBtn.touch === true) {} else {
+        if (ValidationBtn.touch === false) {
             socket.emit("q7", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }
