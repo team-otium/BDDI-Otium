@@ -27,26 +27,26 @@ var canValide = false;
 var select = 0;
 // All listeners, one variable per listener
 mobile_listener1 = [".circleQ4-1", "click", () => {
-        socket.emit("q4-2", "selectObj")
-        document.querySelector('.selected1').style.fill = "#000000"
-        document.querySelector('.circleQ4').classList.remove("circleQ4-1")
-        document.querySelector('.circleQ4').classList.add("circleQ4-2")
-        select = 1;
+    socket.emit("q4-2", "selectObj")
+    document.querySelector('.selected1').style.fill = "#000000"
+    document.querySelector('.circleQ4').classList.remove("circleQ4-1")
+    document.querySelector('.circleQ4').classList.add("circleQ4-2")
+    select = 1;
 
-        if(select == 1){
-            document.querySelector('.circleQ4-2').onclick = function() {
-                document.querySelector('.selected2').style.fill = "#000000"
-            
+    if (select == 1) {
+        document.querySelector('.circleQ4-2').onclick = function () {
+            document.querySelector('.selected2').style.fill = "#000000"
+
             // 2 obj are selected 
             canValide = true;
-            if (canValide === true){
+            if (canValide === true) {
                 console.log("canvalide")
                 document.querySelector(".circleQ4").style.display = "none"
                 document.querySelector(".circle1").style.display = "block"
                 document.querySelector(".circle2").style.display = "block"
             }
-          };
-        }
+        };
+    }
 }]
 
 /** And more... */
@@ -55,7 +55,7 @@ mobile_listener1 = [".circleQ4-1", "click", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    
+
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q4
     ValidationBtn.nextPage = questions.q5
@@ -66,7 +66,7 @@ mobile_script = () => {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
     }
     function deviceOrientationHandler(eventData) {
-        if (ValidationBtn.touch === true) {} else {
+        if (ValidationBtn.touch === false) {
             socket.emit("q4", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }
@@ -97,11 +97,17 @@ desktop_html =
             <div class="blocHover"><div id="hover6"></div></div>
         </div>
 
-        <div id="object1" class="object"></div>
-        <div id="object2" class="object"></div>
-        <div id="object3" class="object"></div>
-        <div id="object4" class="object"></div>
-        <div id="object5" class="object"></div>
+        <div id="objTop">
+            <div id="object1" class="object"></div>
+            <div id="object2" class="object"></div>
+            <div id="object3" class="object"></div>
+        </div>
+
+        <div id="objBottom">
+            <div id="object4" class="object"></div>
+            <div id="object5" class="object"></div>
+            <div id="object6" class="object"></div>
+        </div>
 
     </div>
 
@@ -118,6 +124,7 @@ desktop_socketOn1 = ["q4", (eventData) => {
     ball.velocity.x = Math.round(eventData.tiltLR + 10) / 2;
 
 }]
+
 
 /***
  * WHEN CLICK ON MOBILE TO SELECT OBJ
@@ -136,15 +143,15 @@ desktop_socketOn2 = ["q4-2", (eventData) => {
         document.getElementById("hover3").style.opacity = "1"
     }
     // click on obj 4 //
-    if (eventData === "selectObj" && ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight/2) {
+    if (eventData === "selectObj" && ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight / 2) {
         document.getElementById("hover4").style.opacity = "1"
     }
     // click on obj 5 //
-    if (eventData === "selectObj" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y > window.innerHeight/2) {
+    if (eventData === "selectObj" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y > window.innerHeight / 2) {
         document.getElementById("hover5").style.opacity = "1"
     }
     // click on obj 6 //
-    if (eventData === "selectObj" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y > window.innerHeight/2) {
+    if (eventData === "selectObj" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y > window.innerHeight / 2) {
         document.getElementById("hover6").style.opacity = "1"
     }
 }]
@@ -192,61 +199,71 @@ desktop_script = () => {
 
     start()
 
+
+
+
     /******************* 
      ****** OBJET 1 ****
      ********************/
 
-     var sceneObj1 = new THREE.Scene();
-     var cameraObj1 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
-     var containerObj1 = document.getElementById('object1');
+    var sceneObj1 = new THREE.Scene();
+    var cameraObj1 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+    var containerObj1 = document.getElementById('object1');
 
-     var rendererObj1 = new THREE.WebGLRenderer({
+    var rendererObj1 = new THREE.WebGLRenderer({
         alpha: true
     });
 
-     rendererObj1.setSize(window.innerWidth / 3, window.innerHeight / 2);
-     containerObj1.appendChild(rendererObj1.domElement);
+    rendererObj1.setSize(window.innerWidth / 3, window.innerHeight / 2);
+    containerObj1.appendChild(rendererObj1.domElement);
 
-     cameraObj1.position.z = 400;
-     cameraObj1.position.x = 0;
-     cameraObj1.position.y = 0;
+    cameraObj1.position.z = 400;
+    cameraObj1.position.x = 0;
+    cameraObj1.position.y = 0;
 
-     var keyLightObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.9);
-     keyLightObj1.position.set(-100,0,100);
- 
-     var fillLightObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.1);
-     fillLightObj1.position.set(100, 0, -100).normalize();
+    var keyLightObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.9);
+    keyLightObj1.position.set(-100, 0, 100);
 
-     var backLightObj1 = new THREE.DirectionalLight(0xffffff, 1.0);
-     backLightObj1.position.set(100,0,-100).normalize();
+    var fillLightObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.1);
+    fillLightObj1.position.set(100, 0, -100).normalize();
 
-     sceneObj1.add(keyLightObj1);
-     sceneObj1.add(fillLightObj1);
-     sceneObj1.add(backLightObj1);
+    var backLightObj1 = new THREE.DirectionalLight(0xffffff, 1.0);
+    backLightObj1.position.set(100, 0, -100).normalize();
 
-     var mtlLoaderObj1 = new THREE.MTLLoader();
-     mtlLoaderObj1.load('/both/assets/img/q4/bulles_eau_2.mtl', function(materials) {
-         materials.preload();
+    sceneObj1.add(keyLightObj1);
+    sceneObj1.add(fillLightObj1);
+    sceneObj1.add(backLightObj1);
 
-         var objLoaderObj1 = new THREE.OBJLoader();
-         objLoaderObj1.setMaterials(materials);
-         objLoaderObj1.load('/both/assets/img/q4/bulles_eau_2.obj', function(object1){
-             object1.position.y = -10;
-             object1.position.x = 20;
-             object1.position.z = 0;
+    var mtlLoaderObj1 = new THREE.MTLLoader();
+    mtlLoaderObj1.load('/both/assets/img/q4/bulles_eau_2.mtl', function (materials) {
+        materials.preload();
 
-             sceneObj1.add(object1);
-         })
-     })
+        var objLoaderObj1 = new THREE.OBJLoader();
+        objLoaderObj1.setMaterials(materials);
+        objLoaderObj1.load('/both/assets/img/q4/bulles_eau_2.obj', function (object1) {
+            object1.position.y = -10;
+            object1.position.x = 20;
+            object1.position.z = 0;
 
-     var animateObj1 = function () {
-         requestAnimationFrame(animateObj1);
+            sceneObj1.add(object1);
 
-         sceneObj1.rotation.y += 0.01;
-         rendererObj1.render(sceneObj1, cameraObj1);
-     };
+            var animateObj1 = function () {
+                requestAnimationFrame(animateObj1);
 
-     animateObj1();
+                if (window.getComputedStyle(document.getElementById("hover1")).getPropertyValue('opacity') == 1) {
+                    sceneObj1.rotation.y += 0.01;
+                } else {
+                    object1.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object1.position.y;
+                }
+                rendererObj1.render(sceneObj1, cameraObj1);
+            };
+            animateObj1();
+        })
+    })
+
+
+
+
 
     /******************* 
      ****** OBJET 2 ****
@@ -254,12 +271,12 @@ desktop_script = () => {
 
     var sceneObj2 = new THREE.Scene();
     var cameraObj2 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
-        containerObj2 = document.getElementById('object2');
+    containerObj2 = document.getElementById('object2');
 
     var rendererObj2 = new THREE.WebGLRenderer({
-       alpha: true
-   });
-   
+        alpha: true
+    });
+
     rendererObj2.setSize(window.innerWidth / 3, window.innerHeight / 2);
     containerObj2.appendChild(rendererObj2.domElement);
 
@@ -268,42 +285,45 @@ desktop_script = () => {
     cameraObj2.position.y = 0;
 
     var keyLightObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-    keyLightObj2.position.set(-100,0,100);
+    keyLightObj2.position.set(-100, 0, 100);
 
     var fillLightObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
     fillLightObj2.position.set(100, 0, -100).normalize();
 
     var backLightObj2 = new THREE.DirectionalLight(0xffffff, 1.0);
-    backLightObj2.position.set(100,0,-100).normalize();
+    backLightObj2.position.set(100, 0, -100).normalize();
 
     sceneObj2.add(keyLightObj2);
     sceneObj2.add(fillLightObj2);
     sceneObj2.add(backLightObj2);
 
     var mtlLoaderObj2 = new THREE.MTLLoader();
-    mtlLoaderObj2.load('/both/assets/img/q4/feuilles.mtl', function(materials) {
+    mtlLoaderObj2.load('/both/assets/img/q4/feuilles.mtl', function (materials) {
         materials.preload();
 
         var objLoaderObj2 = new THREE.OBJLoader();
         objLoaderObj2.setMaterials(materials);
-        objLoaderObj2.load('/both/assets/img/q4/feuilles.obj', function(object2){
+        objLoaderObj2.load('/both/assets/img/q4/feuilles.obj', function (object2) {
             object2.position.y = -180;
             object2.position.x = -50;
             object2.position.z = 20;
 
             sceneObj2.add(object2);
+
+            var animateObj2 = function () {
+                requestAnimationFrame(animateObj2);
+
+
+                if (window.getComputedStyle(document.getElementById("hover2")).getPropertyValue('opacity') == 1) {
+                    sceneObj2.rotation.y += 0.01;
+                } else {
+                    object2.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object2.position.y;
+                }
+                rendererObj2.render(sceneObj2, cameraObj2);
+            };
+            animateObj2();
         })
     })
-
-    var animateObj2 = function () {
-        requestAnimationFrame(animateObj2);
-
-        sceneObj2.rotation.y += 0.01;
-
-        rendererObj2.render(sceneObj2, cameraObj2);
-    };
-
-    animateObj2();
 
     /******************** 
      ****** OBJET 3 *****
@@ -311,12 +331,12 @@ desktop_script = () => {
 
     var sceneObj3 = new THREE.Scene();
     var cameraObj3 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
-        containerObj3 = document.getElementById('object3');
+    containerObj3 = document.getElementById('object5');
 
     var rendererObj3 = new THREE.WebGLRenderer({
-       alpha: true
-   });
-   
+        alpha: true
+    });
+
     rendererObj3.setSize(window.innerWidth / 3, window.innerHeight / 2);
     containerObj3.appendChild(rendererObj3.domElement);
 
@@ -325,46 +345,47 @@ desktop_script = () => {
     cameraObj3.position.y = 0;
 
     var keyLightObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-    keyLightObj3.position.set(-100,0,100);
+    keyLightObj3.position.set(-100, 0, 100);
 
     var fillLightObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
     fillLightObj3.position.set(100, 0, -100).normalize();
 
     var backLightObj3 = new THREE.DirectionalLight(0x132ef9, 1.0);
-    backLightObj3.position.set(100,0,-100).normalize();
+    backLightObj3.position.set(100, 0, -100).normalize();
 
     sceneObj3.add(keyLightObj3);
     sceneObj3.add(fillLightObj3);
     sceneObj3.add(backLightObj3);
 
     var mtlLoaderObj3 = new THREE.MTLLoader();
-    mtlLoaderObj3.load('/both/assets/img/q4/goutte.mtl', function(materials) {
+    mtlLoaderObj3.load('/both/assets/img/q4/goutte.mtl', function (materials) {
         materials.preload();
 
         var objLoaderObj3 = new THREE.OBJLoader();
         objLoaderObj3.setMaterials(materials);
-        objLoaderObj3.load('/both/assets/img/q4/goutte.obj', function(object3){
+        objLoaderObj3.load('/both/assets/img/q4/goutte.obj', function (object3) {
             object3.position.y = 0;
             object3.position.x = 0;
             object3.position.z = 0;
 
             sceneObj3.add(object3);
+
+            var animateObj3 = function () {
+                requestAnimationFrame(animateObj3);
+
+                if (window.getComputedStyle(document.getElementById("hover5")).getPropertyValue('opacity') == 1) {
+                    sceneObj3.rotation.y += 0.01;
+                } else {
+                    object3.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object3.position.y;
+                }
+
+                rendererObj3.render(sceneObj3, cameraObj3);
+            };
+
+            animateObj3();
         })
     })
 
-    var animateObj3 = function () {
-        requestAnimationFrame(animateObj3);
-
-        sceneObj3.rotation.y += 0.01;
-
-        rendererObj3.render(sceneObj3, cameraObj3);
-    };
-
-    animateObj3();
-
-    /******************** 
-     ****** OBJET 4 *****
-     ********************/
 
     /******************** 
      ****** OBJET 4 *****
@@ -372,19 +393,19 @@ desktop_script = () => {
 
     var sceneObj4 = new THREE.Scene();
     var cameraObj4 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
-        containerObj4 = document.getElementById('object4');
+    containerObj4 = document.getElementById('object3');
 
 
     var rendererObj4 = new THREE.WebGLRenderer({
-       alpha: true
-   });
+        alpha: true
+    });
 
 
 
-    var geometryCloud = new THREE.PlaneGeometry( 180, 130, 2 );
-    var geometryCloud3 = new THREE.PlaneGeometry( 190, 120, 2 );
-    var textureCloud = new THREE.TextureLoader().load( '/both/assets/img/q4/nuage2.png' );
-    textureCloud.repeat.set( 1, 1 );
+    var geometryCloud = new THREE.PlaneGeometry(180, 130, 2);
+    var geometryCloud3 = new THREE.PlaneGeometry(190, 120, 2);
+    var textureCloud = new THREE.TextureLoader().load('/both/assets/img/q4/nuage2.png');
+    textureCloud.repeat.set(1, 1);
     var materialCloud = new THREE.MeshBasicMaterial({
         color: 0xffffff,
         opacity: 0.99,
@@ -392,9 +413,9 @@ desktop_script = () => {
         transparent: true,
         side: THREE.DoubleSide
     });
-    var plane = new THREE.Mesh( geometryCloud, materialCloud );
-    var plane2 = new THREE.Mesh( geometryCloud, materialCloud );
-    var plane3 = new THREE.Mesh( geometryCloud3, materialCloud );
+    var plane = new THREE.Mesh(geometryCloud, materialCloud);
+    var plane2 = new THREE.Mesh(geometryCloud, materialCloud);
+    var plane3 = new THREE.Mesh(geometryCloud3, materialCloud);
 
     plane.position.y = -53;
     plane.position.x = -100;
@@ -412,7 +433,7 @@ desktop_script = () => {
     plane3.rotation.y = -40;
     plane3.rotation.x = 0.17;
 
-    
+
     sceneObj4.add(plane, plane2, plane3);
 
 
@@ -424,25 +445,25 @@ desktop_script = () => {
     cameraObj4.position.y = 0;
 
     var keyLightObj4 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-    keyLightObj4.position.set(-100,0,100);
+    keyLightObj4.position.set(-100, 0, 100);
 
     var fillLightObj4 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
     fillLightObj4.position.set(100, 0, -100).normalize();
 
     var backLightObj4 = new THREE.DirectionalLight(0xffffff, 1.0);
-    backLightObj4.position.set(100,0,-100).normalize();
+    backLightObj4.position.set(100, 0, -100).normalize();
 
     sceneObj4.add(keyLightObj4);
     sceneObj4.add(fillLightObj4);
     sceneObj4.add(backLightObj4);
 
     var mtlLoaderObj4 = new THREE.MTLLoader();
-    mtlLoaderObj4.load('/both/assets/img/q4/montagnes_seules.mtl', function(materials) {
+    mtlLoaderObj4.load('/both/assets/img/q4/montagnes_seules.mtl', function (materials) {
         materials.preload();
 
         var objLoaderObj4 = new THREE.OBJLoader();
         objLoaderObj4.setMaterials(materials);
-        objLoaderObj4.load('/both/assets/img/q4/montagnes_s300.obj', function(object4){
+        objLoaderObj4.load('/both/assets/img/q4/montagnes_s300.obj', function (object4) {
             object4.position.y = -20;
             object4.position.x = 150;
             object4.position.z = -100;
@@ -451,19 +472,111 @@ desktop_script = () => {
             object4.rotation.x = 0.1;
 
             sceneObj4.add(object4);
+
+            var animateObj4 = function () {
+                requestAnimationFrame(animateObj4);
+
+                if (window.getComputedStyle(document.getElementById("hover3")).getPropertyValue('opacity') == 1) {
+                    //sceneObj4.rotation.y += 0.001;
+                } else {
+                    cameraObj4.position.y = (Math.cos((Date.now()) * 0.001) * 0.1) + cameraObj4.position.y;
+                }
+
+                rendererObj4.render(sceneObj4, cameraObj4);
+            };
+
+            animateObj4();
         })
     })
 
-    var animateObj4 = function () {
-        requestAnimationFrame(animateObj4);
+    /******************** 
+     ****** OBJET 5 *****
+     ********************/
 
+// 
+var sceneObj5 = new THREE.Scene();
+sceneObj5.fog = new THREE.FogExp2(0xd15b47, 0.007);
 
-        //sceneObj4.rotation.y += 0.001;
+// 
+var cameraObj5 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+var containerObj5 = document.getElementById('object4');
+cameraObj5.position.set(0,0,200);
 
-        rendererObj4.render(sceneObj4, cameraObj4);
-    };
+// 
+var rendererObj5 = new THREE.WebGLRenderer({
+    alpha: true
+});
 
-    animateObj4();
+rendererObj5.setSize(window.innerWidth / 3, window.innerHeight / 2);
+containerObj5.appendChild(rendererObj5.domElement);
+
+var particleCount = 10000;
+var particles = new THREE.Geometry();
+var materialObj5 = new THREE.PointCloudMaterial({
+  color: 0xc23d25,
+  size: 1,
+  transparent: true,
+  blending: THREE.AdditiveBlending,
+  depthTest: false
+});
+
+for( var i = 0; i < particleCount; i++ ){
+  //
+  var pX = Math.random() * 100-50;
+  var pY = Math.random() * 100-50;
+  var pZ = Math.random() * 100-50;
+  particle = new THREE.Vector3(pX, pY, pZ);
+  particle.velocity = new THREE.Vector3(0, Math.random(), 0);
+  particles.vertices.push(particle);
+}
+
+// 
+var pointCloud = new THREE.PointCloud(particles, materialObj5);
+// pointCloud.position.y = 3;
+pointCloud.sortParticles = true;
+
+// 
+sceneObj5.add(pointCloud);
+
+// 
+function updateObj5() {
+  // 
+//   pointCloud.rotation.x += 0.001;
+//   pointCloud.rotation.y += 0.001;
+//   pointCloud.rotation.z += 0.0005;
+
+if (window.getComputedStyle(document.getElementById("hover4")).getPropertyValue('opacity') == 1) {
+    pointCloud.rotation.y += 0.01;
+} else {
+    pointCloud.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + pointCloud.position.y;
+}
+
+  for (var i = 0; i < particleCount; i++) {
+    // 
+    var particle = particles.vertices[i];
+
+    if ( particle.y > 50 ) {
+      particle.y = -50;
+    }
+    if ( particle.z > 50 ) {
+      particle.z = -50;
+    }
+
+    particle.y += particle.velocity.y*0.5;
+    particle.z += particle.velocity.z*0.5;
+  }
+
+  //
+  pointCloud.geometry.verticesNeedUpdate = true;
+
+  // 
+  cameraObj5.lookAt(sceneObj5.position);
+  rendererObj5.render(sceneObj5,cameraObj5);
+
+  // 
+  requestAnimationFrame(updateObj5);
+}
+updateObj5();
 
 
     /**************** 

@@ -33,7 +33,6 @@ mobile_script = () => {
     document.querySelector(".gifValidation").style.display = "block"
     document.querySelector(".firstMenu").style.display = "block"
 
-
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q1
     ValidationBtn.nextPage = questions.q2
@@ -45,9 +44,10 @@ mobile_script = () => {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
     }
 
+    console.log(ValidationBtn.time, ValidationBtn.touch)
+
     function deviceOrientationHandler(eventData) {
-        if (ValidationBtn.touch === true) {
-        } else {
+        if (ValidationBtn.touch === false) {
             socket.emit("q1", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }

@@ -216,24 +216,28 @@ h1 {
 **************************  QUESTION 4
 **************************/
 
-#all_object {
+#objTop{
     position: absolute;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: 50%;
     display: flex;
 }
+
+
+#objBottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    display: flex;
+}
+
 
 .object,
 .finalObject {
     height: 50%;
     position: relative;
-}
-
-#object4 {
-    position: absolute;
-    bottom: 0;
-    height: 50%;
 }
 
 #hoverTop {

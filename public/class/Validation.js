@@ -76,7 +76,7 @@ class Validation{
                     ValidationBtn.deltaTime = 0
                     ValidationBtn.last = ValidationBtn.now
                     ValidationBtn.time = 0
-                    ValidationBtn.touch = false
+                    ValidationBtn.touch = true
                     ValidationBtn.canValidate = false
                     setTimeout(() => {
                         /** button go to left **/
