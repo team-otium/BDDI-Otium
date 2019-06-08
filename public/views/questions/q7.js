@@ -21,8 +21,7 @@ mobile_listener1 = ["selector", "type", () => {
 
 mobile_listener2 = ["selector", "type", () => {
 
-    }]
-    /** And more... */
+}]
 
 // Socket on
 
@@ -30,7 +29,7 @@ mobile_listener2 = ["selector", "type", () => {
 mobile_script = () => {
     document.querySelector(".circle1").style.display = "block"
     document.querySelector(".circle2").style.display = "block"
-    
+
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q7
     ValidationBtn.nextPage = questions.q8
@@ -107,20 +106,6 @@ desktop_socketOn1 = ["q7", (eventData) => {
 
 desktop_script = () => {
 
-    // INITIAL BACKGROUND
-    document.getElementById('background_anim').innerHTML = ""
-
-    VANTA.FOG({
-        el: "#background_anim",
-        highlightColor: 0xbbe9fd,
-        midtoneColor: 0xbed2fe,
-        lowlightColor: 0xfdeefd,
-        baseColor: 0xfae9fe,
-        blurFactor: 1.00,
-        speed: 2.00,
-        zoom: 0.20
-    })
-
     /******************* 
      ****** BALL *******
      ********************/
@@ -168,8 +153,8 @@ desktop_script = () => {
     var containerFinalObj1 = document.getElementById('finalObject1');
 
     var rendererFinalObj1 = new THREE.WebGLRenderer({
-       alpha: true
-   });
+        alpha: true
+    });
 
     rendererFinalObj1.setSize(window.innerWidth / 3, window.innerHeight);
     containerFinalObj1.appendChild(rendererFinalObj1.domElement);
@@ -179,26 +164,26 @@ desktop_script = () => {
     cameraFinalObj1.position.y = -0.5;
 
     var keyLightFinalObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.9);
-    keyLightFinalObj1.position.set(-100,0,100);
+    keyLightFinalObj1.position.set(-100, 0, 100);
 
     var fillLightFinalObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.1);
     fillLightFinalObj1.position.set(100, 0, -100).normalize();
 
     var backLightFinalObj1 = new THREE.DirectionalLight(0xffffff, 0.3);
-    backLightFinalObj1.position.set(100,0,-100).normalize();
+    backLightFinalObj1.position.set(100, 0, -100).normalize();
 
     sceneFinalObj1.add(keyLightFinalObj1);
     sceneFinalObj1.add(fillLightFinalObj1);
     sceneFinalObj1.add(backLightFinalObj1);
 
-        var objLoaderFinalObj1 = new THREE.OBJLoader();
-        objLoaderFinalObj1.load('/both/assets/img/q7/organiques/tore_2.obj', function(finalObject1){
-            finalObject1.position.y = 0;
-            finalObject1.position.x = 0;
-            finalObject1.position.z = 0;
+    var objLoaderFinalObj1 = new THREE.OBJLoader();
+    objLoaderFinalObj1.load('/both/assets/img/q7/organiques/tore_2.obj', function (finalObject1) {
+        finalObject1.position.y = 0;
+        finalObject1.position.x = 0;
+        finalObject1.position.z = 0;
 
-            sceneFinalObj1.add(finalObject1);
-        })
+        sceneFinalObj1.add(finalObject1);
+    })
 
     var animateFinalObj1 = function () {
         requestAnimationFrame(animateFinalObj1);
@@ -209,113 +194,113 @@ desktop_script = () => {
 
     animateFinalObj1();
 
-   /******************* 
-    ****** OBJET 2 ****
-    ********************/
+    /******************* 
+     ****** OBJET 2 ****
+     ********************/
 
-   var sceneFinalObj2 = new THREE.Scene();
-   var cameraFinalObj2 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / window.innerHeight, 0.1, 1000);
-       containerFinalObj2 = document.getElementById('finalObject2');
+    var sceneFinalObj2 = new THREE.Scene();
+    var cameraFinalObj2 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / window.innerHeight, 0.1, 1000);
+    containerFinalObj2 = document.getElementById('finalObject2');
 
-   var rendererFinalObj2 = new THREE.WebGLRenderer({
-      alpha: true
-  });
-  
-   rendererFinalObj2.setSize(window.innerWidth / 3, window.innerHeight);
-   containerFinalObj2.appendChild(rendererFinalObj2.domElement);
+    var rendererFinalObj2 = new THREE.WebGLRenderer({
+        alpha: true
+    });
 
-   cameraFinalObj2.position.z = 20;
-   cameraFinalObj2.position.x = 0;
-   cameraFinalObj2.position.y = -1;
+    rendererFinalObj2.setSize(window.innerWidth / 3, window.innerHeight);
+    containerFinalObj2.appendChild(rendererFinalObj2.domElement);
 
-   var keyLightFinalObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-   keyLightFinalObj2.position.set(-100,0,100);
+    cameraFinalObj2.position.z = 20;
+    cameraFinalObj2.position.x = 0;
+    cameraFinalObj2.position.y = -1;
 
-   var fillLightFinalObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-   fillLightFinalObj2.position.set(100, 0, -100).normalize();
+    var keyLightFinalObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    keyLightFinalObj2.position.set(-100, 0, 100);
 
-   var backLightFinalObj2 = new THREE.DirectionalLight(0xffffff, 0.3);
-   backLightFinalObj2.position.set(100,0,-100).normalize();
+    var fillLightFinalObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    fillLightFinalObj2.position.set(100, 0, -100).normalize();
 
-   sceneFinalObj2.add(keyLightFinalObj2);
-   sceneFinalObj2.add(fillLightFinalObj2);
-   sceneFinalObj2.add(backLightFinalObj2);
+    var backLightFinalObj2 = new THREE.DirectionalLight(0xffffff, 0.3);
+    backLightFinalObj2.position.set(100, 0, -100).normalize();
 
-       var objLoaderFinalObj2 = new THREE.OBJLoader();
-       objLoaderFinalObj2.load('/both/assets/img/q7/organiques/sphere_1.obj', function(finalObject2){
-           finalObject2.position.y = 0;
-           finalObject2.position.x = 0;
-           finalObject2.position.z = 0;
+    sceneFinalObj2.add(keyLightFinalObj2);
+    sceneFinalObj2.add(fillLightFinalObj2);
+    sceneFinalObj2.add(backLightFinalObj2);
 
-           sceneFinalObj2.add(finalObject2);
-       })
+    var objLoaderFinalObj2 = new THREE.OBJLoader();
+    objLoaderFinalObj2.load('/both/assets/img/q7/organiques/sphere_1.obj', function (finalObject2) {
+        finalObject2.position.y = 0;
+        finalObject2.position.x = 0;
+        finalObject2.position.z = 0;
 
-   var animateFinalObj2 = function () {
-       requestAnimationFrame(animateFinalObj2);
+        sceneFinalObj2.add(finalObject2);
+    })
 
-       sceneFinalObj2.rotation.y += 0.01;
+    var animateFinalObj2 = function () {
+        requestAnimationFrame(animateFinalObj2);
 
-       rendererFinalObj2.render(sceneFinalObj2, cameraFinalObj2);
-   };
+        sceneFinalObj2.rotation.y += 0.01;
 
-   animateFinalObj2();
+        rendererFinalObj2.render(sceneFinalObj2, cameraFinalObj2);
+    };
 
-   /******************** 
-    ****** OBJET 3 *****
-    ********************/
+    animateFinalObj2();
 
-   var sceneFinalObj3 = new THREE.Scene();
-   var cameraFinalObj3 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / window.innerHeight, 0.1, 1000);
-       containerFinalObj3 = document.getElementById('finalObject3');
+    /******************** 
+     ****** OBJET 3 *****
+     ********************/
 
-   var rendererFinalObj3 = new THREE.WebGLRenderer({
-      alpha: true
-  });
-  
-   rendererFinalObj3.setSize(window.innerWidth / 3, window.innerHeight);
-   containerFinalObj3.appendChild(rendererFinalObj3.domElement);
+    var sceneFinalObj3 = new THREE.Scene();
+    var cameraFinalObj3 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / window.innerHeight, 0.1, 1000);
+    containerFinalObj3 = document.getElementById('finalObject3');
 
-   cameraFinalObj3.position.z = 20;
-   cameraFinalObj3.position.x = 0;
-   cameraFinalObj3.position.y = -1;
+    var rendererFinalObj3 = new THREE.WebGLRenderer({
+        alpha: true
+    });
 
-   var keyLightFinalObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-   keyLightFinalObj3.position.set(-100,0,100);
+    rendererFinalObj3.setSize(window.innerWidth / 3, window.innerHeight);
+    containerFinalObj3.appendChild(rendererFinalObj3.domElement);
 
-   var fillLightFinalObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-   fillLightFinalObj3.position.set(100, 0, -100).normalize();
+    cameraFinalObj3.position.z = 20;
+    cameraFinalObj3.position.x = 0;
+    cameraFinalObj3.position.y = -1;
 
-   var backLightFinalObj3 = new THREE.DirectionalLight(0xffffff, 0.3);
-   backLightFinalObj3.position.set(100,0,-100).normalize();
+    var keyLightFinalObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    keyLightFinalObj3.position.set(-100, 0, 100);
 
-   sceneFinalObj3.add(keyLightFinalObj3);
-   sceneFinalObj3.add(fillLightFinalObj3);
-   sceneFinalObj3.add(backLightFinalObj3);
+    var fillLightFinalObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    fillLightFinalObj3.position.set(100, 0, -100).normalize();
 
-   var mtlLoaderFinalObj3 = new THREE.MTLLoader();
-   mtlLoaderFinalObj3.load('/both/assets/img/q4/goutte.mtl', function(materials) {
-       materials.preload();
+    var backLightFinalObj3 = new THREE.DirectionalLight(0xffffff, 0.3);
+    backLightFinalObj3.position.set(100, 0, -100).normalize();
 
-       var objLoaderFinalObj3 = new THREE.OBJLoader();
-       objLoaderFinalObj3.setMaterials(materials);
-       objLoaderFinalObj3.load('/both/assets/img/q7/organiques/isocaedre_2.obj', function(finalObject3){
-           finalObject3.position.y = 0;
-           finalObject3.position.x = 0;
-           finalObject3.position.z = 0;
+    sceneFinalObj3.add(keyLightFinalObj3);
+    sceneFinalObj3.add(fillLightFinalObj3);
+    sceneFinalObj3.add(backLightFinalObj3);
 
-           sceneFinalObj3.add(finalObject3);
-       })
-   })
+    var mtlLoaderFinalObj3 = new THREE.MTLLoader();
+    mtlLoaderFinalObj3.load('/both/assets/img/q4/goutte.mtl', function (materials) {
+        materials.preload();
 
-   var animateFinalObj3 = function () {
-       requestAnimationFrame(animateFinalObj3);
+        var objLoaderFinalObj3 = new THREE.OBJLoader();
+        objLoaderFinalObj3.setMaterials(materials);
+        objLoaderFinalObj3.load('/both/assets/img/q7/organiques/isocaedre_2.obj', function (finalObject3) {
+            finalObject3.position.y = 0;
+            finalObject3.position.x = 0;
+            finalObject3.position.z = 0;
 
-       sceneFinalObj3.rotation.y += 0.01;
+            sceneFinalObj3.add(finalObject3);
+        })
+    })
 
-       rendererFinalObj3.render(sceneFinalObj3, cameraFinalObj3);
-   };
+    var animateFinalObj3 = function () {
+        requestAnimationFrame(animateFinalObj3);
 
-   animateFinalObj3();
+        sceneFinalObj3.rotation.y += 0.01;
+
+        rendererFinalObj3.render(sceneFinalObj3, cameraFinalObj3);
+    };
+
+    animateFinalObj3();
 
     /**************** 
      *** TIMELINE ***

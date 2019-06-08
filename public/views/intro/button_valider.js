@@ -1,5 +1,5 @@
 /**************************  
-**************************  PAGE 3 BUTTON VALIDATION
+**************************  PAGE 4 BUTTON VALIDATION
 **************************/
 
 
@@ -23,7 +23,6 @@ mobile_listener1 = ["selector", "type", () => {
 mobile_listener2 = ["selector", "type", () => {
 
 }]
-/** And more... */
 
 // Socket on
 

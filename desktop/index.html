@@ -9,35 +9,26 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 
-
-
 <!-- BODY -->
 
 <body>
     <!-- sound -->
     <div onClick="togglePlay()" class="iconSound"></div>
-
     <audio src="/both/assets/sound/ambiance-site.mp3" autoplay loop style="display:none" id="iframeAudio"></audio>
 
-
     <div style="z-index: 10000; position: absolute;"><input id="q" type="number"><button id="go">GO</button></div>
-
 
     <!-- background color animation -->
     <div id="background_anim">
     </div>
-
 
     <!-- fixed logo  -->
     <div class="logo_top_left">
         <img src="/both/assets/img/otium_logo.svg" alt="">
     </div>
 
-
     <div id="navigation">
     </div>
-
-
 
     <!----------- 
     ------------- LOAD SCRIPT
@@ -47,7 +38,6 @@
     <!-- Lib -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
-
 
     <script src="/dev/utils.js"></script>
     <script src="/lib/utils/utils.js"></script>
@@ -68,12 +58,9 @@
     <script src="/lib/vanta/vanta.fog.min.js"></script>
     <script src="/lib/vanta/background.js"></script>
 
-
-
+    <!-- PAGES -->
     <script src="/class/Result.js"></script>
     <script src="/desktop/js/connexion.js"></script>
-
-    <!-- PAGES -->
     <script src="/class/Page.js"></script>
 
     <!-- INTRO -->
@@ -109,7 +96,7 @@
 
     <!-- FIRST PAGE LOAD -->
     <script>
-        //questions.q3.displayPage("desktop")
+        //questions.q4.displayPage("desktop")
         intro.animationLogo.displayPage("desktop")
         document.getElementById("go").addEventListener("click", () => {
             let q = document.getElementById("q").value

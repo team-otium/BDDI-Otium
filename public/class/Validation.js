@@ -1,3 +1,5 @@
+// Gestion question validation
+
 class Validation{
     constructor(device){
         this.touch = false

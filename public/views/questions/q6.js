@@ -22,7 +22,6 @@ mobile_listener1 = ["selector", "type", () => {
 mobile_listener2 = ["selector", "type", () => {
 
 }]
-/** And more... */
 
 // Socket on
 
@@ -30,7 +29,7 @@ mobile_listener2 = ["selector", "type", () => {
 mobile_script = () => {
     document.querySelector(".circle1").style.display = "block"
     document.querySelector(".circle2").style.display = "block"
-    
+
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q6
     ValidationBtn.nextPage = questions.q7
@@ -99,7 +98,7 @@ desktop_socketOn1 = ["q6", (eventData) => {
         let moment = 0
         if (window.moment != moment) {
             window.moment = 0
-            
+
             document.getElementById('leverSoleil').classList.add("animNav");
 
             document.getElementById('matin').classList.remove("animNav");

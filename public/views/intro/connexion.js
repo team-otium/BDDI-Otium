@@ -1,5 +1,5 @@
 /**************************  
-**************************  PAGE 2 CONNEXION
+**************************  PAGE 3 CONNEXION
 **************************/
 
 /**
@@ -47,7 +47,6 @@ mobile_listener2 = [".start_q1", "click", () => {
 mobile_listener3 = ["#code", "click", (e) => {
     document.querySelector(".firstMenu").style.display = "none"
 }]
-/** And more... */
 
 // Socket on
 let mobile_socketOn1 = ["mobileConnected", () => {
@@ -63,7 +62,7 @@ mobile_script = () => {
     document.querySelector(".circle1").style.display = "none"
     document.querySelector(".circle2").style.display = "none"
 
-    /* check if inpu is clicked and disable menu
+    /* check if input is clicked and disable menu
     window.addEventListener('click', function(e){   
         if (document.getElementById('code').contains(e.target)){
             document.querySelector(".firstMenu").style.display = "none"
