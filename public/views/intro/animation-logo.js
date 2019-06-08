@@ -1,12 +1,11 @@
 /**************************  
-**************************  LOGO ANIMATION VIDEO
+**************************  PAGE 1 LOGO ANIMATION VIDEO
 **************************/
 
 /**
  * MOBILE
  */
 
-// The html (without section)
 let mobile_html =
     `
     <!----------- 
@@ -16,7 +15,7 @@ let mobile_html =
         <img src="/both/assets/img/otium_logo.svg" alt="">
     </div>
     <!----------- 
-    ------------- FIN Animation logo  
+    ------------- Fin Animation logo  
     ----------->
 `
 
@@ -28,7 +27,6 @@ let mobile_listener1 = ["selector", "type", () => {
 let mobile_listener2 = ["selector", "type", () => {
 
 }]
-/** And more... */
 
 // Socket on
 

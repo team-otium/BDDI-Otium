@@ -23,8 +23,6 @@ mobile_listener2 = ["selector", "type", () => {
 
 }]
 
-/** And more... */
-
 // Socket on
 
 // Script to be executed when the page is displayed
@@ -56,9 +54,9 @@ mobile_script = () => {
             var tiltFB = eventData.beta;
             var dir = eventData.alpha;
 
-           
+            if (ValidationBtn.touch === false) {
                 socket.emit("q3", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
-            
+            }            
         })
     } else {
         alert("Sorry, your browser doesn't support Device Orientation");
@@ -118,8 +116,6 @@ desktop_listener2 = ["selector", "type", () => {
 }]
 
 desktop_script = () => {
-
-    
 
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");

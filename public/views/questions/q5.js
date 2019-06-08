@@ -94,13 +94,12 @@ mobile_listener3 = ["#q2_target", "touchend", (e) => {
         scaling = false;
     }
 }]
-/** And more... */
 
 // Socket on
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    
+
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q5
     ValidationBtn.nextPage = questions.q6
@@ -158,80 +157,80 @@ desktop_script = () => {
 
     var container = document.getElementById('drap')
 
-	var vertexHeight = 15000,
-		planeDefinition = 100,
-		planeSize = 120000,
-		totalObjects = 1,
-		meshColor = "#005e97"; 
+    var vertexHeight = 15000,
+        planeDefinition = 100,
+        planeSize = 120000,
+        totalObjects = 1,
+        meshColor = "#005e97";
 
-	var camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 400000)
-	camera.position.z = 15000;
-	camera.position.y = 15000;
+    var camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 400000)
+    camera.position.z = 15000;
+    camera.position.y = 15000;
 
-	var scene = new THREE.Scene();
-    
+    var scene = new THREE.Scene();
 
-	var texture = new THREE.TextureLoader().load( "/both/assets/textures/q5/texture_drap-6_BUMP.jpg" );
+
+    var texture = new THREE.TextureLoader().load("/both/assets/textures/q5/texture_drap-6_BUMP.jpg");
 
     var planeGeo = new THREE.PlaneGeometry(planeSize, planeSize, planeDefinition, planeDefinition);
 
-	var plane = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({
+    var plane = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({
         map: texture
     }));
-    
 
-	plane.rotation.x -= Math.PI * .4;
 
-	scene.add(plane);
+    plane.rotation.x -= Math.PI * .4;
 
-	var renderer = new THREE.WebGLRenderer({
+    scene.add(plane);
+
+    var renderer = new THREE.WebGLRenderer({
         alpha: true
     });
-	renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight);
 
-  container.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
 
 
-  updatePlane();
+    updatePlane();
 
-	function updatePlane() {
-		for (var i = 0; i < planeGeo.vertices.length; i++) {
-      planeGeo.vertices[i].z += Math.random() * vertexHeight - vertexHeight;
-      planeGeo.vertices[i]._myZ = planeGeo.vertices[i].z
-		}
-	};
+    function updatePlane() {
+        for (var i = 0; i < planeGeo.vertices.length; i++) {
+            planeGeo.vertices[i].z += Math.random() * vertexHeight - vertexHeight;
+            planeGeo.vertices[i]._myZ = planeGeo.vertices[i].z
+        }
+    };
 
-	render();
+    render();
 
-  var count = 0
-	function render() {
-		requestAnimationFrame(render);
-    // camera.position.z -= 150;
-    // var x = camera.position.x;
-    // var z = camera.position.z;
-    // camera.position.x = x * Math.cos(0.001) + z * Math.sin(0.001) - 10;
-    // camera.position.z = z * Math.cos(0.001) - x * Math.sin(0.001) - 10;
-    camera.lookAt(new THREE.Vector3(0, 5000, 0))
+    var count = 0
+    function render() {
+        requestAnimationFrame(render);
+        // camera.position.z -= 150;
+        // var x = camera.position.x;
+        // var z = camera.position.z;
+        // camera.position.x = x * Math.cos(0.001) + z * Math.sin(0.001) - 10;
+        // camera.position.z = z * Math.cos(0.001) - x * Math.sin(0.001) - 10;
+        camera.lookAt(new THREE.Vector3(0, 5000, 0))
 
-    for (var i = 0; i < planeGeo.vertices.length; i++) {
-      var z = +planeGeo.vertices[i].z;
-      planeGeo.vertices[i].z = Math.sin(( i + count * 0.00003)) * (planeGeo.vertices[i]._myZ - (planeGeo.vertices[i]._myZ* 0.94))
-      plane.geometry.verticesNeedUpdate = true;
+        for (var i = 0; i < planeGeo.vertices.length; i++) {
+            var z = +planeGeo.vertices[i].z;
+            planeGeo.vertices[i].z = Math.sin((i + count * 0.00003)) * (planeGeo.vertices[i]._myZ - (planeGeo.vertices[i]._myZ * 0.94))
+            plane.geometry.verticesNeedUpdate = true;
 
-      count += 0.15
+            count += 0.15
+        }
+
+        renderer.render(scene, camera);
     }
 
-		renderer.render(scene, camera);
-	}
+    window.addEventListener('resize', onWindowResize, false);
 
-	window.addEventListener('resize', onWindowResize, false);
-
-	function onWindowResize() {
-		//changes the size of the canavs and updates it
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
-		renderer.setSize(window.innerWidth, window.innerHeight);
-	}
+    function onWindowResize() {
+        //changes the size of the canavs and updates it
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    }
 
 
     /**************** 

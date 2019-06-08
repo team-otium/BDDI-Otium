@@ -21,8 +21,7 @@ mobile_listener1 = ["selector", "type", () => {
 
 mobile_listener2 = ["selector", "type", () => {
 
-    }]
-    /** And more... */
+}]
 
 // Socket on
 mobile_socketOn1 = ["name", () => {
@@ -33,7 +32,7 @@ mobile_socketOn1 = ["name", () => {
 mobile_script = () => {
     document.querySelector(".circle1").style.display = "block"
     document.querySelector(".circle2").style.display = "block"
-    
+
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q8
     ValidationBtn.nextPage = questions.q9

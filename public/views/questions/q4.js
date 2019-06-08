@@ -25,6 +25,7 @@ mobile_html =
  `
 var canValide = false;
 var select = 0;
+
 // All listeners, one variable per listener
 mobile_listener1 = [".circleQ4-1", "click", () => {
     socket.emit("q4-2", "selectObj")
@@ -48,10 +49,6 @@ mobile_listener1 = [".circleQ4-1", "click", () => {
         };
     }
 }]
-
-/** And more... */
-
-// Socket on
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
@@ -199,9 +196,6 @@ desktop_script = () => {
 
     start()
 
-
-
-
     /******************* 
      ****** OBJET 1 ****
      ********************/
@@ -260,9 +254,6 @@ desktop_script = () => {
             animateObj1();
         })
     })
-
-
-
 
 
     /******************* 
@@ -400,8 +391,6 @@ desktop_script = () => {
         alpha: true
     });
 
-
-
     var geometryCloud = new THREE.PlaneGeometry(180, 130, 2);
     var geometryCloud3 = new THREE.PlaneGeometry(190, 120, 2);
     var textureCloud = new THREE.TextureLoader().load('/both/assets/img/q4/nuage2.png');
@@ -492,91 +481,150 @@ desktop_script = () => {
     /******************** 
      ****** OBJET 5 *****
      ********************/
+    var sceneObj5 = new THREE.Scene();
+    var cameraObj5 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+    containerObj5 = document.getElementById('object4');
 
-// 
-var sceneObj5 = new THREE.Scene();
-sceneObj5.fog = new THREE.FogExp2(0xd15b47, 0.007);
+    var rendererObj5 = new THREE.WebGLRenderer({
+        alpha: true
+    });
 
-// 
-var cameraObj5 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
-var containerObj5 = document.getElementById('object4');
-cameraObj5.position.set(0,0,200);
+    rendererObj5.setSize(window.innerWidth / 3, window.innerHeight / 2);
+    containerObj5.appendChild(rendererObj5.domElement);
 
-// 
-var rendererObj5 = new THREE.WebGLRenderer({
-    alpha: true
-});
+    cameraObj5.position.z = 150;
+    cameraObj5.position.x = 0;
+    cameraObj5.position.y = 0;
 
-rendererObj5.setSize(window.innerWidth / 3, window.innerHeight / 2);
-containerObj5.appendChild(rendererObj5.domElement);
+    var keyLightObj5 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    keyLightObj5.position.set(-100, 0, 100);
 
-var particleCount = 10000;
-var particles = new THREE.Geometry();
-var materialObj5 = new THREE.PointCloudMaterial({
-  color: 0xc23d25,
-  size: 1,
-  transparent: true,
-  blending: THREE.AdditiveBlending,
-  depthTest: false
-});
+    var fillLightObj5 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    fillLightObj5.position.set(100, 0, -100).normalize();
 
-for( var i = 0; i < particleCount; i++ ){
-  //
-  var pX = Math.random() * 100-50;
-  var pY = Math.random() * 100-50;
-  var pZ = Math.random() * 100-50;
-  particle = new THREE.Vector3(pX, pY, pZ);
-  particle.velocity = new THREE.Vector3(0, Math.random(), 0);
-  particles.vertices.push(particle);
-}
+    var backLightObj5 = new THREE.DirectionalLight(0x132ef9, 1.0);
+    backLightObj5.position.set(100, 0, -100).normalize();
 
-// 
-var pointCloud = new THREE.PointCloud(particles, materialObj5);
-// pointCloud.position.y = 3;
-pointCloud.sortParticles = true;
+    sceneObj5.add(keyLightObj5);
+    sceneObj5.add(fillLightObj5);
+    sceneObj5.add(backLightObj5);
 
-// 
-sceneObj5.add(pointCloud);
+    var mtlLoaderObj5 = new THREE.MTLLoader();
+    mtlLoaderObj5.load('/both/assets/img/q4/sable_R.mtl', function (materials) {
+        materials.preload();
 
-// 
-function updateObj5() {
-  // 
-//   pointCloud.rotation.x += 0.001;
-//   pointCloud.rotation.y += 0.001;
-//   pointCloud.rotation.z += 0.0005;
+        var objLoaderObj5 = new THREE.OBJLoader();
+        objLoaderObj5.setMaterials(materials);
+        objLoaderObj5.load('/both/assets/img/q4/sable_R.obj', function (object5) {
+            object5.position.y = 0;
+            object5.position.x = 300;
+            object5.position.z = 0;
 
-if (window.getComputedStyle(document.getElementById("hover4")).getPropertyValue('opacity') == 1) {
-    pointCloud.rotation.y += 0.01;
-} else {
-    pointCloud.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + pointCloud.position.y;
-}
+            sceneObj5.add(object5);
 
-  for (var i = 0; i < particleCount; i++) {
-    // 
-    var particle = particles.vertices[i];
+            var animateObj5 = function () {
+                requestAnimationFrame(animateObj5);
 
-    if ( particle.y > 50 ) {
-      particle.y = -50;
-    }
-    if ( particle.z > 50 ) {
-      particle.z = -50;
-    }
+                if (window.getComputedStyle(document.getElementById("hover4")).getPropertyValue('opacity') == 1) {
+                    sceneObj5.rotation.y += 0.01;
+                } else {
+                    object5.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object5.position.y;
+                }
 
-    particle.y += particle.velocity.y*0.5;
-    particle.z += particle.velocity.z*0.5;
-  }
+                rendererObj5.render(sceneObj5, cameraObj5);
+            };
 
-  //
-  pointCloud.geometry.verticesNeedUpdate = true;
+            animateObj5();
+        })
+    })
+    // /******************** 
+    //  ****** OBJET 5 *****
+    //  ********************/
 
-  // 
-  cameraObj5.lookAt(sceneObj5.position);
-  rendererObj5.render(sceneObj5,cameraObj5);
+    // // 
+    // var sceneObj5 = new THREE.Scene();
+    // sceneObj5.fog = new THREE.FogExp2(0xd15b47, 0.007);
 
-  // 
-  requestAnimationFrame(updateObj5);
-}
-updateObj5();
+    // // 
+    // var cameraObj5 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+    // var containerObj5 = document.getElementById('object4');
+    // cameraObj5.position.set(0, 0, 200);
+
+    // // 
+    // var rendererObj5 = new THREE.WebGLRenderer({
+    //     alpha: true
+    // });
+
+    // rendererObj5.setSize(window.innerWidth / 3, window.innerHeight / 2);
+    // containerObj5.appendChild(rendererObj5.domElement);
+
+    // var particleCount = 10000;
+    // var particles = new THREE.Geometry();
+    // var materialObj5 = new THREE.PointCloudMaterial({
+    //     color: 0xc23d25,
+    //     size: 1,
+    //     transparent: true,
+    //     blending: THREE.AdditiveBlending,
+    //     depthTest: false
+    // });
+
+    // for (var i = 0; i < particleCount; i++) {
+    //     //
+    //     var pX = Math.random() * 100 - 50;
+    //     var pY = Math.random() * 100 - 50;
+    //     var pZ = Math.random() * 100 - 50;
+    //     particle = new THREE.Vector3(pX, pY, pZ);
+    //     particle.velocity = new THREE.Vector3(0, Math.random(), 0);
+    //     particles.vertices.push(particle);
+    // }
+
+    // // 
+    // var pointCloud = new THREE.PointCloud(particles, materialObj5);
+    // // pointCloud.position.y = 3;
+    // pointCloud.sortParticles = true;
+
+    // // 
+    // sceneObj5.add(pointCloud);
+
+    // // 
+    // function updateObj5() {
+    //     // 
+    //     //   pointCloud.rotation.x += 0.001;
+    //     //   pointCloud.rotation.y += 0.001;
+    //     //   pointCloud.rotation.z += 0.0005;
+
+    //     if (window.getComputedStyle(document.getElementById("hover4")).getPropertyValue('opacity') == 1) {
+    //         pointCloud.rotation.y += 0.01;
+    //     } else {
+    //         pointCloud.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + pointCloud.position.y;
+    //     }
+
+    //     for (var i = 0; i < particleCount; i++) {
+    //         // 
+    //         var particle = particles.vertices[i];
+
+    //         if (particle.y > 50) {
+    //             particle.y = -50;
+    //         }
+    //         if (particle.z > 50) {
+    //             particle.z = -50;
+    //         }
+
+    //         particle.y += particle.velocity.y * 0.5;
+    //         particle.z += particle.velocity.z * 0.5;
+    //     }
+
+    //     //
+    //     pointCloud.geometry.verticesNeedUpdate = true;
+
+    //     // 
+    //     cameraObj5.lookAt(sceneObj5.position);
+    //     rendererObj5.render(sceneObj5, cameraObj5);
+
+    //     // 
+    //     requestAnimationFrame(updateObj5);
+    // }
+    // updateObj5();
 
 
     /**************** 
