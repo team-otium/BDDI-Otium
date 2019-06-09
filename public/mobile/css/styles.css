@@ -28,6 +28,37 @@ h2 {
 }
 
 /**************************  
+  **************************  INFO CREDIT
+  **************************/
+
+#infoCredit {
+  position: absolute;
+  display: none;
+  font-size: 13px;
+  max-width: 750px;
+  padding: 20px 15px;
+  text-align: center;
+  line-height: 25px;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
+#infoCredit p {
+  margin: 15px;
+}
+
+.credit1, .credit2 {
+  width: 50%;
+  float: left;
+}
+
+.credit3 {
+  clear: both;
+}
+
+
+/**************************  
   **************************  BUTTON VALIDATION QUESTION
   **************************/
 

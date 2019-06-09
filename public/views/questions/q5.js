@@ -31,69 +31,18 @@ mobile_html =
         <svg height="20" width="20">
             <circle class="texture5" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
         </svg>
-        <svg height="20" width="20">
-            <circle class="texture6" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
-        </svg>
-        <svg height="20" width="20">
-            <circle class="texture7" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
-        </svg>
-        <svg height="20" width="20">
-            <circle class="texture8" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
-        </svg>
-        <svg height="20" width="20">
-            <circle class="texture9" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
-        </svg>
-        <svg height="20" width="20">
-            <circle class="texture10" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
-        </svg>
-        <svg height="20" width="20">
-            <circle class="texture11" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
-        </svg>
-        <svg height="20" width="20">
-            <circle class="texture12" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
-        </svg>
-        <svg height="20" width="20">
-            <circle class="texture13" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
-        </svg>
-        <svg height="20" width="20">
-            <circle class="texture14" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
-        </svg>
-        <svg height="20" width="20">
-            <circle class="texture15" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
-        </svg>
     </div>
  `
 
+var canValideQ5 = false;
+var selectQ5 = 0;
+
 // All listeners, one variable per listener
-mobile_listener1 = ["#q2_target", "touchstart", (e) => {
-    if (e.touches.length === 1) {
-        scaling = true;
-        //pinchStart(e);
-        start_move = { x: e.touches[0].pageX, y: e.touches[0].pageY }
-    }
+mobile_listener1 = [".texture1", "click", () => {
+    document.querySelector('.selected1').style.fill = "#000000"
+    socket.emit("q5", "selectTexure1")
 }]
 
-mobile_listener2 = ["#q2_target", "touchmove", (e) => {
-    if (scaling) {
-        //pinchMove(e);
-        act_move = { x: e.touches[0].pageX, y: e.touches[0].pageY }
-    }
-}]
-
-mobile_listener3 = ["#q2_target", "touchend", (e) => {
-    if (scaling) {
-        //pinchEnd(e);
-        console.log(act_move.y - start_move.y)
-        if (act_move.y - start_move.y < 0) {
-            console.log("haut")
-            socket.emit("q5_doigt", "haut")
-        } else if (act_move.y - start_move.y > 0) {
-            console.log("bas")
-            socket.emit("q5_doigt", "bas")
-        }
-        scaling = false;
-    }
-}]
 
 // Socket on
 
@@ -135,13 +84,9 @@ desktop_listener2 = ["selector", "type", () => {
 
 }]
 
-desktop_socketOn1 = ["q5_doigt", (data) => {
-    if (data === "haut") {
-        q5_actual_texture++
-        if (q5_actual_texture > q5_textures.length - 1) q5_actual_texture = 0
-    } else if (data === "bas") {
-        q5_actual_texture--
-        if (q5_actual_texture < 0) q5_actual_texture = q5_textures.length - 1
+desktop_socketOn1 = ["q5", (eventData) => {
+    if (eventData === "selectTexure1"){
+        mytexture = "/both/assets/img/q5/texture_drap-6_BUMP.jpg"
     }
 }]
 
@@ -151,7 +96,7 @@ desktop_script = () => {
 
     // ]
     // for (let i = 1; i <= 15; i++) {
-    //     q5_textures.push(new THREE.TextureLoader().load('/both/assets/textures/q5/texture_drap-'+i+'.jpg'))
+    //     q5_textures.push(new THREE.TextureLoader().load('/both/assets/img/q5/texture_drap-'+i+'.jpg'))
     // }
 
 
@@ -170,7 +115,7 @@ desktop_script = () => {
     var scene = new THREE.Scene();
 
 
-    var texture = new THREE.TextureLoader().load("/both/assets/textures/q5/texture_drap-6_BUMP.jpg");
+    var texture = new THREE.TextureLoader().load(mytexture);
 
     var planeGeo = new THREE.PlaneGeometry(planeSize, planeSize, planeDefinition, planeDefinition);
 
@@ -248,7 +193,7 @@ desktop_transition = ["out", "in"]
 
 q5_mobile = {
     html: mobile_html,
-    listeners: [mobile_listener1, mobile_listener2, mobile_listener3],
+    listeners: [mobile_listener1],
     socketOn: [],
     script: mobile_script,
     transitions: mobile_transition,
