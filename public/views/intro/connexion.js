@@ -62,14 +62,20 @@ mobile_script = () => {
     document.querySelector(".circle1").style.display = "none"
     document.querySelector(".circle2").style.display = "none"
 
-    /* check if input is clicked and disable menu
+    
     window.addEventListener('click', function(e){   
-        if (document.getElementById('code').contains(e.target)){
-            document.querySelector(".firstMenu").style.display = "none"
+        if (document.querySelector(".firstMenu1").contains(e.target)){
+            document.querySelector("#infoCredit").style.display = "block"
+            document.querySelector(".firstMenu1").style.display = "none"
+            document.querySelector("#navigation").style.opacity = "0"
+            document.querySelector("#buttons").style.opacity = "0"
         } else{
-            document.querySelector(".firstMenu").style.display = "block"
+            document.querySelector(".firstMenu1").style.display = "block"
+            document.querySelector("#infoCredit").style.display = "none"
+            document.querySelector("#navigation").style.opacity = "1"
+            document.querySelector("#buttons").style.opacity = "1"
         }
-      });*/
+      });
 
 
 }

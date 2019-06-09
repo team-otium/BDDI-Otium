@@ -11,7 +11,7 @@ mobile_html =
     <!----------- 
     ------------- INTRO 
     ----------->
-    <div class="text_center_mobile">
+    <div class="home_text_center">
         <h1>Bienvenue sur Otium</h1>
         <p>
         Relaxez vous grâce à Otium.<br>

@@ -200,60 +200,66 @@ desktop_script = () => {
      ****** OBJET 1 ****
      ********************/
 
-    var sceneObj1 = new THREE.Scene();
-    var cameraObj1 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
-    var containerObj1 = document.getElementById('object1');
+    var containerObj1;
+    var cameraObj1, sceneObj1, rendererObj1;
+    var objectObj1;
 
-    var rendererObj1 = new THREE.WebGLRenderer({
-        alpha: true
-    });
+        containerObj1 = document.getElementById('object1');
+        cameraObj1 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+        cameraObj1.position.z = 400;
 
-    rendererObj1.setSize(window.innerWidth / 3, window.innerHeight / 2);
-    containerObj1.appendChild(rendererObj1.domElement);
+        rendererObj1 = new THREE.WebGLRenderer({
+            alpha: true
+        });
 
-    cameraObj1.position.z = 400;
-    cameraObj1.position.x = 0;
-    cameraObj1.position.y = 0;
+        rendererObj1.setSize( window.innerWidth/3, window.innerHeight/2 );
+        containerObj1.appendChild( rendererObj1.domElement );
+        
+        // scene
+        sceneObj1 = new THREE.Scene();
+        var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.6 );
+        sceneObj1.add( ambientLight );
+        var pointLight = new THREE.PointLight( 0xffffff, 0.6 );
+        cameraObj1.add( pointLight );
+        sceneObj1.add( cameraObj1 );
 
-    var keyLightObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.9);
-    keyLightObj1.position.set(-100, 0, 100);
+        // manager
+        function loadModelObj1() {
+            objectObj1.traverse( function ( child ) {
+                if ( child.isMesh ) child.material.map = textureObj1;
+            } );
+            objectObj1.position.y = -10;
+            objectObj1.position.x = 20;
+            objectObj1.position.z = 0;
+            sceneObj1.add( objectObj1 );
+        }
+        var managerObj1 = new THREE.LoadingManager( loadModelObj1 );
+        managerObj1.onProgress = function ( item, loaded, total ) {
+            console.log( item, loaded, total );
+        };
 
-    var fillLightObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.1);
-    fillLightObj1.position.set(100, 0, -100).normalize();
+        // texture
+        var textureLoaderObj1 = new THREE.TextureLoader( managerObj1 );
+        var textureObj1 = textureLoaderObj1.load( '/both/assets/img/q4/fond_bleu.png' );
 
-    var backLightObj1 = new THREE.DirectionalLight(0xffffff, 1.0);
-    backLightObj1.position.set(100, 0, -100).normalize();
+        var loaderObj1 = new THREE.OBJLoader( managerObj1 );
+        loaderObj1.load( '/both/assets/img/q4/bulles_eau_2.obj', function ( obj ) {
+            objectObj1 = obj;
 
-    sceneObj1.add(keyLightObj1);
-    sceneObj1.add(fillLightObj1);
-    sceneObj1.add(backLightObj1);
-
-    var mtlLoaderObj1 = new THREE.MTLLoader();
-    mtlLoaderObj1.load('/both/assets/img/q4/bulles_eau_2.mtl', function (materials) {
-        materials.preload();
-
-        var objLoaderObj1 = new THREE.OBJLoader();
-        objLoaderObj1.setMaterials(materials);
-        objLoaderObj1.load('/both/assets/img/q4/bulles_eau_2.obj', function (object1) {
-            object1.position.y = -10;
-            object1.position.x = 20;
-            object1.position.z = 0;
-
-            sceneObj1.add(object1);
-
-            var animateObj1 = function () {
+            function animateObj1() {
                 requestAnimationFrame(animateObj1);
-
+        
                 if (window.getComputedStyle(document.getElementById("hover1")).getPropertyValue('opacity') == 1) {
-                    sceneObj1.rotation.y += 0.01;
+                    objectObj1.rotation.y += 0.01;
                 } else {
-                    object1.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object1.position.y;
+                    objectObj1.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj1.position.y;
                 }
                 rendererObj1.render(sceneObj1, cameraObj1);
-            };
-            animateObj1();
-        })
-    })
+            }
+            
+            animateObj1()
+
+        } );
 
 
     /******************* 
@@ -316,78 +322,17 @@ desktop_script = () => {
         })
     })
 
+
     /******************** 
      ****** OBJET 3 *****
      ********************/
 
     var sceneObj3 = new THREE.Scene();
     var cameraObj3 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
-    containerObj3 = document.getElementById('object5');
+    containerObj3 = document.getElementById('object3');
+
 
     var rendererObj3 = new THREE.WebGLRenderer({
-        alpha: true
-    });
-
-    rendererObj3.setSize(window.innerWidth / 3, window.innerHeight / 2);
-    containerObj3.appendChild(rendererObj3.domElement);
-
-    cameraObj3.position.z = 400;
-    cameraObj3.position.x = 0;
-    cameraObj3.position.y = 0;
-
-    var keyLightObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-    keyLightObj3.position.set(-100, 0, 100);
-
-    var fillLightObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-    fillLightObj3.position.set(100, 0, -100).normalize();
-
-    var backLightObj3 = new THREE.DirectionalLight(0x132ef9, 1.0);
-    backLightObj3.position.set(100, 0, -100).normalize();
-
-    sceneObj3.add(keyLightObj3);
-    sceneObj3.add(fillLightObj3);
-    sceneObj3.add(backLightObj3);
-
-    var mtlLoaderObj3 = new THREE.MTLLoader();
-    mtlLoaderObj3.load('/both/assets/img/q4/goutte.mtl', function (materials) {
-        materials.preload();
-
-        var objLoaderObj3 = new THREE.OBJLoader();
-        objLoaderObj3.setMaterials(materials);
-        objLoaderObj3.load('/both/assets/img/q4/goutte.obj', function (object3) {
-            object3.position.y = 0;
-            object3.position.x = 0;
-            object3.position.z = 0;
-
-            sceneObj3.add(object3);
-
-            var animateObj3 = function () {
-                requestAnimationFrame(animateObj3);
-
-                if (window.getComputedStyle(document.getElementById("hover5")).getPropertyValue('opacity') == 1) {
-                    sceneObj3.rotation.y += 0.01;
-                } else {
-                    object3.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object3.position.y;
-                }
-
-                rendererObj3.render(sceneObj3, cameraObj3);
-            };
-
-            animateObj3();
-        })
-    })
-
-
-    /******************** 
-     ****** OBJET 4 *****
-     ********************/
-
-    var sceneObj4 = new THREE.Scene();
-    var cameraObj4 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
-    containerObj4 = document.getElementById('object3');
-
-
-    var rendererObj4 = new THREE.WebGLRenderer({
         alpha: true
     });
 
@@ -423,209 +368,191 @@ desktop_script = () => {
     plane3.rotation.x = 0.17;
 
 
-    sceneObj4.add(plane, plane2, plane3);
+    sceneObj3.add(plane, plane2, plane3);
 
 
-    rendererObj4.setSize(window.innerWidth / 3, window.innerHeight / 2);
-    containerObj4.appendChild(rendererObj4.domElement);
+    rendererObj3.setSize(window.innerWidth / 3, window.innerHeight / 2);
+    containerObj3.appendChild(rendererObj3.domElement);
 
-    cameraObj4.position.z = 460;
-    cameraObj4.position.x = 0;
-    cameraObj4.position.y = 0;
+    cameraObj3.position.z = 460;
+    cameraObj3.position.x = 0;
+    cameraObj3.position.y = 0;
 
-    var keyLightObj4 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-    keyLightObj4.position.set(-100, 0, 100);
+    var keyLightObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    keyLightObj3.position.set(-100, 0, 100);
 
-    var fillLightObj4 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-    fillLightObj4.position.set(100, 0, -100).normalize();
+    var fillLightObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    fillLightObj3.position.set(100, 0, -100).normalize();
 
-    var backLightObj4 = new THREE.DirectionalLight(0xffffff, 1.0);
-    backLightObj4.position.set(100, 0, -100).normalize();
+    var backLightObj3 = new THREE.DirectionalLight(0xffffff, 1.0);
+    backLightObj3.position.set(100, 0, -100).normalize();
 
-    sceneObj4.add(keyLightObj4);
-    sceneObj4.add(fillLightObj4);
-    sceneObj4.add(backLightObj4);
+    sceneObj3.add(keyLightObj3);
+    sceneObj3.add(fillLightObj3);
+    sceneObj3.add(backLightObj3);
 
-    var mtlLoaderObj4 = new THREE.MTLLoader();
-    mtlLoaderObj4.load('/both/assets/img/q4/montagnes_seules.mtl', function (materials) {
+    var mtlLoaderObj3 = new THREE.MTLLoader();
+    mtlLoaderObj3.load('/both/assets/img/q4/montagnes_seules.mtl', function (materials) {
         materials.preload();
 
-        var objLoaderObj4 = new THREE.OBJLoader();
-        objLoaderObj4.setMaterials(materials);
-        objLoaderObj4.load('/both/assets/img/q4/montagnes_s300.obj', function (object4) {
-            object4.position.y = -20;
-            object4.position.x = 150;
-            object4.position.z = -100;
+        var objLoaderObj3 = new THREE.OBJLoader();
+        objLoaderObj3.setMaterials(materials);
+        objLoaderObj3.load('/both/assets/img/q4/montagnes_s300.obj', function (object3) {
+            object3.position.y = -20;
+            object3.position.x = 150;
+            object3.position.z = -100;
 
-            object4.rotation.y = 1;
-            object4.rotation.x = 0.1;
+            object3.rotation.y = 1;
+            object3.rotation.x = 0.1;
 
-            sceneObj4.add(object4);
+            sceneObj3.add(object3);
 
-            var animateObj4 = function () {
-                requestAnimationFrame(animateObj4);
+            var animateObj3 = function () {
+                requestAnimationFrame(animateObj3);
 
                 if (window.getComputedStyle(document.getElementById("hover3")).getPropertyValue('opacity') == 1) {
-                    //sceneObj4.rotation.y += 0.001;
+                    //sceneObj3.rotation.y += 0.001;
                 } else {
-                    cameraObj4.position.y = (Math.cos((Date.now()) * 0.001) * 0.1) + cameraObj4.position.y;
+                    cameraObj3.position.y = (Math.cos((Date.now()) * 0.001) * 0.1) + cameraObj3.position.y;
                 }
 
-                rendererObj4.render(sceneObj4, cameraObj4);
+                rendererObj3.render(sceneObj3, cameraObj3);
             };
 
-            animateObj4();
+            animateObj3();
         })
     })
 
     /******************** 
-     ****** OBJET 5 *****
+     ****** OBJET 4 *****
      ********************/
-    var sceneObj5 = new THREE.Scene();
-    var cameraObj5 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
-    containerObj5 = document.getElementById('object4');
+    var containerObj4;
+    var cameraObj4, sceneObj4, rendererObj4;
+    var objectObj4;
 
-    var rendererObj5 = new THREE.WebGLRenderer({
-        alpha: true
-    });
+        containerObj4 = document.getElementById('object4');
+        cameraObj4 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+        cameraObj4.position.z = 100;
 
-    rendererObj5.setSize(window.innerWidth / 3, window.innerHeight / 2);
-    containerObj5.appendChild(rendererObj5.domElement);
+        rendererObj4 = new THREE.WebGLRenderer({
+            alpha: true
+        });
 
-    cameraObj5.position.z = 150;
-    cameraObj5.position.x = 0;
-    cameraObj5.position.y = 0;
+        rendererObj4.setSize( window.innerWidth/3, window.innerHeight/2 );
+        containerObj4.appendChild( rendererObj4.domElement );
+        
+        // scene
+        sceneObj4 = new THREE.Scene();
+        var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.6 );
+        sceneObj4.add( ambientLight );
+        var pointLight = new THREE.PointLight( 0xffffff, 0.6 );
+        cameraObj4.add( pointLight );
+        sceneObj4.add( cameraObj4 );
 
-    var keyLightObj5 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-    keyLightObj5.position.set(-100, 0, 100);
+        // manager
+        function loadModelObj4() {
+            objectObj4.traverse( function ( child ) {
+                if ( child.isMesh ) child.material.map = textureObj4;
+            } );
+            objectObj4.position.y = 0;
+            objectObj4.position.x = 300;
+            objectObj4.position.z = 0;
+            sceneObj4.add( objectObj4 );
+        }
+        var managerObj4 = new THREE.LoadingManager( loadModelObj4 );
+        managerObj4.onProgress = function ( item, loaded, total ) {
+            console.log( item, loaded, total );
+        };
 
-    var fillLightObj5 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-    fillLightObj5.position.set(100, 0, -100).normalize();
+        // texture
+        var textureLoaderObj4 = new THREE.TextureLoader( managerObj4 );
+        var textureObj4 = textureLoaderObj4.load( '/both/assets/img/q4/Sand_001_COLOR.png' );
 
-    var backLightObj5 = new THREE.DirectionalLight(0x132ef9, 1.0);
-    backLightObj5.position.set(100, 0, -100).normalize();
+        var loaderObj4 = new THREE.OBJLoader( managerObj4 );
+        loaderObj4.load( '/both/assets/img/q4/sable_R.obj', function ( obj ) {
+            objectObj4 = obj;
 
-    sceneObj5.add(keyLightObj5);
-    sceneObj5.add(fillLightObj5);
-    sceneObj5.add(backLightObj5);
-
-    var mtlLoaderObj5 = new THREE.MTLLoader();
-    mtlLoaderObj5.load('/both/assets/img/q4/sable_R.mtl', function (materials) {
-        materials.preload();
-
-        var objLoaderObj5 = new THREE.OBJLoader();
-        objLoaderObj5.setMaterials(materials);
-        objLoaderObj5.load('/both/assets/img/q4/sable_R.obj', function (object5) {
-            object5.position.y = 0;
-            object5.position.x = 300;
-            object5.position.z = 0;
-
-            sceneObj5.add(object5);
-
-            var animateObj5 = function () {
-                requestAnimationFrame(animateObj5);
-
+            function animateObj4() {
+                requestAnimationFrame(animateObj4);
+        
                 if (window.getComputedStyle(document.getElementById("hover4")).getPropertyValue('opacity') == 1) {
-                    sceneObj5.rotation.y += 0.01;
+                    sceneObj4.rotation.y += 0.01;
                 } else {
-                    object5.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object5.position.y;
+                    objectObj4.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj4.position.y;
                 }
+                rendererObj4.render(sceneObj4, cameraObj4);
+            }
+            
+            animateObj4()
 
-                rendererObj5.render(sceneObj5, cameraObj5);
-            };
+        } );
 
-            animateObj5();
-        })
-    })
-    // /******************** 
-    //  ****** OBJET 5 *****
-    //  ********************/
+    
+    
+    /******************** 
+    ****** OBJET 5 *****
+    ********************/
 
-    // // 
-    // var sceneObj5 = new THREE.Scene();
-    // sceneObj5.fog = new THREE.FogExp2(0xd15b47, 0.007);
+   var containerObj5;
+   var cameraObj5, sceneObj5, rendererObj5;
+   var objectObj5;
 
-    // // 
-    // var cameraObj5 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
-    // var containerObj5 = document.getElementById('object4');
-    // cameraObj5.position.set(0, 0, 200);
+       containerObj5 = document.getElementById('object5');
+       cameraObj5 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+       cameraObj5.position.z = 350;
 
-    // // 
-    // var rendererObj5 = new THREE.WebGLRenderer({
-    //     alpha: true
-    // });
+       rendererObj5 = new THREE.WebGLRenderer({
+           alpha: true
+       });
 
-    // rendererObj5.setSize(window.innerWidth / 3, window.innerHeight / 2);
-    // containerObj5.appendChild(rendererObj5.domElement);
+       rendererObj5.setSize( window.innerWidth/3, window.innerHeight/2 );
+       containerObj5.appendChild( rendererObj5.domElement );
+       
+       // scene
+       sceneObj5 = new THREE.Scene();
+       var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.6 );
+       sceneObj5.add( ambientLight );
+       var pointLight = new THREE.PointLight( 0xffffff, 0.6 );
+       cameraObj5.add( pointLight );
+       sceneObj5.add( cameraObj5 );
 
-    // var particleCount = 10000;
-    // var particles = new THREE.Geometry();
-    // var materialObj5 = new THREE.PointCloudMaterial({
-    //     color: 0xc23d25,
-    //     size: 1,
-    //     transparent: true,
-    //     blending: THREE.AdditiveBlending,
-    //     depthTest: false
-    // });
+       // manager
+       function loadModelObj5() {
+           objectObj5.traverse( function ( child ) {
+               if ( child.isMesh ) child.material.map = textureObj5;
+           } );
+           objectObj5.position.y = 0;
+           objectObj5.position.x = 0;
+           objectObj5.position.z = 0;
+           sceneObj5.add( objectObj5 );
+       }
+       var managerObj5 = new THREE.LoadingManager( loadModelObj5 );
+       managerObj5.onProgress = function ( item, loaded, total ) {
+           console.log( item, loaded, total );
+       };
 
-    // for (var i = 0; i < particleCount; i++) {
-    //     //
-    //     var pX = Math.random() * 100 - 50;
-    //     var pY = Math.random() * 100 - 50;
-    //     var pZ = Math.random() * 100 - 50;
-    //     particle = new THREE.Vector3(pX, pY, pZ);
-    //     particle.velocity = new THREE.Vector3(0, Math.random(), 0);
-    //     particles.vertices.push(particle);
-    // }
+       // texture
+       var textureLoaderObj5 = new THREE.TextureLoader( managerObj5 );
+       var textureObj5 = textureLoaderObj5.load( '/both/assets/img/q4/fond_goutte.png' );
 
-    // // 
-    // var pointCloud = new THREE.PointCloud(particles, materialObj5);
-    // // pointCloud.position.y = 3;
-    // pointCloud.sortParticles = true;
+       var loaderObj5 = new THREE.OBJLoader( managerObj5 );
+       loaderObj5.load( '/both/assets/img/q4/goutte.obj', function ( obj ) {
+           objectObj5 = obj;
 
-    // // 
-    // sceneObj5.add(pointCloud);
+           function animateObj5() {
+               requestAnimationFrame(animateObj5);
+       
+               if (window.getComputedStyle(document.getElementById("hover5")).getPropertyValue('opacity') == 1) {
+                    sceneObj5.rotation.y += 0.01;
+               } else {
+                   objectObj5.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj5.position.y;
+               }
+               rendererObj5.render(sceneObj5, cameraObj5);
+           }
+           
+           animateObj5()
 
-    // // 
-    // function updateObj5() {
-    //     // 
-    //     //   pointCloud.rotation.x += 0.001;
-    //     //   pointCloud.rotation.y += 0.001;
-    //     //   pointCloud.rotation.z += 0.0005;
-
-    //     if (window.getComputedStyle(document.getElementById("hover4")).getPropertyValue('opacity') == 1) {
-    //         pointCloud.rotation.y += 0.01;
-    //     } else {
-    //         pointCloud.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + pointCloud.position.y;
-    //     }
-
-    //     for (var i = 0; i < particleCount; i++) {
-    //         // 
-    //         var particle = particles.vertices[i];
-
-    //         if (particle.y > 50) {
-    //             particle.y = -50;
-    //         }
-    //         if (particle.z > 50) {
-    //             particle.z = -50;
-    //         }
-
-    //         particle.y += particle.velocity.y * 0.5;
-    //         particle.z += particle.velocity.z * 0.5;
-    //     }
-
-    //     //
-    //     pointCloud.geometry.verticesNeedUpdate = true;
-
-    //     // 
-    //     cameraObj5.lookAt(sceneObj5.position);
-    //     rendererObj5.render(sceneObj5, cameraObj5);
-
-    //     // 
-    //     requestAnimationFrame(updateObj5);
-    // }
-    // updateObj5();
-
+       } );
 
     /**************** 
      *** TIMELINE ***

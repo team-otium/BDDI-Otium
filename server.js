@@ -103,8 +103,8 @@ io.sockets.on('connection', function (socket) {
     
 
     // Q5
-    socket.on('q5_doigt', (data) => {
-        socket.broadcast.to(socket.clientId).emit('q5_doigt', data);
+    socket.on('q5', (data) => {
+        io.sockets.to(socket.clientId).emit('q5', data);
     })
 
     // Q6
