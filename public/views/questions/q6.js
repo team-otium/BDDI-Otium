@@ -199,7 +199,7 @@ desktop_socketOn1 = ["q6", (eventData) => {
         let moment = 4
         if (window.moment != moment) {
             window.moment = 4
-
+            
             document.getElementById('background_anim').innerHTML = ""
             document.getElementById('nuit').classList.add("animNav");
 

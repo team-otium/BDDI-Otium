@@ -115,7 +115,7 @@ h2 {
   width: 200px;
   height: 200px;
   border-radius: 46%;
-  border: 1px solid grey;
+  border: 1px solid #aaa;
   position: absolute;
   top: -80px;
   bottom: 0;
@@ -174,22 +174,22 @@ h2 {
   padding: 0;
 }
 .spin:hover {
-  color: blue;
+  color: #eca494;
 }
 .spin::before {
   border: 3px solid transparent;
 }
 .test1::before {
-  border-top-color: blue;
-  border-right-color: blue;
-  border-bottom-color: blue;
+  border-top-color: #eca494;
+  border-right-color: #eca494;
+  border-bottom-color: #eca494;
   transition: border-top-color 0.2s linear, border-right-color 0.2s linear 0.9s, border-bottom-color 0.2s linear 1.9s;
 }
 .spin::after {
   border: 0 solid transparent;
 }
 .test2::after {
-  border-top: 3px solid blue;
+  border-top: 3px solid #eca494;
   border-left-width: 3px;
   border-right-width: 3px;
   -webkit-transform: rotate(270deg);
@@ -202,7 +202,7 @@ h2 {
 .gifValidation {
   position: absolute;
   z-index: 10;
-  background: blue;
+  background: linear-gradient(#a59cce, #eca494);
   top: -80px;
   bottom: 0;
   left: -50%;
