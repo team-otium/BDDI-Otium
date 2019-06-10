@@ -200,10 +200,10 @@ h1 {
 
 
 /**************************  
-**************************  QUESTION 4
+**************************  QUESTION 4 ET 7
 **************************/
 
-#objTop{
+#objTop {
     position: absolute;
     top: 0;
     width: 100%;
@@ -227,11 +227,23 @@ h1 {
     position: relative;
 }
 
+.FinalObject {
+    z-index: 4;
+}
+
 #hoverTop {
     position: absolute;
     top: 0;
     width: 100%;
     height: 50%;
+    display: flex;
+}
+
+#hoverFinal {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
 }
 
@@ -254,7 +266,10 @@ h1 {
 #hover3,
 #hover4,
 #hover5,
-#hover6 {
+#hover6,
+#hoverFinalObj1,
+#hoverFinalObj2,
+#hoverFinalObj3 {
     width: 250px;
     height: 250px;
     position: absolute;

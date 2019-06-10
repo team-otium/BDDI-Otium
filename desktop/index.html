@@ -16,7 +16,7 @@
     <div onClick="togglePlay()" class="iconSound"></div>
     <audio src="/both/assets/sound/ambiance-site.mp3" autoplay loop style="display:none" id="iframeAudio"></audio>
 
-    <div style="z-index: 10000; position: absolute;"><input id="q" type="number"><button id="go">GO</button></div>
+    <div style="z-index: 100; position: absolute;"><input id="q" type="number"><button id="go">GO</button></div>
 
     <!-- background color animation -->
     <div id="background_anim">
@@ -96,7 +96,7 @@
 
     <!-- FIRST PAGE LOAD -->
     <script>
-        //questions.q5.displayPage("desktop")
+        //questions.q7.displayPage("desktop")
         intro.animationLogo.displayPage("desktop")
         document.getElementById("go").addEventListener("click", () => {
             let q = document.getElementById("q").value
