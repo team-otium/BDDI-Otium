@@ -491,7 +491,8 @@ h2 {
   **************************/
 
 .circleQ4,
-.circleQ5 {
+.circleQ5,
+.circleQ7 {
   width: 200px;
   height: 200px;
   border-radius: 46%;

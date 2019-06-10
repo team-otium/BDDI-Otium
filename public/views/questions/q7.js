@@ -12,10 +12,24 @@ mobile_html =
     <div class="text_center_mobile">
         <h1 class="question_mobile">Quel objet vous attire le plus ?</h1>
     </div>
+    <div class="circleQ7"></div>
+    <div id="selected1">
+        <svg height="20" width="20">
+            <circle class="selectedObjFinal" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+    </div>
  `
 
+ var selectObjFinal = 0;
+
 // All listeners, one variable per listener
-mobile_listener1 = ["selector", "type", () => {
+mobile_listener1 = [".circleQ7", "click", () => {
+    socket.emit("q7", "selectObjFinal")
+    document.querySelector('.selectedObjFinal').style.fill = "#000000"
+
+    document.querySelector(".circleQ7").style.display = "none"
+    document.querySelector(".circle1").style.display = "block"
+    document.querySelector(".circle2").style.display = "block"
 
 }]
 
@@ -27,8 +41,9 @@ mobile_listener2 = ["selector", "type", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    document.querySelector(".circle1").style.display = "block"
-    document.querySelector(".circle2").style.display = "block"
+
+    document.querySelector(".circle1").style.display = "none"
+    document.querySelector(".circle2").style.display = "none"
 
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q7
@@ -59,6 +74,13 @@ desktop_html =
     <div id="ball"></div>
 
     <div class="all_object">
+
+    <div id="hoverFinal">
+        <div class="blocHover"><div id="hoverFinalObj1"></div></div>
+        <div class="blocHover"><div id="hoverFinalObj2"></div></div>
+        <div class="blocHover"><div id="hoverFinalObj3"></div></div>
+    </div>
+
         <div id="finalObject1" class="FinalObject"><div id="border1"></div></div>
         <div id="finalObject2" class="FinalObject"><div id="border2"></div></div>
         <div id="finalObject3" class="FinalObject"><div id="border3"></div></div>
@@ -83,25 +105,19 @@ desktop_socketOn1 = ["q7", (eventData) => {
     ball.velocity.y = Math.round(-eventData.tiltFB) / 2;
     ball.velocity.x = Math.round(eventData.tiltLR) / 2;
 
-    if (ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight) {
-        document.getElementById("border1").classList.add("border1")
-    } else {
-        document.getElementById("border1").classList.remove("border1")
+    if (eventData === "selectObjFinal" && ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight) {
+        document.getElementById("hoverFinalObj1").style.opacity = "1"
     }
 
-    if (ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 &&
+    if (eventData === "selectObjFinal" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 &&
         ball.position.y <= window.innerHeight) {
-        document.getElementById("border2").classList.add("border2")
-    } else {
-        document.getElementById("border2").classList.remove("border2")
-    }
+        document.getElementById("hoverFinalObj2").style.opacity = "1"
+    } 
 
-    if (ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 &&
+    if (eventData === "selectObjFinal" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 &&
         ball.position.y <= window.innerHeight) {
-        document.getElementById("border3").classList.add("border3")
-    } else {
-        document.getElementById("border3").classList.remove("border3")
-    }
+        document.getElementById("hoverFinalObj3").style.opacity = "1"
+    } 
 }]
 
 desktop_script = () => {
@@ -163,10 +179,10 @@ desktop_script = () => {
     cameraFinalObj1.position.x = 0;
     cameraFinalObj1.position.y = -0.5;
 
-    var keyLightFinalObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.9);
+    var keyLightFinalObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 1);
     keyLightFinalObj1.position.set(-100, 0, 100);
 
-    var fillLightFinalObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.1);
+    var fillLightFinalObj1 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.9);
     fillLightFinalObj1.position.set(100, 0, -100).normalize();
 
     var backLightFinalObj1 = new THREE.DirectionalLight(0xffffff, 0.3);
@@ -176,23 +192,44 @@ desktop_script = () => {
     sceneFinalObj1.add(fillLightFinalObj1);
     sceneFinalObj1.add(backLightFinalObj1);
 
-    var objLoaderFinalObj1 = new THREE.OBJLoader();
-    objLoaderFinalObj1.load('/both/assets/img/q7/organiques/tore_2.obj', function (finalObject1) {
+    // manager
+    function loadModelFinalObj1() {
+        finalObject1.traverse( function ( child ) {
+            if ( child.isMesh ) child.material.map = textureFinalObj1;
+    } );
         finalObject1.position.y = 0;
         finalObject1.position.x = 0;
         finalObject1.position.z = 0;
-
-        sceneFinalObj1.add(finalObject1);
-    })
-
-    var animateFinalObj1 = function () {
-        requestAnimationFrame(animateFinalObj1);
-
-        sceneFinalObj1.rotation.y += 0.01;
-        rendererFinalObj1.render(sceneFinalObj1, cameraFinalObj1);
+        sceneFinalObj1.add( finalObject1 );
+    }
+    var managerFinalObj1 = new THREE.LoadingManager( loadModelFinalObj1 );
+    managerFinalObj1.onProgress = function ( item, loaded, total ) {
+        console.log( item, loaded, total );
     };
 
-    animateFinalObj1();
+    // texture
+    var textureLoaderFinalObj1 = new THREE.TextureLoader( managerFinalObj1 );
+    var textureFinalObj1 = textureLoaderFinalObj1.load( '/both/assets/img/q5/texture_drap-6_NORMALES.jpg' );
+
+    var objLoaderFinalObj1 = new THREE.OBJLoader(managerFinalObj1);
+    objLoaderFinalObj1.load('/both/assets/img/q7/organiques/tore_2.obj', function (obj) {
+        finalObject1 = obj;
+
+        var animateFinalObj1 = function () {
+            requestAnimationFrame(animateFinalObj1);
+    
+            if (window.getComputedStyle(document.getElementById("hoverFinalObj1")).getPropertyValue('opacity') == 1) {
+                sceneFinalObj1.rotation.y += 0.01;
+            } else {
+                finalObject1.position.y = (Math.cos((Date.now()) * 0.001) * 0.01) + finalObject1.position.y;
+            }
+            
+            rendererFinalObj1.render(sceneFinalObj1, cameraFinalObj1);
+        };
+    
+        animateFinalObj1();
+    })
+
 
     /******************* 
      ****** OBJET 2 ****
@@ -213,10 +250,10 @@ desktop_script = () => {
     cameraFinalObj2.position.x = 0;
     cameraFinalObj2.position.y = -1;
 
-    var keyLightFinalObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    var keyLightFinalObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 1);
     keyLightFinalObj2.position.set(-100, 0, 100);
 
-    var fillLightFinalObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    var fillLightFinalObj2 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 1);
     fillLightFinalObj2.position.set(100, 0, -100).normalize();
 
     var backLightFinalObj2 = new THREE.DirectionalLight(0xffffff, 0.3);
@@ -226,24 +263,45 @@ desktop_script = () => {
     sceneFinalObj2.add(fillLightFinalObj2);
     sceneFinalObj2.add(backLightFinalObj2);
 
-    var objLoaderFinalObj2 = new THREE.OBJLoader();
-    objLoaderFinalObj2.load('/both/assets/img/q7/organiques/sphere_1.obj', function (finalObject2) {
+    // manager
+    function loadModelFinalObj2() {
+        finalObject2.traverse( function ( child ) {
+            if ( child.isMesh ) child.material.map = textureFinalObj2;
+        } );
         finalObject2.position.y = 0;
         finalObject2.position.x = 0;
         finalObject2.position.z = 0;
+        sceneFinalObj2.add( finalObject2 );
+    }
 
-        sceneFinalObj2.add(finalObject2);
+    var managerFinalObj2 = new THREE.LoadingManager( loadModelFinalObj2 );
+    managerFinalObj2.onProgress = function ( item, loaded, total ) {
+        console.log( item, loaded, total );
+    };
+ 
+    // texture
+    var textureLoaderFinalObj2 = new THREE.TextureLoader( managerFinalObj2 );
+    var textureFinalObj2 = textureLoaderFinalObj2.load( '/both/assets/img/q5/texture_drap-9.jpg' );
+
+    var objLoaderFinalObj2 = new THREE.OBJLoader(managerFinalObj2);
+    objLoaderFinalObj2.load('/both/assets/img/q7/organiques/sphere_1.obj', function (obj) {
+        finalObject2 = obj;
+        
+        var animateFinalObj2 = function () {
+            requestAnimationFrame(animateFinalObj2);
+    
+            if (window.getComputedStyle(document.getElementById("hoverFinalObj2")).getPropertyValue('opacity') == 1) {
+                sceneFinalObj2.rotation.y += 0.01;
+            } else {
+                finalObject2.position.y = (Math.cos((Date.now()) * 0.001) * 0.01) + finalObject2.position.y;
+            }
+            
+            rendererFinalObj2.render(sceneFinalObj2, cameraFinalObj2);
+        };
+    
+        animateFinalObj2();
     })
 
-    var animateFinalObj2 = function () {
-        requestAnimationFrame(animateFinalObj2);
-
-        sceneFinalObj2.rotation.y += 0.01;
-
-        rendererFinalObj2.render(sceneFinalObj2, cameraFinalObj2);
-    };
-
-    animateFinalObj2();
 
     /******************** 
      ****** OBJET 3 *****
@@ -264,10 +322,10 @@ desktop_script = () => {
     cameraFinalObj3.position.x = 0;
     cameraFinalObj3.position.y = -1;
 
-    var keyLightFinalObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    var keyLightFinalObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 1);
     keyLightFinalObj3.position.set(-100, 0, 100);
 
-    var fillLightFinalObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+    var fillLightFinalObj3 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 1);
     fillLightFinalObj3.position.set(100, 0, -100).normalize();
 
     var backLightFinalObj3 = new THREE.DirectionalLight(0xffffff, 0.3);
@@ -277,30 +335,46 @@ desktop_script = () => {
     sceneFinalObj3.add(fillLightFinalObj3);
     sceneFinalObj3.add(backLightFinalObj3);
 
-    var mtlLoaderFinalObj3 = new THREE.MTLLoader();
-    mtlLoaderFinalObj3.load('/both/assets/img/q4/goutte.mtl', function (materials) {
-        materials.preload();
 
-        var objLoaderFinalObj3 = new THREE.OBJLoader();
-        objLoaderFinalObj3.setMaterials(materials);
-        objLoaderFinalObj3.load('/both/assets/img/q7/organiques/isocaedre_2.obj', function (finalObject3) {
-            finalObject3.position.y = 0;
-            finalObject3.position.x = 0;
-            finalObject3.position.z = 0;
+    // manager
+    function loadModelFinalObj3() {
+        finalObject3.traverse( function ( child ) {
+            if ( child.isMesh ) child.material.map = textureFinalObj3;
+        } );
 
-            sceneFinalObj3.add(finalObject3);
-        })
-    })
-
-    var animateFinalObj3 = function () {
-        requestAnimationFrame(animateFinalObj3);
-
-        sceneFinalObj3.rotation.y += 0.01;
-
-        rendererFinalObj3.render(sceneFinalObj3, cameraFinalObj3);
+        finalObject3.position.y = 0;
+        finalObject3.position.x = 0;
+        finalObject3.position.z = 0;
+        sceneFinalObj3.add( finalObject3 );
+    }
+    var managerFinalObj3 = new THREE.LoadingManager( loadModelFinalObj3 );
+    managerFinalObj3.onProgress = function ( item, loaded, total ) {
+        console.log( item, loaded, total );
     };
 
-    animateFinalObj3();
+    // texture
+    var textureLoaderFinalObj3 = new THREE.TextureLoader( managerFinalObj3 );
+    var textureFinalObj3 = textureLoaderFinalObj3.load( '/both/assets/img/q5/texture_drap-6.jpg' );
+
+
+    var objLoaderFinalObj3 = new THREE.OBJLoader(managerFinalObj3);
+    objLoaderFinalObj3.load('/both/assets/img/q7/organiques/isocaedre_2.obj', function (obj) {
+        finalObject3 = obj;
+        
+        var animateFinalObj3 = function () {
+            requestAnimationFrame(animateFinalObj3);
+    
+            if (window.getComputedStyle(document.getElementById("hoverFinalObj3")).getPropertyValue('opacity') == 1) {
+                sceneFinalObj3.rotation.y += 0.01;
+            } else {
+                finalObject3.position.y = (Math.cos((Date.now()) * 0.001) * 0.01) + finalObject3.position.y;
+            }
+            
+            rendererFinalObj3.render(sceneFinalObj3, cameraFinalObj3);
+        };
+    
+        animateFinalObj3();
+    })
 
     /**************** 
      *** TIMELINE ***
@@ -316,7 +390,7 @@ desktop_transition = ["out", "in"]
 
 q7_mobile = {
     html: mobile_html,
-    listeners: [],
+    listeners: [mobile_listener1],
     socketOn: [],
     script: mobile_script,
     transitions: mobile_transition,

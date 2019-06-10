@@ -53,6 +53,9 @@ mobile_listener1 = [".circleQ4-1", "click", () => {
 // Script to be executed when the page is displayed
 mobile_script = () => {
 
+    document.querySelector(".circle1").style.display = "none"
+    document.querySelector(".circle2").style.display = "none"
+
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q4
     ValidationBtn.nextPage = questions.q5
