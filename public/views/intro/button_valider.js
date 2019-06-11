@@ -1,3 +1,8 @@
+/**************************  
+**************************  PAGE 4 BUTTON VALIDATION
+**************************/
+
+
 /**
  * MOBILE
  */
@@ -18,7 +23,6 @@ mobile_listener1 = ["selector", "type", () => {
 mobile_listener2 = ["selector", "type", () => {
 
 }]
-/** And more... */
 
 // Socket on
 

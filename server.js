@@ -91,13 +91,20 @@ io.sockets.on('connection', function (socket) {
         socket.broadcast.to(socket.clientId).emit('q3', data);
     })
 
-    // Q5
-    socket.on('q5_doigt', (data) => {
-        socket.broadcast.to(socket.clientId).emit('q5_doigt', data);
-    })
     // Q4
     socket.on('q4', (data) => {
         io.sockets.to(socket.clientId).emit('q4', data);
+    })
+    
+    // Q4 select obj
+    socket.on('q4-2', (data) => {
+        io.sockets.to(socket.clientId).emit('q4-2', data);
+    })
+    
+
+    // Q5
+    socket.on('q5', (data) => {
+        socket.broadcast.to(socket.clientId).emit('q5', data);
     })
 
     // Q6
@@ -109,7 +116,14 @@ io.sockets.on('connection', function (socket) {
     socket.on('q7', (data) => {
         io.sockets.to(socket.clientId).emit('q7', data);
     })
+
+    // Univers
+    socket.on('univers', (data) => {
+        socket.broadcast.to(socket.clientId).emit('univers', data);
+    })
 });
 
 
-server.listen(process.env.PORT || 3000)
+//server.listen(process.env.PORT || 3000)
+
+server.listen(1337)

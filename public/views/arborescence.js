@@ -1,3 +1,7 @@
+/**************************  
+**************************  PAGES ARBORESCENCE
+**************************/
+
 let intro = {
     animationLogo: new Page(animation_logo_desktop, animation_logo_mobile, "animation-logo"),
     intro: new Page(intro_desktop, intro_mobile, "intro"),
@@ -15,4 +19,5 @@ let questions = {
     q6: new Page(q6_desktop, q6_mobile, "q6"),
     q7: new Page(q7_desktop, q7_mobile, "q7"),
     q8: new Page(q8_desktop, q8_mobile, "q8"),
+    q9: new Page(univers_desktop, univers_mobile, "q9")
 }

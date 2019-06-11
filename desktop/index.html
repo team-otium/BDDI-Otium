@@ -6,30 +6,29 @@
     <link rel="stylesheet" type="text/css" href="/desktop/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="/both/css/styles.css" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
-
-
 
 <!-- BODY -->
 
 <body>
-    <div style="z-index: 10000; position: absolute;"><input id="q" type="number"><button id="go">GO</button></div>
+    <!-- sound -->
+    <div onClick="togglePlay()" class="iconSound"></div>
+    <audio src="/both/assets/sound/ambiance-site.mp3" autoplay loop style="display:none" id="iframeAudio"></audio>
+
+    <div style="z-index: 100; position: absolute;"><input id="q" type="number"><button id="go">GO</button></div>
+
     <!-- background color animation -->
     <div id="background_anim">
     </div>
-    <!-- fin background color animation -->
 
     <!-- fixed logo  -->
     <div class="logo_top_left">
         <img src="/both/assets/img/otium_logo.svg" alt="">
     </div>
-    <!-- end fixed logo  -->
 
     <div id="navigation">
-
     </div>
-
-
 
     <!----------- 
     ------------- LOAD SCRIPT
@@ -40,29 +39,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
 
-
     <script src="/dev/utils.js"></script>
     <script src="/lib/utils/utils.js"></script>
     <script src="/lib/threejs/build/three.min.js"></script>
     <script src="/lib/threejs/examples/js/Cloth.js"></script>
     <script src="/lib/threejs/examples/js/loaders/OBJLoader.js"></script>
     <script src="/lib/threejs/examples/js/loaders/MTLLoader.js"></script>
+    <script src="/lib/threejs/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="/lib/threejs/examples/js/controls/TrackballControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/lib/perlin/perlin.js"></script>
 
+    <script src="/lib/dat.gui/dat.gui.js"></script>
 
-    <!-- background color animation links 
-    <script src="/lib/noise/noise.min.js"></script>
-    <script src="/desktop/js/background.js"></script> -->
+    <!-- background color animation links -->
     <script src="/lib/vanta/vanta.fog.min.js"></script>
     <script src="/lib/vanta/background.js"></script>
 
-
+    <!-- PAGES -->
     <script src="/class/Result.js"></script>
     <script src="/desktop/js/connexion.js"></script>
-
-    <!-- PAGES -->
     <script src="/class/Page.js"></script>
 
     <!-- INTRO -->
@@ -72,7 +70,7 @@
     <script src="/views/intro/button_valider.js"></script>
     <script src="/views/intro/timeline.js"></script>
 
-    <!-- QUESTION -->
+    <!-- QUESTIONS -->
     <script src="/views/questions/q1.js"></script>
     <script src="/views/questions/q2.js"></script>
     <script src="/views/questions/q3.js"></script>
@@ -82,13 +80,23 @@
     <script src="/views/questions/q7.js"></script>
     <script src="/views/questions/q8.js"></script>
 
+    <!-- UNIVERS -->
+    <script src="/views/univers/univers.js"></script>
+    <script src="lib/dat.gui/dat.gui.js"></script>
+
+    <!-- PAGE ARBORESCENCE -->
     <script src="/views/arborescence.js"></script>
 
+    <!-- TIMELINE -->
     <script src="/desktop/js/gestion_timeline.js"></script>
 
-    <script>
-        //questions.q4.displayPage("desktop")
+    <!-- SOUND -->
+    <script src="/desktop/js/gestion_sound.js"></script>
 
+
+    <!-- FIRST PAGE LOAD -->
+    <script>
+        //questions.q7.displayPage("desktop")
         intro.animationLogo.displayPage("desktop")
         document.getElementById("go").addEventListener("click", () => {
             let q = document.getElementById("q").value
@@ -96,11 +104,12 @@
             questions["q" + q].comeBackTo('desktop')
             socket.emit("pageChange", q)
         })
-
         socket.on("validationQuestion", (data) => {
             questions["q" + data.from].transitionTo("desktop", questions["q" + data.to])
         })
     </script>
+
+    
 </body>
 
 </html>

@@ -1,117 +1,133 @@
 /** 
-CSS DESKTOP 
+CSS MOBILE
 **/
 
 
 /*** GENERAL ***/
 
-@font-face {
-    font-family: "GothamRounded-Book";
-    src: url("../../both/assets/font/GothamRounded-Book.otf");
-}
-
-@font-face {
-    font-family: "GothamRounded-Light";
-    src: url("../../both/assets/font/GothamRounded-Light.otf");
-}
-
 * {
-    font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -o-user-select: text;
+  user-select: text;
 }
+
+body {
+  overflow: hidden;
+}
+
 
 h1 {
-    font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
-    font-size: 32px;
+    font-size: 30px;
+    line-height: 35px;
 }
 
-.btn {
-    font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    background: none;
-    border: none;
-    background-image: url(/both/assets/img/input.svg);
-    background-position: center;
-    background-size: cover;
-    width: 300px;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    width: 240px;
-    height: 40px;
-    padding: 0 25px;
+h2 {
+  font-size: 22px;
+  line-height: 30px;
 }
 
-* {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+/**************************  
+  **************************  INFO CREDIT
+  **************************/
+
+#infoCredit {
+  position: absolute;
+  display: none;
+  font-size: 15px;
+  max-width: 750px;
+  padding: 20px 15px;
+  text-align: center;
+  line-height: 25px;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
+#infoCredit p {
+  margin: 15px;
+}
+
+.credit1, .credit2 {
+  width: 50%;
+  float: left;
+}
+
+.credit3 {
+  clear: both;
 }
 
 
 /**************************  
-  **************************  BOUTON VALIDATION
+  **************************  FORMULAIRE IMPRESSION 3D
   **************************/
 
-.circle {
-    width: 200px;
-    height: 200px;
-    border-radius: 46%;
-    background: #64d8dc;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -50%;
-    right: -50%;
-    margin: auto;
-    display: none;
+#formulaire3D {
+  position: absolute;
+  display: none;
+  font-size: 15px;
+  max-width: 750px;
+  padding: 20px 15px;
+  text-align: center;
+  line-height: 25px;
+  margin: auto;
+  left: 0;
+  right: 0;
 }
 
-.circleIn {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    z-index: 10;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    background: transparent;
-    border: 1px solid white;
-    position: absolute;
-    display: none;
+#formulaire3D input[type=email] {
+  font-size: 16px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 0.2px solid #bbb;
+  color: #bbb;
+  width: 100%;
+  max-width: 265px;
+  display: block;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 10px 0;
 }
 
-@keyframes full {
-    from {
-        background: transparent;
-    }
-    to {
-        background: white;
-    }
+#formulaire3D input[type=submit]{
+  font-size: 16px;
+  background: none;
+  border: none;
+  background-image: url(/both/assets/img/button.svg);
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 55px;
+  padding-bottom: 10px;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 
-.buttonAnim {
-    width: 100%;
-    height: 100vh;
-    background: #64d8dc;
-    position: absolute;
-    z-index: 10;
-    display: none;
-}
 
-.buttonAnim img {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    margin: auto;
+
+/**************************  
+  **************************  BUTTON VALIDATION QUESTION
+  **************************/
+
+.circle1 {
+  width: 200px;
+  height: 200px;
+  border-radius: 46%;
+  border: 1px solid #aaa;
+  position: absolute;
+  top: -80px;
+  bottom: 0;
+  left: -50%;
+  right: -50%;
+  margin: auto;
+  z-index: 10;
+  display: none;
 }
 
 .rotating {
-    -webkit-animation: rotating 1s linear infinite;
+    -webkit-animation: rotating 3.5s linear infinite;
 }
 
 @-webkit-keyframes rotating {
@@ -123,9 +139,255 @@ h1 {
     }
 }
 
+.circle2 {
+  width: 200px;
+  height: 200px;
+  background: none;
+  border: 0;
+  box-sizing: border-box;
+  top: -80px;
+  bottom: 0;
+  left: -50%;
+  right: -50%;
+  margin: auto;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 10;
+  padding: 0;
+  display: none;
+}
+.circle2::before, .circle2::after {
+  box-sizing: inherit;
+  content: '';
+  width: 200px;
+  height: 200px;
+  background: none;
+  border: 0;
+  top: 0;
+  bottom: 0;
+  left: -50%;
+  right: -50%;
+  margin: auto;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 100;
+  padding: 0;
+}
+.spin:hover {
+  color: #eca494;
+}
+.spin::before {
+  border: 3px solid transparent;
+}
+.test1::before {
+  border-top-color: #eca494;
+  border-right-color: #eca494;
+  border-bottom-color: #eca494;
+  transition: border-top-color 0.2s linear, border-right-color 0.2s linear 0.9s, border-bottom-color 0.2s linear 1.9s;
+}
+.spin::after {
+  border: 0 solid transparent;
+}
+.test2::after {
+  border-top: 3px solid #eca494;
+  border-left-width: 3px;
+  border-right-width: 3px;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+  transition: border-left-width 0s linear, -webkit-transform 3s linear;
+  transition: transform 3s linear, border-left-width 0s linear;
+  transition: transform 3s linear, border-left-width 0s linear, -webkit-transform 3s linear;
+}
+
+.gifValidation {
+  position: absolute;
+  z-index: 10;
+  background: linear-gradient(#a59cce, #eca494);
+  top: -80px;
+  bottom: 0;
+  left: -50%;
+  right: -50%;
+  margin: auto;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: 2s;
+  display: none;
+}
+
 
 /**************************  
-  **************************  SECTION CONNEXION
+  **************************  BOTTOM MENU MOBILE (nav_mobile.js)
+  **************************/
+
+  .firstMenu {
+    position: fixed;
+    bottom: 50px;
+    right: 0;
+    left: 0;
+    display: none;
+    animation: animFirstmenu 2s backwards;
+  }
+
+  @keyframes animFirstmenu {
+    0% {
+      opacity : 0;
+    }
+    30% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .bgButton {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid #494949;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: -31px;
+  }
+
+  .menu-toggler {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+    z-index: 2;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .menu-toggler:hover + label, .menu-toggler:hover + label:before, .menu-toggler:hover + label:after {
+    background: #494949;
+  }
+  .menu-toggler:checked + label {
+    background: transparent;
+  }
+  .menu-toggler:checked + label:before, .menu-toggler:checked + label:after {
+    top: 0;
+    width: 30px;
+    transform-origin: 50% 50%;
+  }
+  .menu-toggler:checked + label:before {
+    transform: rotate(45deg);
+  }
+  .menu-toggler:checked + label:after {
+    transform: rotate(-45deg);
+  }
+  .menu-toggler:checked ~ ul .menu-item {
+    opacity: 1;
+  }
+  .menu-toggler:checked ~ ul .menu-item:nth-child(1) {
+    transform: rotate(0deg) translateX(-110px);
+  }
+  .menu-toggler:checked ~ ul .menu-item:nth-child(2) {
+    transform: rotate(60deg) translateX(-110px);
+  }
+  .menu-toggler:checked ~ ul .menu-item:nth-child(3) {
+    transform: rotate(120deg) translateX(-110px);
+  }
+  .menu-toggler:checked ~ ul .menu-item:nth-child(4) {
+    transform: rotate(180deg) translateX(-110px);
+  }
+  .menu-toggler:checked ~ ul .menu-item a {
+    pointer-events: auto;
+  }
+  .menu-toggler + label {
+    width: 30px;
+    height: 3px;
+    display: block;
+    z-index: 1;
+    border-radius: 2.5px;
+    background: #494949;
+    transition: transform 0.5s, top 0.5s;
+    position: absolute;
+    display: block;
+    top: 10px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+  .menu-toggler + label:before, .menu-toggler + label:after {
+    width: 30px;
+    height: 3px;
+    display: block;
+    z-index: 1;
+    border-radius: 2.5px;
+    background: #494949;
+    transition: transform 0.5s, top 0.5s;
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+  .menu-toggler + label:before {
+    top: 10px;
+  }
+  .menu-toggler + label:after {
+    top: -10px;
+  }
+  .menu-item:nth-child(1) a {
+    transform: rotate(0deg);
+  }
+  .menu-item:nth-child(2) a {
+    transform: rotate(-60deg);
+  }
+  .menu-item:nth-child(3) a {
+    transform: rotate(-120deg);
+  }
+  .menu-item:nth-child(4) a {
+    transform: rotate(-180deg);
+  }
+  .menu-item {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 70px;
+    height: 70px;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  .menu-item a {
+    display: block;
+    width: inherit;
+    height: inherit;
+    line-height: 70px;
+    color: #494949;
+    background: transparent;
+    border-radius: 50%;
+    border: 1px solid #494949;
+    text-align: center;
+    text-decoration: none;
+    font-size: 40px;
+    pointer-events: none;
+    transition: 0.2s;
+    opacity: 1;
+  }
+  
+/**************************  
+  **************************  PAGE 1 INTRO
+  **************************/
+
+
+
+/**************************  
+  **************************  PAGE 2 CONNEXION
   **************************/
 
 .logo_center_mobile {
@@ -139,15 +401,16 @@ h1 {
 
 .text_center_mobile {
     max-width: 750px;
-    height: 75%;
+    height: 82%;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    padding: 0 15px;
     text-align: center;
     margin: auto;
-    line-height: 30px;
+    line-height: 25px;
 }
 
 .question_mobile {
@@ -159,9 +422,57 @@ h1 {
     margin: 35px 0;
 }
 
+.enterCode {
+  font-size: 50px;
+  letter-spacing: 14px;
+  text-align: left;
+  background: none;
+  border: none;
+  width: 100%;
+  max-width: 265px;
+  display: block;
+  margin: auto;
+  margin-top: 20%;
+}
+
+.container {
+  position: relative;
+  max-width: 265px;
+  height: 1px;
+  margin: auto;
+}
+
+.line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to left, transparent 45%, #494949 45%);
+  background-size: 45px;
+}
+
+.enterCode::placeholder {
+  opacity: 0.2;
+}
+
+.connexion {
+  height: 80%;
+}
+
+.connexion .btn {
+  margin-top: 30px;
+}
+
+.errMsg {
+  color: red;
+  font-size: 12px;
+  margin: 5px!important;
+  display: none;
+}
 
 /**************************  
-  **************************  BUTTON_VALIDER
+  **************************  PAGE 3 BUTTON_VALIDER
   **************************/
 
 .fondu_valider {
@@ -175,18 +486,45 @@ h1 {
     margin: auto;
 }
 
-
 /**************************  
-  **************************  Q2
+  **************************  QUESTION 4 ET Q5
   **************************/
 
-#q2_target {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 5;
+.circleQ4,
+.circleQ5,
+.circleQ7 {
+  width: 200px;
+  height: 200px;
+  border-radius: 46%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -80px;
+  bottom: 0;
+  left: -50%;
+  right: -50%;
+  margin: auto;
+  z-index: 10;
+  text-align: center;
+}
+
+#selected1,
+#selectedTexture {
+  position: absolute;
+  top: 205px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 20px;
+  text-align: center;
+  z-index: 10;
+}
+
+#selectedTexture svg {
+  margin-right: 20px;
+  margin-bottom: 15px;
+}
+
+#selectedTexture svg:nth-child(8){
+  margin-right: 0;
 }
