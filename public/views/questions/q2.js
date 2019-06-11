@@ -1,3 +1,7 @@
+/**************************  
+**************************  QUESTION 2
+**************************/
+
 /**
  * MOBILE
  */
@@ -5,8 +9,6 @@
 // The html (without section)
 mobile_html =
     `
-    <div id="q2_target"></div>
-
     <div class="text_center_mobile">
         <h1 class="question_mobile">Avez-vous l'impression de manquer d'air ?</h1>
     </div>
@@ -49,8 +51,9 @@ mobile_listener3 = ["#q2_target", "touchend", (e) => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    document.querySelector(".circle").style.display = "block"
-    document.querySelector(".circleIn").style.display = "block"
+    document.querySelector(".circle1").style.display = "block"
+    document.querySelector(".circle2").style.display = "block"
+    
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q2
     ValidationBtn.nextPage = questions.q3
@@ -76,6 +79,8 @@ desktop_html =
  </div>
  
  <div id="bulles"></div>
+
+ <div class="tuto2"><img src="/both/assets/img/tuto-q2.gif"></div>
  `
 
 desktop_listener1 = ["selector", "type", () => {
@@ -139,7 +144,7 @@ desktop_script = () => {
     /**************** 
      *** TIMELINE ***
      ****************/
-    document.querySelector('.q2').style.fill = "#ffffff"
+    //document.querySelector('.q2').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

@@ -1,3 +1,7 @@
+/**************************  
+**************************  QUESTION 8
+**************************/
+
 /**
  * MOBILE
  */
@@ -17,8 +21,7 @@ mobile_listener1 = ["selector", "type", () => {
 
 mobile_listener2 = ["selector", "type", () => {
 
-    }]
-    /** And more... */
+}]
 
 // Socket on
 mobile_socketOn1 = ["name", () => {
@@ -27,7 +30,14 @@ mobile_socketOn1 = ["name", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
+    document.querySelector(".circle1").style.display = "block"
+    document.querySelector(".circle2").style.display = "block"
 
+    ValidationBtn.canValidate = true
+    ValidationBtn.actualPage = questions.q8
+    ValidationBtn.nextPage = questions.q9
+    ValidationBtn.actualQ = "8"
+    ValidationBtn.nextQ = "9"
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
@@ -60,7 +70,7 @@ desktop_script = () => {
     /**************** 
      *** TIMELINE ***
      ****************/
-    document.querySelector('.q8').style.fill = "#ffffff"
+    //document.querySelector('.q8').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

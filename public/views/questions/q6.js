@@ -1,3 +1,7 @@
+/**************************  
+**************************  QUESTION 6
+**************************/
+
 /**
  * MOBILE
  */
@@ -18,14 +22,14 @@ mobile_listener1 = ["selector", "type", () => {
 mobile_listener2 = ["selector", "type", () => {
 
 }]
-/** And more... */
 
 // Socket on
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    document.querySelector(".circle").style.display = "block"
-    document.querySelector(".circleIn").style.display = "block"
+    document.querySelector(".circle1").style.display = "block"
+    document.querySelector(".circle2").style.display = "block"
+
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q6
     ValidationBtn.nextPage = questions.q7
@@ -41,8 +45,7 @@ mobile_script = () => {
         var tiltFB = eventData.beta;
         var dir = eventData.alpha;
 
-        if (ValidationBtn.touch === true) {
-        } else {
+        if (ValidationBtn.touch === false) {
             socket.emit("q6", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }
@@ -60,6 +63,17 @@ desktop_html =
     <div class="text_center">
         <h1 class="question_desktop">Quel est le moment de la journée le plus agréable visuellement ?</h1>
     </div>
+    <div class="nav">
+        <ul>
+            <li id="leverSoleil">Lever de soleil</li>
+            <li id="matin">Petit matin</li>
+            <li id="journee">Journée</li>
+            <li id="coucherDeSoleil">Coucher de soleil</li>
+            <li id="nuit">Nuit</li>
+        </ul>
+    </div>
+
+    <div class="tuto"><img src="/both/assets/img/tuto-q6.gif"></div>
  `
 
 desktop_listener1 = ["selector", "type", () => {
@@ -85,7 +99,12 @@ desktop_socketOn1 = ["q6", (eventData) => {
         if (window.moment != moment) {
             window.moment = 0
 
+            document.getElementById('leverSoleil').classList.add("animNav");
 
+            document.getElementById('matin').classList.remove("animNav");
+            document.getElementById('journee').classList.remove("animNav");
+            document.getElementById('coucherDeSoleil').classList.remove("animNav");
+            document.getElementById('nuit').classList.remove("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -107,6 +126,12 @@ desktop_socketOn1 = ["q6", (eventData) => {
             window.moment = 1
 
             document.getElementById('background_anim').innerHTML = ""
+            document.getElementById('matin').classList.add("animNav");
+
+            document.getElementById('leverSoleil').classList.remove("animNav");
+            document.getElementById('journee').classList.remove("animNav");
+            document.getElementById('coucherDeSoleil').classList.remove("animNav");
+            document.getElementById('nuit').classList.remove("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -126,6 +151,12 @@ desktop_socketOn1 = ["q6", (eventData) => {
             window.moment = 2
 
             document.getElementById('background_anim').innerHTML = ""
+            document.getElementById('journee').classList.add("animNav");
+
+            document.getElementById('leverSoleil').classList.remove("animNav");
+            document.getElementById('matin').classList.remove("animNav");
+            document.getElementById('coucherDeSoleil').classList.remove("animNav");
+            document.getElementById('nuit').classList.remove("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -145,6 +176,12 @@ desktop_socketOn1 = ["q6", (eventData) => {
             window.moment = 3
 
             document.getElementById('background_anim').innerHTML = ""
+            document.getElementById('coucherDeSoleil').classList.add("animNav");
+
+            document.getElementById('leverSoleil').classList.remove("animNav");
+            document.getElementById('matin').classList.remove("animNav");
+            document.getElementById('journee').classList.remove("animNav");
+            document.getElementById('nuit').classList.remove("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -162,8 +199,14 @@ desktop_socketOn1 = ["q6", (eventData) => {
         let moment = 4
         if (window.moment != moment) {
             window.moment = 4
-
+            
             document.getElementById('background_anim').innerHTML = ""
+            document.getElementById('nuit').classList.add("animNav");
+
+            document.getElementById('leverSoleil').classList.remove("animNav");
+            document.getElementById('matin').classList.remove("animNav");
+            document.getElementById('journee').classList.remove("animNav");
+            document.getElementById('coucherDeSoleil').classList.remove("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -199,7 +242,7 @@ desktop_script = () => {
     /**************** 
      *** TIMELINE ***
      ****************/
-    document.querySelector('.q6').style.fill = "#ffffff"
+    //document.querySelector('.q6').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

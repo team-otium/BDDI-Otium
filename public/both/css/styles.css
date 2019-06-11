@@ -1,9 +1,64 @@
+/** 
+CSS DESKTOP & MOBILE
+**/
+
+
+/*** GENERAL ***/
+@font-face {
+  font-family: "GothamRounded-Book";
+  src: url("../../both/assets/font/GothamRounded-Book.otf");
+}
+
+@font-face {
+  font-family: "GothamRounded-Light";
+  src: url("../../both/assets/font/GothamRounded-Light.otf");
+}
+
+* {
+  font-family: "GothamRounded-Light", Helvetica, Arial, sans-serif;
+}
+
 body{
   overflow: hidden;
   padding: 0;
   margin: 0;
 }
 
+.home_text_center {
+  max-width: 750px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 40%;
+  right: 0;
+  text-align: center;
+  margin: auto;
+  line-height: 25px;
+}
+
+/*** STYLE BUTTONS ***/
+
+.btn {
+  font-size: 16px;
+  background: none;
+  border: none;
+  background-image: url(/both/assets/img/contour.svg);
+  background-position: center;
+  background-size: cover;
+  width: 250px;
+  height: 62px;
+  padding-bottom: 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+input:focus, button:focus{
+  outline: none;
+}
+
+
+/*** ANIMATION PAGE ***/
 section{
     transition: 0.8s all ease;
   }
@@ -16,8 +71,37 @@ section{
     opacity: 1;
   }
 
+/*** LOGO ANIMATION VIDEO ***/
+#logoAnim.opacityAdd{
+    opacity: 1;
+}
+
+#logoAnim{
+    opacity: 0;
+    transition: all 2s;
+}
+
+#video{
+  display: none;
+}
+
+.logo_center {
+  position: absolute;
+  left: 0;
+  top: 25%;
+  right: 0;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo_center img {
+  width: 310px;
+}
+
   /**************************  
-  **************************  BUTTON_VALIDER
+  **************************  PAGE 3 BUTTON_VALIDER
   **************************/
 
   .fondu_valider {

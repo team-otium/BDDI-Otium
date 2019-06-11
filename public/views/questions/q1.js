@@ -1,3 +1,7 @@
+/**************************  
+**************************  QUESTION 1
+**************************/
+
 /**
  * MOBILE
  */
@@ -18,14 +22,17 @@ mobile_listener1 = ["selector", "type", () => {
 mobile_listener2 = ["selector", "type", () => {
 
 }]
-/** And more... */
 
 // Socket on
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    document.querySelector(".circle").style.display = "block"
-    document.querySelector(".circleIn").style.display = "block"
+    document.querySelector(".circle1").style.display = "block"
+    document.querySelector(".circle2").style.display = "block"
+    document.querySelector(".gifValidation").style.display = "block"
+    document.querySelector(".firstMenu").style.display = "block"
+    document.querySelector(".firstMenu4").style.display = "block"
+
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q1
     ValidationBtn.nextPage = questions.q2
@@ -37,9 +44,10 @@ mobile_script = () => {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
     }
 
+    console.log(ValidationBtn.time, ValidationBtn.touch)
+
     function deviceOrientationHandler(eventData) {
-        if (ValidationBtn.touch === true) {
-        } else {
+        if (ValidationBtn.touch === false) {
             socket.emit("q1", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }
@@ -57,10 +65,9 @@ desktop_html =
     <div class="text_center">
         <h1 class="question_desktop">Êtes-vous de nature rêveur/imaginatif ?</h1>
     </div>
-
     <div id="forme-net"></div>
-
     <div id="forme-abstraite"></div>
+    <div class="tuto"><img src="/both/assets/img/tuto-q1.gif"></div>
  `
 
 desktop_listener1 = ["selector", "type", () => {
@@ -106,9 +113,19 @@ desktop_script = () => {
     var segmentsFormeNet = 50;
     var ringsFormeNet = 30;
 
+    var keyLightN = new THREE.DirectionalLight(0xf9f5d1, 1.0);
+    keyLightN.position.set(0,0,100);
+
+    var fillLightN = new THREE.DirectionalLight(0xf9f5d1, 1.0);
+    fillLightN.position.set(0, 0, 0).normalize();
+
+    sceneFormeNet.add(keyLightN);
+    sceneFormeNet.add(fillLightN);
+
+
     var geometryFormeNet = new THREE.SphereGeometry(radiusFormeNet, segmentsFormeNet, ringsFormeNet);
 
-    var materialFormeNet = new THREE.MeshNormalMaterial();
+    var materialFormeNet = new THREE.MeshPhongMaterial();
 
     var cubeFormeNet = new THREE.Mesh(geometryFormeNet, materialFormeNet);
     sceneFormeNet.add(cubeFormeNet);
@@ -117,8 +134,6 @@ desktop_script = () => {
 
     var renderFormeNet = function () {
         requestAnimationFrame(renderFormeNet);
-        cubeFormeNet.rotation.x += 0.01;
-        cubeFormeNet.rotation.y += 0.01;
         rendererFormeNet.render(sceneFormeNet, cameraFormeNet);
     };
     renderFormeNet();
@@ -141,8 +156,21 @@ desktop_script = () => {
     formeAbstraite.appendChild(rendererFormeAbstraite.domElement);
     cameraFormeAbstraite.position.z = 5;
 
+    var keyLightA =  new THREE.DirectionalLight(0xf9f5d1, 1.0);
+     keyLightA.position.set(0,0,100);
+ 
+     var fillLightA =  new THREE.DirectionalLight(0xf9f5d1, 1.0);
+     fillLightA.position.set(100, 0, -100).normalize();
+
+     var backLightA =  new THREE.DirectionalLight(0xf9f5d1, 1.0);
+     backLightA.position.set(100,0,-100).normalize();
+
+     sceneFormeAbstraite.add(keyLightA);
+     sceneFormeAbstraite.add(fillLightA);
+     sceneFormeAbstraite.add(backLightA);
+
     var sphere_geometry = new THREE.SphereGeometry(1, 150, 150);
-    var materialA = new THREE.MeshNormalMaterial();
+    var materialA = new THREE.MeshPhongMaterial();
 
     var sphere = new THREE.Mesh(sphere_geometry, materialA);
     sceneFormeAbstraite.add(sphere);
@@ -160,8 +188,6 @@ desktop_script = () => {
     }
 
     function animate() {
-        //sphere.rotation.x += 0.01;
-        //sphere.rotation.y += 0.01;
         update();
         /* render scene and camera */
         rendererFormeAbstraite.render(sceneFormeAbstraite, cameraFormeAbstraite);
@@ -174,7 +200,7 @@ desktop_script = () => {
     /**************** 
      *** TIMELINE ***
      ****************/
-    document.querySelector('.q1').style.fill = "#ffffff"
+    //document.querySelector('.q1').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]
