@@ -8,11 +8,19 @@ mobile_html =
     <div id="q2_target"></div>
     <div class="text_center_mobile">
         <h1 class="question_mobile">Choisissez un aspect</h1>
+        <button class="q5btn" id="q5Plus">+</button>
+        <button class="q5btn" id="q5Moins">-</button>
     </div>
  `
 
 // All listeners, one variable per listener
-mobile_listener1 = ["#q2_target", "touchstart", (e) => {
+mobile_listener1 = ["#q5Plus", "click", (e) => {
+    socket.emit("q5", "haut")
+}]
+mobile_listener2 = ["#q5Moins", "click", (e) => {
+    socket.emit("q5", "bas")
+}]
+/*mobile_listener1 = ["#q2_target", "touchstart", (e) => {
     if (e.touches.length === 1) {
         scaling = true;
         //pinchStart(e);
@@ -40,7 +48,7 @@ mobile_listener3 = ["#q2_target", "touchend", (e) => {
         }
         scaling = false;
     }
-}]
+}]*/
 /** And more... */
 
 // Socket on
@@ -83,7 +91,7 @@ desktop_listener2 = ["selector", "type", () => {
 
 }]
 
-desktop_socketOn1 = ["q5_doigt", (data) => {
+desktop_socketOn1 = ["q5", (data) => {
     if (data === "haut") {
         q5_actual_texture++
         if (q5_actual_texture > q5_textures.length - 1) q5_actual_texture = 0
@@ -91,15 +99,17 @@ desktop_socketOn1 = ["q5_doigt", (data) => {
         q5_actual_texture--
         if (q5_actual_texture < 0) q5_actual_texture = q5_textures.length - 1
     }
+    scene.remove(plane);
+    createPlane()
 }]
 
 desktop_script = () => {
-    let q5_actual_texture
+    let q5_actual_texture = 0
     let q5_textures = [
 
     ]
     for (let i = 1; i <= 15; i++) {
-        q5_textures.push(new THREE.TextureLoader().load('/both/assets/textures/q5/texture_drap-'+i+'.jpg'))
+        q5_textures.push(new THREE.TextureLoader().load('/both/assets/img/q5/texture_drap-'+i+'.jpg'))
     }
 
     var scene = new THREE.Scene();
@@ -116,25 +126,28 @@ desktop_script = () => {
     light.position.set(5, 5, 15);
     scene.add(light);
 
-    var geometry = new THREE.ParametricBufferGeometry(clothFunction, 30, 30);
-    var material = new THREE.MeshLambertMaterial({ map: q5_textures[0], side: THREE.DoubleSide, wireframe: false });
-    var plane = new THREE.Mesh(geometry, material);
-    scene.add(plane);
-    plane.rotation.z = Math.PI / 6
-    plane.rotation.x = - Math.PI / 12
+    var geometry, material, plane
+    function createPlane(){
+        geometry = new THREE.PlaneGeometry( 200, 200, 200, 200 );
+        material = new THREE.MeshLambertMaterial({ map: q5_textures[q5_actual_texture], side: THREE.DoubleSide, wireframe: false });
+        plane = new THREE.Mesh(geometry, material);
+        scene.add(plane);
+        plane.rotation.z = Math.PI / 6
+        plane.rotation.x = - Math.PI / 12
+      }
+
+      createPlane()
 
     camera.position.z = 5;
 
     var animate = function () {
         requestAnimationFrame(animate);
 
-        var p = planes.particles;
-        for ( var i = 0, il = p.length; i < il; i ++ ) {
-            var v = p[ i ].position;
-            geometry.attributes.position.setXYZ( i, v.x, v.y, v.z );
-        }
-        geometry.attributes.position.needsUpdate = true;
-        geometry.computeVertexNormals();
+        for (var i = 0; i < geometry.vertices.length; i++) {
+            var z = (i + Date.now() * 1/100000)
+            geometry.vertices[i].z = simplex.noise4D(z,z,z,z) * 2
+            plane.geometry.verticesNeedUpdate = true;
+          }
 
         renderer.render(scene, camera);
     };
@@ -144,7 +157,7 @@ desktop_script = () => {
     /**************** 
      *** TIMELINE ***
      ****************/
-    document.querySelector('.q5').style.fill = "#ffffff"
+    //document.querySelector('.q5').style.fill = "#ffffff"
 
 }
 
@@ -156,7 +169,7 @@ desktop_transition = ["out", "in"]
 
 q5_mobile = {
     html: mobile_html,
-    listeners: [mobile_listener1, mobile_listener2, mobile_listener3],
+    listeners: [mobile_listener1, mobile_listener2],
     socketOn: [],
     script: mobile_script,
     transitions: mobile_transition,
