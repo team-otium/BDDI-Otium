@@ -1,1 +1,4 @@
-/public/dev
+public/dev
+server.js
+public/desktop/js/connexion.js
+public/mobile/js/connexion.js
