@@ -189,7 +189,7 @@ desktop_transition = ["out", "in"]
  * Export
  */
 
-q5_mobile = {
+/*q5_mobile = {
     html: mobile_html,
     listeners: [mobile_listener1],
     socketOn: [],
@@ -203,4 +203,4 @@ q5_desktop = {
     socketOn: [desktop_socketOn1],
     script: desktop_script,
     transitions: desktop_transition,
-}
+}*/
