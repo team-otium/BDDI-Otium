@@ -33,10 +33,6 @@ mobile_socketOn1 = ["name", () => {
 mobile_script = () => {
     document.querySelector(".circle1").style.display = "none"
     document.querySelector(".circle2").style.display = "none"
-    document.querySelector(".firstMenu").style.display = "block"
-    document.querySelector(".firstMenu2").style.display = "block"
-    document.querySelector(".firstMenu3").style.display = "block"
-    document.querySelector(".firstMenu4").style.display = "block"
     document.querySelector(".menu").style.display = "none"
 
     if (!window.requestAnimationFrame) {
