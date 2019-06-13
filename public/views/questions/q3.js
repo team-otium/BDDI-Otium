@@ -90,7 +90,7 @@ desktop_html =
     <h1 class="question_desktop">Modulez la ligne qui vous apaise</h1>
  </div>
 
- <canvas id="canvas" style="position: absolute; z-index: 100; height: 100%"></canvas>
+ <canvas id="canvas" style="position: absolute; height: 100%"></canvas>
 
  <div class="tuto"><img src="/both/assets/img/tuto-q3.gif"></div>
  `
