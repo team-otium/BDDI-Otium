@@ -11,7 +11,7 @@ mobile_html =
     <!----------- 
     ------------- INTRO 
     ----------->
-    <div class="home_text_center">
+    <div class="home_text_center_mobile">
         <h1>Bienvenue sur Otium</h1>
         <p>
         Relaxez vous grâce à Otium.<br>
@@ -62,6 +62,18 @@ desktop_listener1 = [".commencer", "click", () => {
 }]
 
 desktop_script = () => {
+
+    // HOVER CURSOR
+    document.querySelector('.commencer').addEventListener("mouseover", function(){
+        document.querySelector('#cursor').style.background = "white"
+        document.querySelector('#cursor').style.transition = "background 0.5s"
+    })
+
+    document.querySelector('.commencer').addEventListener("mouseout", function(){
+        document.querySelector('#cursor').style.background = "transparent"
+        document.querySelector('#cursor').style.transition = "background 0.5s"
+    })
+
 }
 
 desktop_transition = ["out", "in"]

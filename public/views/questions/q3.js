@@ -150,11 +150,6 @@ desktop_script = () => {
     }
     
     setInterval(draw, 1);
-
-    /**************** 
-     *** TIMELINE ***
-     ****************/
-    //document.querySelector('.q3').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

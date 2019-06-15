@@ -20,7 +20,7 @@ mobile_html =
         <div class="line"></div>
         </div>
         <p class="errMsg">Le code est incorrect. Veuillez réessayer.</p>
-        <button class="btn start_q1">valider</button>
+        <!--<button class="btn start_q1">valider</button>-->
     </div>
 
     <!----------- 
@@ -131,7 +131,9 @@ desktop_html =
     <span class="websiteLink">otium-project.herokuapp.com/mobile</span> ou utilisez le <span class="qrLink">QR code</span> pour y accéder directement.
     Une fois sur la page, insérez le code ci-dessous.
         <br><br>
-        Code à insérer sur votre smartphone : <span id="id">####</span>
+        Code à insérer sur votre smartphone : 
+        <br>
+        <span id="id">####</span>
         <br><br>
         <!--<button class="start_q1">test connexion</button>-->
     </p>
@@ -157,6 +159,17 @@ desktop_script = () => {
         document.querySelector(".qrCode").style.opacity = "1"
         document.querySelector(".qrCode").style.transition = "3s"
     }
+
+    //CURSOR
+    document.querySelector('.qrLink').addEventListener("mouseover", function(){
+        document.querySelector('#cursor').style.background = "white"
+        document.querySelector('#cursor').style.transition = "background 0.5s"
+    })
+
+    document.querySelector('.qrLink').addEventListener("mouseout", function(){
+        document.querySelector('#cursor').style.background = "transparent"
+        document.querySelector('#cursor').style.transition = "background 0.5s"
+    })
 }
 
 desktop_transition = ["out", "in"]
