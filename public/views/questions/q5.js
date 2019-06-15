@@ -81,6 +81,8 @@ desktop_html =
     <div class="text_center">
         <h1 class="question_desktop">Choisissez un aspect</h1>
     </div>
+
+    <div id="textureMap"></div>
  `
 
 desktop_listener1 = ["selector", "type", () => {
@@ -119,8 +121,9 @@ desktop_script = () => {
 
     var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    var container = document.getElementById('textureMap')
     renderer.domElement.style.position = "absolute"
-    document.getElementById("q5").appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
 
     var light = new THREE.PointLight(0xffffff, 1, 100);
     light.position.set(5, 5, 15);

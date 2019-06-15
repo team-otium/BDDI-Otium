@@ -81,38 +81,37 @@ mobile_transition = ["out", "in"]
 
 desktop_html =
     `
-    <div id="ball"></div>
-
-    <div id="all_object">
-
-        <div id="hoverTop">
-            <div class="blocHover"><div id="hover1"></div></div>
-            <div class="blocHover"><div id="hover2"></div></div>
-            <div class="blocHover"><div id="hover3"></div></div>
-        </div>
-
-        <div id="hoverBottom">
-            <div class="blocHover"><div id="hover4"></div></div>
-            <div class="blocHover"><div id="hover5"></div></div>
-            <div class="blocHover"><div id="hover6"></div></div>
-        </div>
-
-        <div id="objTop">
-            <div id="object1" class="object"></div>
-            <div id="object2" class="object"></div>
-            <div id="object3" class="object"></div>
-        </div>
-
-        <div id="objBottom">
-            <div id="object4" class="object"></div>
-            <div id="object5" class="object"></div>
-            <div id="object6" class="object"></div>
-        </div>
-
-    </div>
-
     <div class="text_center">
         <h1 class="question_desktop">Choisissez les éléments qui vous apaisent</h1>
+    </div>
+
+    <div class="contain">
+        <div id="ball"></div>
+        <div id="all_object">
+            <div id="hoverTop">
+                <div class="blocHover"><div id="hover1"></div></div>
+                <div class="blocHover"><div id="hover2"></div></div>
+                <div class="blocHover"><div id="hover3"></div></div>
+            </div>
+
+            <div id="hoverBottom">
+                <div class="blocHover"><div id="hover4"></div></div>
+                <div class="blocHover"><div id="hover5"></div></div>
+                <div class="blocHover"><div id="hover6"></div></div>
+            </div>
+
+            <div id="objTop">
+                <div id="object1" class="object"></div>
+                <div id="object2" class="object"></div>
+                <div id="object3" class="object"></div>
+            </div>
+
+            <div id="objBottom">
+                <div id="object4" class="object"></div>
+                <div id="object5" class="object"></div>
+                <div id="object6" class="object"></div>
+            </div>
+        </div>
     </div>
 
     <div class="tuto"><img src="/both/assets/img/tuto-q4.gif"></div>
