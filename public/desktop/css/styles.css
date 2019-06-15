@@ -34,7 +34,7 @@ h1 {
 }
 
 .tuto img {
-    width: 8%;
+    width: 11%;
 }
 
 .tuto2 img {
@@ -114,6 +114,60 @@ h1 {
 **************************  TITLE ANIMATION
 **************************/
 
+.text_center {
+    bottom: 0;
+    animation: animTitleBloc 1s forwards;
+    animation-delay: 4.5s;
+    animation-timing-function: linear;
+}
+
+@keyframes animTitleBloc {
+    0% {
+        opacity: 1;
+        bottom: 0
+    }
+    40% {
+        opacity: 0;
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        bottom: auto;
+    }
+}
+
+.contain {
+    opacity: 0;
+    animation : displayContain 4s forwards;
+    animation-delay: 3s;
+}
+
+@keyframes displayContain {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.text_center h1 {
+    bottom: 0;
+    animation: animTitleH1 0s forwards;
+    animation-delay: 5s;
+    animation-timing-function: linear;
+}
+
+@keyframes animTitleH1 {
+    from {
+        font-size: 36px;
+    }
+    to {
+        font-size: 19px;
+    }
+}
 
 /**************************  
 ************************** PAGE 1 INTRODUCTION
@@ -127,7 +181,6 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    bottom: 0;
     left: 0;
     right: 0;
     text-align: center;
@@ -154,12 +207,9 @@ h1 {
 **************************  PAGE 2 CONNEXION
 **************************/
 
-.qrLink {
-    border-bottom : 1px solid #494949;
-}
-
+.qrLink,
 .websiteLink {
-    border-bottom : 1px solid #494949;
+    border-bottom : 0.5px solid #494949;
 }
 
 .qrCode {

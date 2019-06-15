@@ -63,16 +63,19 @@ desktop_html =
     <div class="text_center">
         <h1 class="question_desktop">Quel est le moment de la journée le plus agréable visuellement ?</h1>
     </div>
-    <div class="nav">
-        <ul>
-            <li id="leverSoleil">Lever de soleil</li>
-            <li id="matin">Petit matin</li>
-            <li id="journee">Journée</li>
-            <li id="coucherDeSoleil">Coucher de soleil</li>
-            <li id="nuit">Nuit</li>
-        </ul>
-    </div>
 
+    <div class="contain">
+        <div class="nav">
+            <ul>
+                <li id="leverSoleil">Lever de soleil</li>
+                <li id="matin">Petit matin</li>
+                <li id="journee">Journée</li>
+                <li id="coucherDeSoleil">Coucher de soleil</li>
+                <li id="nuit">Nuit</li>
+            </ul>
+        </div>
+    </div>
+    
     <div class="tuto"><img src="/both/assets/img/tuto-q6.gif"></div>
  `
 

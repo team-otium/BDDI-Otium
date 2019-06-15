@@ -86,11 +86,15 @@ desktop_html =
      <td id="doDirection"></td>
  </tr>
  </table>-->
+
+
  <div class="text_center">
     <h1 class="question_desktop">Modulez la ligne qui vous apaise</h1>
  </div>
 
- <canvas id="canvas" style="position: absolute; height: 100%"></canvas>
+ <div class="contain">
+    <canvas id="canvas" style="position: absolute; height: 100%"></canvas>
+ </div>
 
  <div class="tuto"><img src="/both/assets/img/tuto-q3.gif"></div>
  `

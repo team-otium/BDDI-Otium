@@ -71,23 +71,22 @@ mobile_transition = ["out", "in"]
 
 desktop_html =
     `
-    <div id="ball"></div>
-
-    <div class="all_object">
-
-    <div id="hoverFinal">
-        <div class="blocHover"><div id="hoverFinalObj1"></div></div>
-        <div class="blocHover"><div id="hoverFinalObj2"></div></div>
-        <div class="blocHover"><div id="hoverFinalObj3"></div></div>
-    </div>
-
-        <div id="finalObject1" class="FinalObject"><div id="border1"></div></div>
-        <div id="finalObject2" class="FinalObject"><div id="border2"></div></div>
-        <div id="finalObject3" class="FinalObject"><div id="border3"></div></div>
-    </div>
-
     <div class="text_center">
         <h1 class="question_desktop">Choisissez l'objet qui vous attire le plus</h1>
+    </div>
+
+    <div class="contain">
+        <div id="ball"></div>
+        <div class="all_object">
+        <div id="hoverFinal">
+            <div class="blocHover"><div id="hoverFinalObj1"></div></div>
+            <div class="blocHover"><div id="hoverFinalObj2"></div></div>
+            <div class="blocHover"><div id="hoverFinalObj3"></div></div>
+        </div>
+            <div id="finalObject1" class="FinalObject"><div id="border1"></div></div>
+            <div id="finalObject2" class="FinalObject"><div id="border2"></div></div>
+            <div id="finalObject3" class="FinalObject"><div id="border3"></div></div>
+        </div>
     </div>
 
     <div class="tuto"><img src="/both/assets/img/tuto-q4.gif"></div>
