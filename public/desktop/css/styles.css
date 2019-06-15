@@ -12,10 +12,11 @@ CSS DESKTOP
 body {
     padding: 0;
     margin: 0;
+    cursor: url(/both/assets/img/cursor.png), auto;
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 36px;
     line-height: 1.3em;
 }
 
@@ -81,13 +82,33 @@ h1 {
     position: absolute;
     cursor: pointer;
     z-index: 10000;
-    right: 20px;
-    top: 25px;
-    width: 25px;
-    height: 25px;
+    right: 35px;
+    top: 26px;
+    width: 22px;
+    height: 22px;
     background: url('../../both/assets/img/svg-son.svg');
 }
 
+/**************************  
+**************************  CURSOR
+**************************/
+#cursor {
+	background: transparent;
+	border: 1px solid white;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	border-radius: 100%;
+	transition: all 0.2s ease;
+	z-index: 20000;
+	pointer-events: none;
+}
+
+.btn:hover,
+.qrLink:hover,
+.iconSound:hover {
+    cursor: url(/both/assets/img/cursor.png), auto;
+}
 
 /**************************  
 **************************  TITLE ANIMATION
@@ -111,6 +132,7 @@ h1 {
     right: 0;
     text-align: center;
     margin: auto;
+    font-size: 17px;
     line-height: 25px;
     z-index: 4;
 }
@@ -133,7 +155,6 @@ h1 {
 **************************/
 
 .qrLink {
-    cursor: pointer;
     border-bottom : 1px solid #494949;
 }
 
@@ -143,6 +164,15 @@ h1 {
 
 .qrCode {
     opacity: 0;
+}
+
+#id {
+    font-size: 35px;
+    letter-spacing: 16px;
+    max-width: 265px;
+    display: block;
+    margin: auto;
+    margin-top: 25px;
 }
 
 /**************************  

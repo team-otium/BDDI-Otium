@@ -67,10 +67,6 @@ desktop_socketOn1 = ["name", () => {
 }]
 
 desktop_script = () => {
-    /**************** 
-     *** TIMELINE ***
-     ****************/
-    //document.querySelector('.q8').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

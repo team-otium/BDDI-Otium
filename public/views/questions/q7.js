@@ -375,11 +375,6 @@ desktop_script = () => {
     
         animateFinalObj3();
     })
-
-    /**************** 
-     *** TIMELINE ***
-     ****************/
-    //document.querySelector('.q7').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

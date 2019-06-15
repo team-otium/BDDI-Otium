@@ -556,11 +556,6 @@ desktop_script = () => {
            animateObj5()
 
        } );
-
-    /**************** 
-     *** TIMELINE ***
-     ****************/
-    //document.querySelector('.q4').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]
