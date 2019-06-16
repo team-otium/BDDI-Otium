@@ -118,7 +118,7 @@ class Validation{
                         document.querySelector(".circle2").style.opacity = "1"
                         document.querySelector(".circle2").classList.remove("test1")
                         document.querySelector(".circle2").classList.remove("test2")
-                    }, 3300)
+                    }, 4500)
 
                 }
             }
