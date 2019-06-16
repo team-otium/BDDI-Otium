@@ -402,6 +402,22 @@ h2 {
   font-size: 15px;
 }
 
+.pathContourMobile {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dashMobile 3s linear forwards;
+  animation-delay: 1s;
+}
+
+@keyframes dashMobile {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 /**************************  
   **************************  PAGE 2 CONNEXION
   **************************/
@@ -513,7 +529,7 @@ h2 {
   width: 200px;
   height: 200px;
   border-radius: 46%;
-  border: 1px solid grey;
+  background: radial-gradient(lightgrey, grey);
   position: absolute;
   top: -80px;
   bottom: 0;
@@ -523,6 +539,7 @@ h2 {
   z-index: 10;
   text-align: center;
 }
+
 
 #selected1,
 #selectedTexture {
