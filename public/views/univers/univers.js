@@ -200,7 +200,7 @@ desktop_script = () => {
 
       /********** Q3 */
 
-      var geometryPlane = new THREE.PlaneGeometry( 500, 500, window.resultats.questions.q3.freq, window.resultats.questions.q3.freq );
+var geometryPlane = new THREE.PlaneGeometry( 500, 500, window.resultats.questions.q3.freq, window.resultats.questions.q3.freq );
 var material = new THREE.MeshLambertMaterial( {color: 0xf2d4c2, side: THREE.DoubleSide} );
 var plane = new THREE.Mesh( geometryPlane, material );
 plane.rotation.x = Math.PI/2

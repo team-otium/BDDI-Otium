@@ -41,7 +41,6 @@ mobile_listener1 = [".circleQ4-1", "click", () => {
             // 2 obj are selected 
             canValide = true;
             if (canValide === true) {
-                console.log("canvalide")
                 document.querySelector(".circleQ4").style.display = "none"
                 document.querySelector(".circle1").style.display = "block"
                 document.querySelector(".circle2").style.display = "block"
@@ -66,7 +65,7 @@ mobile_script = () => {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
     }
     function deviceOrientationHandler(eventData) {
-        if (ValidationBtn.touch === false) {
+        if (ValidationBtn.touch === false && window.getComputedStyle(document.querySelector(".gifValidation")).getPropertyValue('opacity') == 0) {
             socket.emit("q4", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }
@@ -237,7 +236,7 @@ desktop_script = () => {
         }
         var managerObj1 = new THREE.LoadingManager( loadModelObj1 );
         managerObj1.onProgress = function ( item, loaded, total ) {
-            console.log( item, loaded, total );
+
         };
 
         // texture
@@ -248,14 +247,16 @@ desktop_script = () => {
         loaderObj1.load( '/both/assets/img/q4/bulles_eau_2.obj', function ( obj ) {
             objectObj1 = obj;
 
+            if (window.getComputedStyle(document.getElementById("hover1")).getPropertyValue('opacity') == 1) {
+                objectObj1.rotation.y += 0.01;
+            } else {
+                objectObj1.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj1.position.y;
+            }
+
             function animateObj1() {
                 requestAnimationFrame(animateObj1);
         
-                if (window.getComputedStyle(document.getElementById("hover1")).getPropertyValue('opacity') == 1) {
-                    objectObj1.rotation.y += 0.01;
-                } else {
-                    objectObj1.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj1.position.y;
-                }
+
                 rendererObj1.render(sceneObj1, cameraObj1);
             }
             
@@ -309,15 +310,15 @@ desktop_script = () => {
 
             sceneObj2.add(object2);
 
+            if (window.getComputedStyle(document.getElementById("hover2")).getPropertyValue('opacity') == 1) {
+                sceneObj2.rotation.y += 0.01;
+            } else {
+                object2.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object2.position.y;
+            }
+
             var animateObj2 = function () {
                 requestAnimationFrame(animateObj2);
 
-
-                if (window.getComputedStyle(document.getElementById("hover2")).getPropertyValue('opacity') == 1) {
-                    sceneObj2.rotation.y += 0.01;
-                } else {
-                    object2.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object2.position.y;
-                }
                 rendererObj2.render(sceneObj2, cameraObj2);
             };
             animateObj2();
@@ -409,14 +410,14 @@ desktop_script = () => {
 
             sceneObj3.add(object3);
 
+            if (window.getComputedStyle(document.getElementById("hover3")).getPropertyValue('opacity') == 1) {
+                //sceneObj3.rotation.y += 0.001;
+            } else {
+                cameraObj3.position.y = (Math.cos((Date.now()) * 0.001) * 0.1) + cameraObj3.position.y;
+            }
+
             var animateObj3 = function () {
                 requestAnimationFrame(animateObj3);
-
-                if (window.getComputedStyle(document.getElementById("hover3")).getPropertyValue('opacity') == 1) {
-                    //sceneObj3.rotation.y += 0.001;
-                } else {
-                    cameraObj3.position.y = (Math.cos((Date.now()) * 0.001) * 0.1) + cameraObj3.position.y;
-                }
 
                 rendererObj3.render(sceneObj3, cameraObj3);
             };
@@ -463,7 +464,7 @@ desktop_script = () => {
         }
         var managerObj4 = new THREE.LoadingManager( loadModelObj4 );
         managerObj4.onProgress = function ( item, loaded, total ) {
-            console.log( item, loaded, total );
+
         };
 
         // texture
@@ -474,14 +475,15 @@ desktop_script = () => {
         loaderObj4.load( '/both/assets/img/q4/sable_R.obj', function ( obj ) {
             objectObj4 = obj;
 
+            if (window.getComputedStyle(document.getElementById("hover4")).getPropertyValue('opacity') == 1) {
+                sceneObj4.rotation.y += 0.01;
+            } else {
+                objectObj4.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj4.position.y;
+            }
+
             function animateObj4() {
                 requestAnimationFrame(animateObj4);
         
-                if (window.getComputedStyle(document.getElementById("hover4")).getPropertyValue('opacity') == 1) {
-                    sceneObj4.rotation.y += 0.01;
-                } else {
-                    objectObj4.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj4.position.y;
-                }
                 rendererObj4.render(sceneObj4, cameraObj4);
             }
             
@@ -530,7 +532,7 @@ desktop_script = () => {
        }
        var managerObj5 = new THREE.LoadingManager( loadModelObj5 );
        managerObj5.onProgress = function ( item, loaded, total ) {
-           console.log( item, loaded, total );
+
        };
 
        // texture
@@ -541,14 +543,15 @@ desktop_script = () => {
        loaderObj5.load( '/both/assets/img/q4/goutte.obj', function ( obj ) {
            objectObj5 = obj;
 
+           if (window.getComputedStyle(document.getElementById("hover5")).getPropertyValue('opacity') == 1) {
+            sceneObj5.rotation.y += 0.01;
+       } else {
+           objectObj5.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj5.position.y;
+       }
+
            function animateObj5() {
                requestAnimationFrame(animateObj5);
        
-               if (window.getComputedStyle(document.getElementById("hover5")).getPropertyValue('opacity') == 1) {
-                    sceneObj5.rotation.y += 0.01;
-               } else {
-                   objectObj5.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj5.position.y;
-               }
                rendererObj5.render(sceneObj5, cameraObj5);
            }
            

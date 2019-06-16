@@ -54,7 +54,7 @@ mobile_script = () => {
             var tiltFB = eventData.beta;
             var dir = eventData.alpha;
 
-            if (ValidationBtn.touch === false) {
+            if (ValidationBtn.touch === false && window.getComputedStyle(document.querySelector(".gifValidation")).getPropertyValue('opacity') == 0) {
                 socket.emit("q3", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
             }            
         })
@@ -72,7 +72,7 @@ mobile_transition = ["out", "in"]
 
 desktop_html =
     `
- <!--<table class="table table-striped table-bordered" style="position: absolute; z-index:50">
+<!--<table class="table table-striped table-bordered" style="position: absolute; z-index:50">
  <tr>
      <td>Tilt Left/Right [gamma]</td>
      <td id="doTiltLR"></td>
@@ -93,7 +93,7 @@ desktop_html =
  </div>
 
  <div class="contain">
-    <canvas id="canvas" style="position: absolute; height: 100%"></canvas>
+    <canvas id="canvas" style="position: absolute"></canvas>
  </div>
 
  <div class="tuto"><img src="/both/assets/img/tuto-q3.gif"></div>
@@ -108,7 +108,9 @@ desktop_socketOn1 = ["q3", (eventData) => {
     if (eventData.tiltFB >= 0 && eventData.tiltFB <= 90) {
         window.amp = Math.round(eventData.tiltFB);
     }
-    //window.freq = Math.round(eventData.tiltLR)/100;
+    if (eventData.tiltLR >= 15 && eventData.tiltLR <= 50) {
+        window.freq = Math.round(eventData.tiltLR)/1000;
+    }
 }]
 
 desktop_listener1 = ["selector", "type", () => {
@@ -128,26 +130,26 @@ desktop_script = () => {
     var h = ctx.canvas.height;
     
     var MAX_LINES = 6;
-    window.amp = 0;
-    var freq = 0.025;
+    window.amp = 50;
+    window.freq = 0.025;
     var rate = 0;
     
     var ctr = 0;
     function draw() {
       w = ctx.canvas.width = window.innerWidth;
-      h = ctx.canvas.height = 400;
+      h = ctx.canvas.height = window.innerHeight;
       ctx.moveTo(0, h/2); //start at left center
       ctr++;
       for (var i = 1; i < MAX_LINES; i++) {
         ctr++;
-        rate = ctr/2250;
+        rate = ctr/850;
         ctx.beginPath();
         for (var x = 0; x < w; x++) {
-          y = Math.sin(x * freq * (i/3) + rate) * window.amp / i;
+          y = Math.sin(x * window.freq * (i/3) + rate) * window.amp / i;
           ctx.lineTo(x, y + h/2);
         }//for
         ctx.strokeStyle = "white";
-        ctx.lineWidth = 0.75;
+        ctx.lineWidth = 1.5;
         ctx.stroke();
       }//for
       

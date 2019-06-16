@@ -45,7 +45,7 @@ mobile_script = () => {
         var tiltFB = eventData.beta;
         var dir = eventData.alpha;
 
-        if (ValidationBtn.touch === false) {
+        if (ValidationBtn.touch === false && window.getComputedStyle(document.querySelector(".gifValidation")).getPropertyValue('opacity') == 0){
             socket.emit("q6", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }

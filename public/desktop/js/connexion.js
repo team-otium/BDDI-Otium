@@ -20,5 +20,6 @@ function createConnexionId () {
     // Cancel the the experience if the mobile is disconnected
     socket.on("mobileDisconnected", () => {
         intro.connexion.comeBackTo("desktop")
+        document.location.reload(true);
     })
 }
