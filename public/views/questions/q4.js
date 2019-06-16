@@ -88,15 +88,15 @@ desktop_html =
         <div id="ball"></div>
         <div id="all_object">
             <div id="hoverTop">
-                <div class="blocHover"><div id="hover1"></div></div>
-                <div class="blocHover"><div id="hover2"></div></div>
-                <div class="blocHover"><div id="hover3"></div></div>
+                <div class="blocHover"><div id="hover1"></div><div id="hover1-2"></div></div>
+                <div class="blocHover"><div id="hover2"></div><div id="hover2-2"></div></div>
+                <div class="blocHover"><div id="hover3"></div><div id="hover3-2"></div></div>
             </div>
 
             <div id="hoverBottom">
-                <div class="blocHover"><div id="hover4"></div></div>
-                <div class="blocHover"><div id="hover5"></div></div>
-                <div class="blocHover"><div id="hover6"></div></div>
+                <div class="blocHover"><div id="hover4"></div><div id="hover4-2"></div></div>
+                <div class="blocHover"><div id="hover5"></div><div id="hover5-2"></div></div>
+                <div class="blocHover"><div id="hover6"></div><div id="hover6-2"></div></div>
             </div>
 
             <div id="objTop">
@@ -118,9 +118,45 @@ desktop_html =
 
 desktop_socketOn1 = ["q4", (eventData) => {
 
-    ball.velocity.y = Math.round(-eventData.tiltFB + 10) / 2;
-    ball.velocity.x = Math.round(eventData.tiltLR + 10) / 2;
+    ball.velocity.y = Math.round(-eventData.tiltFB + 20) / 3;
+    ball.velocity.x = Math.round(eventData.tiltLR + 20) / 2;
 
+    // hover on obj 1 //
+    if (ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
+        document.getElementById("hover1").style.opacity = "1"
+    } else {
+        document.getElementById("hover1").style.opacity = "0"
+    }
+    // hover on obj 2 //
+    if (ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y <= window.innerHeight / 2) {
+        document.getElementById("hover2").style.opacity = "1"
+    }  else {
+        document.getElementById("hover2").style.opacity = "0"
+    }
+    // hover on obj 3 //
+    if (ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y <= window.innerHeight / 2) {
+        document.getElementById("hover3").style.opacity = "1"
+    } else {
+        document.getElementById("hover3").style.opacity = "0"
+    }
+    // hover on obj 4 //
+    if (ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight / 2) {
+        document.getElementById("hover4").style.opacity = "1"
+    } else {
+        document.getElementById("hover4").style.opacity = "0"
+    }
+    // hover on obj 5 //
+    if (ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y > window.innerHeight / 2) {
+        document.getElementById("hover5").style.opacity = "1"
+    } else {
+        document.getElementById("hover5").style.opacity = "0"
+    }
+    // hover on obj 6 //
+    if (ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y > window.innerHeight / 2) {
+        document.getElementById("hover6").style.opacity = "1"
+    } else {
+        document.getElementById("hover6").style.opacity = "0"
+    }
 }]
 
 
@@ -130,27 +166,27 @@ desktop_socketOn1 = ["q4", (eventData) => {
 desktop_socketOn2 = ["q4-2", (eventData) => {
     // click on obj 1 //
     if (eventData === "selectObj" && ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
-        document.getElementById("hover1").style.opacity = "1"
+        document.getElementById("hover1-2").style.display = "block"
     }
     // click on obj 2 //
     if (eventData === "selectObj" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y <= window.innerHeight / 2) {
-        document.getElementById("hover2").style.opacity = "1"
+        document.getElementById("hover2-2").style.display = "block"
     }
     // click on obj 3 //
     if (eventData === "selectObj" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y <= window.innerHeight / 2) {
-        document.getElementById("hover3").style.opacity = "1"
+        document.getElementById("hover3-2").style.display = "block"
     }
     // click on obj 4 //
     if (eventData === "selectObj" && ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight / 2) {
-        document.getElementById("hover4").style.opacity = "1"
+        document.getElementById("hover4-2").style.display = "block"
     }
     // click on obj 5 //
     if (eventData === "selectObj" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y > window.innerHeight / 2) {
-        document.getElementById("hover5").style.opacity = "1"
+        document.getElementById("hover5-2").style.display = "block"
     }
     // click on obj 6 //
     if (eventData === "selectObj" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y > window.innerHeight / 2) {
-        document.getElementById("hover6").style.opacity = "1"
+        document.getElementById("hover6-2").style.display = "block"
     }
 }]
 
@@ -229,7 +265,7 @@ desktop_script = () => {
             objectObj1.traverse( function ( child ) {
                 if ( child.isMesh ) child.material.map = textureObj1;
             } );
-            objectObj1.position.y = -10;
+            objectObj1.position.y = -30;
             objectObj1.position.x = 20;
             objectObj1.position.z = 0;
             sceneObj1.add( objectObj1 );
@@ -247,7 +283,7 @@ desktop_script = () => {
         loaderObj1.load( '/both/assets/img/q4/bulles_eau_2.obj', function ( obj ) {
             objectObj1 = obj;
 
-            if (window.getComputedStyle(document.getElementById("hover1")).getPropertyValue('opacity') == 1) {
+            if (window.getComputedStyle(document.getElementById("hover1")).getPropertyValue('opacity') == "block") {
                 objectObj1.rotation.y += 0.01;
             } else {
                 objectObj1.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj1.position.y;
@@ -256,7 +292,6 @@ desktop_script = () => {
             function animateObj1() {
                 requestAnimationFrame(animateObj1);
         
-
                 rendererObj1.render(sceneObj1, cameraObj1);
             }
             
@@ -304,13 +339,13 @@ desktop_script = () => {
         var objLoaderObj2 = new THREE.OBJLoader();
         objLoaderObj2.setMaterials(materials);
         objLoaderObj2.load('/both/assets/img/q4/feuilles.obj', function (object2) {
-            object2.position.y = -180;
+            object2.position.y = -300;
             object2.position.x = -50;
             object2.position.z = 20;
 
             sceneObj2.add(object2);
 
-            if (window.getComputedStyle(document.getElementById("hover2")).getPropertyValue('opacity') == 1) {
+            if (window.getComputedStyle(document.getElementById("hover2")).getPropertyValue('opacity') == "block") {
                 sceneObj2.rotation.y += 0.01;
             } else {
                 object2.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object2.position.y;
@@ -410,7 +445,7 @@ desktop_script = () => {
 
             sceneObj3.add(object3);
 
-            if (window.getComputedStyle(document.getElementById("hover3")).getPropertyValue('opacity') == 1) {
+            if (window.getComputedStyle(document.getElementById("hover3")).getPropertyValue('opacity') == "block") {
                 //sceneObj3.rotation.y += 0.001;
             } else {
                 cameraObj3.position.y = (Math.cos((Date.now()) * 0.001) * 0.1) + cameraObj3.position.y;
@@ -475,7 +510,7 @@ desktop_script = () => {
         loaderObj4.load( '/both/assets/img/q4/sable_R.obj', function ( obj ) {
             objectObj4 = obj;
 
-            if (window.getComputedStyle(document.getElementById("hover4")).getPropertyValue('opacity') == 1) {
+            if (window.getComputedStyle(document.getElementById("hover4")).getPropertyValue('opacity') == "block") {
                 sceneObj4.rotation.y += 0.01;
             } else {
                 objectObj4.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj4.position.y;
@@ -523,7 +558,8 @@ desktop_script = () => {
        // manager
        function loadModelObj5() {
            objectObj5.traverse( function ( child ) {
-               if ( child.isMesh ) child.material.map = textureObj5;
+               if ( child.isMesh )
+               child.material.color.setHex(0xa3c9f7);
            } );
            objectObj5.position.y = 0;
            objectObj5.position.x = 0;
@@ -536,14 +572,14 @@ desktop_script = () => {
        };
 
        // texture
-       var textureLoaderObj5 = new THREE.TextureLoader( managerObj5 );
-       var textureObj5 = textureLoaderObj5.load( '/both/assets/img/q4/fond_goutte.png' );
+    //    var textureLoaderObj5 = new THREE.TextureLoader( managerObj5 );
+    //    var textureObj5 = textureLoaderObj5.load( '/both/assets/img/q4/fond_goutte.png' );
 
        var loaderObj5 = new THREE.OBJLoader( managerObj5 );
        loaderObj5.load( '/both/assets/img/q4/goutte.obj', function ( obj ) {
            objectObj5 = obj;
 
-           if (window.getComputedStyle(document.getElementById("hover5")).getPropertyValue('opacity') == 1) {
+           if (window.getComputedStyle(document.getElementById("hover5")).getPropertyValue('display') == "block") {
             sceneObj5.rotation.y += 0.01;
        } else {
            objectObj5.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj5.position.y;
