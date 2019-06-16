@@ -377,9 +377,8 @@ h1 {
     width: 250px;
     height: 250px;
     position: absolute;
-    left: 0;
     right: 0;
-    top: 0;
+    left: 0;
     bottom: 0;
     margin: auto;
     background: rgb(255,255,255);
@@ -387,6 +386,47 @@ h1 {
     border-radius: 50%;
     opacity: 0;
     transition: opacity 1s;
+}
+
+#hover1,
+#hover3,
+#hover4,
+#hover5,
+#hover6,
+#hover1-2,
+#hover3-2,
+#hover4-2,
+#hover5-2,
+#hover6-2,
+#hoverFinalObj1,
+#hoverFinalObj2,
+#hoverFinalObj3 {
+    top: 0;
+}
+
+#hover1-2,
+#hover2-2,
+#hover3-2,
+#hover4-2,
+#hover5-2,
+#hover6-2 {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    display: none;
+    transition: opacity 1s;
+}
+
+#hover2,
+#hover2-2 {
+    top: 170px;
 }
 
 /**************************  

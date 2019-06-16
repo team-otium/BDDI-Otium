@@ -121,7 +121,7 @@ desktop_script = () => {
     var keyLightN = new THREE.DirectionalLight(0xf9f5d1, 1.0);
     keyLightN.position.set(0,0,100);
 
-    var fillLightN = new THREE.DirectionalLight(0xf9f5d1, 0.5);
+    var fillLightN = new THREE.DirectionalLight(0xf9f5d1, 1);
     fillLightN.position.set(0, 0, 0);
 
     sceneFormeNet.add(keyLightN);
@@ -130,7 +130,7 @@ desktop_script = () => {
 
     var geometryFormeNet = new THREE.SphereGeometry(radiusFormeNet, segmentsFormeNet, ringsFormeNet);
 
-    var materialFormeNet = new THREE.MeshPhongMaterial();
+    var materialFormeNet = new THREE.MeshLambertMaterial();
 
     var cubeFormeNet = new THREE.Mesh(geometryFormeNet, materialFormeNet);
     sceneFormeNet.add(cubeFormeNet);

@@ -427,6 +427,40 @@ h2 {
   }
 }
 
+.btnFirstPageOpen,
+.btnFirstPageClose {
+  position: fixed;
+  bottom: 50px;
+  right: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.infoFirstPage,
+.fermer {
+  display: block;
+  width: 65px;
+  height: 65px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  line-height: 62px;
+  color: #494949;
+  background: transparent;
+  border-radius: 50%;
+  border: 1px solid #494949;
+  text-align: center;
+  text-decoration: none;
+  font-size: 40px;
+  pointer-events: none;
+  transition: 0.2s;
+  opacity: 1;
+}
+
+.fermer {
+  display: none;
+}
+
 /**************************  
   **************************  PAGE 2 CONNEXION
   **************************/
