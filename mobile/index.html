@@ -147,6 +147,9 @@
             document.removeEventListener('click', enableNoSleep, false);
             noSleep.enable();
         }, false);
+
+        // No right clic
+        document.oncontextmenu = new Function("return false")
     </script>
 
 </body>

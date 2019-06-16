@@ -61,6 +61,8 @@ class Page{
         this[device].socketOn.forEach(so => {
             socket.removeListener(so[0], so[1])
         })
+
+        this[device].script = null
     }
 
     displayPage(device){
