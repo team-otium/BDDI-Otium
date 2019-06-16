@@ -56,7 +56,7 @@ mobile_script = () => {
     }
 
     function deviceOrientationHandler(eventData) {
-        if (ValidationBtn.touch === false) {
+        if (ValidationBtn.touch === false && window.getComputedStyle(document.querySelector(".gifValidation")).getPropertyValue('opacity') == 0) {
             socket.emit("q7", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }

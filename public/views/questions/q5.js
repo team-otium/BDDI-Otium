@@ -106,6 +106,7 @@ desktop_socketOn1 = ["q5", (data) => {
 }]
 
 desktop_script = () => {
+
     window.q5_actual_texture = 0
     window.q5_textures = [
 
