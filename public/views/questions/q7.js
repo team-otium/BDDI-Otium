@@ -120,6 +120,7 @@ desktop_socketOn1 = ["q7", (eventData) => {
 }]
 
 desktop_script = () => {
+    window.q7animate
 
     /******************* 
      ****** BALL *******
@@ -153,7 +154,9 @@ desktop_script = () => {
         }
         ball.style.top = ball.position.y + "px"
         ball.style.left = ball.position.x + "px"
-        requestAnimationFrame(update);
+        if (window.q7animate) {
+            requestAnimationFrame(update);
+        }
     }
 
     start()
@@ -215,7 +218,9 @@ desktop_script = () => {
         finalObject1 = obj;
 
         var animateFinalObj1 = function () {
-            requestAnimationFrame(animateFinalObj1);
+            if (window.q7animate) {
+                requestAnimationFrame(animateFinalObj1);
+            }
     
             if (window.getComputedStyle(document.getElementById("hoverFinalObj1")).getPropertyValue('opacity') == 1) {
                 sceneFinalObj1.rotation.y += 0.01;
@@ -287,7 +292,9 @@ desktop_script = () => {
         finalObject2 = obj;
         
         var animateFinalObj2 = function () {
-            requestAnimationFrame(animateFinalObj2);
+            if (window.q7animate) {
+                requestAnimationFrame(animateFinalObj2);
+            }
     
             if (window.getComputedStyle(document.getElementById("hoverFinalObj2")).getPropertyValue('opacity') == 1) {
                 sceneFinalObj2.rotation.y += 0.01;
@@ -361,7 +368,9 @@ desktop_script = () => {
         finalObject3 = obj;
         
         var animateFinalObj3 = function () {
-            requestAnimationFrame(animateFinalObj3);
+            if (window.q7animate) {
+                requestAnimationFrame(animateFinalObj3);
+            }
     
             if (window.getComputedStyle(document.getElementById("hoverFinalObj3")).getPropertyValue('opacity') == 1) {
                 sceneFinalObj3.rotation.y += 0.01;
