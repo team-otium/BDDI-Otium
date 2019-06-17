@@ -199,7 +199,7 @@ desktop_listener2 = ["selector", "type", () => {
 }]
 
 desktop_script = () => {
-
+    window.q4animate = true
     function start() {
         ball = document.getElementById("ball");
         w = window.innerWidth;
@@ -228,7 +228,9 @@ desktop_script = () => {
         }
         ball.style.top = ball.position.y + "px"
         ball.style.left = ball.position.x + "px"
-        requestAnimationFrame(update);
+        if (window.q4animate) {
+            requestAnimationFrame(update);
+        }
     }
 
     start()
@@ -295,7 +297,9 @@ desktop_script = () => {
                 rendererObj1.render(sceneObj1, cameraObj1);
             }
             
-            animateObj1()
+            if (window.q4animate) {
+                animateObj1()
+            }
 
         } );
 
@@ -356,7 +360,9 @@ desktop_script = () => {
 
                 rendererObj2.render(sceneObj2, cameraObj2);
             };
-            animateObj2();
+            if (window.q4animate) {
+                animateObj2();
+            }
         })
     })
 
@@ -452,7 +458,9 @@ desktop_script = () => {
             }
 
             var animateObj3 = function () {
-                requestAnimationFrame(animateObj3);
+                if (window.q4animate) {
+                    requestAnimationFrame(animateObj3);
+                }
 
                 rendererObj3.render(sceneObj3, cameraObj3);
             };
@@ -517,7 +525,9 @@ desktop_script = () => {
             }
 
             function animateObj4() {
-                requestAnimationFrame(animateObj4);
+                if (window.q4animate) {
+                    requestAnimationFrame(animateObj4);
+                }
         
                 rendererObj4.render(sceneObj4, cameraObj4);
             }
@@ -586,7 +596,9 @@ desktop_script = () => {
        }
 
            function animateObj5() {
-               requestAnimationFrame(animateObj5);
+               if (window.q4animate) {
+                   requestAnimationFrame(animateObj5);
+               }
        
                rendererObj5.render(sceneObj5, cameraObj5);
            }
@@ -647,7 +659,9 @@ desktop_script = () => {
            }
 
            var animateObj6 = function () {
-               requestAnimationFrame(animateObj6);
+               if (window.q4animate) {
+                   requestAnimationFrame(animateObj6);
+               }
 
                rendererObj6.render(sceneObj6, cameraObj6);
            };
