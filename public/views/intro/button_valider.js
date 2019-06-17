@@ -32,8 +32,6 @@ mobile_script = () => {
         intro.button_valider.transitionTo("mobile", questions.q1)
     }, 2000)
 
-
-    /* FULL SCREEN
     function launchIntoFullscreen(element) {
         if(element.requestFullscreen) {
         element.requestFullscreen();
@@ -46,7 +44,7 @@ mobile_script = () => {
         }
     }
 
-  launchIntoFullscreen(document.documentElement);*/
+  launchIntoFullscreen(document.documentElement);
 
 }
 

@@ -33,10 +33,6 @@ mobile_socketOn1 = ["name", () => {
 mobile_script = () => {
     document.querySelector(".circle1").style.display = "none"
     document.querySelector(".circle2").style.display = "none"
-    document.querySelector(".firstMenu").style.display = "block"
-    document.querySelector(".firstMenu2").style.display = "block"
-    document.querySelector(".firstMenu3").style.display = "block"
-    document.querySelector(".firstMenu4").style.display = "block"
     document.querySelector(".menu").style.display = "none"
 
     if (!window.requestAnimationFrame) {
@@ -204,7 +200,7 @@ desktop_script = () => {
 
       /********** Q3 */
 
-      var geometryPlane = new THREE.PlaneGeometry( 500, 500, window.resultats.questions.q3.freq, window.resultats.questions.q3.freq );
+var geometryPlane = new THREE.PlaneGeometry( 500, 500, window.resultats.questions.q3.freq, window.resultats.questions.q3.freq );
 var material = new THREE.MeshLambertMaterial( {color: 0xf2d4c2, side: THREE.DoubleSide} );
 var plane = new THREE.Mesh( geometryPlane, material );
 plane.rotation.x = Math.PI/2

@@ -75,12 +75,15 @@ mobile_transition = ["out", "in"]
 desktop_html =
     `
  <div class="text_center">
- <h1 class="question_desktop">Avez-vous l'impression de manquer d'air ?</h1>
+    <h1 class="question_desktop">Avez-vous l'impression de manquer d'air ?</h1>
  </div>
  
- <div id="bulles"></div>
+ <div class="contain">
+    <div id="bulles"></div>
+ </div>
 
  <div class="tuto2"><img src="/both/assets/img/tuto-q2.gif"></div>
+
  `
 
 desktop_listener1 = ["selector", "type", () => {
@@ -140,11 +143,6 @@ desktop_script = () => {
         }
         requestAnimationFrame(bullesAnimation)
     }
-
-    /**************** 
-     *** TIMELINE ***
-     ****************/
-    //document.querySelector('.q2').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

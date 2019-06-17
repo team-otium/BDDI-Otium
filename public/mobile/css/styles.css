@@ -17,9 +17,18 @@ body {
   overflow: hidden;
 }
 
+h1, h2, p{
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none;
+}
+
 
 h1 {
-    font-size: 30px;
+    font-size: 25px;
     line-height: 35px;
 }
 
@@ -95,12 +104,12 @@ h2 {
   font-size: 16px;
   background: none;
   border: none;
-  background-image: url(/both/assets/img/button.svg);
+  background-image: url(/both/assets/img/contour.svg);
   background-position: center;
   background-size: cover;
-  width: 300px;
-  height: 55px;
-  padding-bottom: 10px;
+  width: 250px;
+  height: 62px;
+  padding-bottom: 5px;
   background-repeat: no-repeat;
   cursor: pointer;
 }
@@ -243,8 +252,8 @@ h2 {
   }
 
   .bgButton {
-    height: 70px;
-    width: 70px;
+    height: 65px;
+    width: 65px;
     border-radius: 50%;
     background: transparent;
     border: 1px solid #494949;
@@ -290,23 +299,23 @@ h2 {
     opacity: 1;
   }
   .menu-toggler:checked ~ ul .menu-item:nth-child(1) {
-    transform: rotate(0deg) translateX(-110px);
+    transform: rotate(0deg) translateX(-87px);
   }
   .menu-toggler:checked ~ ul .menu-item:nth-child(2) {
-    transform: rotate(60deg) translateX(-110px);
+    transform: rotate(60deg) translateX(-87px);
   }
   .menu-toggler:checked ~ ul .menu-item:nth-child(3) {
-    transform: rotate(120deg) translateX(-110px);
+    transform: rotate(120deg) translateX(-87px);
   }
   .menu-toggler:checked ~ ul .menu-item:nth-child(4) {
-    transform: rotate(180deg) translateX(-110px);
+    transform: rotate(180deg) translateX(-87px);
   }
   .menu-toggler:checked ~ ul .menu-item a {
     pointer-events: auto;
   }
   .menu-toggler + label {
     width: 30px;
-    height: 3px;
+    height: 2px;
     display: block;
     z-index: 1;
     border-radius: 2.5px;
@@ -314,7 +323,7 @@ h2 {
     transition: transform 0.5s, top 0.5s;
     position: absolute;
     display: block;
-    top: 10px;
+    top: 14px;
     bottom: 0;
     right: 0;
     left: 0;
@@ -322,7 +331,7 @@ h2 {
   }
   .menu-toggler + label:before, .menu-toggler + label:after {
     width: 30px;
-    height: 3px;
+    height: 2px;
     display: block;
     z-index: 1;
     border-radius: 2.5px;
@@ -358,8 +367,8 @@ h2 {
     right: 0;
     left: 0;
     margin: auto;
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     opacity: 0;
     transition: 0.5s;
   }
@@ -367,7 +376,7 @@ h2 {
     display: block;
     width: inherit;
     height: inherit;
-    line-height: 70px;
+    line-height: 62px;
     color: #494949;
     background: transparent;
     border-radius: 50%;
@@ -383,8 +392,74 @@ h2 {
 /**************************  
   **************************  PAGE 1 INTRO
   **************************/
+  .home_text_center_mobile {
+    max-width: 750px;
+    height: 50%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 30px;
+    text-align: center;
+    margin: auto;
+    font-size: 15px;
+    line-height: 22px;
+}
 
+.home_text_center_mobile .btn {
+  font-size: 15px;
+}
 
+.pathContourMobile {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dashMobile 3s linear forwards;
+  animation-delay: 1s;
+}
+
+@keyframes dashMobile {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.btnFirstPageOpen,
+.btnFirstPageClose {
+  position: fixed;
+  bottom: 50px;
+  right: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.infoFirstPage,
+.fermer {
+  display: block;
+  width: 65px;
+  height: 65px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  line-height: 62px;
+  color: #494949;
+  background: transparent;
+  border-radius: 50%;
+  border: 1px solid #494949;
+  text-align: center;
+  text-decoration: none;
+  font-size: 40px;
+  pointer-events: none;
+  transition: 0.2s;
+  opacity: 1;
+}
+
+.fermer {
+  display: none;
+}
 
 /**************************  
   **************************  PAGE 2 CONNEXION
@@ -401,13 +476,13 @@ h2 {
 
 .text_center_mobile {
     max-width: 750px;
-    height: 82%;
+    height: 90%;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 0 15px;
+    padding: 0 30px;
     text-align: center;
     margin: auto;
     line-height: 25px;
@@ -416,6 +491,7 @@ h2 {
 .question_mobile {
     font-size: 21px;
     margin: 0 35px;
+    line-height: 30px;
 }
 
 .text_center_mobile p {
@@ -424,7 +500,7 @@ h2 {
 
 .enterCode {
   font-size: 50px;
-  letter-spacing: 14px;
+  letter-spacing: 16px;
   text-align: left;
   background: none;
   border: none;
@@ -496,7 +572,7 @@ h2 {
   width: 200px;
   height: 200px;
   border-radius: 46%;
-  border: 1px solid grey;
+  background: radial-gradient(lightgrey, grey);
   position: absolute;
   top: -80px;
   bottom: 0;
@@ -506,6 +582,7 @@ h2 {
   z-index: 10;
   text-align: center;
 }
+
 
 #selected1,
 #selectedTexture {

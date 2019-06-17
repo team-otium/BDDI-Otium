@@ -1,4 +1,4 @@
-var socket = io.connect("https://"+ config.ip, {transports: ['websocket'], upgrade: false})
+var socket = io.connect("http://"+ config.ip+":"+config.port, {transports: ['websocket'], upgrade: false})
 
 
 function createConnexionId () {
@@ -20,5 +20,6 @@ function createConnexionId () {
     // Cancel the the experience if the mobile is disconnected
     socket.on("mobileDisconnected", () => {
         intro.connexion.comeBackTo("desktop")
+        document.location.reload(true);
     })
 }

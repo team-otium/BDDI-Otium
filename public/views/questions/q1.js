@@ -30,7 +30,10 @@ mobile_script = () => {
     document.querySelector(".circle1").style.display = "block"
     document.querySelector(".circle2").style.display = "block"
     document.querySelector(".gifValidation").style.display = "block"
+
     document.querySelector(".firstMenu").style.display = "block"
+    document.querySelector(".firstMenu2").style.display = "block"
+    document.querySelector(".firstMenu3").style.display = "block"
     document.querySelector(".firstMenu4").style.display = "block"
 
     ValidationBtn.canValidate = true
@@ -44,10 +47,8 @@ mobile_script = () => {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
     }
 
-    console.log(ValidationBtn.time, ValidationBtn.touch)
-
     function deviceOrientationHandler(eventData) {
-        if (ValidationBtn.touch === false) {
+        if (ValidationBtn.touch === false && window.getComputedStyle(document.querySelector(".gifValidation")).getPropertyValue('opacity') == 0) {
             socket.emit("q1", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }
@@ -65,8 +66,12 @@ desktop_html =
     <div class="text_center">
         <h1 class="question_desktop">Êtes-vous de nature rêveur/imaginatif ?</h1>
     </div>
-    <div id="forme-net"></div>
-    <div id="forme-abstraite"></div>
+
+    <div class="contain">
+        <div id="forme-net"></div>
+        <div id="forme-abstraite"></div>
+    <div>
+
     <div class="tuto"><img src="/both/assets/img/tuto-q1.gif"></div>
  `
 
@@ -116,8 +121,8 @@ desktop_script = () => {
     var keyLightN = new THREE.DirectionalLight(0xf9f5d1, 1.0);
     keyLightN.position.set(0,0,100);
 
-    var fillLightN = new THREE.DirectionalLight(0xf9f5d1, 1.0);
-    fillLightN.position.set(0, 0, 0).normalize();
+    var fillLightN = new THREE.DirectionalLight(0xf9f5d1, 1);
+    fillLightN.position.set(0, 0, 0);
 
     sceneFormeNet.add(keyLightN);
     sceneFormeNet.add(fillLightN);
@@ -125,7 +130,7 @@ desktop_script = () => {
 
     var geometryFormeNet = new THREE.SphereGeometry(radiusFormeNet, segmentsFormeNet, ringsFormeNet);
 
-    var materialFormeNet = new THREE.MeshPhongMaterial();
+    var materialFormeNet = new THREE.MeshLambertMaterial();
 
     var cubeFormeNet = new THREE.Mesh(geometryFormeNet, materialFormeNet);
     sceneFormeNet.add(cubeFormeNet);
@@ -195,12 +200,6 @@ desktop_script = () => {
     }
 
     requestAnimationFrame(animate);
-
-    
-    /**************** 
-     *** TIMELINE ***
-     ****************/
-    //document.querySelector('.q1').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

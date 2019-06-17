@@ -10,6 +10,7 @@ window.timeline = {
 
 socket.on("validationWait", (data) => {
     if (data.actualQuestion == "1") {
+        document.querySelector('.q1').style.fill = "#ffffff"
         TweenMax.to(window.timeline, 6, {
             lineWidth1: 300,
             onUpdate: () => {
@@ -18,6 +19,7 @@ socket.on("validationWait", (data) => {
         })
     }
     if (data.actualQuestion == "2") {
+        document.querySelector('.q2').style.fill = "#ffffff"
         TweenMax.to(window.timeline, 6, {
             lineWidth2: 300,
             onUpdate: () => {
@@ -26,6 +28,7 @@ socket.on("validationWait", (data) => {
         })
     }
     if (data.actualQuestion == "3") {
+        document.querySelector('.q3').style.fill = "#ffffff"
         TweenMax.to(window.timeline, 6, {
             lineWidth3: 300,
             onUpdate: () => {
@@ -34,6 +37,7 @@ socket.on("validationWait", (data) => {
         })
     }
     if (data.actualQuestion == "4") {
+        document.querySelector('.q4').style.fill = "#ffffff"
         TweenMax.to(window.timeline, 6, {
             lineWidth4: 300,
             onUpdate: () => {
@@ -42,6 +46,7 @@ socket.on("validationWait", (data) => {
         })
     }
     if (data.actualQuestion == "5") {
+        document.querySelector('.q5').style.fill = "#ffffff"
         TweenMax.to(window.timeline, 6, {
             lineWidth5: 300,
             onUpdate: () => {
@@ -50,6 +55,7 @@ socket.on("validationWait", (data) => {
         })
     }
     if (data.actualQuestion == "6") {
+        document.querySelector('.q6').style.fill = "#ffffff"
         TweenMax.to(window.timeline, 6, {
             lineWidth6: 300,
             onUpdate: () => {
@@ -58,6 +64,7 @@ socket.on("validationWait", (data) => {
         })
     }
     if (data.actualQuestion == "7") {
+        document.querySelector('.q7').style.fill = "#ffffff"
         TweenMax.to(window.timeline, 6, {
             lineWidth7: 300,
             onUpdate: () => {
@@ -109,6 +116,7 @@ socket.on("validationCancel", (data) => {
         })
     }
     if (data.actualQuestion == "6") {
+        document.querySelector('.q6').style.fill = "#ffffff"
         TweenMax.to(window.timeline, 6, {
             lineWidth6: 0,
             onUpdate: () => {

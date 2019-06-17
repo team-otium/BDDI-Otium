@@ -45,7 +45,7 @@ mobile_script = () => {
         var tiltFB = eventData.beta;
         var dir = eventData.alpha;
 
-        if (ValidationBtn.touch === false) {
+        if (ValidationBtn.touch === false && window.getComputedStyle(document.querySelector(".gifValidation")).getPropertyValue('opacity') == 0){
             socket.emit("q6", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }
@@ -63,16 +63,19 @@ desktop_html =
     <div class="text_center">
         <h1 class="question_desktop">Quel est le moment de la journée le plus agréable visuellement ?</h1>
     </div>
-    <div class="nav">
-        <ul>
-            <li id="leverSoleil">Lever de soleil</li>
-            <li id="matin">Petit matin</li>
-            <li id="journee">Journée</li>
-            <li id="coucherDeSoleil">Coucher de soleil</li>
-            <li id="nuit">Nuit</li>
-        </ul>
-    </div>
 
+    <div class="contain">
+        <div class="nav">
+            <ul>
+                <li id="leverSoleil">Lever de soleil</li>
+                <li id="matin">Petit matin</li>
+                <li id="journee">Journée</li>
+                <li id="coucherDeSoleil">Coucher de soleil</li>
+                <li id="nuit">Nuit</li>
+            </ul>
+        </div>
+    </div>
+    
     <div class="tuto"><img src="/both/assets/img/tuto-q6.gif"></div>
  `
 
@@ -238,11 +241,6 @@ desktop_script = () => {
         speed: 1.50,
         zoom: 0.40
     })
-
-    /**************** 
-     *** TIMELINE ***
-     ****************/
-    //document.querySelector('.q6').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

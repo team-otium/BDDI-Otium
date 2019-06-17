@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content= "width=device-width, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="/mobile/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="/both/css/styles.css" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -76,7 +76,7 @@
         <div class="bgButton"></div>
         <ul>
             <li class="menu-item">
-                <a class="info firstMenu1" href="#"><img src="/both/assets/img/apropos-1.svg" alt="" height="25px"></a>
+                <a class="info firstMenu1" href="#"><img src="/both/assets/img/apropos-1.svg" alt="" height="22px"></a>
             </li>
             <li class="menu-item">
                 <a class="firstMenu2" href="#" style="font-size: 16px">AR</a>
@@ -147,6 +147,9 @@
             document.removeEventListener('click', enableNoSleep, false);
             noSleep.enable();
         }, false);
+
+        // No right clic
+        document.oncontextmenu = new Function("return false")
     </script>
 
 </body>

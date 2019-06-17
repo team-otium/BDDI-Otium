@@ -41,7 +41,6 @@ mobile_listener1 = [".circleQ4-1", "click", () => {
             // 2 obj are selected 
             canValide = true;
             if (canValide === true) {
-                console.log("canvalide")
                 document.querySelector(".circleQ4").style.display = "none"
                 document.querySelector(".circle1").style.display = "block"
                 document.querySelector(".circle2").style.display = "block"
@@ -66,7 +65,7 @@ mobile_script = () => {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
     }
     function deviceOrientationHandler(eventData) {
-        if (ValidationBtn.touch === false) {
+        if (ValidationBtn.touch === false && window.getComputedStyle(document.querySelector(".gifValidation")).getPropertyValue('opacity') == 0) {
             socket.emit("q4", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
         }
     }
@@ -81,38 +80,37 @@ mobile_transition = ["out", "in"]
 
 desktop_html =
     `
-    <div id="ball"></div>
-
-    <div id="all_object">
-
-        <div id="hoverTop">
-            <div class="blocHover"><div id="hover1"></div></div>
-            <div class="blocHover"><div id="hover2"></div></div>
-            <div class="blocHover"><div id="hover3"></div></div>
-        </div>
-
-        <div id="hoverBottom">
-            <div class="blocHover"><div id="hover4"></div></div>
-            <div class="blocHover"><div id="hover5"></div></div>
-            <div class="blocHover"><div id="hover6"></div></div>
-        </div>
-
-        <div id="objTop">
-            <div id="object1" class="object"></div>
-            <div id="object2" class="object"></div>
-            <div id="object3" class="object"></div>
-        </div>
-
-        <div id="objBottom">
-            <div id="object4" class="object"></div>
-            <div id="object5" class="object"></div>
-            <div id="object6" class="object"></div>
-        </div>
-
-    </div>
-
     <div class="text_center">
         <h1 class="question_desktop">Choisissez les éléments qui vous apaisent</h1>
+    </div>
+
+    <div class="contain">
+        <div id="ball"></div>
+        <div id="all_object">
+            <div id="hoverTop">
+                <div class="blocHover"><div id="hover1"></div><div id="hover1-2"></div></div>
+                <div class="blocHover"><div id="hover2"></div><div id="hover2-2"></div></div>
+                <div class="blocHover"><div id="hover3"></div><div id="hover3-2"></div></div>
+            </div>
+
+            <div id="hoverBottom">
+                <div class="blocHover"><div id="hover4"></div><div id="hover4-2"></div></div>
+                <div class="blocHover"><div id="hover5"></div><div id="hover5-2"></div></div>
+                <div class="blocHover"><div id="hover6"></div><div id="hover6-2"></div></div>
+            </div>
+
+            <div id="objTop">
+                <div id="object1" class="object"></div>
+                <div id="object2" class="object"></div>
+                <div id="object3" class="object"></div>
+            </div>
+
+            <div id="objBottom">
+                <div id="object4" class="object"></div>
+                <div id="object5" class="object"></div>
+                <div id="object6" class="object"></div>
+            </div>
+        </div>
     </div>
 
     <div class="tuto"><img src="/both/assets/img/tuto-q4.gif"></div>
@@ -120,9 +118,45 @@ desktop_html =
 
 desktop_socketOn1 = ["q4", (eventData) => {
 
-    ball.velocity.y = Math.round(-eventData.tiltFB + 10) / 2;
-    ball.velocity.x = Math.round(eventData.tiltLR + 10) / 2;
+    ball.velocity.y = Math.round(-eventData.tiltFB + 20) / 3;
+    ball.velocity.x = Math.round(eventData.tiltLR + 20) / 2;
 
+    // hover on obj 1 //
+    if (ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
+        document.getElementById("hover1").style.opacity = "1"
+    } else {
+        document.getElementById("hover1").style.opacity = "0"
+    }
+    // hover on obj 2 //
+    if (ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y <= window.innerHeight / 2) {
+        document.getElementById("hover2").style.opacity = "1"
+    }  else {
+        document.getElementById("hover2").style.opacity = "0"
+    }
+    // hover on obj 3 //
+    if (ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y <= window.innerHeight / 2) {
+        document.getElementById("hover3").style.opacity = "1"
+    } else {
+        document.getElementById("hover3").style.opacity = "0"
+    }
+    // hover on obj 4 //
+    if (ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight / 2) {
+        document.getElementById("hover4").style.opacity = "1"
+    } else {
+        document.getElementById("hover4").style.opacity = "0"
+    }
+    // hover on obj 5 //
+    if (ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y > window.innerHeight / 2) {
+        document.getElementById("hover5").style.opacity = "1"
+    } else {
+        document.getElementById("hover5").style.opacity = "0"
+    }
+    // hover on obj 6 //
+    if (ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y > window.innerHeight / 2) {
+        document.getElementById("hover6").style.opacity = "1"
+    } else {
+        document.getElementById("hover6").style.opacity = "0"
+    }
 }]
 
 
@@ -132,27 +166,27 @@ desktop_socketOn1 = ["q4", (eventData) => {
 desktop_socketOn2 = ["q4-2", (eventData) => {
     // click on obj 1 //
     if (eventData === "selectObj" && ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
-        document.getElementById("hover1").style.opacity = "1"
+        document.getElementById("hover1-2").style.display = "block"
     }
     // click on obj 2 //
     if (eventData === "selectObj" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y <= window.innerHeight / 2) {
-        document.getElementById("hover2").style.opacity = "1"
+        document.getElementById("hover2-2").style.display = "block"
     }
     // click on obj 3 //
     if (eventData === "selectObj" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y <= window.innerHeight / 2) {
-        document.getElementById("hover3").style.opacity = "1"
+        document.getElementById("hover3-2").style.display = "block"
     }
     // click on obj 4 //
     if (eventData === "selectObj" && ball.position.x <= window.innerWidth / 3 && ball.position.y > window.innerHeight / 2) {
-        document.getElementById("hover4").style.opacity = "1"
+        document.getElementById("hover4-2").style.display = "block"
     }
     // click on obj 5 //
     if (eventData === "selectObj" && ball.position.x > window.innerWidth / 3 && ball.position.x <= (window.innerWidth / 3) * 2 && ball.position.y > window.innerHeight / 2) {
-        document.getElementById("hover5").style.opacity = "1"
+        document.getElementById("hover5-2").style.display = "block"
     }
     // click on obj 6 //
     if (eventData === "selectObj" && ball.position.x > (window.innerWidth / 3) * 2 && ball.position.x <= (window.innerWidth / 3) * 3 && ball.position.y > window.innerHeight / 2) {
-        document.getElementById("hover6").style.opacity = "1"
+        document.getElementById("hover6-2").style.display = "block"
     }
 }]
 
@@ -231,14 +265,14 @@ desktop_script = () => {
             objectObj1.traverse( function ( child ) {
                 if ( child.isMesh ) child.material.map = textureObj1;
             } );
-            objectObj1.position.y = -10;
+            objectObj1.position.y = -30;
             objectObj1.position.x = 20;
             objectObj1.position.z = 0;
             sceneObj1.add( objectObj1 );
         }
         var managerObj1 = new THREE.LoadingManager( loadModelObj1 );
         managerObj1.onProgress = function ( item, loaded, total ) {
-            console.log( item, loaded, total );
+
         };
 
         // texture
@@ -249,14 +283,15 @@ desktop_script = () => {
         loaderObj1.load( '/both/assets/img/q4/bulles_eau_2.obj', function ( obj ) {
             objectObj1 = obj;
 
+            if (window.getComputedStyle(document.getElementById("hover1")).getPropertyValue('opacity') == "block") {
+                objectObj1.rotation.y += 0.01;
+            } else {
+                objectObj1.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj1.position.y;
+            }
+
             function animateObj1() {
                 requestAnimationFrame(animateObj1);
         
-                if (window.getComputedStyle(document.getElementById("hover1")).getPropertyValue('opacity') == 1) {
-                    objectObj1.rotation.y += 0.01;
-                } else {
-                    objectObj1.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj1.position.y;
-                }
                 rendererObj1.render(sceneObj1, cameraObj1);
             }
             
@@ -304,21 +339,21 @@ desktop_script = () => {
         var objLoaderObj2 = new THREE.OBJLoader();
         objLoaderObj2.setMaterials(materials);
         objLoaderObj2.load('/both/assets/img/q4/feuilles.obj', function (object2) {
-            object2.position.y = -180;
+            object2.position.y = -300;
             object2.position.x = -50;
             object2.position.z = 20;
 
             sceneObj2.add(object2);
 
+            if (window.getComputedStyle(document.getElementById("hover2")).getPropertyValue('opacity') == "block") {
+                sceneObj2.rotation.y += 0.01;
+            } else {
+                object2.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object2.position.y;
+            }
+
             var animateObj2 = function () {
                 requestAnimationFrame(animateObj2);
 
-
-                if (window.getComputedStyle(document.getElementById("hover2")).getPropertyValue('opacity') == 1) {
-                    sceneObj2.rotation.y += 0.01;
-                } else {
-                    object2.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object2.position.y;
-                }
                 rendererObj2.render(sceneObj2, cameraObj2);
             };
             animateObj2();
@@ -410,14 +445,14 @@ desktop_script = () => {
 
             sceneObj3.add(object3);
 
+            if (window.getComputedStyle(document.getElementById("hover3")).getPropertyValue('opacity') == "block") {
+                //sceneObj3.rotation.y += 0.001;
+            } else {
+                cameraObj3.position.y = (Math.cos((Date.now()) * 0.001) * 0.1) + cameraObj3.position.y;
+            }
+
             var animateObj3 = function () {
                 requestAnimationFrame(animateObj3);
-
-                if (window.getComputedStyle(document.getElementById("hover3")).getPropertyValue('opacity') == 1) {
-                    //sceneObj3.rotation.y += 0.001;
-                } else {
-                    cameraObj3.position.y = (Math.cos((Date.now()) * 0.001) * 0.1) + cameraObj3.position.y;
-                }
 
                 rendererObj3.render(sceneObj3, cameraObj3);
             };
@@ -464,7 +499,7 @@ desktop_script = () => {
         }
         var managerObj4 = new THREE.LoadingManager( loadModelObj4 );
         managerObj4.onProgress = function ( item, loaded, total ) {
-            console.log( item, loaded, total );
+
         };
 
         // texture
@@ -475,14 +510,15 @@ desktop_script = () => {
         loaderObj4.load( '/both/assets/img/q4/sable_R.obj', function ( obj ) {
             objectObj4 = obj;
 
+            if (window.getComputedStyle(document.getElementById("hover4")).getPropertyValue('opacity') == "block") {
+                sceneObj4.rotation.y += 0.01;
+            } else {
+                objectObj4.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj4.position.y;
+            }
+
             function animateObj4() {
                 requestAnimationFrame(animateObj4);
         
-                if (window.getComputedStyle(document.getElementById("hover4")).getPropertyValue('opacity') == 1) {
-                    sceneObj4.rotation.y += 0.01;
-                } else {
-                    objectObj4.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj4.position.y;
-                }
                 rendererObj4.render(sceneObj4, cameraObj4);
             }
             
@@ -522,7 +558,8 @@ desktop_script = () => {
        // manager
        function loadModelObj5() {
            objectObj5.traverse( function ( child ) {
-               if ( child.isMesh ) child.material.map = textureObj5;
+               if ( child.isMesh )
+               child.material.color.setHex(0xa3c9f7);
            } );
            objectObj5.position.y = 0;
            objectObj5.position.x = 0;
@@ -531,36 +568,32 @@ desktop_script = () => {
        }
        var managerObj5 = new THREE.LoadingManager( loadModelObj5 );
        managerObj5.onProgress = function ( item, loaded, total ) {
-           console.log( item, loaded, total );
+
        };
 
        // texture
-       var textureLoaderObj5 = new THREE.TextureLoader( managerObj5 );
-       var textureObj5 = textureLoaderObj5.load( '/both/assets/img/q4/fond_goutte.png' );
+    //    var textureLoaderObj5 = new THREE.TextureLoader( managerObj5 );
+    //    var textureObj5 = textureLoaderObj5.load( '/both/assets/img/q4/fond_goutte.png' );
 
        var loaderObj5 = new THREE.OBJLoader( managerObj5 );
        loaderObj5.load( '/both/assets/img/q4/goutte.obj', function ( obj ) {
            objectObj5 = obj;
 
+           if (window.getComputedStyle(document.getElementById("hover5")).getPropertyValue('display') == "block") {
+            sceneObj5.rotation.y += 0.01;
+       } else {
+           objectObj5.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj5.position.y;
+       }
+
            function animateObj5() {
                requestAnimationFrame(animateObj5);
        
-               if (window.getComputedStyle(document.getElementById("hover5")).getPropertyValue('opacity') == 1) {
-                    sceneObj5.rotation.y += 0.01;
-               } else {
-                   objectObj5.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj5.position.y;
-               }
                rendererObj5.render(sceneObj5, cameraObj5);
            }
            
            animateObj5()
 
        } );
-
-    /**************** 
-     *** TIMELINE ***
-     ****************/
-    //document.querySelector('.q4').style.fill = "#ffffff"
 }
 
 desktop_transition = ["out", "in"]

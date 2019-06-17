@@ -20,7 +20,7 @@ mobile_html =
         <div class="line"></div>
         </div>
         <p class="errMsg">Le code est incorrect. Veuillez réessayer.</p>
-        <button class="btn start_q1">valider</button>
+        <!--<button class="btn start_q1">valider</button>-->
     </div>
 
     <!----------- 
@@ -58,9 +58,9 @@ mobile_script = () => {
 
     //display menu
     document.querySelector(".firstMenu").style.display = "block"
-    document.querySelector(".firstMenu2").style.display = "none"
-    document.querySelector(".firstMenu3").style.display = "none"
-    document.querySelector(".firstMenu4").style.display = "none"
+    document.querySelector(".firstMenu2").style.display = "block"
+    document.querySelector(".firstMenu3").style.display = "block"
+    document.querySelector(".firstMenu4").style.display = "block"
     document.querySelector(".circle1").style.display = "none"
     document.querySelector(".circle2").style.display = "none"
 
@@ -72,6 +72,13 @@ mobile_script = () => {
         document.querySelector("#infoCredit").style.display = "block"
         document.querySelector("#navigation").style.opacity = "0"
         document.querySelector("#buttons").style.opacity = "0"
+
+        document.querySelector("#formulaire3D").style.display = "none"
+
+        document.querySelector(".firstMenu1").style.display = "none"
+        document.querySelector(".firstMenu2").style.display = "none"
+        document.querySelector(".firstMenu3").style.display = "none"
+        document.querySelector(".firstMenu4").style.display = "none"
         displayPageMenu = "yes";
     };
 
@@ -79,6 +86,13 @@ mobile_script = () => {
         document.querySelector("#formulaire3D").style.display = "block"
         document.querySelector("#navigation").style.opacity = "0"
         document.querySelector("#buttons").style.opacity = "0"
+
+        document.querySelector("#infoCredit").style.display = "none"
+
+        document.querySelector(".firstMenu1").style.display = "none"
+        document.querySelector(".firstMenu2").style.display = "none"
+        document.querySelector(".firstMenu3").style.display = "none"
+        document.querySelector(".firstMenu4").style.display = "none"
         displayPageMenu = "yes";
     };
 
@@ -88,6 +102,11 @@ mobile_script = () => {
             document.querySelector("#formulaire3D").style.display = "none"
             document.querySelector("#navigation").style.opacity = "1"
             document.querySelector("#buttons").style.opacity = "1"
+
+            document.querySelector(".firstMenu1").style.display = "block"
+            document.querySelector(".firstMenu2").style.display = "block"
+            document.querySelector(".firstMenu3").style.display = "block"
+            document.querySelector(".firstMenu4").style.display = "block"
         }
     };
 
@@ -109,13 +128,16 @@ desktop_html =
     <h1>Connectez votre smartphone</h1>
     <p>
     Afin de commencer l'expérience, entrez ce lien sur votre smartphone : <br>
-    <span class="websiteLink">https://otium-project.herokuapp.com/mobile</span> ou utilisez le <span class="qrLink">QR code</span> pour y accéder directement.
+    <span class="websiteLink">otium-project.herokuapp.com/mobile</span> ou utilisez le <span class="qrLink">QR code</span> pour y accéder directement.
     Une fois sur la page, insérez le code ci-dessous.
         <br><br>
-        Code à insérer sur votre smartphone : <span id="id">####</span>
+        Code à insérer sur votre smartphone : 
+        <br>
+        <span id="id">####</span>
         <br><br>
         <!--<button class="start_q1">test connexion</button>-->
     </p>
+    <img class="qrCode" src='http://www.unitag.io/qreator/generate?crs=lN9VwHAzn44jpWA9cHxlIkT74pazJFX8R9a2gWDWiWFL4m0%252BwPGA%252B2%252Fkn3ZjwE6G7PAYgaJmbkkCUZdo90IOKNqTdXTMLgY7CO2HYqY4gNwT5f58iEis0hI3pW70pc%252F03M1Kz%252B%252FMjmbo3Q5xU97D2Q%253D%253D&crd=fhOysE0g3Bah%252BuqXA7NPQ0NHv8U56TKZIY3mVdxTpD%252F8%252FF%252BqTJcz8WHlTSx23PPvbAjAZQJV0cP6PLgC%252FNxeJPq%252FNrLi5D4oREvHgMWLyew%253D' alt='QR Code' width="160px"/>
 </div>
 <!----------- 
 ------------- FIN SECTION 3 connexion 
@@ -132,6 +154,22 @@ let desktop_socketOn1 = ["mobileConnected", () => {
 
 desktop_script = () => {
     createConnexionId()
+
+    document.querySelector(".qrLink").onclick = function() { 
+        document.querySelector(".qrCode").style.opacity = "1"
+        document.querySelector(".qrCode").style.transition = "3s"
+    }
+
+    //CURSOR
+    document.querySelector('.qrLink').addEventListener("mouseover", function(){
+        document.querySelector('#cursor').style.background = "white"
+        document.querySelector('#cursor').style.transition = "background 0.5s"
+    })
+
+    document.querySelector('.qrLink').addEventListener("mouseout", function(){
+        document.querySelector('#cursor').style.background = "transparent"
+        document.querySelector('#cursor').style.transition = "background 0.5s"
+    })
 }
 
 desktop_transition = ["out", "in"]
