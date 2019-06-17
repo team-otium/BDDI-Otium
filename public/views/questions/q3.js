@@ -122,6 +122,7 @@ desktop_listener2 = ["selector", "type", () => {
 }]
 
 desktop_script = () => {
+    window.q3animate = true
 
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
@@ -155,7 +156,9 @@ desktop_script = () => {
       
     }
     
-    setInterval(draw, 1);
+    if (window.q3animate) {
+        requestAnimationFrame(draw);
+    }
 }
 
 desktop_transition = ["out", "in"]
