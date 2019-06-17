@@ -269,7 +269,7 @@ desktop_script = () => {
                 objectObj1.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj1.position.y;
             }
 
-            function animateObj1() {
+            var animateObj1 = () => {
         
                 rendererObj1.render(sceneObj1, cameraObj1);
             }
