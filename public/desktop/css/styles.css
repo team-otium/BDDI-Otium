@@ -100,7 +100,7 @@ h1 {
 	height: 25px;
 	position: absolute;
 	border-radius: 100%;
-	transition: all 0.2s ease;
+	/*transition: all 0.2s ease;*/
 	z-index: 20000;
 	pointer-events: none;
 }
