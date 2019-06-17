@@ -157,7 +157,8 @@ desktop_script = () => {
     }
     
     if (window.q3animate) {
-        requestAnimationFrame(draw);
+        setInterval(draw, 1);
+        
     }
 }
 
