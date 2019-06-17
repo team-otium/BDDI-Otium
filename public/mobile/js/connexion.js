@@ -9,6 +9,7 @@ socket.on("getRoom", (data) => {
 
 socket.on("computerDisconnected", () => {
     intro.connexion.comeBackTo("mobile")
+    document.location.reload(true);
 })
 
 socket.on("mobileConnected", () => {

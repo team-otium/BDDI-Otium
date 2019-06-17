@@ -430,10 +430,11 @@ h2 {
 .btnFirstPageOpen,
 .btnFirstPageClose {
   position: fixed;
-  bottom: 50px;
+  bottom: 20px;
   right: 0;
   left: 0;
   cursor: pointer;
+  z-index: 1000000;
 }
 
 .infoFirstPage,
@@ -459,6 +460,11 @@ h2 {
 
 .fermer {
   display: none;
+}
+
+.fermer img {
+  width: 50px;
+  margin-top: 9px;
 }
 
 /**************************  
