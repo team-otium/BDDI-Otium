@@ -109,6 +109,7 @@ desktop_socketOn1 = ["q2_doigt", (data) => {
 }]
 
 desktop_script = () => {
+    window.q2animate = true
     let bulles = []
     for (let i = 0; i < (window.innerWidth / 180) * ((window.innerHeight / 140) + 1); i++) {
         let minPx = Math.ceil(-50);
@@ -141,7 +142,9 @@ desktop_script = () => {
         for (let i = bulles.length - 1; i >= window.actBulles; i--) {
             bulles[i].el.classList.add("none")
         }
-        requestAnimationFrame(bullesAnimation)
+        if (window.q2animate) {
+            requestAnimationFrame(bullesAnimation)
+        }
     }
 }
 

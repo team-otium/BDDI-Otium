@@ -98,6 +98,8 @@ desktop_socketOn1 = ["q1", (eventData) => {
 
 desktop_script = () => {
 
+    window.q1animate = true
+
     /************************** 
     ****** FORME NET ****
     ***************************/
@@ -138,7 +140,9 @@ desktop_script = () => {
     cameraFormeNet.position.z = 150;
 
     var renderFormeNet = function () {
-        requestAnimationFrame(renderFormeNet);
+        if (window.q1animate) {
+            requestAnimationFrame(renderFormeNet);
+        }
         rendererFormeNet.render(sceneFormeNet, cameraFormeNet);
     };
     renderFormeNet();
@@ -192,14 +196,16 @@ desktop_script = () => {
         sphere.geometry.verticesNeedUpdate = true;
     }
 
-    function animate() {
+    var animateq1 = () => {
         update();
         /* render scene and camera */
         rendererFormeAbstraite.render(sceneFormeAbstraite, cameraFormeAbstraite);
-        requestAnimationFrame(animate);
+        if (window.q1animate){
+            requestAnimationFrame(animateq1);
+        }
     }
 
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animateq1);
 }
 
 desktop_transition = ["out", "in"]
