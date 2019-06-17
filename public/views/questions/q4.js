@@ -292,14 +292,16 @@ desktop_script = () => {
             }
 
             function animateObj1() {
-                requestAnimationFrame(animateObj1);
+                if (window.q4animate) {
+                    requestAnimationFrame(animateObj1);
+                }
         
                 rendererObj1.render(sceneObj1, cameraObj1);
             }
             
-            if (window.q4animate) {
-                animateObj1()
-            }
+            
+            animateObj1()
+            
 
         } );
 
