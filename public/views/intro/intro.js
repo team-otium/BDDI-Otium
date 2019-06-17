@@ -22,14 +22,14 @@ mobile_html =
 
         <svg class="svgContour commencer">
         <path class="pathContourMobile" fill="transparent" stroke="#9cacc7" stroke-width="1" 
-        d="M5.59,22.3a86.2,86.2,0,0,0,10.76-3.53c4.07-1.85,7.77-4.49,11.78-6.47,13.7-6.78,29.55-7.17,44.53-7.36,31.79-.41,63.46,2.94,95.14,5,31,2,62,2.34,92.71-2.6,28.37-4.56,60-11.76,86.57,3.45C370.3,24,379.44,55.5,364.94,78.64c-5,8-11.95,10.72-21.22,9.36-7.83-1.15-15.52-3.42-23.3-4.9-14.25-2.72-28.85-4.47-43.36-3.09-7.44.71-14.7,2.5-22.15,3.21-7.2.68-14.43.74-21.66.71-13.32-.05-26.4.19-39.53,2.64-30.92,5.77-62.27,4.32-93.55,4.43-25.59.09-52.36-1.81-73.72-17.48A79,79,0,0,1,9.17,55.78c-3.53-4.92-6.56-9.72-7-15.93C1.74,34-.65,25.18,5.77,22.22c.88-.4.12-1.69"/>
+        d="M5.46,15.14A61.07,61.07,0,0,0,17.91,9.85c9.48-5.21,19.93-6,30.55-6.15C69,3.34,89.5,5.42,110,6.78c19.79,1.32,39.73,2,59.42-.88,18.84-2.71,38.82-8.25,57.21-.47,17.31,7.32,26.09,27.89,17.11,45.06-2.84,5.43-6.86,8.65-13.22,8.24-5.54-.35-11.13-2.27-16.57-3.32-9.46-1.84-19.14-3.06-28.78-2.21-9.33.83-18.29,2.64-27.73,2.64-8.66,0-17.27-.11-25.84,1.37-20.6,3.55-41,3.27-61.79,3.28-17.22,0-35.16-.69-49.77-11A51.64,51.64,0,0,1,8.21,37.77C6.1,34.9,4,32,3.41,28.38S1.46,17.1,5.58,15.09c.57-.27.07-1.13-.5-.85C0"/>
        </svg>
     </div>
        <div class="btnFirstPageOpen">
         <a class="infoFirstPage" href="#"><img src="/both/assets/img/apropos-1.svg" alt="" height="22px"></a>
        </div>
         <div class="btnFirstPageClose">
-        <a class="fermer" href="#"><img src="/both/assets/img/fermer.png" alt="" height="22px"></a>
+        <a class="fermer" href="#"><img src="/both/assets/img/fermer.png" alt=""></a>
        </div>
     </div>
     <!----------- 
@@ -82,10 +82,7 @@ desktop_html =
 
     <svg class="svgContour commencer">
      <path class="pathContour" fill="transparent" stroke="#9cacc7" stroke-width="1" 
-     d="M5.59,  22.3a86.2,  86.2,  0,  0,  0,  10.76-3.53c4.07-1.85,  7.77-4.49,  11.78-6.47,  13.7-6.78,  29.55-7.17,  44.53-7.36,  31.79-.41,  63.46,  2.94,  
-     95.14,  5,  31,  2,  62,  2.34,  92.71-2.6,  28.37-4.56,  60-11.76,  86.57,  3.45C370.3,  24,  379.44,  55.5,  364.94,  78.64c-5,  8-11.95,  10.72-21.22,  
-     9.36-7.83-1.15-15.52-3.42-23.3-4.9-14.25-2.72-28.85-4.47-43.36-3.09-7.44.71-14.7,  2.5-22.15,  3.21-7.2.68-14.43.74-21.66.71-13.32-.05-26.4.19-39.53,  2.64-30.92,  
-     5.77-62.27,  4.32-93.55,  4.43-25.59.09-52.36-1.81-73.72-17.48A79,  79,  0,  0,  1,  9.17,  55.78c-3.53-4.92-6.56-9.72-7-15.93C1.74,34-.65,  25.18,  5.77,  22.22c.88-.4.12-1.69"/>
+     d="M5.46,15.14A61.07,61.07,0,0,0,17.91,9.85c9.48-5.21,19.93-6,30.55-6.15C69,3.34,89.5,5.42,110,6.78c19.79,1.32,39.73,2,59.42-.88,18.84-2.71,38.82-8.25,57.21-.47,17.31,7.32,26.09,27.89,17.11,45.06-2.84,5.43-6.86,8.65-13.22,8.24-5.54-.35-11.13-2.27-16.57-3.32-9.46-1.84-19.14-3.06-28.78-2.21-9.33.83-18.29,2.64-27.73,2.64-8.66,0-17.27-.11-25.84,1.37-20.6,3.55-41,3.27-61.79,3.28-17.22,0-35.16-.69-49.77-11A51.64,51.64,0,0,1,8.21,37.77C6.1,34.9,4,32,3.41,28.38S1.46,17.1,5.58,15.09c.57-.27.07-1.13-.5-.85C0"/>
     </svg>
 </div>
 <!----------- 
@@ -101,17 +98,21 @@ desktop_script = () => {
 
     // HOVER CURSOR
     document.querySelector('.commencer').addEventListener("mouseover", function(){
-        document.querySelector('#cursor').style.background = "white"
-        document.querySelector('#cursor').style.transition = "background 0.5s"
+        document.querySelector('#cursor').style.width = "35px"
+        document.querySelector('#cursor').style.height = "35px"
+        document.querySelector('#cursor').style.border = "1.5px solid white"
+        document.querySelector('#cursor').style.transition = "0.5s"
         document.querySelector('.pathContour').style.opacity = "1"
-        document.querySelector('.pathContour').style.transition = "2s"
+        document.querySelector('.pathContour').style.transition = "1s"
     })
 
     document.querySelector('.commencer').addEventListener("mouseout", function(){
-        document.querySelector('#cursor').style.background = "transparent"
-        document.querySelector('#cursor').style.transition = "background 0.5s"
+        document.querySelector('#cursor').style.width = "25px"
+        document.querySelector('#cursor').style.height = "25px"
+        document.querySelector('#cursor').style.border = "1px solid white"
+        document.querySelector('#cursor').style.transition = "0.5s"
         document.querySelector('.pathContour').style.opacity = "0"
-        document.querySelector('.pathContour').style.transition = "2s"
+        document.querySelector('.pathContour').style.transition = "1s"
     })
 
 }
