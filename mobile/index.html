@@ -158,6 +158,10 @@
 
         // No right clic
         window.oncontextmenu = new Function("return false")
+
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
     </script>
 
 </body>

@@ -211,28 +211,6 @@ desktop_script = () => {
         update();
     }
 
-    function update() {
-        ball.position.x += ball.velocity.x;
-        ball.position.y += ball.velocity.y;
-        if (ball.position.x > (w - 100) && ball.velocity.x > 0) {
-            ball.position.x = w - 100;
-        }
-        if (ball.position.x < 0 && ball.velocity.x < 0) {
-            ball.position.x = 0;
-        }
-        if (ball.position.y > (h - 100) && ball.velocity.y > 0) {
-            ball.position.y = h - 100;
-        }
-        if (ball.position.y < 0 && ball.velocity.y < 0) {
-            ball.position.y = 0;
-        }
-        ball.style.top = ball.position.y + "px"
-        ball.style.left = ball.position.x + "px"
-        if (window.q4animate) {
-            requestAnimationFrame(update);
-        }
-    }
-
     start()
 
     /******************* 
@@ -292,9 +270,6 @@ desktop_script = () => {
             }
 
             function animateObj1() {
-                if (window.q4animate) {
-                    requestAnimationFrame(animateObj1);
-                }
         
                 rendererObj1.render(sceneObj1, cameraObj1);
             }
@@ -358,13 +333,10 @@ desktop_script = () => {
             }
 
             var animateObj2 = function () {
-                requestAnimationFrame(animateObj2);
 
                 rendererObj2.render(sceneObj2, cameraObj2);
             };
-            if (window.q4animate) {
                 animateObj2();
-            }
         })
     })
 
@@ -460,14 +432,9 @@ desktop_script = () => {
             }
 
             var animateObj3 = function () {
-                if (window.q4animate) {
-                    requestAnimationFrame(animateObj3);
-                }
 
                 rendererObj3.render(sceneObj3, cameraObj3);
             };
-
-            animateObj3();
         })
     })
 
@@ -527,14 +494,10 @@ desktop_script = () => {
             }
 
             function animateObj4() {
-                if (window.q4animate) {
-                    requestAnimationFrame(animateObj4);
-                }
         
                 rendererObj4.render(sceneObj4, cameraObj4);
             }
-            
-            animateObj4()
+        
 
         } );
 
@@ -598,9 +561,6 @@ desktop_script = () => {
        }
 
            function animateObj5() {
-               if (window.q4animate) {
-                   requestAnimationFrame(animateObj5);
-               }
        
                rendererObj5.render(sceneObj5, cameraObj5);
            }
@@ -661,9 +621,6 @@ desktop_script = () => {
            }
 
            var animateObj6 = function () {
-               if (window.q4animate) {
-                   requestAnimationFrame(animateObj6);
-               }
 
                rendererObj6.render(sceneObj6, cameraObj6);
            };
@@ -671,6 +628,35 @@ desktop_script = () => {
            animateObj6();
        })
    })
+
+   function update() {
+    ball.position.x += ball.velocity.x;
+    ball.position.y += ball.velocity.y;
+    if (ball.position.x > (w - 100) && ball.velocity.x > 0) {
+        ball.position.x = w - 100;
+    }
+    if (ball.position.x < 0 && ball.velocity.x < 0) {
+        ball.position.x = 0;
+    }
+    if (ball.position.y > (h - 100) && ball.velocity.y > 0) {
+        ball.position.y = h - 100;
+    }
+    if (ball.position.y < 0 && ball.velocity.y < 0) {
+        ball.position.y = 0;
+    }
+    ball.style.top = ball.position.y + "px"
+    ball.style.left = ball.position.x + "px"
+
+    animateObj1()
+    animateObj2();
+    animateObj3()
+    animateObj4()
+    animateObj5()
+    animateObj6();
+    if (window.q4animate) {
+        requestAnimationFrame(update);
+    }
+}
 }
 
 desktop_transition = ["out", "in"]
