@@ -102,17 +102,17 @@
 
     <!-- FIRST PAGE LOAD -->
     <script>
-        //questions.q4.displayPage("desktop")
-        intro.animationLogo.displayPage("desktop")
-        document.getElementById("go").addEventListener("click", () => {
-            let q = document.getElementById("q").value
-            console.log("q" + q)
-            questions["q" + q].comeBackTo('desktop')
-            socket.emit("pageChange", q)
-        })
-        socket.on("validationQuestion", (data) => {
-            questions["q" + data.from].transitionTo("desktop", questions["q" + data.to])
-        })
+        questions.q4.displayPage("desktop")
+        // intro.animationLogo.displayPage("desktop")
+        // document.getElementById("go").addEventListener("click", () => {
+        //     let q = document.getElementById("q").value
+        //     console.log("q" + q)
+        //     questions["q" + q].comeBackTo('desktop')
+        //     socket.emit("pageChange", q)
+        // })
+        // socket.on("validationQuestion", (data) => {
+        //     questions["q" + data.from].transitionTo("desktop", questions["q" + data.to])
+        // })
     </script>
 
     

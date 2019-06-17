@@ -98,17 +98,21 @@ desktop_script = () => {
 
     // HOVER CURSOR
     document.querySelector('.commencer').addEventListener("mouseover", function(){
-        document.querySelector('#cursor').style.background = "white"
-        document.querySelector('#cursor').style.transition = "background 0.5s"
+        document.querySelector('#cursor').style.width = "35px"
+        document.querySelector('#cursor').style.height = "35px"
+        document.querySelector('#cursor').style.border = "1.5px solid white"
+        document.querySelector('#cursor').style.transition = "0.5s"
         document.querySelector('.pathContour').style.opacity = "1"
-        document.querySelector('.pathContour').style.transition = "2s"
+        document.querySelector('.pathContour').style.transition = "1s"
     })
 
     document.querySelector('.commencer').addEventListener("mouseout", function(){
-        document.querySelector('#cursor').style.background = "transparent"
-        document.querySelector('#cursor').style.transition = "background 0.5s"
+        document.querySelector('#cursor').style.width = "25px"
+        document.querySelector('#cursor').style.height = "25px"
+        document.querySelector('#cursor').style.border = "1px solid white"
+        document.querySelector('#cursor').style.transition = "0.5s"
         document.querySelector('.pathContour').style.opacity = "0"
-        document.querySelector('.pathContour').style.transition = "2s"
+        document.querySelector('.pathContour').style.transition = "1s"
     })
 
 }

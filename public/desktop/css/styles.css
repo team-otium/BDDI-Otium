@@ -12,7 +12,7 @@ CSS DESKTOP
 body {
     padding: 0;
     margin: 0;
-    cursor: url(/both/assets/img/cursor.png), auto;
+    cursor: none;
 }
 
 h1 {
@@ -86,7 +86,8 @@ h1 {
     top: 26px;
     width: 22px;
     height: 22px;
-    background: url('../../both/assets/img/svg-son.svg');
+    background: url('../../both/assets/img/svg-son2.svg');
+    background-repeat: no-repeat;
 }
 
 /**************************  
@@ -95,8 +96,8 @@ h1 {
 #cursor {
 	background: transparent;
 	border: 1px solid white;
-	width: 30px;
-	height: 30px;
+	width: 25px;
+	height: 25px;
 	position: absolute;
 	border-radius: 100%;
 	transition: all 0.2s ease;
@@ -104,7 +105,7 @@ h1 {
 	pointer-events: none;
 }
 
-.btn:hover,
+.commencer:hover,
 .qrLink:hover,
 .iconSound:hover {
     cursor: url(/both/assets/img/cursor.png), auto;
@@ -211,7 +212,7 @@ h1 {
     opacity: 1;
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
-    animation: dash 3s linear forwards;
+    animation: dash 2s linear forwards;
   }
   
   @keyframes dash {
