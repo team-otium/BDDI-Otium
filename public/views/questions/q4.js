@@ -594,6 +594,67 @@ desktop_script = () => {
            animateObj5()
 
        } );
+
+    /******************** 
+    ****** OBJET 6 *****
+    ********************/
+
+   var sceneObj6 = new THREE.Scene();
+   var cameraObj6 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+   containerObj6 = document.getElementById('object6');
+
+   var rendererObj6 = new THREE.WebGLRenderer({
+       alpha: true
+   });
+
+   rendererObj6.setSize(window.innerWidth / 3, window.innerHeight / 2);
+   containerObj6.appendChild(rendererObj6.domElement);
+
+   cameraObj6.position.z = 20;
+   cameraObj6.position.x = 0;
+   cameraObj6.position.y = 0;
+
+   var keyLightObj6 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+   keyLightObj6.position.set(-100, 0, 100);
+
+   var fillLightObj6 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
+   fillLightObj6.position.set(100, 0, -100).normalize();
+
+   var backLightObj6 = new THREE.DirectionalLight(0xffffff, 1.0);
+   backLightObj6.position.set(100, 0, -100).normalize();
+
+   sceneObj6.add(keyLightObj6);
+   sceneObj6.add(fillLightObj6);
+   sceneObj6.add(backLightObj6);
+
+   var mtlLoaderObj6 = new THREE.MTLLoader();
+   mtlLoaderObj6.load('/both/assets/img/q4/coton.mtl', function (material6) {
+       material6.preload();
+
+       var objLoaderObj6 = new THREE.OBJLoader();
+       objLoaderObj6.setMaterials(material6);
+       objLoaderObj6.load('/both/assets/img/q4/coton.obj', function (object6) {
+           object6.position.y = 0;
+           object6.position.x = 0;
+           object6.position.z = 0;
+
+           sceneObj6.add(object6);
+
+           if (window.getComputedStyle(document.getElementById("hover6")).getPropertyValue('opacity') == "block") {
+               //sceneObj3.rotation.y += 0.001;
+           } else {
+               cameraObj6.position.y = (Math.cos((Date.now()) * 0.001) * 0.1) + cameraObj6.position.y;
+           }
+
+           var animateObj6 = function () {
+               requestAnimationFrame(animateObj6);
+
+               rendererObj6.render(sceneObj6, cameraObj6);
+           };
+
+           animateObj6();
+       })
+   })
 }
 
 desktop_transition = ["out", "in"]
