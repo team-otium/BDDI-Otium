@@ -120,7 +120,7 @@ desktop_socketOn1 = ["q7", (eventData) => {
 }]
 
 desktop_script = () => {
-    window.q7animate
+    window.q7animate = true
 
     /******************* 
      ****** BALL *******
