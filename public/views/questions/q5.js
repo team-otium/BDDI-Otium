@@ -106,6 +106,7 @@ desktop_socketOn1 = ["q5", (data) => {
 }]
 
 desktop_script = () => {
+    window.q5animate = true
 
     window.q5_actual_texture = 0
     window.q5_textures = [
@@ -145,7 +146,9 @@ desktop_script = () => {
     camera.position.z = 5;
 
     var animate = function () {
-        requestAnimationFrame(animate);
+        if (window.q5animate) {
+            requestAnimationFrame(animate);
+        }
 
         for (var i = 0; i < window.geometryq5.vertices.length; i++) {
             var z = (i + Date.now() * 1/100000)
