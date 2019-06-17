@@ -63,6 +63,15 @@ class Page{
         })
 
         this[device].script = null
+
+        if (this.desktop.element.id = "q1") window.q1animate = false
+        if (this.desktop.element.id = "q2") window.q2animate = false
+        if (this.desktop.element.id = "q3") window.q3animate = false
+        if (this.desktop.element.id = "q4") window.q4animate = false
+        if (this.desktop.element.id = "q5") window.q5animate = false
+        if (this.desktop.element.id = "q6") window.q6animate = false
+        if (this.desktop.element.id = "q7") window.q7animate = false
+        if (this.desktop.element.id = "q8") window.q8animate = false
     }
 
     displayPage(device){
