@@ -67,6 +67,7 @@ desktop_socketOn1 = ["name", () => {
 }]
 
 desktop_script = () => {
+    window.q8animate = true
 }
 
 desktop_transition = ["out", "in"]

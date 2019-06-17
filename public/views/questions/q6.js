@@ -226,6 +226,7 @@ desktop_socketOn1 = ["q6", (eventData) => {
 }]
 
 desktop_script = () => {
+    window.q6animate = true
 
     window.moment = 0
 
