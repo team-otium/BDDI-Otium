@@ -162,13 +162,17 @@ desktop_script = () => {
 
     //CURSOR
     document.querySelector('.qrLink').addEventListener("mouseover", function(){
-        document.querySelector('#cursor').style.background = "white"
-        document.querySelector('#cursor').style.transition = "background 0.5s"
+        document.querySelector('#cursor').style.width = "25px"
+        document.querySelector('#cursor').style.height = "25px"
+        document.querySelector('#cursor').style.border = "1px solid white"
+        document.querySelector('#cursor').style.transition = "0.5s"
     })
 
     document.querySelector('.qrLink').addEventListener("mouseout", function(){
-        document.querySelector('#cursor').style.background = "transparent"
-        document.querySelector('#cursor').style.transition = "background 0.5s"
+        document.querySelector('#cursor').style.width = "25px"
+        document.querySelector('#cursor').style.height = "25px"
+        document.querySelector('#cursor').style.border = "1px solid white"
+        document.querySelector('#cursor').style.transition = "0.5s"
     })
 }
 
