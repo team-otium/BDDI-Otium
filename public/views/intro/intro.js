@@ -29,7 +29,7 @@ mobile_html =
         <a class="infoFirstPage" href="#"><img src="/both/assets/img/apropos-1.svg" alt="" height="22px"></a>
        </div>
         <div class="btnFirstPageClose">
-        <a class="fermer" href="#"><img src="/both/assets/img/fermer.png" alt="" height="22px"></a>
+        <a class="fermer" href="#"><img src="/both/assets/img/fermer.png" alt=""></a>
        </div>
     </div>
     <!----------- 
