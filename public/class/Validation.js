@@ -17,24 +17,12 @@ class Validation{
         if (device === "mobile") {
             document.querySelector("#buttons").addEventListener("touchstart", (e) => {
                 if (this.canValidate) {
-                    if (e.touches.length == 1) {
                         this.now = Date.now()
                         this.last = this.now
                         this.touch = true
                         socket.emit("validationWait", {height:ValidationBtn.height, width:ValidationBtn.width, actualQuestion:ValidationBtn.actualQ})
                         console.log(this.time)
                         requestAnimationFrame(this.animationMobile)
-                    } else {
-                        this.touch = false
-                        this.height = 0
-                        this.width = 0
-                        document.querySelector(".gifValidation").style.opacity = "0"
-                        document.querySelector(".circle2").classList.add("test1")
-                        document.querySelector(".circle2").classList.add("test2")
-                        this.deltaTime = 0
-                        this.last = this.now
-                        this.time = 0
-                    }
                 }
             })
 

@@ -35,6 +35,7 @@ mobile_script = () => {
     document.querySelector(".circle2").style.display = "none"
     document.querySelector(".menu").style.display = "none"
 
+
     if (!window.requestAnimationFrame) {
         window.requestAnimationFrame = (function () {
             return window.webkitRequestAnimationFrame ||

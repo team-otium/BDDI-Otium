@@ -12,7 +12,7 @@ CSS DESKTOP
 body {
     padding: 0;
     margin: 0;
-    cursor: none;
+    cursor: url(/both/assets/img/cursor.png), auto;
 }
 
 h1 {
@@ -21,6 +21,16 @@ h1 {
 }
 
 /*** GIF TUTO ON BOTTOM ***/
+
+.tuto1 {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 40px;
+    z-index: 10;
+    opacity: 0;
+    animation: tutoFondu 6s backwards;
+}
 
 .tuto,
 .tuto2 {
@@ -33,7 +43,8 @@ h1 {
     animation: tutoFondu 11s backwards;
 }
 
-.tuto img {
+.tuto img,
+.tuto1 img {
     width: 11%;
 }
 
@@ -100,7 +111,7 @@ h1 {
 	height: 25px;
 	position: absolute;
 	border-radius: 100%;
-	/*transition: all 0.2s ease;*/
+	transition: all 0.1s ease;
 	z-index: 20000;
 	pointer-events: none;
 }

@@ -113,7 +113,7 @@ desktop_html =
         </div>
     </div>
 
-    <div class="tuto"><img src="/both/assets/img/tuto-q4.gif"></div>
+    <div class="tuto"><img src="/both/assets/img/tuto/tuto_4.gif"></div>
  `
 
 desktop_socketOn1 = ["q4", (eventData) => {
@@ -285,15 +285,15 @@ desktop_script = () => {
         loaderObj1.load( '/both/assets/img/q4/bulles_eau_2.obj', function ( obj ) {
             objectObj1 = obj;
 
-            if (window.getComputedStyle(document.getElementById("hover1")).getPropertyValue('opacity') == "block") {
-                objectObj1.rotation.y += 0.01;
-            } else {
-                objectObj1.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj1.position.y;
-            }
-
             function animateObj1() {
                 if (window.q4animate) {
                     requestAnimationFrame(animateObj1);
+                }
+
+                if (window.getComputedStyle(document.getElementById("hover1-2")).getPropertyValue('display') == "block") {
+                    objectObj1.rotation.y += 0.01;
+                } else {
+                    objectObj1.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj1.position.y;
                 }
         
                 rendererObj1.render(sceneObj1, cameraObj1);
@@ -351,21 +351,22 @@ desktop_script = () => {
 
             sceneObj2.add(object2);
 
-            if (window.getComputedStyle(document.getElementById("hover2")).getPropertyValue('opacity') == "block") {
-                sceneObj2.rotation.y += 0.01;
-            } else {
-                object2.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object2.position.y;
-            }
-
             var animateObj2 = function () {
+                if (window.q4animate) {
                 requestAnimationFrame(animateObj2);
+                }
 
+                if (window.getComputedStyle(document.getElementById("hover2-2")).getPropertyValue('display') == "block") {
+                    sceneObj2.rotation.y += 0.01;
+                } else {
+                    object2.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + object2.position.y;
+                }
+                
                 rendererObj2.render(sceneObj2, cameraObj2);
             };
-            if (window.q4animate) {
+            
                 animateObj2();
-            }
-        })
+          })
     })
 
 
@@ -453,15 +454,16 @@ desktop_script = () => {
 
             sceneObj3.add(object3);
 
-            if (window.getComputedStyle(document.getElementById("hover3")).getPropertyValue('opacity') == "block") {
-                //sceneObj3.rotation.y += 0.001;
-            } else {
-                cameraObj3.position.y = (Math.cos((Date.now()) * 0.001) * 0.1) + cameraObj3.position.y;
-            }
+
 
             var animateObj3 = function () {
                 if (window.q4animate) {
                     requestAnimationFrame(animateObj3);
+                }
+                if (window.getComputedStyle(document.getElementById("hover3-2")).getPropertyValue('display') == "block") {
+                    //sceneObj3.rotation.y += 0.001;
+                } else {
+                    cameraObj3.position.y = (Math.cos((Date.now()) * 0.001) * 0.1) + cameraObj3.position.y;
                 }
 
                 rendererObj3.render(sceneObj3, cameraObj3);
@@ -520,17 +522,17 @@ desktop_script = () => {
         loaderObj4.load( '/both/assets/img/q4/sable_R.obj', function ( obj ) {
             objectObj4 = obj;
 
-            if (window.getComputedStyle(document.getElementById("hover4")).getPropertyValue('opacity') == "block") {
-                sceneObj4.rotation.y += 0.01;
-            } else {
-                objectObj4.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj4.position.y;
-            }
-
             function animateObj4() {
                 if (window.q4animate) {
                     requestAnimationFrame(animateObj4);
                 }
         
+                if (window.getComputedStyle(document.getElementById("hover4-2")).getPropertyValue('display') == "block") {
+                    sceneObj4.rotation.y += 0.01;
+                } else {
+                    objectObj4.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj4.position.y;
+                }
+
                 rendererObj4.render(sceneObj4, cameraObj4);
             }
             
@@ -591,17 +593,15 @@ desktop_script = () => {
        loaderObj5.load( '/both/assets/img/q4/goutte.obj', function ( obj ) {
            objectObj5 = obj;
 
-           if (window.getComputedStyle(document.getElementById("hover5")).getPropertyValue('display') == "block") {
-            sceneObj5.rotation.y += 0.01;
-       } else {
-           objectObj5.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj5.position.y;
-       }
-
            function animateObj5() {
                if (window.q4animate) {
                    requestAnimationFrame(animateObj5);
                }
-       
+               if (window.getComputedStyle(document.getElementById("hover5-2")).getPropertyValue('display') == "block") {
+                sceneObj5.rotation.y += 0.01;
+           } else {
+               objectObj5.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj5.position.y;
+           }
                rendererObj5.render(sceneObj5, cameraObj5);
            }
            
@@ -624,7 +624,7 @@ desktop_script = () => {
    rendererObj6.setSize(window.innerWidth / 3, window.innerHeight / 2);
    containerObj6.appendChild(rendererObj6.domElement);
 
-   cameraObj6.position.z = 20;
+   cameraObj6.position.z = 25;
    cameraObj6.position.x = 0;
    cameraObj6.position.y = 0;
 
@@ -642,29 +642,27 @@ desktop_script = () => {
    sceneObj6.add(backLightObj6);
 
    var mtlLoaderObj6 = new THREE.MTLLoader();
-   mtlLoaderObj6.load('/both/assets/img/q4/coton.mtl', function (material6) {
+   mtlLoaderObj6.load('/both/assets/img/q4/coton2.mtl', function (material6) {
        material6.preload();
 
        var objLoaderObj6 = new THREE.OBJLoader();
        objLoaderObj6.setMaterials(material6);
-       objLoaderObj6.load('/both/assets/img/q4/coton.obj', function (object6) {
+       objLoaderObj6.load('/both/assets/img/q4/coton2.obj', function (object6) {
            object6.position.y = 0;
            object6.position.x = 0;
            object6.position.z = 0;
 
            sceneObj6.add(object6);
 
-           if (window.getComputedStyle(document.getElementById("hover6")).getPropertyValue('opacity') == "block") {
-               //sceneObj3.rotation.y += 0.001;
-           } else {
-               cameraObj6.position.y = (Math.cos((Date.now()) * 0.001) * 0.1) + cameraObj6.position.y;
-           }
-
            var animateObj6 = function () {
                if (window.q4animate) {
                    requestAnimationFrame(animateObj6);
                }
-
+               if (window.getComputedStyle(document.getElementById("hover6-2")).getPropertyValue('display') == "block") {
+                //sceneObj3.rotation.y += 0.001;
+            } else {
+                cameraObj6.position.y = (Math.cos((Date.now()) * 0.005) * 0.015) + cameraObj6.position.y;
+            }
                rendererObj6.render(sceneObj6, cameraObj6);
            };
 
