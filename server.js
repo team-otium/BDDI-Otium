@@ -124,6 +124,6 @@ io.sockets.on('connection', function (socket) {
 });
 
 
-//server.listen(process.env.PORT || 3000)
+server.listen(process.env.PORT || 3000)
 
-server.listen(1337)
+//server.listen(1337)
