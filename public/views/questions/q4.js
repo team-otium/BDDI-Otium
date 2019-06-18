@@ -624,7 +624,7 @@ desktop_script = () => {
    rendererObj6.setSize(window.innerWidth / 3, window.innerHeight / 2);
    containerObj6.appendChild(rendererObj6.domElement);
 
-   cameraObj6.position.z = 20;
+   cameraObj6.position.z = 200;
    cameraObj6.position.x = 0;
    cameraObj6.position.y = 0;
 
