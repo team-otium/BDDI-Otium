@@ -70,9 +70,9 @@ desktop_html =
     <div class="contain">
         <div id="forme-net"></div>
         <div id="forme-abstraite"></div>
-    <div>
+    </div>
 
-    <div class="tuto"><img src="/both/assets/img/tuto-q1.gif"></div>
+    <div class="tuto1"><img src="/both/assets/img/tuto/tuto_3.gif"></div>
  `
 
 desktop_listener1 = ["selector", "type", () => {

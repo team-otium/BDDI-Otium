@@ -96,7 +96,7 @@ desktop_html =
     <canvas id="canvas" style="position: absolute"></canvas>
  </div>
 
- <div class="tuto"><img src="/both/assets/img/tuto-q3.gif"></div>
+ <div class="tuto"><img src="/both/assets/img/tuto/tuto_3.gif"></div>
  `
 
 desktop_socketOn1 = ["q3", (eventData) => {

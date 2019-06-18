@@ -28,8 +28,8 @@ h1, h2, p{
 
 
 h1 {
-    font-size: 25px;
-    line-height: 35px;
+    font-size: 22px;
+    line-height: 30px;
 }
 
 h2 {
@@ -44,9 +44,9 @@ h2 {
 #infoCredit {
   position: absolute;
   display: none;
-  font-size: 15px;
+  font-size: 13px;
   max-width: 750px;
-  padding: 20px 15px;
+  padding: 10px 15px;
   text-align: center;
   line-height: 25px;
   margin: auto;
@@ -112,6 +112,10 @@ h2 {
   padding-bottom: 5px;
   background-repeat: no-repeat;
   cursor: pointer;
+}
+
+.optionForm3D {
+  display: none;
 }
 
 
@@ -394,7 +398,7 @@ h2 {
   **************************/
   .home_text_center_mobile {
     max-width: 750px;
-    height: 50%;
+    height: 60%;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -495,9 +499,9 @@ h2 {
 }
 
 .question_mobile {
-    font-size: 21px;
+    font-size: 20px;
     margin: 0 35px;
-    line-height: 30px;
+    line-height: 27px;
 }
 
 .text_center_mobile p {

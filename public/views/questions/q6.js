@@ -76,8 +76,8 @@ desktop_html =
         </div>
     </div>
     
-    <div class="tuto"><img src="/both/assets/img/tuto-q6.gif"></div>
- `
+    <div class="tuto"><img src="/both/assets/img/tuto/tuto_3.gif"></div>
+    `
 
 desktop_listener1 = ["selector", "type", () => {
 
