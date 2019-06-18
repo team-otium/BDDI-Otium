@@ -66,14 +66,19 @@
 
     <!-- FORMULAIRE IMPRESSION 3D -->
     <div id="formulaire3D">
-        <div>
-            <h1>Vous désirez avoir un souvenir de votre univers ?</h1>
-            <p>Entrez votre adresse mail et obtenez le devis de votre impression 3D ainsi que les informations complémentaires afin de recevoir chez vous le stigmate de votre sérénité.</p>
+        <div class="option3D">
+            <h1>Cette option sera disponible à la fin du questionnaire</h1>
         </div>
-        <form id="formMail" method="post" action="/mobile/php/cible.php">
-            <input type="email" name="email" placeholder="Mail : jean.dupont@gmail.com" required>
-            <input type="submit" value="Envoyer">
-        </form>	
+        <div class="optionForm3D">
+            <div>
+                <h1>Vous désirez avoir un souvenir de votre univers ?</h1>
+                <p>Entrez votre adresse mail et obtenez le devis de votre impression 3D ainsi que les informations complémentaires afin de recevoir chez vous le stigmate de votre sérénité.</p>
+            </div>
+            <form id="formMail" method="post" action="/mobile/php/cible.php">
+                <input type="email" name="email" placeholder="Mail : jean.dupont@gmail.com" required>
+                <input type="submit" value="Envoyer">
+            </form>	
+        </div>
     </div>
 
 

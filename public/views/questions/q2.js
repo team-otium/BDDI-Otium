@@ -82,7 +82,7 @@ desktop_html =
     <div id="bulles"></div>
  </div>
 
- <div class="tuto2"><img src="/both/assets/img/tuto-q2.gif"></div>
+ <div class="tuto2"><img src="/both/assets/img/tuto/tuto_2.gif"></div>
 
  `
 
