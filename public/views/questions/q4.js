@@ -624,7 +624,7 @@ desktop_script = () => {
    rendererObj6.setSize(window.innerWidth / 3, window.innerHeight / 2);
    containerObj6.appendChild(rendererObj6.domElement);
 
-   cameraObj6.position.z = 200;
+   cameraObj6.position.z = 25;
    cameraObj6.position.x = 0;
    cameraObj6.position.y = 0;
 
@@ -642,12 +642,12 @@ desktop_script = () => {
    sceneObj6.add(backLightObj6);
 
    var mtlLoaderObj6 = new THREE.MTLLoader();
-   mtlLoaderObj6.load('/both/assets/img/q4/coton.mtl', function (material6) {
+   mtlLoaderObj6.load('/both/assets/img/q4/coton2.mtl', function (material6) {
        material6.preload();
 
        var objLoaderObj6 = new THREE.OBJLoader();
        objLoaderObj6.setMaterials(material6);
-       objLoaderObj6.load('/both/assets/img/q4/coton.obj', function (object6) {
+       objLoaderObj6.load('/both/assets/img/q4/coton2.obj', function (object6) {
            object6.position.y = 0;
            object6.position.x = 0;
            object6.position.z = 0;
@@ -661,7 +661,7 @@ desktop_script = () => {
                if (window.getComputedStyle(document.getElementById("hover6-2")).getPropertyValue('display') == "block") {
                 //sceneObj3.rotation.y += 0.001;
             } else {
-                cameraObj6.position.y = (Math.cos((Date.now()) * 0.001) * 0.1) + cameraObj6.position.y;
+                cameraObj6.position.y = (Math.cos((Date.now()) * 0.005) * 0.015) + cameraObj6.position.y;
             }
                rendererObj6.render(sceneObj6, cameraObj6);
            };
