@@ -37,6 +37,14 @@ h2 {
   line-height: 30px;
 }
 
+.bgSmartphone {
+  position: absolute;
+  background-image: url(/both/assets/img/fond_smartphone.png);
+  background-size: 100% 100vh;
+  height: 100vh;
+  width: 100%;
+}
+
 /**************************  
   **************************  INFO CREDIT
   **************************/
@@ -502,6 +510,18 @@ h2 {
     font-size: 20px;
     margin: 0 35px;
     line-height: 27px;
+    opacity: 0;
+    animation: animQ 4s forwards;
+    animation-delay: 4s;
+}
+
+@keyframes animQ {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .text_center_mobile p {

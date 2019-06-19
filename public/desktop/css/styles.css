@@ -149,24 +149,21 @@ h1 {
 @keyframes animTitleBloc {
     0% {
         opacity: 1;
-        bottom: 0
+        /* bottom: 0 */
     }
     40% {
         opacity: 0;
     }
-    90% {
-        opacity: 0;
-    }
     100% {
-        opacity: 1;
-        bottom: auto;
+        opacity: 0;
+        /* bottom: auto; */
     }
 }
 
 .contain {
     opacity: 0;
     animation : displayContain 4s forwards;
-    animation-delay: 3s;
+    animation-delay: 4.5s;
 }
 
 @keyframes displayContain {
@@ -178,7 +175,7 @@ h1 {
     }
 }
 
-.text_center h1 {
+/* .text_center h1 {
     bottom: 0;
     animation: animTitleH1 0s forwards;
     animation-delay: 5s;
@@ -192,7 +189,7 @@ h1 {
     to {
         font-size: 19px;
     }
-}
+} */
 
 /**************************  
 ************************** PAGE 1 INTRODUCTION

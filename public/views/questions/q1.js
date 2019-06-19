@@ -42,6 +42,8 @@ mobile_script = () => {
     ValidationBtn.actualQ = "1"
     ValidationBtn.nextQ = "2"
 
+    document.getElementById('background_anim').innerHTML = ""
+    document.getElementById('background_anim').classList.add('bgSmartphone')
 
     if ('DeviceOrientationEvent' in window) {
         window.addEventListener('deviceorientation', deviceOrientationHandler, false);
