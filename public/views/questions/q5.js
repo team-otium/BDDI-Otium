@@ -23,7 +23,7 @@ mobile_listener1 = ["#q5Plus", "click", (e) => {
     if (window.q5incr > 15) {
         window.q5incrq = 0
     }
-    document.querySelector('.incrementNumber').innerHTML = window.q5incr
+    document.querySelector('.incrementNumber').innerHTML = window.q5incr + 1
 
 }]
 mobile_listener2 = ["#q5Moins", "click", (e) => {
@@ -32,7 +32,7 @@ mobile_listener2 = ["#q5Moins", "click", (e) => {
     if (window.q5incr < 0) {
         window.q5incr = 15
     }
-    document.querySelector('.incrementNumber').innerHTML = window.q5incr
+    document.querySelector('.incrementNumber').innerHTML = window.q5incr + 1
 
 }]
 
