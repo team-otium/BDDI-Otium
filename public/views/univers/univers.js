@@ -11,16 +11,35 @@ mobile_html =
     `
     <div class="text_center_mobile">
     <h1 class="question_mobile">Univers 3D</h1>
+    <div id="univ_joy">
+      <div id="univ_yot_circle"></div>
+    </div>
  </div>
  `
 
 // All listeners, one variable per listener
-mobile_listener1 = ["selector", "type", () => {
-
+mobile_listener1 = ["#univ_joy", "touchstart", (e) => {
+  window.univJoy = true
+  if (e.offsetX !== 0) {
+    document.getElementById("univ_yot_circle").style.left = parseInt(e.offsetX) - 60 + "px"
+    document.getElementById("univ_yot_circle").style.top = parseInt(e.offsetY) - 60 + "px"
+  }
 }]
 
-mobile_listener2 = ["selector", "type", () => {
+mobile_listener2 = ["#univ_joy", "touchmove", (e) => {
+  if (window.univJoy) {
+    console.log(e)
+    if (e.offsetX > 0 || e.offsetY > 0) {
+      document.getElementById("univ_yot_circle").style.left = (e.offsetX - 60) + "px"
+      document.getElementById("univ_yot_circle").style.top = (e.offsetY - 60) + "px"
+    }
+  }
+    }]
 
+mobile_listener3 = ["body", "touchend", () => {
+  window.univJoy = false
+  document.getElementById("univ_yot_circle").style.left = "calc(50% - 60px)"
+  document.getElementById("univ_yot_circle").style.top = "calc(50% - 60px)"
     }]
     /** And more... */
 
@@ -35,6 +54,8 @@ mobile_script = () => {
     document.querySelector(".circle2").style.display = "none"
     document.querySelector(".option3D").style.display = "none"
     document.querySelector(".optionForm3D").style.display = "block"
+
+    window.univJoy = false
 
 
     if (!window.requestAnimationFrame) {
@@ -375,7 +396,7 @@ desktop_transition = ["out", "in"]
 
 univers_mobile = {
     html: mobile_html,
-    listeners: [],
+    listeners: [mobile_listener1, mobile_listener2, mobile_listener3],
     socketOn: [],
     script: mobile_script,
     transitions: mobile_transition,

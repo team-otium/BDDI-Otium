@@ -678,3 +678,24 @@ h2 {
   background-color: transparent;
   border: none;
 }
+
+#univ_joy{
+  width: 300px;
+  height: 300px;
+  position: relative;
+  margin: auto;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: white solid 2px;
+}
+
+#univ_yot_circle{
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: calc(50% - 60px);
+  left: calc(50% - 60px);
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: #00000040 4px 5px 9px 0px;
+}
