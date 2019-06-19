@@ -634,62 +634,70 @@ desktop_script = () => {
     ****** OBJET 6 *****
     ********************/
 
-   var sceneObj6 = new THREE.Scene();
-   var cameraObj6 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
-   containerObj6 = document.getElementById('object6');
+   var containerObj6;
+   var cameraObj6, sceneObj6, rendererObj6;
+   var objectObj6;
 
-   var rendererObj6 = new THREE.WebGLRenderer({
-       alpha: true
-   });
+       containerObj6 = document.getElementById('object6');
+       cameraObj6 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
+       cameraObj6.position.z = 25;
 
-   rendererObj6.setSize(window.innerWidth / 3, window.innerHeight / 2);
-   containerObj6.appendChild(rendererObj6.domElement);
+       rendererObj6 = new THREE.WebGLRenderer({
+           alpha: true
+       });
 
-   cameraObj6.position.z = 25;
-   cameraObj6.position.x = 0;
-   cameraObj6.position.y = 0;
+       rendererObj6.setSize( window.innerWidth/3, window.innerHeight/2 );
+       containerObj6.appendChild( rendererObj6.domElement );
+       
+       // scene
+       sceneObj6 = new THREE.Scene();
+       var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.6 );
+       sceneObj6.add( ambientLight );
+       var pointLight = new THREE.PointLight( 0xffffff, 0.6 );
+       cameraObj6.add( pointLight );
+       sceneObj6.add( cameraObj6 );
 
-   var keyLightObj6 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-   keyLightObj6.position.set(-100, 0, 100);
+       // manager
+       function loadModelObj6() {
+           objectObj6.traverse( function ( child ) {
+               if ( child.isMesh ) child.material.map = textureObj6;
+           } );
+           objectObj6.position.y = 0;
+           objectObj6.position.x = 0;
+           objectObj6.position.z = 0;
 
-   var fillLightObj6 = new THREE.DirectionalLight(new THREE.Color("rgb(255, 255, 255)"), 0.75);
-   fillLightObj6.position.set(100, 0, -100).normalize();
+           sceneObj6.add( objectObj6 );
+       }
+       var managerObj6 = new THREE.LoadingManager( loadModelObj6 );
+       managerObj6.onProgress = function ( item, loaded, total ) {
 
-   var backLightObj6 = new THREE.DirectionalLight(0xffffff, 1.0);
-   backLightObj6.position.set(100, 0, -100).normalize();
+       };
 
-   sceneObj6.add(keyLightObj6);
-   sceneObj6.add(fillLightObj6);
-   sceneObj6.add(backLightObj6);
+       // texture
+       var textureLoaderObj6 = new THREE.TextureLoader( managerObj6 );
+       var textureObj6 = textureLoaderObj6.load( '/both/assets/img/q4/Sand_001_OCC.png' );
 
-   var mtlLoaderObj6 = new THREE.MTLLoader();
-   mtlLoaderObj6.load('/both/assets/img/q4/coton2.mtl', function (material6) {
-       material6.preload();
+       var loaderObj6 = new THREE.OBJLoader( managerObj4 );
+       loaderObj6.load( '/both/assets/img/q4/coton.obj', function ( obj ) {
+           objectObj6 = obj;
 
-       var objLoaderObj6 = new THREE.OBJLoader();
-       objLoaderObj6.setMaterials(material6);
-       objLoaderObj6.load('/both/assets/img/q4/coton2.obj', function (object6) {
-           object6.position.y = 0;
-           object6.position.x = 0;
-           object6.position.z = 0;
-
-           sceneObj6.add(object6);
-
-           var animateObj6 = function () {
+           function animateObj6() {
                if (window.q4animate) {
                    requestAnimationFrame(animateObj6);
                }
+       
                if (window.getComputedStyle(document.getElementById("hover6-2")).getPropertyValue('display') == "block") {
-                //sceneObj3.rotation.y += 0.001;
-            } else {
-                cameraObj6.position.y = (Math.cos((Date.now()) * 0.005) * 0.015) + cameraObj6.position.y;
-            }
-               rendererObj6.render(sceneObj6, cameraObj6);
-           };
+                   cameraObj6.rotation.z += 0.003;
+               } else {
+                   objectObj6.position.y = (Math.cos((Date.now()) * 0.002) * 0.03) + objectObj6.position.y;
+               }
 
-           animateObj6();
-       })
-   })
+               rendererObj6.render(sceneObj6, cameraObj6);
+           }
+           
+           animateObj6()
+
+       } );
 }
 
 desktop_transition = ["out", "in"]
