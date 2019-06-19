@@ -10,7 +10,7 @@
 mobile_html =
     `
     <div class="text_center_mobile">
-        <h1 class="question_mobile">Êtes-vous de nature rêveur/imaginatif ?</h1>
+        <h1 class="question_mobile">Êtes-vous de nature rêveur ?</h1>
     </div>
  `
 
@@ -64,7 +64,7 @@ mobile_transition = ["out", "in"]
 desktop_html =
     `
     <div class="text_center">
-        <h1 class="question_desktop">Êtes-vous de nature rêveur/imaginatif ?</h1>
+        <h1 class="question_desktop">Êtes-vous de nature rêveur ?</h1>
     </div>
 
     <div class="contain">

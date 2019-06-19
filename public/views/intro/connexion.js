@@ -60,55 +60,10 @@ mobile_script = () => {
     document.querySelector(".firstMenu").style.display = "block"
     document.querySelector(".firstMenu2").style.display = "block"
     document.querySelector(".firstMenu3").style.display = "block"
+    document.querySelector(".optionForm3D").style.display = "none"
     document.querySelector(".firstMenu4").style.display = "block"
     document.querySelector(".circle1").style.display = "none"
     document.querySelector(".circle2").style.display = "none"
-
-   
-    // display credit and forms
-    var displayPageMenu;
-
-    document.querySelector(".firstMenu1").onclick = function() { 
-        document.querySelector("#infoCredit").style.display = "block"
-        document.querySelector("#navigation").style.opacity = "0"
-        document.querySelector("#buttons").style.opacity = "0"
-
-        document.querySelector("#formulaire3D").style.display = "none"
-
-        document.querySelector(".firstMenu1").style.display = "none"
-        document.querySelector(".firstMenu2").style.display = "none"
-        document.querySelector(".firstMenu3").style.display = "none"
-        document.querySelector(".firstMenu4").style.display = "none"
-        displayPageMenu = "yes";
-    };
-
-    document.querySelector(".firstMenu3").onclick = function() { 
-        document.querySelector("#formulaire3D").style.display = "block"
-        document.querySelector("#navigation").style.opacity = "0"
-        document.querySelector("#buttons").style.opacity = "0"
-
-        document.querySelector("#infoCredit").style.display = "none"
-
-        document.querySelector(".firstMenu1").style.display = "none"
-        document.querySelector(".firstMenu2").style.display = "none"
-        document.querySelector(".firstMenu3").style.display = "none"
-        document.querySelector(".firstMenu4").style.display = "none"
-        displayPageMenu = "yes";
-    };
-
-    document.querySelector("#menu-toggler").onclick = function() { 
-        if (displayPageMenu === "yes"){
-            document.querySelector("#infoCredit").style.display = "none"
-            document.querySelector("#formulaire3D").style.display = "none"
-            document.querySelector("#navigation").style.opacity = "1"
-            document.querySelector("#buttons").style.opacity = "1"
-
-            document.querySelector(".firstMenu1").style.display = "block"
-            document.querySelector(".firstMenu2").style.display = "block"
-            document.querySelector(".firstMenu3").style.display = "block"
-            document.querySelector(".firstMenu4").style.display = "block"
-        }
-    };
 
 }
 
@@ -158,14 +113,15 @@ desktop_script = () => {
     document.querySelector(".qrLink").onclick = function() { 
         document.querySelector(".qrCode").style.opacity = "1"
         document.querySelector(".qrCode").style.transition = "3s"
-        document.querySelector('.text_center_connexion').style.height = "70vh"
+        document.querySelector('.text_center_connexion').style.height = "62vh"
+        document.querySelector(".text_center_connexion").style.transition = "2s"
     }
 
     //CURSOR
     document.querySelector('.qrLink').addEventListener("mouseover", function(){
         document.querySelector('#cursor').style.width = "25px"
         document.querySelector('#cursor').style.height = "25px"
-        document.querySelector('#cursor').style.border = "1px solid white"
+        document.querySelector('#cursor').style.border = "2px solid white"
         document.querySelector('#cursor').style.transition = "0.5s"
     })
 
