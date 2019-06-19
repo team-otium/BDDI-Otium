@@ -49,7 +49,7 @@ mobile_listener2 = ["#q8button1", "touchstart", () => {
 }]
 
 mobile_listener3 = [".btnValidQ8", "click", () => {
-    document.querySelector('.btnValidQ8').style.opacity = "0"
+    document.querySelector('.btnValidQ8').style.display = "none"
     document.querySelector('.btnValidQ8').style.transition = "2s"
 
     document.querySelector('.draw_son').style.opacity = "0"
@@ -79,7 +79,15 @@ mobile_listener5 = ["#q8button3", "touchstart", () => {
 
 mobile_listener6 = ["#q8button4", "touchstart", () => {
     document.querySelector('.selectedSon4').style.fill = "#000000"
+
+    document.querySelector('#q8button2').style.display = "none"
+    document.querySelector('#q8button3').style.display = "none"
+    document.querySelector('#q8button4').style.display = "none"
+
+    document.querySelector(".circle1").style.display = "block"
+    document.querySelector(".circle2").style.display = "block"
 }]
+
 
 // Socket on
 mobile_socketOn1 = ["name", () => {
