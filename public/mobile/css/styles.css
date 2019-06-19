@@ -622,8 +622,6 @@ h2 {
   **************************/
 
 .buttonTexture {
-  left: 0;
-  position: absolute;
   bottom: 165px;
   left: 0;
   right: 0;
@@ -631,6 +629,14 @@ h2 {
   right: 0;
   margin: auto;
   position: absolute;
+  display: inline-flex;
+  width: 42%;
+}
+
+.buttonTexture p {
+  margin: 3px;
+  font-size: 30px;
+  opacity: 0.5;
 }
 
 #q5Plus,
@@ -641,15 +647,14 @@ h2 {
 
 #q5Moins {
   background-image: url(/both/assets/img/avant.png);
-  background-size: contain;
+  background-size: cover;
   background-color: transparent;
   border: none;
-  margin-right: 50px;
 }
 
 #q5Plus {
   background-image: url(/both/assets/img/apres.png);
-  background-size: contain;
+  background-size: cover;
   background-color: transparent;
   border: none;
 }
