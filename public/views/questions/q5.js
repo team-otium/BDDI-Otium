@@ -21,11 +21,13 @@ mobile_listener1 = ["#q5Plus", "click", (e) => {
     socket.emit("q5", "haut")
     window.q5incr++
     if (window.q5incr > 15 - 1) window.q5incrq = 0
+    console.log(window.q5incr)
 }]
 mobile_listener2 = ["#q5Moins", "click", (e) => {
     socket.emit("q5", "bas")
     window.q5incr--
-        if (window.q5incr < 0) window.q5incr = 15 - 1
+    if (window.q5incr < 0) window.q5incr = 15 - 1
+    console.log(window.q5incr)
 }]
 
 mobile_socketOn1 = ["q5-2", (data) => {
