@@ -55,10 +55,11 @@ desktop_html =
     `
     <div class="text_center">
         <h1 class="question_desktop">Composez votre son</h1>
-        <audio id="q8song1" src="/both/assets/sound/q8/btn1.mp3"></audio>
-        <audio id="q8song2" src="/both/assets/sound/q8/btn2.mp3"></audio>
-        <audio id="q8song3" src="/both/assets/sound/q8/btn3.mp3"></audio>
-        <audio id="q8song4" src="/both/assets/sound/q8/btn4.mp3"></audio>
+            <audio id="q8song1" src="/both/assets/sound/q8/btn1.mp3"></audio>
+            <audio id="q8song2" src="/both/assets/sound/q8/btn2.mp3"></audio>
+            <audio id="q8song3" src="/both/assets/sound/q8/btn3.mp3"></audio>
+            <audio id="q8song4" src="/both/assets/sound/q8/btn4.mp3"></audio>
+            <canvas id="q8can"></canvas>
     </div>
  `
 
@@ -128,6 +129,77 @@ desktop_script = () => {
         "3":false,
         "4":false
     }
+
+    var canvas = document.getElementById("q8can");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.width = window.innerWidth
+    canvas.style.height = window.innerHeight
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+    var audio = document.getElementById("q8song1");
+
+    var context = new AudioContext();
+    var src = context.createMediaElementSource(audio);
+    var analyser = context.createAnalyser();
+
+    src.connect(analyser);
+    analyser.connect(context.destination);
+
+    analyser.fftSize = Math.pow(2,6) ;
+
+    var bufferLength = analyser.frequencyBinCount;
+    console.log(bufferLength);
+
+    var dataArray = new Uint8Array(bufferLength);
+
+    var WIDTH = canvas.width;
+    var HEIGHT = canvas.height;
+
+    var barWidth = (WIDTH / bufferLength) * 2.5;
+    var barHeight;
+    var x = 0;
+
+    function renderFrame() {
+        requestAnimationFrame(renderFrame);
+
+        ctx.clearRect(0,0,WIDTH,HEIGHT)
+  
+        x = 0;
+  
+        analyser.getByteFrequencyData(dataArray);
+        bufferLength = analyser.frequencyBinCount;
+        barWidth = (WIDTH / (bufferLength));
+  
+        for (var i = 0; i < bufferLength; i++) {
+          barHeight = map(dataArray[i],0, 256, 0, (HEIGHT-135)/2);
+
+          var r = map(dataArray[i], 0, 256, 83, 209)
+          var g = map(dataArray[i], 0, 256, 255, 66) + i
+          var b = map(dataArray[i], 0, 256, 221, 240) + i
+  
+          ctx.beginPath()
+          ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+          ctx.fillRect(x, (HEIGHT/2) - 1, barWidth, barHeight);
+          
+          ctx.closePath()
+
+          ctx.beginPath()
+          ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+          ctx.fillRect(x, (HEIGHT/2) - barHeight, barWidth, barHeight);
+          
+          ctx.closePath()
+          
+          
+          x += barWidth + 2;
+        }
+      }
+      renderFrame()
+      function map(value, low1, high1, low2, high2) {
+        return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+      }
 }
 
 desktop_transition = ["out", "in"]
