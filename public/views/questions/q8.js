@@ -11,21 +11,83 @@ mobile_html =
     `
     <div class="text_center_mobile">
         <h1 class="question_mobile">Composez votre son</h1>
-        <button id="q8button1" class="q8button">1</button>
+        <button id="q8button1" class="q8button"></button>
         <button id="q8button2" class="q8button">2</button>
         <button id="q8button3" class="q8button">3</button>
         <button id="q8button4" class="q8button">4</button>
     </div> 
+    <div class="trace_son">
+        <div class="draw_son"><img src="/both/assets/img/q8/trace-son.png"></div>
+    </div>
+
+
+    <div id="selectedSon">
+        <svg height="20" width="20">
+            <circle class="selectedSon2" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="selectedSon3" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+        <svg height="20" width="20">
+            <circle class="selectedSon4" cx="8" cy="10" r="8" stroke="#000000" stroke-width="1" fill="transparent" fill-opacity="1" />
+        </svg>
+    </div>
+
+
+    <div class="btnValidQ8">
+        <a class="validQ8" href="#"><img src="/both/assets/img/q8/valid.png" alt=""></a>
+    </div>
  `
 
 // All listeners, one variable per listener
-mobile_listener1 = [".q8button", "click", (e) => {
+mobile_listener1 = [".q8button", "touchstart", (e) => {
     socket.emit("q8", e.target.id)
 }]
 
-mobile_listener2 = ["selector", "type", () => {
-
+mobile_listener2 = ["#q8button1", "touchstart", () => {
+    document.querySelector('.draw_son').style.animation = "drawTrace 4.5s forwards"
 }]
+
+mobile_listener3 = [".btnValidQ8", "click", () => {
+    document.querySelector('.btnValidQ8').style.display = "none"
+    document.querySelector('.btnValidQ8').style.transition = "2s"
+
+    document.querySelector('.draw_son').style.opacity = "0"
+    document.querySelector('.draw_son').style.transition = "2s"
+
+    document.querySelector('#q8button1').style.display = "none"
+
+    setTimeout(function(){ 
+        document.querySelector('.trace_son').style.display = "none"
+        document.querySelector('.firstMenu').style.display = "block"
+
+        document.querySelector('#q8button2').style.display = "block"
+        document.querySelector('#q8button3').style.display = "block"
+        document.querySelector('#q8button4').style.display = "block"
+
+        document.querySelector('#selectedSon').style.display = "block"
+    }, 2000);
+}]
+
+mobile_listener4 = ["#q8button2", "touchstart", () => {
+    document.querySelector('.selectedSon2').style.fill = "#000000"
+}]
+
+mobile_listener5 = ["#q8button3", "touchstart", () => {
+    document.querySelector('.selectedSon3').style.fill = "#000000"
+}]
+
+mobile_listener6 = ["#q8button4", "touchstart", () => {
+    document.querySelector('.selectedSon4').style.fill = "#000000"
+
+    document.querySelector('#q8button2').style.display = "none"
+    document.querySelector('#q8button3').style.display = "none"
+    document.querySelector('#q8button4').style.display = "none"
+
+    document.querySelector(".circle1").style.display = "block"
+    document.querySelector(".circle2").style.display = "block"
+}]
+
 
 // Socket on
 mobile_socketOn1 = ["name", () => {
@@ -34,8 +96,9 @@ mobile_socketOn1 = ["name", () => {
 
 // Script to be executed when the page is displayed
 mobile_script = () => {
-    document.querySelector(".circle1").style.display = "block"
-    document.querySelector(".circle2").style.display = "block"
+    document.querySelector(".circle1").style.display = "none"
+    document.querySelector(".circle2").style.display = "none"
+    document.querySelector('.firstMenu').style.display = "none"
 
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q8
@@ -210,7 +273,7 @@ desktop_transition = ["out", "in"]
 
 q8_mobile = {
     html: mobile_html,
-    listeners: [mobile_listener1],
+    listeners: [mobile_listener1, mobile_listener2, mobile_listener3, mobile_listener4, mobile_listener5, mobile_listener6],
     socketOn: [],
     script: mobile_script,
     transitions: mobile_transition,
