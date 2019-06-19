@@ -92,6 +92,7 @@ desktop_html =
 
 desktop_listener1 = [".commencer", "click", () => {
     intro.intro.transitionTo("desktop", intro.connexion)
+    sound.play()
 }]
 
 desktop_script = () => {
