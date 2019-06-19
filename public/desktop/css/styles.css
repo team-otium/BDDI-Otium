@@ -484,6 +484,11 @@ h1 {
     animation-fill-mode: forwards;
 }
 
+#q8can{
+    position: ABSOLUTE;
+    top: 0;
+}
+
 @keyframes animNav {
     from {
         opacity: 0.3;
