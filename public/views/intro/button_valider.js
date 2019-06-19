@@ -29,7 +29,7 @@ mobile_listener2 = ["selector", "type", () => {
 // Script to be executed when the page is displayed
 mobile_script = () => {
     setTimeout(() => {
-        intro.button_valider.transitionTo("mobile", questions.q1)
+        intro.button_valider.transitionTo("mobile", questions.q8)
     }, 2000)
 
     function launchIntoFullscreen(element) {
@@ -72,7 +72,7 @@ desktop_listener2 = ["selector", "type", () => {
 
 desktop_script = () => {
     setTimeout(() => {
-        intro.button_valider.transitionTo("desktop", questions.q1)
+        intro.button_valider.transitionTo("desktop", questions.q8)
         intro.timeline.displayPage("desktop")
     }, 2000)
 }

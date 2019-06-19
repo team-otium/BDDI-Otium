@@ -114,10 +114,6 @@ h2 {
   cursor: pointer;
 }
 
-.optionForm3D {
-  display: none;
-}
-
 
 
 /**************************  
@@ -127,7 +123,7 @@ h2 {
 .circle1 {
   width: 200px;
   height: 200px;
-  border-radius: 46%;
+  border-radius: 50%;
   border: 1px solid #aaa;
   position: absolute;
   top: -80px;
@@ -392,6 +388,10 @@ h2 {
     transition: 0.2s;
     opacity: 1;
   }
+
+  .sound img {
+    margin-top: 20px;
+  }
   
 /**************************  
   **************************  PAGE 1 INTRO
@@ -581,8 +581,9 @@ h2 {
 .circleQ7 {
   width: 200px;
   height: 200px;
-  border-radius: 46%;
-  background: radial-gradient(lightgrey, grey);
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid #aaa;
   position: absolute;
   top: -80px;
   bottom: 0;
@@ -614,4 +615,41 @@ h2 {
 
 #selectedTexture svg:nth-child(8){
   margin-right: 0;
+}
+
+/**************************  
+  **************************  QUESTION Q5
+  **************************/
+
+.buttonTexture {
+  left: 0;
+  position: absolute;
+  bottom: 165px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  right: 0;
+  margin: auto;
+  position: absolute;
+}
+
+#q5Plus,
+#q5Moins {
+  width: 40px;
+  height: 40px;
+}
+
+#q5Moins {
+  background-image: url(/both/assets/img/avant.png);
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  margin-right: 50px;
+}
+
+#q5Plus {
+  background-image: url(/both/assets/img/apres.png);
+  background-size: contain;
+  background-color: transparent;
+  border: none;
 }

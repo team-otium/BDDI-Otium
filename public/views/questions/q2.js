@@ -53,7 +53,7 @@ mobile_listener3 = ["#q2_target", "touchend", (e) => {
 mobile_script = () => {
     document.querySelector(".circle1").style.display = "block"
     document.querySelector(".circle2").style.display = "block"
-    
+
     ValidationBtn.canValidate = true
     ValidationBtn.actualPage = questions.q2
     ValidationBtn.nextPage = questions.q3
