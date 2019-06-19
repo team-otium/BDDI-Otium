@@ -19,14 +19,17 @@ mobile_html =
 // All listeners, one variable per listener
 mobile_listener1 = ["#q5Plus", "click", (e) => {
     socket.emit("q5", "haut")
+    window.q5incr++
+    if (window.q5incr > 15 - 1) window.q5incrq = 0
 }]
 mobile_listener2 = ["#q5Moins", "click", (e) => {
     socket.emit("q5", "bas")
+    window.q5incr--
+        if (window.q5incr < 0) window.q5incr = 15 - 1
 }]
 
 mobile_socketOn1 = ["q5-2", (data) => {
-    console.log(data)
-    document.querySelector('.incrementNumber').innerHTML = data
+
 }]
 
 /*mobile_listener1 = ["#q2_target", "touchstart", (e) => {
@@ -75,6 +78,8 @@ mobile_script = () => {
     let scaling = false
     let start_move = []
     let act_move = []
+
+    window.q5incr = 0
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
@@ -123,8 +128,6 @@ desktop_script = () => {
     for (let i = 1; i <= 15; i++) {
         window.q5_textures.push(new THREE.TextureLoader().load('/both/assets/img/q5/final_texture/texture_drap-'+i+'.jpg'))
     }
-
-    socket.emit("q5-2", window.q5_actual_texture);
     
     window.sceneq5 = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
