@@ -100,7 +100,7 @@ desktop_script = () => {
     document.querySelector('.commencer').addEventListener("mouseover", function(){
         document.querySelector('#cursor').style.width = "35px"
         document.querySelector('#cursor').style.height = "35px"
-        document.querySelector('#cursor').style.border = "1.5px solid white"
+        document.querySelector('#cursor').style.border = "2px solid white"
         document.querySelector('#cursor').style.transition = "0.5s"
         document.querySelector('.pathContour').style.opacity = "1"
         document.querySelector('.pathContour').style.transition = "1s"

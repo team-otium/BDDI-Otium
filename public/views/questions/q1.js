@@ -120,10 +120,10 @@ desktop_script = () => {
     var segmentsFormeNet = 50;
     var ringsFormeNet = 30;
 
-    var keyLightN = new THREE.DirectionalLight(0xf9f5d1, 1.0);
+    var keyLightN = new THREE.DirectionalLight(0xb2b2b2, 1.0);
     keyLightN.position.set(0,0,100);
 
-    var fillLightN = new THREE.DirectionalLight(0xf9f5d1, 1);
+    var fillLightN = new THREE.DirectionalLight(0xb2b2b2, 1);
     fillLightN.position.set(0, 0, 0);
 
     sceneFormeNet.add(keyLightN);
@@ -165,13 +165,13 @@ desktop_script = () => {
     formeAbstraite.appendChild(rendererFormeAbstraite.domElement);
     cameraFormeAbstraite.position.z = 5;
 
-    var keyLightA =  new THREE.DirectionalLight(0xf9f5d1, 1.0);
+    var keyLightA =  new THREE.DirectionalLight(0xb2b2b2, 1.0);
      keyLightA.position.set(0,0,100);
  
-     var fillLightA =  new THREE.DirectionalLight(0xf9f5d1, 1.0);
+     var fillLightA =  new THREE.DirectionalLight(0xb2b2b2, 1.0);
      fillLightA.position.set(100, 0, -100).normalize();
 
-     var backLightA =  new THREE.DirectionalLight(0xf9f5d1, 1.0);
+     var backLightA =  new THREE.DirectionalLight(0xb2b2b2, 1.0);
      backLightA.position.set(100,0,-100).normalize();
 
      sceneFormeAbstraite.add(keyLightA);

@@ -33,8 +33,8 @@ mobile_socketOn1 = ["name", () => {
 mobile_script = () => {
     document.querySelector(".circle1").style.display = "none"
     document.querySelector(".circle2").style.display = "none"
-    document.querySelector(".menu").style.display = "none"
-
+    document.querySelector(".option3D").style.display = "none"
+    document.querySelector(".optionForm3D").style.display = "block"
 
     if (!window.requestAnimationFrame) {
         window.requestAnimationFrame = (function () {
@@ -82,9 +82,9 @@ desktop_listener2 = ["selector", "type", () => {
 }]
 
 desktop_socketOn1 = ["univers", (eventData) => {
-    document.getElementById("doTiltLR").innerHTML = Math.round(eventData.tiltLR);
-    document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
-    document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
+    // document.getElementById("doTiltLR").innerHTML = Math.round(eventData.tiltLR);
+    // document.getElementById("doTiltFB").innerHTML = Math.round(eventData.tiltFB);
+    // document.getElementById("doDirection").innerHTML = Math.round(eventData.dir);
 
 
 }]

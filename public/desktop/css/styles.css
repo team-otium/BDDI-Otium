@@ -101,6 +101,18 @@ h1 {
     background-repeat: no-repeat;
 }
 
+.iconInfo {
+    position: absolute;
+    z-index: 10000;
+    right: 70px;
+    top: 26px;
+    width: 20px;
+    height: 20px;
+    background: url(../../both/assets/img/apropos-1.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 /**************************  
 **************************  CURSOR
 **************************/
@@ -118,7 +130,8 @@ h1 {
 
 .commencer:hover,
 .qrLink:hover,
-.iconSound:hover {
+.iconSound:hover,
+.iconInfo:hover {
     cursor: url(/both/assets/img/cursor.png), auto;
 }
 

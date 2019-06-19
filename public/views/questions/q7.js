@@ -31,6 +31,8 @@ mobile_listener1 = [".circleQ7", "click", () => {
     document.querySelector(".circle1").style.display = "block"
     document.querySelector(".circle2").style.display = "block"
 
+    selectObjFinal = 1;
+
 }]
 
 mobile_listener2 = ["selector", "type", () => {
@@ -51,15 +53,23 @@ mobile_script = () => {
     ValidationBtn.actualQ = "7"
     ValidationBtn.nextQ = "8"
 
-    if ('DeviceOrientationEvent' in window) {
-        window.addEventListener('deviceorientation', deviceOrientationHandler, false);
-    }
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", function (eventData) {
+            var tiltLR = eventData.gamma;
+            var tiltFB = eventData.beta;
+            var dir = eventData.alpha;
+            var deleteBall;
 
-    function deviceOrientationHandler(eventData) {
-        if (ValidationBtn.touch === false && window.getComputedStyle(document.querySelector(".gifValidation")).getPropertyValue('opacity') == 0) {
-            socket.emit("q7", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
-        }
-    }
+            if (selectObjFinal == 1) {
+                deleteBall = "yes";
+            }   
+
+            if (selectObjFinal == 0) {
+                deleteBall = "no";      
+            }   
+            socket.emit("q7", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha, delete: deleteBall });
+        })
+    } 
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
@@ -76,7 +86,7 @@ desktop_html =
     </div>
 
     <div class="contain">
-        <div id="ball"></div>
+        <div id="ballQ7"></div>
         <div class="all_object">
         <div id="hoverFinal">
             <div class="blocHover"><div id="hoverFinalObj1"></div></div>
@@ -104,6 +114,10 @@ desktop_socketOn1 = ["q7", (eventData) => {
     ball.velocity.y = Math.round(-eventData.tiltFB) / 2;
     ball.velocity.x = Math.round(eventData.tiltLR) / 2;
 
+    if (eventData.delete == "yes"){
+        document.getElementById("ballQ7").style.display = "none"
+    }
+
     if (eventData === "selectObjFinal" && ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight) {
         document.getElementById("hoverFinalObj1").style.opacity = "1"
     }
@@ -127,7 +141,7 @@ desktop_script = () => {
      ********************/
 
     function start() {
-        ball = document.getElementById("ball");
+        ball = document.getElementById("ballQ7");
         w = window.innerWidth;
         h = window.innerHeight;
         ball.style.left = (w / 2) - 50 + "px";

@@ -22,11 +22,25 @@ sound.onpause = function() {
 document.querySelector('.iconSound').addEventListener("mouseover", function(){
     document.querySelector('#cursor').style.width = "35px"
     document.querySelector('#cursor').style.height = "35px"
-    document.querySelector('#cursor').style.border = "1.5px solid white"
+    document.querySelector('#cursor').style.border = "2px solid white"
     document.querySelector('#cursor').style.transition = "0.5s"
 })
 
 document.querySelector('.iconSound').addEventListener("mouseout", function(){
+    document.querySelector('#cursor').style.width = "25px"
+    document.querySelector('#cursor').style.height = "25px"
+    document.querySelector('#cursor').style.border = "1.5px solid white"
+    document.querySelector('#cursor').style.transition = "0.5s"
+})
+
+document.querySelector('.iconInfo').addEventListener("mouseover", function(){
+    document.querySelector('#cursor').style.width = "35px"
+    document.querySelector('#cursor').style.height = "35px"
+    document.querySelector('#cursor').style.border = "2px solid white"
+    document.querySelector('#cursor').style.transition = "0.5s"
+})
+
+document.querySelector('.iconInfo').addEventListener("mouseout", function(){
     document.querySelector('#cursor').style.width = "25px"
     document.querySelector('#cursor').style.height = "25px"
     document.querySelector('#cursor').style.border = "1.5px solid white"

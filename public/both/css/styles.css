@@ -152,7 +152,10 @@ section{
   **************************/
 
   
-#ball {
+#ball,
+#ballQ7 {
+	background: white;
+	border: 1px solid white;
   z-index: 20;
   top:0;
   -webkit-transition: all;
@@ -161,6 +164,4 @@ section{
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #fff;
-  -webkit-box-shadow: 2px 2px 25px 2px rgba(0, 0, 0, 0.2);
 }

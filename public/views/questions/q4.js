@@ -44,6 +44,7 @@ mobile_listener1 = [".circleQ4-1", "click", () => {
                 document.querySelector(".circleQ4").style.display = "none"
                 document.querySelector(".circle1").style.display = "block"
                 document.querySelector(".circle2").style.display = "block"
+                select = 2;
             }
         };
     }
@@ -60,15 +61,24 @@ mobile_script = () => {
     ValidationBtn.nextPage = questions.q5
     ValidationBtn.actualQ = "4"
     ValidationBtn.nextQ = "5"
+    
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", function (eventData) {
+            var tiltLR = eventData.gamma;
+            var tiltFB = eventData.beta;
+            var dir = eventData.alpha;
+            var hideBall;
 
-    if ('DeviceOrientationEvent' in window) {
-        window.addEventListener('deviceorientation', deviceOrientationHandler, false);
-    }
-    function deviceOrientationHandler(eventData) {
-        if (ValidationBtn.touch === false && window.getComputedStyle(document.querySelector(".gifValidation")).getPropertyValue('opacity') == 0) {
-            socket.emit("q4", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
-        }
-    }
+            if (window.getComputedStyle(document.querySelector(".circle1")).getPropertyValue('display') == "block") {
+                hideBall = "yes";
+            }   
+
+            if (window.getComputedStyle(document.querySelector(".circle1")).getPropertyValue('display') == "none") {
+                hideBall = "no";      
+            }   
+            socket.emit("q4", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha, hide: hideBall });
+        })
+    } 
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
@@ -118,8 +128,13 @@ desktop_html =
 
 desktop_socketOn1 = ["q4", (eventData) => {
 
-    ball.velocity.y = Math.round(-eventData.tiltFB + 20) / 3;
+    ball.velocity.y = Math.round(-eventData.tiltFB + 20) / 2;
     ball.velocity.x = Math.round(eventData.tiltLR + 20) / 2;
+
+    if (eventData.hide == "yes"){
+        document.getElementById("ball").style.display = "none"
+    }
+
 
     // hover on obj 1 //
     if (ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
@@ -164,6 +179,7 @@ desktop_socketOn1 = ["q4", (eventData) => {
  * WHEN CLICK ON MOBILE TO SELECT OBJ
  ***/
 desktop_socketOn2 = ["q4-2", (eventData) => {
+
     // click on obj 1 //
     if (eventData === "selectObj" && ball.position.x <= window.innerWidth / 3 && ball.position.y <= window.innerHeight / 2) {
         document.getElementById("hover1-2").style.display = "block"
@@ -200,20 +216,22 @@ desktop_listener2 = ["selector", "type", () => {
 
 desktop_script = () => {
     window.q4animate = true
+
     function start() {
         ball = document.getElementById("ball");
         w = window.innerWidth;
         h = window.innerHeight;
         ball.style.left = (w / 2) - 50 + "px";
-        ball.style.top = (h / 2) - 50 + "px";
+        ball.style.top = (h / 2) - 100 + "px";
         ball.velocity = { x: 0, y: 0 }
         ball.position = { x: 0, y: 0 }
-        update();
+            update();
     }
 
     function update() {
         ball.position.x += ball.velocity.x;
         ball.position.y += ball.velocity.y;
+
         if (ball.position.x > (w - 100) && ball.velocity.x > 0) {
             ball.position.x = w - 100;
         }
@@ -226,14 +244,16 @@ desktop_script = () => {
         if (ball.position.y < 0 && ball.velocity.y < 0) {
             ball.position.y = 0;
         }
+
         ball.style.top = ball.position.y + "px"
         ball.style.left = ball.position.x + "px"
+        
         if (window.q4animate) {
             requestAnimationFrame(update);
         }
     }
-
     start()
+
 
     /******************* 
      ****** OBJET 1 ****
@@ -507,6 +527,7 @@ desktop_script = () => {
             objectObj4.position.y = 0;
             objectObj4.position.x = 300;
             objectObj4.position.z = 0;
+
             sceneObj4.add( objectObj4 );
         }
         var managerObj4 = new THREE.LoadingManager( loadModelObj4 );
@@ -528,7 +549,7 @@ desktop_script = () => {
                 }
         
                 if (window.getComputedStyle(document.getElementById("hover4-2")).getPropertyValue('display') == "block") {
-                    sceneObj4.rotation.y += 0.01;
+                    cameraObj4.rotation.z += 0.003;
                 } else {
                     objectObj4.position.y = (Math.cos((Date.now()) * 0.001) * 0.2) + objectObj4.position.y;
                 }

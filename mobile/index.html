@@ -24,7 +24,7 @@
 
     <!-- button validation question -->
     <div id="buttons">
-        <div class="circle1 rotating"></div>
+        <div class="circle1"></div>
         <div class="spin circle2"></div>
         <div class="gifValidation" oncontextmenu="return false" onselectstart="return false" ondragstart="return false"><img
                 src="/both/assets/img/validation.gif" alt=""></div>
@@ -71,12 +71,12 @@
         </div>
         <div class="optionForm3D">
             <div>
-                <h1>Vous désirez avoir un souvenir de votre univers ?</h1>
+                <h1>Vous désirez avoir un souvenir de votre univers ?</h1><br>
                 <p>Entrez votre adresse mail et obtenez le devis de votre impression 3D ainsi que les informations complémentaires afin de recevoir chez vous le stigmate de votre sérénité.</p>
             </div>
             <form id="formMail" method="post" action="/mobile/php/cible.php">
                 <input type="email" name="email" placeholder="Mail : jean.dupont@gmail.com" required>
-                <input type="submit" value="Envoyer">
+                <!--<input type="submit" value="Envoyer">-->
             </form>	
         </div>
     </div>
@@ -98,7 +98,7 @@
                 <a class="firstMenu3" href="#"><img src="/both/assets/img/impression3D.svg" alt="" width="25px"></a>
             </li>
             <li class="menu-item">
-                <a class="sound firstMenu4" href="#"><img src="/both/assets/img/svg-son.svg" alt="" width="25px"></a>
+                <a class="sound firstMenu4" href="#"><img src="/both/assets/img/svg-son2.svg" alt="" width="25px"></a>
             </li>
         </ul>
     </nav>
@@ -137,6 +137,9 @@
     <script src="/views/questions/q6.js"></script>
     <script src="/views/questions/q7.js"></script>
     <script src="/views/questions/q8.js"></script>
+
+    <!-- UNIVERS -->
+    <script src="/mobile/js/gestionFirstMenu.js"></script>
 
     <!-- UNIVERS -->
     <script src="/views/univers/univers.js"></script>
