@@ -11,7 +11,7 @@ mobile_html =
     </div>
     <div class="buttonTexture">
         <button class="q5btn" id="q5Moins"></button>
-        <p><span class="incrementNumber"></span>/15</p>
+        <p><span class="incrementNumber">1</span>/15</p>
         <button class="q5btn" id="q5Plus"></button>
     </div>
  `
@@ -20,14 +20,20 @@ mobile_html =
 mobile_listener1 = ["#q5Plus", "click", (e) => {
     socket.emit("q5", "haut")
     window.q5incr++
-    if (window.q5incr > 15 - 1) window.q5incrq = 0
-    console.log(window.q5incr)
+    if (window.q5incr > 15) {
+        window.q5incrq = 0
+    }
+    document.querySelector('.incrementNumber').innerHTML = window.q5incr
+
 }]
 mobile_listener2 = ["#q5Moins", "click", (e) => {
     socket.emit("q5", "bas")
     window.q5incr--
-    if (window.q5incr < 0) window.q5incr = 15 - 1
-    console.log(window.q5incr)
+    if (window.q5incr < 0) {
+        window.q5incr = 15
+    }
+    document.querySelector('.incrementNumber').innerHTML = window.q5incr
+
 }]
 
 mobile_socketOn1 = ["q5-2", (data) => {
