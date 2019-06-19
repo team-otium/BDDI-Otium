@@ -640,7 +640,7 @@ desktop_script = () => {
 
        containerObj6 = document.getElementById('object6');
        cameraObj6 = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
-       cameraObj6.position.z = 25;
+       cameraObj6.position.z = 22;
 
        rendererObj6 = new THREE.WebGLRenderer({
            alpha: true
