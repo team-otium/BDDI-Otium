@@ -8,8 +8,10 @@ mobile_html =
     <div id="q2_target"></div>
     <div class="text_center_mobile">
         <h1 class="question_mobile">Choisissez un aspect</h1>
-        <button class="q5btn" id="q5Plus">+</button>
-        <button class="q5btn" id="q5Moins">-</button>
+    </div>
+    <div class="buttonTexture">
+        <button class="q5btn" id="q5Moins"></button>
+        <button class="q5btn" id="q5Plus"></button>
     </div>
  `
 
