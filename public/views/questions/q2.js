@@ -96,51 +96,87 @@ desktop_listener2 = ["selector", "type", () => {
 
 desktop_socketOn1 = ["q2_doigt", (data) => {
     if (data === "dezoom") {
-        window.actBulles -= 3
-        if (window.actBulles < 0) {
-            window.actBulles = 0
-        }
+        window.actBulles += 30
     } else if (data === "zoom") {
-        window.actBulles += 3
-        if (window.actBulles > window.maxBulles) {
-            window.actBulles = window.maxBulles
+        window.actBulles -= 30
+    }
+    for (let i = 0; i < window.bulles.length; i++) {
+        console.log(data, window.actBulles)
+        /*if (window.bulles[i].x == "left") {
+            window.bulles[i].el.style.left = window.bulles[i].left + window.actBulles + "px"
+        } else {
+            window.bulles[i].el.style.left = window.bulles[i].left - window.actBulles + "px"
         }
+
+        if (window.bulles[i].y == "top") {
+           // window.bulles[i].el.style.top = window.bulles[i].top + window.actBulles + "px"
+        } else {
+           // window.bulles[i].el.style.top = window.bulles[i].top - window.actBulles + "px"
+        }*/
     }
 }]
 
 desktop_script = () => {
     window.q2animate = true
-    let bulles = []
+    window.bulles = []
     for (let i = 0; i < (window.innerWidth / 180) * ((window.innerHeight / 140) + 1); i++) {
         let minPx = Math.ceil(-50);
         let maxPx = Math.floor(50);
         let scale = Math.random()
         let div = document.createElement("div")
-        div.style.left = Math.random() * (maxPx - minPx + 1) + minPx + "px"
-        div.style.top = Math.random() * (maxPx - minPx + 1) + minPx + "px"
+        let left, top
+        left = Math.random() * (maxPx - minPx + 1) + minPx
+        top = Math.random() * (maxPx - minPx + 1) + minPx
+        div.style.left = left + "px"
+        div.style.top = top + "px"
         div.style.transform = "scale(" + scale + ")"
         div.style.opacity = 0.5 * scale
 
         div.classList.add("bulle")
         document.getElementById("bulles").appendChild(div)
 
-        bulles.push({ el: div, speed: scale * 10, opacity: div.style.opacity, offset: parseInt(div.offsetTop) })
+        var x,y
+        var bound = div.getBoundingClientRect()
+        console.log(parseInt(bound.left))
+        if (parseInt(div.offsetLeft) < (window.innerWidth/2)) {
+            x = "left"
+        } else {
+            x = "right"
+        }
+
+        if (parseInt(bound.top) > window.innerHeight/2) {
+            y = "bottom"
+        } else {
+            y = "top"
+        }
+
+        window.bulles.push({ el: div, speed: scale * 10, opacity: div.style.opacity, offset: parseInt(div.offsetTop), x:x, y:y, top: top, left: left})
     }
 
-    window.maxBulles = bulles.length
-    window.actBulles = window.maxBulles
+    window.maxBulles = window.bulles.length
+    window.actBulles = 0
     requestAnimationFrame(bullesAnimation)
 
     function bullesAnimation() {
-        for (let i = 0; i < window.actBulles; i++) {
-            bulles[i].el.classList.remove("none")
-            bulles[i].el.style.top = (parseInt(bulles[i].el.style.top) + bulles[i].speed) + "px"
-            if (bulles[i].el.offsetTop >= window.innerHeight + 200) {
-                bulles[i].el.style.top = 0 - bulles[i].offset - 200 + "px"
+        for (let i = 0; i < window.bulles.length; i++) {
+            window.bulles[i].el.classList.remove("none")
+            if (window.bulles[i].x == "left") {
+                window.bulles[i].el.style.left = window.bulles[i].left + window.actBulles * (window.bulles[i].speed/10) + "px"
+            } else {
+                window.bulles[i].el.style.left = window.bulles[i].left + (- window.actBulles) * (window.bulles[i].speed/10) + "px"
             }
-        }
-        for (let i = bulles.length - 1; i >= window.actBulles; i--) {
-            bulles[i].el.classList.add("none")
+    
+            if (window.bulles[i].y == "top") {
+                let top = parseInt(window.bulles[i].el.style.top) + window.bulles[i].speed
+               window.bulles[i].el.style.top = top + "px"
+            } else {
+                let top = parseInt(window.bulles[i].el.style.top) + window.bulles[i].speed
+               window.bulles[i].el.style.top = top + "px"
+            }
+
+            if (window.bulles[i].el.offsetTop >= window.innerHeight + 200) {
+                window.bulles[i].el.style.top = 0 - window.bulles[i].offset - 200 + "px"
+            }
         }
         if (window.q2animate) {
             requestAnimationFrame(bullesAnimation)
