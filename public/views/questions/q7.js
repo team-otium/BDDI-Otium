@@ -111,8 +111,8 @@ desktop_listener2 = ["selector", "type", () => {
 }]
 
 desktop_socketOn1 = ["q7", (eventData) => {
-    ball.velocity.y = Math.round(-eventData.tiltFB) / 2;
-    ball.velocity.x = Math.round(eventData.tiltLR) / 2;
+    ball.velocity.y = Math.round(-eventData.tiltFB + 20) / 2;
+    ball.velocity.x = Math.round(eventData.tiltLR + 20) / 2;
 
     if (eventData.delete == "yes"){
         document.getElementById("ballQ7").style.display = "none"
@@ -145,7 +145,7 @@ desktop_script = () => {
         w = window.innerWidth;
         h = window.innerHeight;
         ball.style.left = (w / 2) - 50 + "px";
-        ball.style.top = (h / 2) - 50 + "px";
+        ball.style.top = (h / 2) - 100 + "px";
         ball.velocity = { x: 0, y: 0 }
         ball.position = { x: 0, y: 0 }
         update();

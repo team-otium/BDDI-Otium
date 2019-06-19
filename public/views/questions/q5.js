@@ -112,8 +112,8 @@ desktop_script = () => {
     window.q5_textures = [
 
     ]
-    for (let i = 1; i <= 15; i++) {
-        window.q5_textures.push(new THREE.TextureLoader().load('/both/assets/img/q5/texture_drap-'+i+'.jpg'))
+    for (let i = 1; i <= 5; i++) {
+        window.q5_textures.push(new THREE.TextureLoader().load('/both/assets/img/q5/final_texture/texture_drap-'+i+'.jpg'))
     }
 
     window.sceneq5 = new THREE.Scene();
