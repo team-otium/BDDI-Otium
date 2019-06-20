@@ -67,6 +67,8 @@ mobile_listener3 = [".btnValidQ8", "click", () => {
 
         document.querySelector('#selectedSon').style.display = "block"
     }, 2000);
+
+    socket.emit("q8", "valid")
 }]
 
 mobile_listener4 = ["#q8button2", "touchstart", () => {
@@ -124,6 +126,19 @@ desktop_html =
             <audio id="q8song4" src="/both/assets/sound/q8/btn4.mp3"></audio>
             <canvas id="q8can"></canvas>
     </div>
+    <div id="q8imgContainer">
+        <img id="q8img1" class="q8show" src="/both/assets/img/q8/geste-interaction.png">
+        <img id="q8img2" class="q8hide" src="/both/assets/img/q8/geste-interaction.gif">
+
+        <img id="q8img3" class="q8hide" src="/both/assets/img/q8/geste-interaction_1.png">
+        <img id="q8img4" class="q8hide" src="/both/assets/img/q8/geste-interaction_1.gif">
+
+        <img id="q8img5" class="q8hide" src="/both/assets/img/q8/geste-interaction_2.png">
+        <img id="q8img6" class="q8hide" src="/both/assets/img/q8/geste-interaction_2.gif">
+
+        <img id="q8img7" class="q8hide" src="/both/assets/img/q8/geste-interaction_3.png">
+        <img id="q8img8" class="q8hide" src="/both/assets/img/q8/geste-interaction_3.gif">
+    </div>
  `
 
 desktop_listener1 = ["selector", "type", () => {
@@ -145,6 +160,11 @@ desktop_socketOn1 = ["q8", (data) => {
             } else {
                 window.q8song["1"] = true
                 document.querySelector("#q8song1").play()
+                document.getElementById("q8img1").classList.add("q8hide")
+                document.getElementById("q8img1").classList.remove("q8show")
+
+                document.getElementById("q8img2").classList.add("q8show")
+                document.getElementById("q8img2").classList.remove("q8hide")
             }
             break;
         case "q8button2":
@@ -152,9 +172,17 @@ desktop_socketOn1 = ["q8", (data) => {
                 window.q8song["2"] = false
                 document.querySelector("#q8song2").pause()
                 document.querySelector("#q8song2").currentTime = 0
+                document.getElementById("q8img3").classList.add("q8show")
+                document.getElementById("q8img3").classList.remove("q8hide")
+                document.getElementById("q8img4").classList.add("q8hide")
+                document.getElementById("q8img4").classList.remove("q8show")
             } else {
                 window.q8song["2"] = true
                 document.querySelector("#q8song2").play()
+                document.getElementById("q8img4").classList.add("q8show")
+                document.getElementById("q8img4").classList.remove("q8hide")
+                document.getElementById("q8img3").classList.add("q8hide")
+                document.getElementById("q8img3").classList.remove("q8show")
             }
             break;
         case "q8button3":
@@ -162,9 +190,17 @@ desktop_socketOn1 = ["q8", (data) => {
                     window.q8song["3"] = false
                     document.querySelector("#q8song3").pause()
                     document.querySelector("#q8song3").currentTime = 0
+                    document.getElementById("q8img5").classList.add("q8show")
+                    document.getElementById("q8img5").classList.remove("q8hide")
+                    document.getElementById("q8img6").classList.add("q8hide")
+                    document.getElementById("q8img6").classList.remove("q8show")
                 } else {
                     window.q8song["3"] = true
                     document.querySelector("#q8song3").play()
+                    document.getElementById("q8img6").classList.add("q8show")
+                    document.getElementById("q8img6").classList.remove("q8hide")
+                    document.getElementById("q8img5").classList.add("q8hide")
+                    document.getElementById("q8img5").classList.remove("q8show")
                 }
             break;
         case "q8button4":
@@ -172,11 +208,32 @@ desktop_socketOn1 = ["q8", (data) => {
                     window.q8song["4"] = false
                     document.querySelector("#q8song4").pause()
                     document.querySelector("#q8song4").currentTime = 0
+                    document.getElementById("q8img7").classList.add("q8show")
+                    document.getElementById("q8img7").classList.remove("q8hide")
+                    document.getElementById("q8img8").classList.add("q8hide")
+                    document.getElementById("q8img8").classList.remove("q8show")
                 } else {
                     window.q8song["4"] = true
                     document.querySelector("#q8song4").play()
+                    document.getElementById("q8img8").classList.add("q8show")
+                    document.getElementById("q8img8").classList.remove("q8hide")
+                    document.getElementById("q8img7").classList.add("q8hide")
+                    document.getElementById("q8img7").classList.remove("q8show")
                 }
             break;
+
+        case "valid":
+
+                document.getElementById("q8img3").classList.add("q8show")
+                document.getElementById("q8img3").classList.remove("q8hide")
+
+                document.getElementById("q8img5").classList.add("q8show")
+                document.getElementById("q8img5").classList.remove("q8hide")
+
+                document.getElementById("q8img7").classList.add("q8show")
+                document.getElementById("q8img7").classList.remove("q8hide")
+
+        break;
     
         default:
             break;

@@ -533,6 +533,30 @@ h1 {
     display: flex;
 }
 
+#q8imgContainer{
+    width: 500px;
+    height: 500px;
+    position: relative;
+    margin: auto;
+    margin-top: calc(50% - 250px);
+}
+
+#q8imgContainer img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.q8hide{
+    opacity: 0;
+}
+
+.q8show{
+    opacity: 1;
+}
+
 
 /**************************  
 **************************  UNIVERS 3D
