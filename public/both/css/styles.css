@@ -69,7 +69,6 @@ input:focus, button:focus{
 /*** ANIMATION PAGE ***/
 section{
     transition: 0.8s all ease;
-    overflow: auto;
   }
   
   .out{

@@ -139,8 +139,8 @@ desktop_html =
     <!--<h1>Univers</h1>
     <canvas id="univers"></canvas>-->
 
-    <video controls autoplay loop style="position: absolute; height: 100vh; width: 100%" id="vid">
-    <source autoplay src="/both/assets/img/univers/monde.mp4">
+    <video controls autoplay="true" loop style="position: absolute; height: 100vh; width: 100%" id="vid">
+    <source src="/both/assets/img/univers/monde.mp4">
     </video>
  `
 
