@@ -12,9 +12,9 @@ mobile_html =
     <div class="text_center_mobile">
         <h1 class="question_mobile">Composez votre son</h1>
         <button id="q8button1" class="q8button"></button>
-        <button id="q8button2" class="q8button">2</button>
-        <button id="q8button3" class="q8button">3</button>
-        <button id="q8button4" class="q8button">4</button>
+        <button id="q8button2" class="q8button"></button>
+        <button id="q8button3" class="q8button"></button>
+        <button id="q8button4" class="q8button"></button>
     </div> 
     <div class="trace_son">
         <div class="draw_son"><img src="/both/assets/img/q8/trace-son.png"></div>
@@ -73,21 +73,26 @@ mobile_listener3 = [".btnValidQ8", "click", () => {
 
 mobile_listener4 = ["#q8button2", "touchstart", () => {
     document.querySelector('.selectedSon2').style.fill = "#000000"
+    document.querySelector('#q8button2').style.opacity = "1"
 }]
 
 mobile_listener5 = ["#q8button3", "touchstart", () => {
     document.querySelector('.selectedSon3').style.fill = "#000000"
+    document.querySelector('#q8button3').style.opacity = "1"
 }]
 
 mobile_listener6 = ["#q8button4", "touchstart", () => {
     document.querySelector('.selectedSon4').style.fill = "#000000"
+    document.querySelector('#q8button4').style.opacity = "1"
 
-    document.querySelector('#q8button2').style.display = "none"
-    document.querySelector('#q8button3').style.display = "none"
-    document.querySelector('#q8button4').style.display = "none"
-
-    document.querySelector(".circle1").style.display = "block"
-    document.querySelector(".circle2").style.display = "block"
+    setTimeout(function(){ 
+        document.querySelector('#q8button2').style.display = "none"
+        document.querySelector('#q8button3').style.display = "none"
+        document.querySelector('#q8button4').style.display = "none"
+    
+        document.querySelector(".circle1").style.display = "block"
+        document.querySelector(".circle2").style.display = "block"
+    }, 3000);
 }]
 
 

@@ -759,6 +759,10 @@ h2 {
   height: 30%;
   display: none;
   transition: 2s;
+  background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid #474747;
+    opacity: 0;
 }
 
 #q8button3 {
@@ -769,6 +773,10 @@ h2 {
   height: 30%;
   display: none;
   transition: 2s;
+  background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid #474747;
+    opacity: 0;
 }
 
 #q8button4 {
@@ -781,6 +789,10 @@ h2 {
   height: 30%;
   display: none;
   transition: 2s;
+  background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid #474747;
+    opacity: 0;
   }
 
   #selectedSon {
