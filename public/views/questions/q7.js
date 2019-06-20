@@ -191,7 +191,7 @@ desktop_script = () => {
     rendererFinalObj1.setSize(window.innerWidth / 3, window.innerHeight);
     containerFinalObj1.appendChild(rendererFinalObj1.domElement);
 
-    cameraFinalObj1.position.z = 10;
+    cameraFinalObj1.position.z = 9;
     cameraFinalObj1.position.x = 0;
     cameraFinalObj1.position.y = -0.5;
 
@@ -225,7 +225,7 @@ desktop_script = () => {
 
     // texture
     var textureLoaderFinalObj1 = new THREE.TextureLoader( managerFinalObj1 );
-    var textureFinalObj1 = textureLoaderFinalObj1.load( '/both/assets/img/q5/texture_drap-6_NORMALES.jpg' );
+    var textureFinalObj1 = textureLoaderFinalObj1.load( '/both/assets/img/q5/texture_drap-11_OCCLUSION.jpg' );
 
     var objLoaderFinalObj1 = new THREE.OBJLoader(managerFinalObj1);
     objLoaderFinalObj1.load('/both/assets/img/q7/organiques/tore_2.obj', function (obj) {
@@ -264,7 +264,7 @@ desktop_script = () => {
     rendererFinalObj2.setSize(window.innerWidth / 3, window.innerHeight);
     containerFinalObj2.appendChild(rendererFinalObj2.domElement);
 
-    cameraFinalObj2.position.z = 20;
+    cameraFinalObj2.position.z = 18;
     cameraFinalObj2.position.x = 0;
     cameraFinalObj2.position.y = -1;
 
@@ -299,7 +299,7 @@ desktop_script = () => {
  
     // texture
     var textureLoaderFinalObj2 = new THREE.TextureLoader( managerFinalObj2 );
-    var textureFinalObj2 = textureLoaderFinalObj2.load( '/both/assets/img/q5/texture_drap-9.jpg' );
+    var textureFinalObj2 = textureLoaderFinalObj2.load( '/both/assets/img/q5/texture_drap-11_OCCLUSION.jpg' );
 
     var objLoaderFinalObj2 = new THREE.OBJLoader(managerFinalObj2);
     objLoaderFinalObj2.load('/both/assets/img/q7/organiques/sphere_1.obj', function (obj) {
@@ -338,7 +338,7 @@ desktop_script = () => {
     rendererFinalObj3.setSize(window.innerWidth / 3, window.innerHeight);
     containerFinalObj3.appendChild(rendererFinalObj3.domElement);
 
-    cameraFinalObj3.position.z = 20;
+    cameraFinalObj3.position.z = 12;
     cameraFinalObj3.position.x = 0;
     cameraFinalObj3.position.y = -1;
 
@@ -362,7 +362,7 @@ desktop_script = () => {
             if ( child.isMesh ) child.material.map = textureFinalObj3;
         } );
 
-        finalObject3.position.y = 0;
+        finalObject3.position.y = -1;
         finalObject3.position.x = 0;
         finalObject3.position.z = 0;
         sceneFinalObj3.add( finalObject3 );
@@ -374,11 +374,11 @@ desktop_script = () => {
 
     // texture
     var textureLoaderFinalObj3 = new THREE.TextureLoader( managerFinalObj3 );
-    var textureFinalObj3 = textureLoaderFinalObj3.load( '/both/assets/img/q5/texture_drap-6.jpg' );
+    var textureFinalObj3 = textureLoaderFinalObj3.load( '/both/assets/img/q5/texture_drap-11_OCCLUSION.jpg' );
 
 
     var objLoaderFinalObj3 = new THREE.OBJLoader(managerFinalObj3);
-    objLoaderFinalObj3.load('/both/assets/img/q7/organiques/isocaedre_2.obj', function (obj) {
+    objLoaderFinalObj3.load('/both/assets/img/q7/organiques/octaedre_6_2.obj', function (obj) {
         finalObject3 = obj;
         
         var animateFinalObj3 = function () {

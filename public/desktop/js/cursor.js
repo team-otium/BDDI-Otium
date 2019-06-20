@@ -26,6 +26,17 @@
               (doc && doc.clientTop  || body && body.clientTop  || 0 );
         }
 
+        cursor.classList.add("show")
+        cursor.classList.remove("hide")
+        document.body.style.cursor = " url(/both/assets/img/cursor.png), auto"
+        clearTimeout(window.cursorTime)
+
+        window.cursorTime = setTimeout(()=>{
+          cursor.classList.add("hide")
+          cursor.classList.remove("show")
+          document.body.style.cursor = "none"
+        },3000)
+
         mousePos = {
             x: event.pageX,
             y: event.pageY
@@ -42,7 +53,6 @@
           cursor = document.querySelector('#cursor');
           cursor.style.left = (pos.x -5) + 'px' ;
           cursor.style.top = (pos.y -5) + 'px';
-
         }
     }
 })();

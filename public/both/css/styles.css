@@ -30,7 +30,7 @@ body{
   top: 0;
   bottom: 0;
   left: 0;
-  height: 42vh;
+  height: 32vh;
   right: 0;
   font-size: 17px;
   text-align: center;
@@ -69,6 +69,7 @@ input:focus, button:focus{
 /*** ANIMATION PAGE ***/
 section{
     transition: 0.8s all ease;
+    overflow: auto;
   }
   
   .out{

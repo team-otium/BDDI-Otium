@@ -64,7 +64,7 @@ desktop_html =
         <h1 class="question_desktop">Quel est le moment de la journée le plus agréable visuellement ?</h1>
     </div>
 
-    <div class="contain">
+    <!--<div class="contain">
         <div class="nav">
             <ul>
                 <li id="leverSoleil">Lever de soleil</li>
@@ -74,7 +74,7 @@ desktop_html =
                 <li id="nuit">Nuit</li>
             </ul>
         </div>
-    </div>
+    </div>-->
     
     <div class="tuto"><img src="/both/assets/img/tuto/tuto_3.gif"></div>
     `
@@ -102,12 +102,12 @@ desktop_socketOn1 = ["q6", (eventData) => {
         if (window.moment != moment) {
             window.moment = 0
 
-            document.getElementById('leverSoleil').classList.add("animNav");
+            // document.getElementById('leverSoleil').classList.add("animNav");
 
-            document.getElementById('matin').classList.remove("animNav");
-            document.getElementById('journee').classList.remove("animNav");
-            document.getElementById('coucherDeSoleil').classList.remove("animNav");
-            document.getElementById('nuit').classList.remove("animNav");
+            // document.getElementById('matin').classList.remove("animNav");
+            // document.getElementById('journee').classList.remove("animNav");
+            // document.getElementById('coucherDeSoleil').classList.remove("animNav");
+            // document.getElementById('nuit').classList.remove("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -129,12 +129,12 @@ desktop_socketOn1 = ["q6", (eventData) => {
             window.moment = 1
 
             document.getElementById('background_anim').innerHTML = ""
-            document.getElementById('matin').classList.add("animNav");
+            // document.getElementById('matin').classList.add("animNav");
 
-            document.getElementById('leverSoleil').classList.remove("animNav");
-            document.getElementById('journee').classList.remove("animNav");
-            document.getElementById('coucherDeSoleil').classList.remove("animNav");
-            document.getElementById('nuit').classList.remove("animNav");
+            // document.getElementById('leverSoleil').classList.remove("animNav");
+            // document.getElementById('journee').classList.remove("animNav");
+            // document.getElementById('coucherDeSoleil').classList.remove("animNav");
+            // document.getElementById('nuit').classList.remove("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -154,12 +154,12 @@ desktop_socketOn1 = ["q6", (eventData) => {
             window.moment = 2
 
             document.getElementById('background_anim').innerHTML = ""
-            document.getElementById('journee').classList.add("animNav");
+            // document.getElementById('journee').classList.add("animNav");
 
-            document.getElementById('leverSoleil').classList.remove("animNav");
-            document.getElementById('matin').classList.remove("animNav");
-            document.getElementById('coucherDeSoleil').classList.remove("animNav");
-            document.getElementById('nuit').classList.remove("animNav");
+            // document.getElementById('leverSoleil').classList.remove("animNav");
+            // document.getElementById('matin').classList.remove("animNav");
+            // document.getElementById('coucherDeSoleil').classList.remove("animNav");
+            // document.getElementById('nuit').classList.remove("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -179,12 +179,12 @@ desktop_socketOn1 = ["q6", (eventData) => {
             window.moment = 3
 
             document.getElementById('background_anim').innerHTML = ""
-            document.getElementById('coucherDeSoleil').classList.add("animNav");
+            // document.getElementById('coucherDeSoleil').classList.add("animNav");
 
-            document.getElementById('leverSoleil').classList.remove("animNav");
-            document.getElementById('matin').classList.remove("animNav");
-            document.getElementById('journee').classList.remove("animNav");
-            document.getElementById('nuit').classList.remove("animNav");
+            // document.getElementById('leverSoleil').classList.remove("animNav");
+            // document.getElementById('matin').classList.remove("animNav");
+            // document.getElementById('journee').classList.remove("animNav");
+            // document.getElementById('nuit').classList.remove("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -200,16 +200,17 @@ desktop_socketOn1 = ["q6", (eventData) => {
     }
     if (eventData.tiltFB >= 80 && eventData.tiltFB < 100) {
         let moment = 4
+        document.querySelector('.question_desktop').style.color = "white"
         if (window.moment != moment) {
             window.moment = 4
             
             document.getElementById('background_anim').innerHTML = ""
-            document.getElementById('nuit').classList.add("animNav");
+            // document.getElementById('nuit').classList.add("animNav");
 
-            document.getElementById('leverSoleil').classList.remove("animNav");
-            document.getElementById('matin').classList.remove("animNav");
-            document.getElementById('journee').classList.remove("animNav");
-            document.getElementById('coucherDeSoleil').classList.remove("animNav");
+            // document.getElementById('leverSoleil').classList.remove("animNav");
+            // document.getElementById('matin').classList.remove("animNav");
+            // document.getElementById('journee').classList.remove("animNav");
+            // document.getElementById('coucherDeSoleil').classList.remove("animNav");
 
             VANTA.FOG({
                 el: "#background_anim",
@@ -222,6 +223,12 @@ desktop_socketOn1 = ["q6", (eventData) => {
                 zoom: 0.40
             })
         }
+    }
+    
+    if (eventData.tiltFB >= 80) {
+        document.querySelector('.question_desktop').style.color = "white"
+    } else {
+        document.querySelector('.question_desktop').style.color = "#494949"
     }
 }]
 

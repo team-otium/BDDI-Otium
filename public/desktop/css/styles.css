@@ -20,6 +20,14 @@ h1 {
     line-height: 1.3em;
 }
 
+.hide{
+    opacity: 0;
+}
+
+.show{
+    opacity: 1;
+}
+
 /*** GIF TUTO ON BOTTOM ***/
 
 .tuto1 {
@@ -149,24 +157,21 @@ h1 {
 @keyframes animTitleBloc {
     0% {
         opacity: 1;
-        bottom: 0
+        /* bottom: 0 */
     }
     40% {
         opacity: 0;
     }
-    90% {
-        opacity: 0;
-    }
     100% {
-        opacity: 1;
-        bottom: auto;
+        opacity: 0;
+        /* bottom: auto; */
     }
 }
 
 .contain {
     opacity: 0;
     animation : displayContain 4s forwards;
-    animation-delay: 3s;
+    animation-delay: 4.5s;
 }
 
 @keyframes displayContain {
@@ -178,7 +183,7 @@ h1 {
     }
 }
 
-.text_center h1 {
+/* .text_center h1 {
     bottom: 0;
     animation: animTitleH1 0s forwards;
     animation-delay: 5s;
@@ -192,7 +197,7 @@ h1 {
     to {
         font-size: 19px;
     }
-}
+} */
 
 /**************************  
 ************************** PAGE 1 INTRODUCTION
@@ -526,6 +531,30 @@ h1 {
     width: 100%;
     height: 100%;
     display: flex;
+}
+
+#q8imgContainer{
+    width: 500px;
+    height: 500px;
+    position: relative;
+    margin: auto;
+    margin-top: calc(50% - 250px);
+}
+
+#q8imgContainer img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.q8hide{
+    opacity: 0;
+}
+
+.q8show{
+    opacity: 1;
 }
 
 

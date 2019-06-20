@@ -11,16 +11,35 @@ mobile_html =
     `
     <div class="text_center_mobile">
     <h1 class="question_mobile">Univers 3D</h1>
+    <div id="univ_joy">
+      <div id="univ_yot_circle"></div>
+    </div>
  </div>
  `
 
 // All listeners, one variable per listener
-mobile_listener1 = ["selector", "type", () => {
-
+mobile_listener1 = ["#univ_joy", "touchstart", (e) => {
+  window.univJoy = true
+  if (e.offsetX !== 0) {
+    document.getElementById("univ_yot_circle").style.left = parseInt(e.offsetX) - 60 + "px"
+    document.getElementById("univ_yot_circle").style.top = parseInt(e.offsetY) - 60 + "px"
+  }
 }]
 
-mobile_listener2 = ["selector", "type", () => {
+mobile_listener2 = ["#univ_joy", "touchmove", (e) => {
+  if (window.univJoy) {
+    console.log(e)
+    if (e.offsetX > 0 || e.offsetY > 0) {
+      document.getElementById("univ_yot_circle").style.left = (e.offsetX - 60) + "px"
+      document.getElementById("univ_yot_circle").style.top = (e.offsetY - 60) + "px"
+    }
+  }
+    }]
 
+mobile_listener3 = ["body", "touchend", () => {
+  window.univJoy = false
+  document.getElementById("univ_yot_circle").style.left = "calc(50% - 60px)"
+  document.getElementById("univ_yot_circle").style.top = "calc(50% - 60px)"
     }]
     /** And more... */
 
@@ -36,30 +55,76 @@ mobile_script = () => {
     document.querySelector(".option3D").style.display = "none"
     document.querySelector(".optionForm3D").style.display = "block"
 
+    window.univJoy = false
 
-    if (!window.requestAnimationFrame) {
-        window.requestAnimationFrame = (function () {
-            return window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                window.oRequestAnimationFrame ||
-                window.msRequestAnimationFrame ||
-                function ( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
-                    window.setTimeout(callback, 1000 / 60);
-                };
-        })();
+
+    // if (!window.requestAnimationFrame) {
+    //     window.requestAnimationFrame = (function () {
+    //         return window.webkitRequestAnimationFrame ||
+    //             window.mozRequestAnimationFrame ||
+    //             window.oRequestAnimationFrame ||
+    //             window.msRequestAnimationFrame ||
+    //             function ( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
+    //                 window.setTimeout(callback, 1000 / 60);
+    //             };
+    //     })();
+    // }
+
+    // if (window.DeviceOrientationEvent) {
+    //     window.addEventListener("deviceorientation", function (eventData) {
+    //         var tiltLR = eventData.gamma;
+    //         var tiltFB = eventData.beta;
+    //         var dir = eventData.alpha;
+
+    //         socket.emit("univers", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
+    //     })
+    // } else {
+    //     alert("Sorry, your browser doesn't support Device Orientation");
+    // };
+
+    function startDrag(e) {
+      this.ontouchmove = this.onmspointermove = moveDrag;
+    
+      this.ontouchend = this.onmspointerup = function () {
+        this.ontouchmove = this.onmspointermove = null;
+        this.ontouchend = this.onmspointerup = null;
+      }
+    
+      var pos = [this.offsetLeft, this.offsetTop];
+      var that = this;
+      var origin = getCoors(e);
+    
+      function moveDrag(e) {
+        var currentPos = getCoors(e);
+        var deltaX = currentPos[0] - origin[0];
+        var deltaY = currentPos[1] - origin[1];
+        this.style.left = (pos[0] + deltaX) + 'px';
+        this.style.top = (pos[1] + deltaY) + 'px';
+        return false; // cancels scrolling
+      }
+    
+      function getCoors(e) {
+        var coors = [];
+        if (e.targetTouches && e.targetTouches.length) {
+          var thisTouch = e.targetTouches[0];
+          coors[0] = thisTouch.clientX;
+          coors[1] = thisTouch.clientY;
+        } else {
+          coors[0] = e.clientX;
+          coors[1] = e.clientY;
+        }
+        return coors;
+      }
     }
-
-    if (window.DeviceOrientationEvent) {
-        window.addEventListener("deviceorientation", function (eventData) {
-            var tiltLR = eventData.gamma;
-            var tiltFB = eventData.beta;
-            var dir = eventData.alpha;
-
-            socket.emit("univers", { tiltFB: eventData.beta, tiltLR: eventData.gamma, dir: eventData.alpha });
-        })
-    } else {
-        alert("Sorry, your browser doesn't support Device Orientation");
-    };
+    
+    var elements = document.querySelectorAll('#univ_yot_circle');
+    [].forEach.call(elements, function (element) {
+      element.ontouchstart = element.onmspointerdown = startDrag;
+    });
+    
+    document.ongesturechange = function () {
+      return false;
+    }
 }
 
 // Name of the transitions classes [when he leave, when he arrive]
@@ -375,7 +440,7 @@ desktop_transition = ["out", "in"]
 
 univers_mobile = {
     html: mobile_html,
-    listeners: [],
+    listeners: [mobile_listener1, mobile_listener2, mobile_listener3],
     socketOn: [],
     script: mobile_script,
     transitions: mobile_transition,
