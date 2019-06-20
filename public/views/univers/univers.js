@@ -139,7 +139,7 @@ desktop_html =
     <!--<h1>Univers</h1>
     <canvas id="univers"></canvas>-->
 
-    <video controls autoplay="true" loop style="position: absolute; height: 100vh; width: 100%" id="vid">
+    <video autoplay="" muted="" style="position: absolute; height: 110vh; width: 110vw;" id="vid">
     <source src="/both/assets/img/univers/monde.mp4">
     </video>
  `
@@ -436,6 +436,9 @@ desktop_script = () => {
 // };
 
 // animateUniv();
+
+var video = document.getElementById('vid');
+video.play()
 }
 
 desktop_transition = ["out", "in"]
